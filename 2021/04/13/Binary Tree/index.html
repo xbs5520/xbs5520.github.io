@@ -8,23 +8,23 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>二叉树有关算法题 | xbs5520&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.LeetCode 783 二叉搜索树节点最小距离题目给你一个二叉搜索树的根节点 root ，返回树中任意两不同节点值之间的最小差值root &#x3D; [4,2,6,1,3] 分析dfs 中序遍历每次更新 最小值 123456789101112131415161718192021void dfsInOrder(TreeNode* root, int&amp; pre, int&amp; ans) &amp;#">
+  <meta name="description" content="1.LeetCode 783 二叉搜索树节点最小距离题目给你一个二叉搜索树的根节点 root ，返回树中任意两不同节点值之间的最小差值root &#x3D; [4,2,6,1,3] 分析dfs 中序遍历每次更新 最小值">
 <meta property="og:type" content="article">
 <meta property="og:title" content="二叉树有关算法题">
 <meta property="og:url" content="http://yoursite.com/2021/04/13/Binary%20Tree/index.html">
 <meta property="og:site_name" content="xbs5520&#39;s blog">
-<meta property="og:description" content="1.LeetCode 783 二叉搜索树节点最小距离题目给你一个二叉搜索树的根节点 root ，返回树中任意两不同节点值之间的最小差值root &#x3D; [4,2,6,1,3] 分析dfs 中序遍历每次更新 最小值 123456789101112131415161718192021void dfsInOrder(TreeNode* root, int&amp; pre, int&amp; ans) &amp;#">
+<meta property="og:description" content="1.LeetCode 783 二叉搜索树节点最小距离题目给你一个二叉搜索树的根节点 root ，返回树中任意两不同节点值之间的最小差值root &#x3D; [4,2,6,1,3] 分析dfs 中序遍历每次更新 最小值">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-04-13T13:06:43.000Z">
-<meta property="article:modified_time" content="2021-04-13T13:16:48.292Z">
+<meta property="article:modified_time" content="2021-04-14T00:36:38.266Z">
 <meta property="article:author" content="xbs5520">
-<meta property="article:tag" content="二叉树类算法题整合">
+<meta property="article:tag" content="算法题整合">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="xbs5520&#39;s blog" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="/assets/web.jpg">
   
   <link rel="stylesheet" type="text/css" href="/./main.0cf68a.css">
   <style type="text/css">
@@ -163,6 +163,7 @@
       
         <h2 id="1-LeetCode-783-二叉搜索树节点最小距离"><a href="#1-LeetCode-783-二叉搜索树节点最小距离" class="headerlink" title="1.LeetCode 783 二叉搜索树节点最小距离"></a>1.LeetCode 783 二叉搜索树节点最小距离</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给你一个二叉搜索树的根节点 root ，返回树中任意两不同节点值之间的最小差值<br>root = [4,2,6,1,3]</p>
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>dfs 中序遍历<br>每次更新 最小值</p>
+<span id="more"></span>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfsInOrder</span><span class="params">(TreeNode* root, <span class="keyword">int</span>&amp; pre, <span class="keyword">int</span>&amp; ans)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//左</span></span><br><span class="line">    <span class="built_in">dfsInOrder</span>(root-&gt;left, pre, ans);</span><br><span class="line">    <span class="comment">//中</span></span><br><span class="line">    <span class="keyword">if</span> (pre == <span class="number">-1</span>) &#123;</span><br><span class="line">        pre = root-&gt;val;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        ans = <span class="built_in">min</span>(ans, root-&gt;val - pre);</span><br><span class="line">        pre = root-&gt;val;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//右</span></span><br><span class="line">    <span class="built_in">dfsInOrder</span>(root-&gt;right, pre, ans);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">minDiffInBST</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans = INT_MAX, pre = <span class="number">-1</span>;</span><br><span class="line">    <span class="built_in">dfsInOrder</span>(root, pre, ans);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
@@ -197,7 +198,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">二叉树类算法题整合</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">算法题整合</a>
         		</li>
       		
 		</ul>
@@ -394,15 +395,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">二叉树类算法题整合</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Math类算法题整合</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">String类算法题整合</a>
+                <a href="javascript:void(0)" class="js-tag color5">深入理解计算机系统</a>
               </li>
             
             <div class="clearfix"></div>

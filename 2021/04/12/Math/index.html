@@ -8,23 +8,23 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Math有关算法题 | xbs5520&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.LeetCode 263 丑数题目判断整数n是否为丑数丑数就是只包含质因数2、3或5的正整数。 分析用 2 3 5 循环 除这个数看是否最后结果为 1为1则只有它们 不为1则还有其他 123456789bool isUgly(int n) &amp;#123;	&#x2F;&#x2F;4也写进去 但不影响 因为 2已经除过    for(int i &#x3D; 2 ; i &lt; 6 &amp;&amp; n &gt; 0;i">
+  <meta name="description" content="1.LeetCode 263 丑数题目判断整数n是否为丑数丑数就是只包含质因数2、3或5的正整数。 分析用 2 3 5 循环 除这个数看是否最后结果为 1为1则只有它们 不为1则还有其他">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Math有关算法题">
 <meta property="og:url" content="http://yoursite.com/2021/04/12/Math/index.html">
 <meta property="og:site_name" content="xbs5520&#39;s blog">
-<meta property="og:description" content="1.LeetCode 263 丑数题目判断整数n是否为丑数丑数就是只包含质因数2、3或5的正整数。 分析用 2 3 5 循环 除这个数看是否最后结果为 1为1则只有它们 不为1则还有其他 123456789bool isUgly(int n) &amp;#123;	&#x2F;&#x2F;4也写进去 但不影响 因为 2已经除过    for(int i &#x3D; 2 ; i &lt; 6 &amp;&amp; n &gt; 0;i">
+<meta property="og:description" content="1.LeetCode 263 丑数题目判断整数n是否为丑数丑数就是只包含质因数2、3或5的正整数。 分析用 2 3 5 循环 除这个数看是否最后结果为 1为1则只有它们 不为1则还有其他">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-04-12T08:41:43.000Z">
-<meta property="article:modified_time" content="2021-04-13T12:52:04.934Z">
+<meta property="article:modified_time" content="2021-04-14T00:37:36.362Z">
 <meta property="article:author" content="xbs5520">
-<meta property="article:tag" content="Math类算法题整合">
+<meta property="article:tag" content="算法题整合">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="xbs5520&#39;s blog" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="/assets/web.jpg">
   
   <link rel="stylesheet" type="text/css" href="/./main.0cf68a.css">
   <style type="text/css">
@@ -163,6 +163,7 @@
       
         <h2 id="1-LeetCode-263-丑数"><a href="#1-LeetCode-263-丑数" class="headerlink" title="1.LeetCode 263 丑数"></a>1.LeetCode 263 丑数</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>判断整数n是否为丑数<br>丑数就是只包含质因数2、3或5的正整数。</p>
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>用 2 3 5 循环 除这个数看是否最后结果为 1<br>为1则只有它们 不为1则还有其他</p>
+<span id="more"></span>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isUgly</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//4也写进去 但不影响 因为 2已经除过</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span> ; i &lt; <span class="number">6</span> &amp;&amp; n &gt; <span class="number">0</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">while</span>(n % i == <span class="number">0</span>)&#123;</span><br><span class="line">            n /= i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> n == <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="2-LeetCode-264-丑数2"><a href="#2-LeetCode-264-丑数2" class="headerlink" title="2.LeetCode 264 丑数2"></a>2.LeetCode 264 丑数2</h2><h3 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h3><p>返回第n个整数</p>
 <h3 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h3><p>利用三个指针指向长度为三的下标数组<br>从[1,1,1]开始每次给这三个指针*2、3、5<br>找到的最小值为下一个丑数找到后更新下标数组</p>
@@ -216,7 +217,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Math类算法题整合</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">算法题整合</a>
         		</li>
       		
 		</ul>
@@ -422,15 +423,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">二叉树类算法题整合</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Math类算法题整合</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">String类算法题整合</a>
+                <a href="javascript:void(0)" class="js-tag color5">深入理解计算机系统</a>
               </li>
             
             <div class="clearfix"></div>
