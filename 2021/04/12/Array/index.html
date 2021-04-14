@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Array有关算法题 | xbs5520&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.LeetCode 11 Container With Most Water题目给出1个非负整数数组 a1， a2， a3， …… an，每个整数标识一个竖立在坐标轴 x 位置的一堵高度为ai的墙，选择两堵墙，和 x 轴构成的容器可以容纳最多的⽔ 分析设置首尾双指针 每次移动后更新最大值 123456789101112131415161718192021222324252627int maxAr">
+  <meta name="description" content="1.LeetCode 11 Container With Most Water题目给出1个非负整数数组 a1， a2， a3， …… an，每个整数标识一个竖立在坐标轴 x 位置的一堵高度为ai的墙，选择两堵墙，和 x 轴构成的容器可以容纳最多的⽔ 分析设置首尾双指针 每次移动后更新最大值 123456789101112131415161718192021222324252627int maxA">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Array有关算法题">
 <meta property="og:url" content="http://yoursite.com/2021/04/12/Array/index.html">
 <meta property="og:site_name" content="xbs5520&#39;s blog">
-<meta property="og:description" content="1.LeetCode 11 Container With Most Water题目给出1个非负整数数组 a1， a2， a3， …… an，每个整数标识一个竖立在坐标轴 x 位置的一堵高度为ai的墙，选择两堵墙，和 x 轴构成的容器可以容纳最多的⽔ 分析设置首尾双指针 每次移动后更新最大值 123456789101112131415161718192021222324252627int maxAr">
+<meta property="og:description" content="1.LeetCode 11 Container With Most Water题目给出1个非负整数数组 a1， a2， a3， …… an，每个整数标识一个竖立在坐标轴 x 位置的一堵高度为ai的墙，选择两堵墙，和 x 轴构成的容器可以容纳最多的⽔ 分析设置首尾双指针 每次移动后更新最大值 123456789101112131415161718192021222324252627int maxA">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-04-12T08:41:43.000Z">
-<meta property="article:modified_time" content="2021-04-13T13:09:27.413Z">
+<meta property="article:modified_time" content="2021-04-14T00:21:34.666Z">
 <meta property="article:author" content="xbs5520">
-<meta property="article:tag" content="array类算法题整合">
+<meta property="article:tag" content="算法题整合">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="xbs5520&#39;s blog" type="application/atom+xml">
@@ -161,7 +161,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-LeetCode-11-Container-With-Most-Water"><a href="#1-LeetCode-11-Container-With-Most-Water" class="headerlink" title="1.LeetCode 11 Container With Most Water"></a>1.LeetCode 11 Container With Most Water</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给出1个非负整数数组 a1， a2， a3， …… an，<br>每个整数标识一个竖立在坐标轴 x 位置的一堵高度为ai的墙，<br>选择两堵墙，和 x 轴构成的容器可以容纳最多的⽔</p>
+        <span id="more"></span>
+<h2 id="1-LeetCode-11-Container-With-Most-Water"><a href="#1-LeetCode-11-Container-With-Most-Water" class="headerlink" title="1.LeetCode 11 Container With Most Water"></a>1.LeetCode 11 Container With Most Water</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给出1个非负整数数组 a1， a2， a3， …… an，<br>每个整数标识一个竖立在坐标轴 x 位置的一堵高度为ai的墙，<br>选择两堵墙，和 x 轴构成的容器可以容纳最多的⽔</p>
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>设置首尾双指针 每次移动后更新最大值</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">maxArea</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; height)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//设置首尾指针</span></span><br><span class="line">	<span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> right = height.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">	<span class="comment">//获取宽度</span></span><br><span class="line">	<span class="keyword">int</span> width = height.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (left &lt; right)&#123;</span><br><span class="line">		<span class="keyword">int</span> leftHeight = height[left];</span><br><span class="line">		<span class="keyword">int</span> rightHeight = height[right];</span><br><span class="line">		<span class="comment">//计算面积用低的</span></span><br><span class="line">		<span class="keyword">int</span> Area = width * (leftHeight &lt; rightHeight ? leftHeight : rightHeight);</span><br><span class="line">		<span class="keyword">if</span> (res &lt; Area)&#123;</span><br><span class="line">			res = Area;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//更新左右指针以及宽度</span></span><br><span class="line">		<span class="keyword">if</span> (leftHeight &gt; rightHeight)&#123;</span><br><span class="line">			right--;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			left++;</span><br><span class="line">		&#125;</span><br><span class="line">		width--;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
@@ -242,7 +243,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">array类算法题整合</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">算法题整合</a>
         		</li>
       		
 		</ul>
@@ -444,7 +445,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">array类算法题整合</a>
+                <a href="javascript:void(0)" class="js-tag color1">算法题整合</a>
               </li>
              
               <li class="article-tag-list-item">
