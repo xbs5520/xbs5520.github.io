@@ -16,7 +16,7 @@
 <meta property="og:description" content="能够阅读和理解汇编代码是一项很重要的技能！！！通过阅读汇编代码，我们能够理解编译器的优化功能，并分析代码中隐含的低效率。">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-04-14T08:29:23.000Z">
-<meta property="article:modified_time" content="2021-04-19T08:45:01.148Z">
+<meta property="article:modified_time" content="2021-04-20T07:46:30.987Z">
 <meta property="article:author" content="xbs5520">
 <meta property="article:tag" content="深入理解计算机系统">
 <meta name="twitter:card" content="summary">
@@ -663,6 +663,145 @@
 <h3 id="嵌套的数组"><a href="#嵌套的数组" class="headerlink" title="嵌套的数组"></a>嵌套的数组</h3><p>要访问多为数组的元素，编译器会以数组的起始为基地址(可能需要经过伸缩)偏移量为索引<br>产生计算期望的元素的偏移量，然后使用某种MOV指令<br>A in %rdi,i in %rsi,and j in %rdx<br>leaq    (%rsi,%rsi,2),%rax        Compute 3i<br>leaq    (%rdi,%rax,4),%rax        Compute x<sub>A</sub>+12×i<br>movl    (%rax,%rdx.4),%eax        Read from M[x<sub>A</sub> + 12i + 4j] = M[x<sub>A</sub> + 4(3i + j)]</p>
 <h3 id="定长数组"><a href="#定长数组" class="headerlink" title="定长数组"></a>定长数组</h3><p>C语言编译器能够优化定长多维数组上的操作代码</p>
 <h3 id="变长数组"><a href="#变长数组" class="headerlink" title="变长数组"></a>变长数组</h3><p>C语言历史上只支持大小在编译时就能确定 的多维数组，<br>ISOC99引入，允许数组的维度是表达式，在分配的时候才计算出来</p>
+<h2 id="3-9异质的数据结构"><a href="#3-9异质的数据结构" class="headerlink" title="3.9异质的数据结构"></a>3.9异质的数据结构</h2><h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><p>struct rec{<br>    int i;<br>    int j;<br>    int a[2];<br>    int *p;<br>}<br>偏移<br>0–i–4–j–8–a[0]–a[1]–16–p–24<br>对于机器代码不包含字段声明和字段名字信息</p>
+<h3 id="联合"><a href="#联合" class="headerlink" title="联合"></a>联合</h3><p>struct S3{<br>    char c;<br>    int i[42];<br>    double v;<br>};<br>union U3{<br>    char c;<br>    int i[42];<br>    double v;<br>};</p>
+<table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">c</th>
+<th align="center">i</th>
+<th align="center">v</th>
+<th align="center">大小</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">S3</td>
+<td align="center">0</td>
+<td align="center">4</td>
+<td align="center">16</td>
+<td align="center">24</td>
+</tr>
+<tr>
+<td align="center">U3</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">8</td>
+</tr>
+</tbody></table>
+<p>联合是用不同字段引用相同的字符串<br>联合的大小等于它最大字段的大小</p>
+<h3 id="数据对齐"><a href="#数据对齐" class="headerlink" title="数据对齐"></a>数据对齐</h3><p>计算机对于系统基本数据类型的合法地址做出了限制，要求地址必须是某个K的倍数<br>这种对齐限制简化了形成处理器和内存系统之间接口的硬件设计，可以提高内存系统的性能<br>上表 c(char) 后偏移了4个字节就是如此</p>
+<h2 id="3-10-在机器级程序种将控制与数据结合起来"><a href="#3-10-在机器级程序种将控制与数据结合起来" class="headerlink" title="3.10 在机器级程序种将控制与数据结合起来"></a>3.10 在机器级程序种将控制与数据结合起来</h2><h3 id="理解指针"><a href="#理解指针" class="headerlink" title="理解指针"></a>理解指针</h3><p>1.每个指针都应该有个值，这个值指向某个指定类型的地址，NULL特殊无指向<br>2.指针用&amp;运算符创建<br>3.※操作用于间接引用指针<br>4.数组与指针紧密联系<br>5.将指针从一种类型强转到另一种类型,只改变类型(进行大小伸缩)不改变值<br>6.指针也可以指向函数</p>
+<h3 id="GDB调试器"><a href="#GDB调试器" class="headerlink" title="GDB调试器"></a>GDB调试器</h3><p>GNU的调试器GDB提供了许多有用的特性,支持机器级程序的运行时评估与分析<br>在windows下GIT 中输入 GDB 即可运行</p>
+<h3 id="内存越界引用和缓冲区溢出"><a href="#内存越界引用和缓冲区溢出" class="headerlink" title="内存越界引用和缓冲区溢出"></a>内存越界引用和缓冲区溢出</h3><p>C对于数组不进行任何边界检查<br>缓存区溢出<br>当栈中分配某个字符数组,但字符串的长度超过了为数组分配的空间<br>假如给字符数组分配8个字节</p>
+<table>
+<thead>
+<tr>
+<th align="center">输入的字符数量</th>
+<th align="center">附加的被破坏的状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0~7</td>
+<td align="center">无</td>
+</tr>
+<tr>
+<td align="center">9~23</td>
+<td align="center">未被使用的缓冲区</td>
+</tr>
+<tr>
+<td align="center">24~31</td>
+<td align="center">返回地址</td>
+</tr>
+<tr>
+<td align="center">32+</td>
+<td align="center">caller中保存的状态</td>
+</tr>
+</tbody></table>
+<p>前23个字符没有严重后果,超过后指针的值以及更多可能的保存状态会被破坏</p>
+<p>缓冲区溢出的致命威胁就是让程序执行它本来不想执行的代码—攻击代码</p>
+<h3 id="对抗缓冲区溢出攻击"><a href="#对抗缓冲区溢出攻击" class="headerlink" title="对抗缓冲区溢出攻击"></a>对抗缓冲区溢出攻击</h3><p>1.栈随机化<br>程序每次运行时栈的位置都是有变化的<br>2.栈破坏检测<br>加入一种栈保护者—金丝雀(canary)值 也称为哨兵值(guard value)<br>将其存放在一个特殊的段中标志为“只读”，这样攻击者就不能覆盖存储<br>的金丝雀值，只会带来很小的性能损失<br>3.限制可执行代码区域<br>限制那些内存区域能够存放可执行代码，一般来说只有保存编译器产生的代码的那部分内存才是需要可执行的</p>
+<h3 id="支持变长栈帧"><a href="#支持变长栈帧" class="headerlink" title="支持变长栈帧"></a>支持变长栈帧</h3><p>有些函数不能在编译时预先确定需要为栈帧分配多少空间，需要局部储存变长<br>为了管理变长栈帧，x86-64代码使用寄存器%rbp作为帧指针/基指针(base pointer bp)<br>现在只在栈帧长可变的情况下才会使用帧指针</p>
+<h2 id="3-11浮点代码"><a href="#3-11浮点代码" class="headerlink" title="3.11浮点代码"></a>3.11浮点代码</h2><h3 id="浮点传送和转换操作"><a href="#浮点传送和转换操作" class="headerlink" title="浮点传送和转换操作"></a>浮点传送和转换操作</h3><p>浮点传送指令<br>|指令|源|目的|描述|<br>|:—-:|:—-:|:—-:|:—-:|:—-:|<br>|vmovss|M<sub>32</sub>|X|传送单精度数|<br>|vmovss|X|M<sub>32</sub>|传送单精度数|<br>|vmovsd|M<sub>64</sub>|X|传送双精度数|<br>|vmovsd|X|M<sub>64</sub>|传送双精度数|<br>|vmovaps|X|X|传送对其的封装好的单精度数|<br>|vmovapd|X|X|传送对齐的封装好的双精度数|</p>
+<p>双操作数浮点转换指令<br>|指令|源|目的|描述|<br>|:—-:|:—-:|:—-:|:—-:|:—-:|<br>|vcvttss2si|X/M<sub>32</sub>|R<sub>32</sub>|用截断的方法把单精度数转换成整数|<br>|vcvttsd2si|X/M<sub>64</sub>|R<sub>32</sub>|用截断的方法把双精度数转换成整数|<br>|vcvttss2siq|X/M<sub>32</sub>|R<sub>64</sub>|用截断的方法把单精度数转换成4字整数|<br>|vcvttsd2siq|X/M<sub>64</sub>|R<sub>64</sub>|用截断的方法把双精度数转换成4字整数|</p>
+<p>三操作数浮点转换指令<br>|指令|源1|源2|目的|描述|<br>|:—-:|:—-:|:—-:|:—-:|:—-:|:—-:|<br>|vcvtsi2ss|M<sub>32</sub>/R<sub>32</sub>|X|X|把整数转换成单精度数|<br>|vcvtsi2sd|M<sub>32</sub>/R<sub>32</sub>|X|X|把整数转换成双精度数|<br>|vcvtsi2ssq|M<sub>64</sub>/R<sub>64</sub>|X|X|把四字整数转换成单精度数|<br>|vcvtsi2sdq|M<sub>64</sub>/R<sub>64</sub>|X|X|把四字整数转换成双精度数|</p>
+<h3 id="过程中的浮点代码"><a href="#过程中的浮点代码" class="headerlink" title="过程中的浮点代码"></a>过程中的浮点代码</h3><p>1.XMM寄存器%xmm0~%xmm7最多可以传递8个浮点参数<br>2.函数使用寄存器%xmm0来返回浮点值<br>3.所有的XMM寄存器都是调用者保存的</p>
+<h3 id="浮点运算操作"><a href="#浮点运算操作" class="headerlink" title="浮点运算操作"></a>浮点运算操作</h3><table>
+<thead>
+<tr>
+<th align="center">单精度</th>
+<th align="center">双精度</th>
+<th align="center">效果</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">vaddss</td>
+<td align="center">vaddsd</td>
+<td align="center">D &lt;– S<sub>2</sub>+S<sub>1</sub></td>
+<td align="center">浮点数加</td>
+</tr>
+<tr>
+<td align="center">vsubss</td>
+<td align="center">vsubsd</td>
+<td align="center">D &lt;– S<sub>2</sub>-S<sub>1</sub></td>
+<td align="center">浮点数减</td>
+</tr>
+<tr>
+<td align="center">vmulss</td>
+<td align="center">vmulsd</td>
+<td align="center">D &lt;– S<sub>2</sub>×S<sub>1</sub></td>
+<td align="center">浮点数乘</td>
+</tr>
+<tr>
+<td align="center">vdivss</td>
+<td align="center">vdivsd</td>
+<td align="center">D &lt;– S<sub>2</sub>/S<sub>1</sub></td>
+<td align="center">浮点数除</td>
+</tr>
+<tr>
+<td align="center">vmaxss</td>
+<td align="center">vmaxsd</td>
+<td align="center">D &lt;– max(S<sub>2</sub>,S<sub>1</sub>)</td>
+<td align="center">浮点数最大值</td>
+</tr>
+<tr>
+<td align="center">vminss</td>
+<td align="center">vminsd</td>
+<td align="center">D &lt;– min(S<sub>2</sub>+S<sub>1</sub>)</td>
+<td align="center">浮点数最小值</td>
+</tr>
+<tr>
+<td align="center">sqrtss</td>
+<td align="center">sqrtsd</td>
+<td align="center">D &lt;– √S<sub>1</sub></td>
+<td align="center">浮点数平方根</td>
+</tr>
+</tbody></table>
+<h3 id="定义和使用浮点常数"><a href="#定义和使用浮点常数" class="headerlink" title="定义和使用浮点常数"></a>定义和使用浮点常数</h3><p>与整数运算不同，AVX浮点数操作不能以立即数值作为操作数。<br>相反，编译器必须为所有的常量值分配和初始化储存空间<br>然后代码再把这些值从内存读入</p>
+<h3 id="在浮点代码中使用位级操作"><a href="#在浮点代码中使用位级操作" class="headerlink" title="在浮点代码中使用位级操作"></a>在浮点代码中使用位级操作</h3><table>
+<thead>
+<tr>
+<th align="center">单精度</th>
+<th align="center">双精度</th>
+<th align="center">效果</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">vxorps</td>
+<td align="center">xorpd</td>
+<td align="center">D &lt;– S<sub>2</sub>^S<sub>1</sub></td>
+<td align="center">位级异或</td>
+</tr>
+<tr>
+<td align="center">vandps</td>
+<td align="center">andpd</td>
+<td align="center">D &lt;– S<sub>2</sub>&amp;S<sub>1</sub></td>
+<td align="center">位级与</td>
+</tr>
+</tbody></table>
 
       
 

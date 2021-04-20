@@ -16,7 +16,7 @@
 <meta property="og:description" content="1.Accustoming Yourself to C++条款1：视C++为多种语言的集合C++的高效编程守则视状况而变换，取决于你使用C++的哪一部分C++的4个次语言1.CC++以C为基础    区块 语句 预处理 内置数据类型 数组 指针等来自C 2.Object-Oriented C++C with Class类(构造析构) 封装 继承 多态 虚函数(动态绑定) 3.Template C+">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-04-19T09:15:35.000Z">
-<meta property="article:modified_time" content="2021-04-19T14:40:27.533Z">
+<meta property="article:modified_time" content="2021-04-20T08:51:22.312Z">
 <meta property="article:author" content="xbs5520">
 <meta name="twitter:card" content="summary">
   
@@ -174,24 +174,7 @@
 <p>将宏定义函数改为inline</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//必须对所有实参加上小括号</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CALL_WITH_MAX(a,b) f((a) &gt; (b) ? (a) : (b)) </span></span><br><span class="line"></span><br><span class="line"><span class="comment">//inline形式</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">callWithMax</span><span class="params">(<span class="keyword">const</span> T&amp; a,<span class="keyword">const</span> T &amp; b)</span></span>&#123;</span><br><span class="line">	<span class="built_in">f</span>(a &gt; b ? a : b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<h2 id="条款3：尽可能使用const"><a href="#条款3：尽可能使用const" class="headerlink" title="条款3：尽可能使用const"></a>条款3：尽可能使用const</h2><h3 id="将某些东西声明为const可帮助编译器侦测除出错误的用法，const可被施加于任何作用域内的对象、函数参数、函数返回类型、成员函数本体"><a href="#将某些东西声明为const可帮助编译器侦测除出错误的用法，const可被施加于任何作用域内的对象、函数参数、函数返回类型、成员函数本体" class="headerlink" title="将某些东西声明为const可帮助编译器侦测除出错误的用法，const可被施加于任何作用域内的对象、函数参数、函数返回类型、成员函数本体"></a>将某些东西声明为const可帮助编译器侦测除出错误的用法，const可被施加于任何作用域内的对象、函数参数、函数返回类型、成员函数本体</h3><h3 id="编译器强制实施bitwise-constness，但你编写程序时应该使用“概念上的常量性”"><a href="#编译器强制实施bitwise-constness，但你编写程序时应该使用“概念上的常量性”" class="headerlink" title="编译器强制实施bitwise constness，但你编写程序时应该使用“概念上的常量性”"></a>编译器强制实施bitwise constness，但你编写程序时应该使用“概念上的常量性”</h3><h3 id="当const和non-const成员函数有着实质等价的实现时，令non-const版本调用const版本可避免代码重复"><a href="#当const和non-const成员函数有着实质等价的实现时，令non-const版本调用const版本可避免代码重复" class="headerlink" title="当const和non-const成员函数有着实质等价的实现时，令non-const版本调用const版本可避免代码重复"></a>当const和non-const成员函数有着实质等价的实现时，令non-const版本调用const版本可避免代码重复</h3><p>如果const出现在星号左边，表示被指物是常量；如果出现在星号右边，表示指针自身是常量；<br>如果出现在星号两边，表示被指物和指针两者都是常量<br>const与类型前后位置无所谓<br>两个意义相同<br>void f1(const Widget* pw);<br>void f2(Widget const *pw);</p>
 
       
 
@@ -284,6 +267,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2021/04/20/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%9B%9B%E7%AB%A0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          第四章 程序的机器级表示
+        
+      </div>
+    </a>
   
   
     <a href="/2021/04/15/DP/" id="article-nav-older" class="article-nav-link-wrap">
