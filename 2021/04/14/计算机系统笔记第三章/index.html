@@ -16,7 +16,7 @@
 <meta property="og:description" content="能够阅读和理解汇编代码是一项很重要的技能！！！通过阅读汇编代码，我们能够理解编译器的优化功能，并分析代码中隐含的低效率。">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-04-14T08:29:23.000Z">
-<meta property="article:modified_time" content="2021-04-20T07:46:30.987Z">
+<meta property="article:modified_time" content="2021-04-22T11:33:20.162Z">
 <meta property="article:author" content="xbs5520">
 <meta property="article:tag" content="深入理解计算机系统">
 <meta name="twitter:card" content="summary">
@@ -800,6 +800,25 @@
 <td align="center">andpd</td>
 <td align="center">D &lt;– S<sub>2</sub>&amp;S<sub>1</sub></td>
 <td align="center">位级与</td>
+</tr>
+</tbody></table>
+<h3 id="浮点比较操作"><a href="#浮点比较操作" class="headerlink" title="浮点比较操作"></a>浮点比较操作</h3><table>
+<thead>
+<tr>
+<th align="center">指令</th>
+<th align="center">基于</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">vucomiss S<sub>1</sub>,S<sub>2</sub></td>
+<td align="center">S<sub>2</sub>-S<sub>1</sub></td>
+<td align="center">比较单精度值</td>
+</tr>
+<tr>
+<td align="center">vucomisd S<sub>1</sub>,S<sub>2</sub></td>
+<td align="center">S<sub>2</sub>-S<sub>1</sub></td>
+<td align="center">比较双精度值</td>
 </tr>
 </tbody></table>
 

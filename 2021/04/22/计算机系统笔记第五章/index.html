@@ -6,16 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2021 | xbs5520&#39;s blog</title>
+  <title>第五章 优化程序性能 | xbs5520&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录每日学习内容">
-<meta property="og:type" content="website">
-<meta property="og:title" content="xbs5520&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/archives/2021/page/2/index.html">
+  <meta name="description" content="编写高效程序需要做到以下几点：第一，必须选择一组适当的算法和数据结构。第二，必须编写出编译器能够有效优化以转换成高效可执行代码的源代码。 5.1 优化编译器的能力和局限性最简单的控制就是指定优化级别如 -Og 是让GCC使用一组最基本的优化-O1 或 -O2 -O3 调用GCC会让他使用更大量的优化我们会发现可以写出的c代码，即使使用-O1的选项编译得到的性能，也可能比用最高优化等级的原始代码性能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第五章 优化程序性能">
+<meta property="og:url" content="http://yoursite.com/2021/04/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%BA%94%E7%AB%A0/index.html">
 <meta property="og:site_name" content="xbs5520&#39;s blog">
-<meta property="og:description" content="记录每日学习内容">
+<meta property="og:description" content="编写高效程序需要做到以下几点：第一，必须选择一组适当的算法和数据结构。第二，必须编写出编译器能够有效优化以转换成高效可执行代码的源代码。 5.1 优化编译器的能力和局限性最简单的控制就是指定优化级别如 -Og 是让GCC使用一组最基本的优化-O1 或 -O2 -O3 调用GCC会让他使用更大量的优化我们会发现可以写出的c代码，即使使用-O1的选项编译得到的性能，也可能比用最高优化等级的原始代码性能">
 <meta property="og:locale">
+<meta property="article:published_time" content="2021-04-22T12:46:12.000Z">
+<meta property="article:modified_time" content="2021-04-25T14:21:03.998Z">
 <meta property="article:author" content="xbs5520">
+<meta property="article:tag" content="深入理解计算机系统">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="xbs5520&#39;s blog" type="application/atom+xml">
@@ -138,169 +141,191 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-计算机系统笔记第五章" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      第五章 优化程序性能
+    </h1>
+  
+
+        
+        <a href="/2021/04/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%BA%94%E7%AB%A0/" class="archive-article-date">
+  	<time datetime="2021-04-22T12:46:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-22</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>编写高效程序需要做到以下几点：第一，必须选择一组适当的算法和数据结构。第二，必须编写出编译器能够有效优化以转换成高效可执行代码的源代码。</p>
+<h2 id="5-1-优化编译器的能力和局限性"><a href="#5-1-优化编译器的能力和局限性" class="headerlink" title="5.1 优化编译器的能力和局限性"></a>5.1 优化编译器的能力和局限性</h2><p>最简单的控制就是指定优化级别<br>如 -Og 是让GCC使用一组最基本的优化<br>-O1 或 -O2 -O3 调用GCC会让他使用更大量的优化<br>我们会发现可以写出的c代码，即使使用-O1的选项编译得到的性能，也可能比用最高优化等级的原始代码性能好</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">twiddle1</span><span class="params">(<span class="keyword">long</span> *xp,<span class="keyword">long</span> *yp)</span></span>&#123;</span><br><span class="line">	*xp += *yp;</span><br><span class="line">	*xp += *yp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">twiddle2</span><span class="params">(<span class="keyword">long</span> *xp,<span class="keyword">long</span> *yp)</span></span>&#123;</span><br><span class="line">	*xp += <span class="number">2</span> * *yp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2的效率更高一些，只需要3次内存引用<br>而 1需要6次内存引用<br>但如果两个指针指向一个内存位置（内存别名使用）<br>可能会限制优化策略</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">f</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">func1</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">f</span>()+<span class="built_in">f</span>()+<span class="built_in">f</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">func2</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">4</span>*<span class="built_in">f</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>fun2只调用一次f而fun1调用4次<br>如果函数有负作用 – 修改了全局程序状态的一部分 就不能进行这样的优化</p>
+<h2 id="5-2-表示程序的性能"><a href="#5-2-表示程序的性能" class="headerlink" title="5.2 表示程序的性能"></a>5.2 表示程序的性能</h2><p>引入标准每元素的周期数CPE</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//前置和</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">psum1</span><span class="params">(<span class="keyword">float</span> a[],<span class="keyword">float</span> p[],<span class="keyword">long</span> n)</span></span>&#123;</span><br><span class="line">	<span class="keyword">long</span> i;</span><br><span class="line">	p[<span class="number">0</span>] = a[<span class="number">0</span>];</span><br><span class="line">	<span class="keyword">for</span>(i = <span class="number">1</span>;i &lt; n;i++)&#123;</span><br><span class="line">		p[i] = p[i - <span class="number">1</span>] + a[i];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">psum2</span><span class="params">(<span class="keyword">float</span> a[],<span class="keyword">float</span> p[],<span class="keyword">long</span> n)</span></span>&#123;</span><br><span class="line">	<span class="keyword">long</span> i;</span><br><span class="line">	p[<span class="number">0</span>] = a[<span class="number">0</span>];</span><br><span class="line">	<span class="keyword">for</span>(i = <span class="number">1</span>;i &lt; n - <span class="number">1</span>;i+=<span class="number">2</span>)&#123;</span><br><span class="line">		<span class="keyword">float</span> mid_val = p[i - <span class="number">1</span>]  + a[i];</span><br><span class="line">		p[i] = mid_val;</span><br><span class="line">		p[i + <span class="number">1</span>] = mid_val + a[i + <span class="number">1</span>];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(i&lt;n)&#123;</span><br><span class="line">		p[i] = p[i - <span class="number">1</span>] + a[i];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>根据这种标准psum2的CPE为6.0psum1的CPE为9.0</p>
+<h2 id="5-4-消除循环的低效率"><a href="#5-4-消除循环的低效率" class="headerlink" title="5.4 消除循环的低效率"></a>5.4 消除循环的低效率</h2><p>帮助代码进行移动</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">lower1</span><span class="params">(<span class="keyword">char</span> *s)</span></span>&#123;</span><br><span class="line">	<span class="keyword">long</span> i;</span><br><span class="line">	<span class="keyword">for</span>(i = <span class="number">0</span>;i &lt; <span class="built_in">strlen</span>(s);i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(s[i] &gt;= <span class="string">&#x27;A&#x27;</span>&amp;&amp;s[i] &lt;= <span class="string">&#x27;Z&#x27;</span>)&#123;</span><br><span class="line">			s[i] -= (<span class="string">&#x27;A&#x27;</span> - <span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">lower2</span><span class="params">(<span class="keyword">char</span> *s)</span></span>&#123;</span><br><span class="line">	<span class="keyword">long</span> i;</span><br><span class="line">	<span class="keyword">long</span> len = <span class="built_in">strlen</span>(s);</span><br><span class="line">	<span class="keyword">for</span>(i = <span class="number">0</span>;i &lt; len;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(s[i] &gt;= <span class="string">&#x27;A&#x27;</span>&amp;&amp;s[i] &lt;= <span class="string">&#x27;Z&#x27;</span>)&#123;</span><br><span class="line">			s[i] -= (<span class="string">&#x27;A&#x27;</span> - <span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">size_t</span> <span class="title">strlen</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *s)</span></span>&#123;</span><br><span class="line">	<span class="keyword">long</span> length = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(*s != <span class="string">&#x27;\0&#x27;</span>)&#123;</span><br><span class="line">		s++;</span><br><span class="line">		length++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对于2是线性的而1是渐进低效率需要避免</p>
+<h2 id="5-5-减少过程的调用"><a href="#5-5-减少过程的调用" class="headerlink" title="5.5 减少过程的调用"></a>5.5 减少过程的调用</h2><p>过程调用会带来开销</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//向量乘积 OP 乘号</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">combine1</span><span class="params">(vec_ptr v,<span class="keyword">data_t</span> *dest)</span></span>&#123;</span><br><span class="line">	<span class="keyword">long</span> i;</span><br><span class="line">	*dest = IDENT;</span><br><span class="line">	<span class="keyword">for</span>(i = <span class="number">0</span>;i &lt; <span class="built_in">vec_length</span>(v);i++)&#123;</span><br><span class="line">		<span class="keyword">data_t</span> val;</span><br><span class="line">		<span class="built_in">get_vec_element</span>(v,i,&amp;val);</span><br><span class="line">		*dest = *dest OP val;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//5.4优化</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">combine2</span><span class="params">(vec_ptr v,<span class="keyword">data_t</span> *dest)</span></span>&#123;</span><br><span class="line">	<span class="keyword">long</span> i;</span><br><span class="line">	<span class="keyword">long</span> length = <span class="built_in">vec_length</span>(v);</span><br><span class="line">	<span class="keyword">for</span>(i = <span class="number">0</span>;i &lt; length;i++)&#123;</span><br><span class="line">		<span class="keyword">data_t</span> val;</span><br><span class="line">		<span class="built_in">get_vec_element</span>(v,i,&amp;val);</span><br><span class="line">		*dest = *dest OP val;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//5.5优化</span></span><br><span class="line"><span class="function"><span class="keyword">data_t</span> *<span class="title">get_vec_start</span><span class="params">(vec_ptr v)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> v-&gt;<span class="keyword">data_t</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">combine3</span><span class="params">(vec_ptr v,<span class="keyword">data_t</span> *dest)</span></span>&#123;</span><br><span class="line">	<span class="keyword">long</span> i;</span><br><span class="line">	<span class="keyword">long</span> length = <span class="built_in">vec_length</span>(v);</span><br><span class="line">	<span class="keyword">data_t</span> *data = <span class="built_in">get_vec_start</span>(v);</span><br><span class="line">	</span><br><span class="line">	*dest = IDENT;</span><br><span class="line">	<span class="keyword">for</span>(i = <span class="number">0</span>;i &lt; length;i++)&#123;</span><br><span class="line">		*dest = *dest OP data[i];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>性能并没有明显提升 是因为其他操作形成了瓶颈</p>
+<h2 id="5-6-消除不必要的内存引用"><a href="#5-6-消除不必要的内存引用" class="headerlink" title="5.6 消除不必要的内存引用"></a>5.6 消除不必要的内存引用</h2><p>combine3的代码将合并运算计算的值累积在指针dest指定的位置。<br>积累变量的数值都要从内存读入再写入到内存<br>我们可以引入临时变量acc在循环之后再进行写入</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">combine4</span><span class="params">(vec_ptr v,<span class="keyword">data_t</span> *dest)</span></span>&#123;</span><br><span class="line">	<span class="keyword">long</span> i;</span><br><span class="line">	<span class="keyword">long</span> length = <span class="built_in">vec_length</span>(v);</span><br><span class="line">	<span class="keyword">data_t</span> *data = <span class="built_in">get_vec_start</span>(v);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">data_t</span> acc = IDENT;</span><br><span class="line">	<span class="keyword">for</span>(i = <span class="number">0</span>;i &lt; length;i++)&#123;</span><br><span class="line">		att = att OP data[i];</span><br><span class="line">	&#125;</span><br><span class="line">	*dest = acc;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>性能有了显著的提高</p>
+<h2 id="5-7-理解现代处理器"><a href="#5-7-理解现代处理器" class="headerlink" title="5.7 理解现代处理器"></a>5.7 理解现代处理器</h2><p>为了理解改进性能的方法，我们需要理解现代处理器的微体系结构<br>指令级并行–在代码级别上看上去是在执行一条指令，实际是多条共同求值的<br>当一系列操作必须按照严格的顺序执行时，我们遇到延迟界限，因为在下一条指令开始之前，这条指令必须结束<br>当代码中数据相关限制了处理器利用指令级并行的能力延迟界限能够限制程序性能<br>吞吐量界限刻画了处理器功能单元的原始计算能力</p>
+<h3 id="整体操作"><a href="#整体操作" class="headerlink" title="整体操作"></a>整体操作</h3><p>指令控制单元ICU 与 执行单元EU<br>前者负责从内存中读出指令<br>后者完成基本操作<br>ICU从高速缓存中读取指令<br>当程序遇到分支时，程序有两个选择，一种可能会选择分支，控制被传递到分支目标<br>另一种，不选择分支，控制被传递到下一条指令<br>这种zhi’l</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/12/%E9%AB%98%E8%80%83%E5%86%B2%E5%88%BA100%E5%A4%A9/" class="archive-article-date">
-  	<time datetime="2021-04-12T08:48:53.274Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/12/%E9%AB%98%E8%80%83%E5%86%B2%E5%88%BA100%E5%A4%A9/">记录每天学习内容</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/12/Array/" class="archive-article-date">
-  	<time datetime="2021-04-12T08:41:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/12/Array/">Array有关算法题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">算法题整合</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深入理解计算机系统</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2021/04/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%BA%94%E7%AB%A0/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/12/Math/" class="archive-article-date">
-  	<time datetime="2021-04-12T08:41:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-12</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2021/04/21/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">stack与queue有关算法题</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/12/Math/">Math有关算法题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">算法题整合</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/12/String/" class="archive-article-date">
-  	<time datetime="2021-04-12T08:41:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/12/String/">String有关算法题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">算法题整合</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2021/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2021/">1</a><span class="page-number current">2</span>
-    </nav>
-  
+        
+        
+    </div>
+</aside>
 
 
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+ <!--添加代码开始-->
+
+        <div class="declare" hidden="hidden"></div>
+      
           </div>
         </div>
       </div>
@@ -321,8 +346,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
