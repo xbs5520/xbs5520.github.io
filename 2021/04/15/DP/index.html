@@ -16,7 +16,7 @@
 <meta property="og:description" content="1.LeetCode 198 打家劫舍1题目你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。给定一个代表每个房屋存放金额的非负整数数组计算你不触动警报装置的情况下一夜之内能够偷窃到的最高金额。">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-04-15T15:00:43.000Z">
-<meta property="article:modified_time" content="2021-04-26T12:09:14.932Z">
+<meta property="article:modified_time" content="2021-05-06T06:40:27.221Z">
 <meta property="article:author" content="xbs5520">
 <meta property="article:tag" content="算法题整合">
 <meta name="twitter:card" content="summary">
@@ -202,31 +202,9 @@
 <h2 id="11-LeetCode-139-单词拆分"><a href="#11-LeetCode-139-单词拆分" class="headerlink" title="11.LeetCode 139 单词拆分"></a>11.LeetCode 139 单词拆分</h2><h3 id="题目-9"><a href="#题目-9" class="headerlink" title="题目"></a>题目</h3><p>给定一个非空字符串 s 和一个包含非空单词的列表 wordDict，<br>判定 s 是否可以被空格拆分为一个或多个在字典中出现的单词。<br>说明：<br>拆分时可以重复使用字典中的单词。<br>你可以假设字典中没有重复的单词。<br>输入: s = “leetcode”, wordDict = [“leet”, “code”]<br>输出: true</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">wordBreak</span><span class="params">(string s, vector&lt;string&gt;&amp; wordDict)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">auto</span> wordDictSet = unordered_set &lt;string&gt;();</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> word : wordDict) &#123;</span><br><span class="line">		wordDictSet.<span class="built_in">insert</span>(word);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	vector &lt;<span class="keyword">bool</span>&gt; <span class="built_in">dp</span>(s.<span class="built_in">size</span>() + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">	dp[<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= s.<span class="built_in">size</span>(); ++i) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; ++j) &#123;</span><br><span class="line">			<span class="comment">//将当前与dict进行对比</span></span><br><span class="line">			<span class="comment">//第一个条件是与上一个的分隔</span></span><br><span class="line">			<span class="keyword">if</span> (dp[j] &amp;&amp; wordDictSet.<span class="built_in">find</span>(s.<span class="built_in">substr</span>(j, i - j)) != wordDictSet.<span class="built_in">end</span>()) &#123;</span><br><span class="line">				dp[i] = <span class="literal">true</span>;	<span class="comment">//将结尾设为1</span></span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> dp[s.<span class="built_in">size</span>()];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="12-LeetCode-62-不同路径"><a href="#12-LeetCode-62-不同路径" class="headerlink" title="12.LeetCode 62 不同路径"></a>12.LeetCode 62 不同路径</h2><h3 id="题目-10"><a href="#题目-10" class="headerlink" title="题目"></a>题目</h3><p>从(0,0)到(x,y)共有多少种不同的走法<br>输入：m = 3, n = 7<br>输出：28</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//b2t 递归做法会超时</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">uniquePaths</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">table</span>(m, vector&lt;<span class="keyword">int</span>&gt;(n, <span class="number">1</span>));</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; m; i++)&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; n; j++)&#123;</span><br><span class="line">			table[i][j] = table[i - <span class="number">1</span>][j] + table[i][j - <span class="number">1</span>];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> table[m - <span class="number">1</span>][n - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//利用b2t 递归做法会超时</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">uniquePaths</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">table</span>(m, vector&lt;<span class="keyword">int</span>&gt;(n, <span class="number">1</span>));</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; m; i++)&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; n; j++)&#123;</span><br><span class="line">			table[i][j] = table[i - <span class="number">1</span>][j] + table[i][j - <span class="number">1</span>];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> table[m - <span class="number">1</span>][n - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<h2 id="13"><a href="#13" class="headerlink" title="13."></a>13.</h2>
       
 
       
