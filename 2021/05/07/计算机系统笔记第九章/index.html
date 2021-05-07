@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>第七章 链接 | xbs5520&#39;s blog</title>
+  <title>第九章 虚拟内存 | xbs5520&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="链接是将各种代码和数据片段收集并组合成为一个单一文件的过程，这个文件可以被加载到内存并执行。链接可以执行于编译时，也就是在源代码被翻译成机器代码时，也可以执行于加载时，也就是在程序被加载器加载到内存并执行时甚至执行于运行时，也就是由应用程序来执行 7.1 编译器驱动程序linux&gt; gcc -Og -o prog mian.c sum.c程序由 .c – .s – .o  7.2 静态链接链">
+  <meta name="description" content="一个系统中的所有进程共享CPU和主存资源为了更加有效地管理内存并减少储存，现代系统提供了一种对主存抽象的概念，叫做虚拟内存为每个进程提供了一个大的、一致的和私有的地址空间 9.1 物理和虚拟寻址计算机系统的主存被组织成一个由M个连续字节大小的单元组成的数组，每个字节都有一个唯一的物理地址现代处理器使用的是一种称为虚拟寻址的寻址形式 9.2 地址空间地址空间是一个非负整数地址的有序集合如果地址空间中">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第七章 链接">
-<meta property="og:url" content="http://yoursite.com/2021/04/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%B8%83%E7%AB%A0/index.html">
+<meta property="og:title" content="第九章 虚拟内存">
+<meta property="og:url" content="http://yoursite.com/2021/05/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%B9%9D%E7%AB%A0/index.html">
 <meta property="og:site_name" content="xbs5520&#39;s blog">
-<meta property="og:description" content="链接是将各种代码和数据片段收集并组合成为一个单一文件的过程，这个文件可以被加载到内存并执行。链接可以执行于编译时，也就是在源代码被翻译成机器代码时，也可以执行于加载时，也就是在程序被加载器加载到内存并执行时甚至执行于运行时，也就是由应用程序来执行 7.1 编译器驱动程序linux&gt; gcc -Og -o prog mian.c sum.c程序由 .c – .s – .o  7.2 静态链接链">
+<meta property="og:description" content="一个系统中的所有进程共享CPU和主存资源为了更加有效地管理内存并减少储存，现代系统提供了一种对主存抽象的概念，叫做虚拟内存为每个进程提供了一个大的、一致的和私有的地址空间 9.1 物理和虚拟寻址计算机系统的主存被组织成一个由M个连续字节大小的单元组成的数组，每个字节都有一个唯一的物理地址现代处理器使用的是一种称为虚拟寻址的寻址形式 9.2 地址空间地址空间是一个非负整数地址的有序集合如果地址空间中">
 <meta property="og:locale">
-<meta property="article:published_time" content="2021-04-30T01:44:23.000Z">
-<meta property="article:modified_time" content="2021-05-06T06:40:17.432Z">
+<meta property="article:published_time" content="2021-05-07T07:55:55.000Z">
+<meta property="article:modified_time" content="2021-05-07T09:06:21.900Z">
 <meta property="article:author" content="xbs5520">
 <meta property="article:tag" content="深入理解计算机系统">
 <meta name="twitter:card" content="summary">
@@ -141,49 +141,38 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-计算机系统笔记第七章" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-计算机系统笔记第九章" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      第七章 链接
+      第九章 虚拟内存
     </h1>
   
 
         
-        <a href="/2021/04/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%B8%83%E7%AB%A0/" class="archive-article-date">
-  	<time datetime="2021-04-30T01:44:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
+        <a href="/2021/05/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%B9%9D%E7%AB%A0/" class="archive-article-date">
+  	<time datetime="2021-05-07T07:55:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-07</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>链接是将各种代码和数据片段收集并组合成为一个单一文件的过程，这个文件可以被加载到内存并执行。<br>链接可以执行于编译时，也就是在源代码被翻译成机器代码时，也可以执行于加载时，也就是在程序被加载器加载到内存并执行时<br>甚至执行于运行时，也就是由应用程序来执行</p>
-<h2 id="7-1-编译器驱动程序"><a href="#7-1-编译器驱动程序" class="headerlink" title="7.1 编译器驱动程序"></a>7.1 编译器驱动程序</h2><p>linux&gt; gcc -Og -o prog mian.c sum.c<br>程序由 .c – .s – .o </p>
-<h2 id="7-2-静态链接"><a href="#7-2-静态链接" class="headerlink" title="7.2 静态链接"></a>7.2 静态链接</h2><p>链接器必须完成两个主要任务<br>符号解析与重定位</p>
-<h2 id="7-3-目标文件"><a href="#7-3-目标文件" class="headerlink" title="7.3 目标文件"></a>7.3 目标文件</h2><p>目标文件有三种形式<br>可重定位目标文件<br>可执行目标文件<br>共享目标文件</p>
-<h2 id="7-5-符号和符号表"><a href="#7-5-符号和符号表" class="headerlink" title="7.5 符号和符号表"></a>7.5 符号和符号表</h2><p>由模块m定位目标模块m都有一个符号表，它包含m定义和引用的符号信息。在链接器的上下文中，有三种不同的符号<br>1.由模块m定义并能被其他模块引用的全局符号<br>2.由其他模块定义并能被模块m引用的全局符号<br>3.只被模块m定义和引用的局部符号</p>
-<h2 id="7-6-符号解析"><a href="#7-6-符号解析" class="headerlink" title="7.6 符号解析"></a>7.6 符号解析</h2><p>链接器解析符号引用的方法是将每个引用与它输出的可重定位目标文件的符号表中的一个确定的符号定义关联起来。<br>对于全局符号解析很棘手，因为多个目标文件可能会定义相同名字的全局符号</p>
-<h3 id="链接器如何解析多重定义的全局符号"><a href="#链接器如何解析多重定义的全局符号" class="headerlink" title="链接器如何解析多重定义的全局符号"></a>链接器如何解析多重定义的全局符号</h3><p>强：  int x = 100<br>弱    int x </p>
-<p>linux链接器使用如下规则<br>1.不允许有多个同名的强符号<br>2.如果有一个强符号和多个弱符号同名，那么选择强符号<br>3.如果有多个弱符号同名，从弱符号中任意选择一个</p>
-<h3 id="与静态库链接"><a href="#与静态库链接" class="headerlink" title="与静态库链接"></a>与静态库链接</h3><p>所有的编译系统都提供一种机制，将所有相关的目标模块打包成为一个单独的文件，称为静态库，它可以用来做链接器的输入<br>如果不使用链接器，有两种方法实现<br>1.让编译器辨认出对标准函数的调用，并直接生成相应的代码<br>将给编译器增加显著的复杂性</p>
-<p>2.将所有标准C函数都放在一个单独的可重新定位目标模块中<br>优点：将编译器的实现与标准函数的实现分离开来 仍然保存便利<br>缺点：对磁盘空间有很大的占用浪费</p>
-<p>静态库概念被提出，以解决这些不同方法的缺点。相关函数可以被编译为独立的目标模块，然后封装成一个单独的静态库文件。<br>然后，应用程序可以通过在命令上指定单独的文件名字来使用这些在库中定义的函数<br>在链接时，链接器将只复制被程序引用的目标模块，这就减少了可执行文件在磁盘和内存中的大小</p>
-<h2 id="7-7-重定位"><a href="#7-7-重定位" class="headerlink" title="7.7 重定位"></a>7.7 重定位</h2><p>一旦链接器完成了符号解析这一步，就把代码中的每个符号引用和正好一个符号关联起来<br>将合并输入模块，并为每个符号分配运行时地址，重定位由两步构成<br>1.重定位节和符号定义。在这一步中链接器将所有同类型的节合并为同一类型的新的聚合结<br>2.重定位节中的符号引用。在这一步中，链接器修改代码节和数据节中对每个符号的引用，使得它们指向正确的运行时地址</p>
-<h3 id="重定位条目"><a href="#重定位条目" class="headerlink" title="重定位条目"></a>重定位条目</h3><p>无论何时汇编器遇到对最终位置未知的目标引用，他就会生成一个重定位条目，告诉链接器在将目标文件合并成可执行文件时如何修改这个引用。<br>我们只关心最基本的两种重定位类型<br>1.R_X86_64_PC32        重定位一个使用32位PC相对地址的引用<br>2.R_X86_64_32        重定位一个使用32位绝对地址的引用</p>
-<h2 id="7-8-可执行目标文件"><a href="#7-8-可执行目标文件" class="headerlink" title="7.8 可执行目标文件"></a>7.8 可执行目标文件</h2><p>可执行目标文件的格式类似于可重定位目标文件的格式，ELF头描述文件的总体格式，它还包括程序的入口点，也就是当程序运行时要执行的第一条指令<br>的地址。<br>ELF可执行文件被设计得很容易加载到内存，可执行文件得连续得片被映射到连续的内存段，程序头部表描述了这种映射关系。</p>
-<h2 id="7-9-加载可执行文件"><a href="#7-9-加载可执行文件" class="headerlink" title="7.9 加载可执行文件"></a>7.9 加载可执行文件</h2><p>当加载器运行时，在程序头部表的引导下，加载器可将执行文件的片复制到代码段和数据段，接下来加载器跳转到程序的入口点<br>也就是_start函数的地址，_start函数调用系统启动函数__libc_start_main 该函数定义在libc.so中 初始化执行环境，调用<br>用户层的main函数，处理main函数的返回值，并且在需要的时候把控制返回给内存</p>
-<h2 id="7-10-动态链接共享库"><a href="#7-10-动态链接共享库" class="headerlink" title="7.10 动态链接共享库"></a>7.10 动态链接共享库</h2><p>静态库仍然有一些明显的缺点，静态库与所有软件一样，需要定期维护和更新。<br>共享库是致力于解决静态库缺陷的一个现代创新产物，共享库是一个目标模块，在运行或加载时，可以加载到任意的内存地址，并和<br>一个在内存中的程序链接起来，这个过程称为动态链接，是由一个叫做动态链接器的程序来执行的，共享库也被称为共享目标，在linux<br>系统中通常用.so后缀来表示</p>
-<h2 id="7-11-从应用程序中加载和链接共享库"><a href="#7-11-从应用程序中加载和链接共享库" class="headerlink" title="7.11 从应用程序中加载和链接共享库"></a>7.11 从应用程序中加载和链接共享库</h2><p>应用程序还可以在它运行时要求动态链接器加载和链接某个共享库，而无需在编译时将那些库链接到应用中<br>实际例子<br>分发软件、构建高性能web服务器</p>
-<h2 id="7-12-位置无关代码"><a href="#7-12-位置无关代码" class="headerlink" title="7.12 位置无关代码"></a>7.12 位置无关代码</h2><p>共享库的一个主要目的就是允许多个正在运行的进程共享内存中相同的库代码，因而节约宝贵的内存资源。<br>现代系统以这样一种方式编译共享的代码段，使得可以把它们加载到内存的任何位置而无需链接器修改，使用这种方法，无限多个进程可以共享<br>一个共享模块的代码段的单一副本<br>可以加载而无需重新定位的代码称为位置无关代码(PIC)<br>1.PIC数据引用<br>代码段中任何指令和数据段中任何变量之间的距离都是一个运行时的常量，与代码段和数据段的绝对内存位置无关<br>在数据段开始的地方创建了一个表叫做全局变量偏移表(GOT)</p>
-<p>2.PIC函数调用<br>延迟绑定，将过程地址的绑定推迟到第一次调用该过程时</p>
-<h2 id="7-13-库打桩机制"><a href="#7-13-库打桩机制" class="headerlink" title="7.13 库打桩机制"></a>7.13 库打桩机制</h2><p>linux链接器支持一个很强大的技术，称为库打桩，它允许你解惑对共享库函数的调用，取而代之执行自己的代码<br>使用打仗机制，可以追踪对某个特殊库函数的调用次数，验证和追踪它的输入和输出值，或者把他替换成一个完全不同的实现</p>
-<h3 id="编译时打桩"><a href="#编译时打桩" class="headerlink" title="编译时打桩"></a>编译时打桩</h3><p>mymalloc.c中的包装函数调用目标函数，打印追踪记录，并返回，本地的malloc.h头文件指示预处理器用相对应包装函数的调用替换<br>掉对目标函数的调用</p>
-<h3 id="链接时打桩"><a href="#链接时打桩" class="headerlink" title="链接时打桩"></a>链接时打桩</h3><p>linux静态链接器支持用–wrap f标志进行链接时打桩</p>
-<h3 id="运行时打桩"><a href="#运行时打桩" class="headerlink" title="运行时打桩"></a>运行时打桩</h3><p>基于动态链接器的LD_PRELOAD环境变量</p>
+        <p>一个系统中的所有进程共享CPU和主存资源<br>为了更加有效地管理内存并减少储存，现代系统提供了一种对主存抽象的概念，叫做虚拟内存<br>为每个进程提供了一个大的、一致的和私有的地址空间</p>
+<h2 id="9-1-物理和虚拟寻址"><a href="#9-1-物理和虚拟寻址" class="headerlink" title="9.1 物理和虚拟寻址"></a>9.1 物理和虚拟寻址</h2><p>计算机系统的主存被组织成一个由M个连续字节大小的单元组成的数组，每个字节都有一个唯一的物理地址<br>现代处理器使用的是一种称为虚拟寻址的寻址形式</p>
+<h2 id="9-2-地址空间"><a href="#9-2-地址空间" class="headerlink" title="9.2 地址空间"></a>9.2 地址空间</h2><p>地址空间是一个非负整数地址的有序集合<br>如果地址空间中的整数是连续的，称为线性地址空间<br>一个系统还有物理地址空间</p>
+<p>主存中的每个字节都有一个选自虚拟地址空间的虚拟地址和一个选自物理地址空间得到物理地址</p>
+<h2 id="9-3-虚拟内存作为缓存的工具"><a href="#9-3-虚拟内存作为缓存的工具" class="headerlink" title="9.3 虚拟内存作为缓存的工具"></a>9.3 虚拟内存作为缓存的工具</h2><p>VM系统通过将虚拟内存分割为称为虚拟页，虚拟页面的集合都分为三个不相交的子集<br>未分配的 缓存的 未缓存的</p>
+<h3 id="DRAM缓存的组织结构"><a href="#DRAM缓存的组织结构" class="headerlink" title="DRAM缓存的组织结构"></a>DRAM缓存的组织结构</h3><p>SRAM 表示CPU和主存之间的L123 高速缓存<br>DRAM 表示虚拟内存系统的缓存 在主存中缓存虚拟页</p>
+<p>虚拟页往往很大，通常是4kb~2MB 由于大的不命中处罚，DRAM缓存是全相连的，即任何虚拟页都可以放置在任何的物理页中<br>操作系统对DRAM缓存使用了更复杂精密的替换算法</p>
+<h3 id="页表"><a href="#页表" class="headerlink" title="页表"></a>页表</h3><p>虚拟内存系统必须由某种方法来判定一个虚拟页是否缓存在DRAM中的某个地方</p>
+<p>页表就是一个页表条目的数组</p>
+<h3 id="页命中"><a href="#页命中" class="headerlink" title="页命中"></a>页命中</h3><p>地址翻译硬件将虚拟地址最为一个索引来定位PTE2 并从内存中读取它</p>
+<h3 id="缺页"><a href="#缺页" class="headerlink" title="缺页"></a>缺页</h3><p>DRAM缓存不命中称为缺页<br>在磁盘和内存之间传送页的活动叫做交换或者页面调度，页面从磁盘读入DRAM和从DRAM换出磁盘<br>策略为按需页面调度</p>
+<h3 id="局部性"><a href="#局部性" class="headerlink" title="局部性"></a>局部性</h3><p>局部性原则保证了在任意时刻，程序将趋向于在一个较小的活动页面集合上工作，这个集合叫做工作集或者常驻集合<br>只要程序有好的时间局部性，虚拟内存系统就能工作得相当好</p>
 
       
 
@@ -274,7 +263,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2021/04/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%B8%83%E7%AB%A0/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2021/05/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%B9%9D%E7%AB%A0/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -288,18 +277,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/05/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%85%AB%E7%AB%A0/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          第八章 异常控制流
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/04/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%85%AD%E7%AB%A0/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">第六章 存储器层次结构</div>
+    <a href="/2021/05/07/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">数据结构</div>
       <i class="icon-circle-right"></i>
     </a>
   
