@@ -6,16 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2021 | xbs5520&#39;s blog</title>
+  <title>第十一章 网络编程 | xbs5520&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录每日学习内容">
-<meta property="og:type" content="website">
-<meta property="og:title" content="xbs5520&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/archives/2021/page/3/index.html">
+  <meta name="description" content="11.1 客户端-服务器编程模型每个网络应用都是基于客户端-服务器模型的一个应用是有一个服务器进程和一个或多个客户端进程组成的，服务器管理某种资源，并且通过操作这种资源来为它的客户端提供服务 一个客户端-服务器事物由四步组成1.当一个客户端需要服务时，它向服务器发送一个请求，发起一个事物2.服务器收到请求后，解释它，并以适当的方式操作他的资源3.服务器给客户端发送一个响应，并等待下一个请求4.客户">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第十一章 网络编程">
+<meta property="og:url" content="http://yoursite.com/2021/05/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0/index.html">
 <meta property="og:site_name" content="xbs5520&#39;s blog">
-<meta property="og:description" content="记录每日学习内容">
+<meta property="og:description" content="11.1 客户端-服务器编程模型每个网络应用都是基于客户端-服务器模型的一个应用是有一个服务器进程和一个或多个客户端进程组成的，服务器管理某种资源，并且通过操作这种资源来为它的客户端提供服务 一个客户端-服务器事物由四步组成1.当一个客户端需要服务时，它向服务器发送一个请求，发起一个事物2.服务器收到请求后，解释它，并以适当的方式操作他的资源3.服务器给客户端发送一个响应，并等待下一个请求4.客户">
 <meta property="og:locale">
+<meta property="article:published_time" content="2021-05-27T06:48:23.000Z">
+<meta property="article:modified_time" content="2021-05-27T08:29:25.005Z">
 <meta property="article:author" content="xbs5520">
+<meta property="article:tag" content="深入理解计算机系统">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="xbs5520&#39;s blog" type="application/atom+xml">
@@ -138,169 +141,199 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-计算机系统笔记第十一章" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      第十一章 网络编程
+    </h1>
+  
+
+        
+        <a href="/2021/05/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0/" class="archive-article-date">
+  	<time datetime="2021-05-27T06:48:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-27</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="11-1-客户端-服务器编程模型"><a href="#11-1-客户端-服务器编程模型" class="headerlink" title="11.1 客户端-服务器编程模型"></a>11.1 客户端-服务器编程模型</h2><p>每个网络应用都是基于客户端-服务器模型的<br>一个应用是有一个服务器进程和一个或多个客户端进程组成的，服务器管理某种资源，<br>并且通过操作这种资源来为它的客户端提供服务</p>
+<p>一个客户端-服务器事物由四步组成<br>1.当一个客户端需要服务时，它向服务器发送一个请求，发起一个事物<br>2.服务器收到请求后，解释它，并以适当的方式操作他的资源<br>3.服务器给客户端发送一个响应，并等待下一个请求<br>4.客户端收到相应并处理它</p>
+<h2 id="11-2-网络"><a href="#11-2-网络" class="headerlink" title="11.2 网络"></a>11.2 网络</h2><p>物理上而言网络是一个按照地理 远近组成的层次系统，最低级为LAN 局域网<br>最流行的局域网技术是以太网<br>以太网段包括线缆和一个集线器的盒子构成<br>使用电缆和网桥，多个以太网段可以连接成较大的局域网，称为桥接以太网</p>
+<p>在每台主机和路由器上的协议技术，消除了不同网络之间的差异<br>这种协议必须提供两种基本能力，命名机制和传送机制</p>
+<h2 id="11-3-全球IP因特网"><a href="#11-3-全球IP因特网" class="headerlink" title="11.3 全球IP因特网"></a>11.3 全球IP因特网</h2><p>全球IP因特网是最著名和最成功的互联网络实现，每台因特网主机都运行实现TCP/IP协议的软件，<br>几乎所有现代计算机系统都支持这个协议，英特网的客户端和服务器混合使用套接字接口函数和IO函数来进行通信</p>
+<p>TCP/IP协议实际是一个协议族，其中内一个都提供不同的功能</p>
+<h3 id="IP地址"><a href="#IP地址" class="headerlink" title="IP地址"></a>IP地址</h3><p>一个IP地址就是一个32位的无符号整数，IP地址通常是以一种称为点分十进制表示法来表示的</p>
+<h3 id="因特网命名"><a href="#因特网命名" class="headerlink" title="因特网命名"></a>因特网命名</h3><p>因特网定义了一组更加人性化的域名，以及一种将域名映射到IP地址的机制<br>域名集合形成了一个层次结构，每个域名编码了它在这个层次中的位置</p>
+<h3 id="因特网连接"><a href="#因特网连接" class="headerlink" title="因特网连接"></a>因特网连接</h3><p>因特网客户端和服务器通过在连接上发送和接受字节流来通信。<br>从连接一对进程的意义上而言，连接是点对点的，从数据可以同时双向流动的角度来说它是双工的<br>并且从由源进程发出的字节流最终被目的进程以发出的顺序收到它的角度来说它也是可靠的</p>
+<h2 id="11-4-套接字接口"><a href="#11-4-套接字接口" class="headerlink" title="11.4 套接字接口"></a>11.4 套接字接口</h2><p>套接字接口（socket interface）是一组函数，他们与Unix IO函数结合起来用于创建网络应用</p>
+<h3 id="套接字地址结构"><a href="#套接字地址结构" class="headerlink" title="套接字地址结构"></a>套接字地址结构</h3><p>从linux内核的角度来看，一个套接字就是通信的一个端点，从Linux程序的角度来看，<br>套接字就是一个有相应描述符的打开文件</p>
+<h3 id="socket函数"><a href="#socket函数" class="headerlink" title="socket函数"></a>socket函数</h3><p>int socket(int domain, int type, int protocol);<br>创建一个套接字描述符，返回的描述符仅是部分打开的，还不能用于读写</p>
+<h3 id="connect函数"><a href="#connect函数" class="headerlink" title="connect函数"></a>connect函数</h3><p>int connect(int clinetfd, const struck sockaddr *addr, socklen_t addrlen);<br>建立和服务器的连接<br>函数试图与套接字地址为addr的服务器建立一个因特网连接，其中addrlen为sizeof<br>connect函数会阻塞，一直到连接成功建立或是发生错误</p>
+<h3 id="bind函数"><a href="#bind函数" class="headerlink" title="bind函数"></a>bind函数</h3><p>int bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen);<br>函数告诉内核将addr中的服务器套接字地址和套接字描述符sockfd联系起来</p>
+<h3 id="listen函数"><a href="#listen函数" class="headerlink" title="listen函数"></a>listen函数</h3><p>int listen(int sockfd, int backlog);<br>客户端是发起连接请求的主动实体买服务器是等待来自客户端的连接请求的被动实体。</p>
+<h3 id="accept函数"><a href="#accept函数" class="headerlink" title="accept函数"></a>accept函数</h3><p>int accept(int listenfd, struct sockaddr *addr, int *addrlen);<br>函数等待来自客户端的连接请求到达侦听描述符listenfd 然后在addr填写客户端的套接字地址<br>并且返回一个已连接描述符，这个描述符可被用来利用UnixIO函数与客户端通信</p>
+<h3 id="主机和服务的转换"><a href="#主机和服务的转换" class="headerlink" title="主机和服务的转换"></a>主机和服务的转换</h3><p>Linux提供了一些强大的函数，实现二进制套接字地址结构和主机名、主机地址、服务器名<br>和端口号的字符串表示之间的相互转化</p>
+<p>1.getaddrinfo 函数<br>int getaddrinfo(const char *host, const char *service,<br>                const struct addrinfo *hints, struct addrinfo **result);<br>将主机名、主机地址、服务器名和端口号的字符串表示转化成套接字地址结构</p>
+<p>函数默认返回IPv4和IPv6套接字地址<br>对于host关联的每个地址，函数最多返回三个addrinfo结构</p>
+<p>2.getnameinfo函数<br>int getnameinfo(const struct sockaddr *sa, socklen salen,<br>                char *host, size_t hostlen, char *service, size_t servlen, int flags);</p>
+<h3 id="套接字接口的辅助函数"><a href="#套接字接口的辅助函数" class="headerlink" title="套接字接口的辅助函数"></a>套接字接口的辅助函数</h3><p>1.open_clientfd<br>int open_clientfd(char *hostname, char *port)<br>函数建立与服务器的连接，该服务器运行在主机hostname上，并且在端号口port上监听连接请求</p>
+<p>2.open_listenfd<br>int open_listenfd(char *port);<br>函数打开和返回一个监听描述符，这个描述符准备号在端口port上接受连接请求</p>
+<h2 id="11-5-Web服务器"><a href="#11-5-Web服务器" class="headerlink" title="11.5 Web服务器"></a>11.5 Web服务器</h2><h3 id="web基础"><a href="#web基础" class="headerlink" title="web基础"></a>web基础</h3><p>web客户端和服务器之间的交互用的是一个基于文本的应用级协议，叫做Http超文本传输协议，一个web<br>客户端即浏览器打开一个服务器的因特网来连接，并且请求某些内容，服务器响应所请求的内容<br>然后关闭来连接。浏览器读取这些内容，并把它显示在屏幕上</p>
+<h3 id="web内容"><a href="#web内容" class="headerlink" title="web内容"></a>web内容</h3><p>对于web客户端与服务器而言，内容是一个MIME多用途得到网际邮件扩充协议类型相关的字序列<br>web服务器有两种方式向客户端提供内容<br>1.取一个磁盘文件，并将它的内容返回给客户端。磁盘文件称为静态内容，而返回文件给客户端的过程称为服务器静态内容<br>2.运行一个可执行文件，并将它的输出内容返回给客户端</p>
+<p>确定一个URL指向的是静态内容还是动态内容没有标准规则，每个服务器对他所管理的文件都有自己的规则<br>后缀中的最开始“/”不表示linux根目录，而表示被请求内容的主目录<br>最小的URL后缀是“/”字符所有的服务器将其扩展为某个默认的主页</p>
+<h3 id="HTTP事务"><a href="#HTTP事务" class="headerlink" title="HTTP事务"></a>HTTP事务</h3><p>因为HTTP是基于在因特网连接上传送文本行的，我们可使用linux的TELENT程序来和因特网上任何Web服务器执行事物</p>
+<p>1.HTTP请求<br>组成： 一个请求行，后面跟随零个或多个请求报头，再跟随一个空的文本行来终止报头列表<br>形式： method URI version</p>
+<p>2.HTTP响应<br>组成： 一个响应行，后面跟随零个或多个请求报头，再跟随一个终止报头的空行，再跟随一个响应主体<br>形式： version status-code status-message<br>vesion段表示响应所遵循的HTTP版本</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/12/%E9%AB%98%E8%80%83%E5%86%B2%E5%88%BA100%E5%A4%A9/" class="archive-article-date">
-  	<time datetime="2021-04-12T08:48:53.274Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/12/%E9%AB%98%E8%80%83%E5%86%B2%E5%88%BA100%E5%A4%A9/">记录每天学习内容</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/12/Array/" class="archive-article-date">
-  	<time datetime="2021-04-12T08:41:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/12/Array/">Array有关算法题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">算法题整合</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深入理解计算机系统</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2021/05/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/12/Math/" class="archive-article-date">
-  	<time datetime="2021-04-12T08:41:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-12</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2021/05/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E7%AB%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">第十章 系统级I/O</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/12/Math/">Math有关算法题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">算法题整合</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/12/String/" class="archive-article-date">
-  	<time datetime="2021-04-12T08:41:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/12/String/">String有关算法题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">算法题整合</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2021/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2021/">1</a><a class="page-number" href="/archives/2021/page/2/">2</a><span class="page-number current">3</span>
-    </nav>
-  
+        
+        
+    </div>
+</aside>
 
 
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+ <!--添加代码开始-->
+
+        <div class="declare" hidden="hidden"></div>
+      
           </div>
         </div>
       </div>
@@ -321,8 +354,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

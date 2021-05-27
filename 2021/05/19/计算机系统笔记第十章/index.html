@@ -16,7 +16,7 @@
 <meta property="og:description" content="输入输出(I&#x2F;O)是在主存和外部设备之间复制数据的过程，输入操作是从IO设备复制数据到主存，而输出操作是从主存复制数据到IO设备 10.1 Unix IO一个Linux文件就是一个m字节的序列所有的IO设备都被模型化为文件，而所有的输入输出都被当作相应文件的读和写来执行打开文件，内核返回一个小的非负数，叫做描述符Linux shell创建的每个进程开始都有三个打开的文件，标志输入、标准输出和标准错">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-05-19T06:23:23.000Z">
-<meta property="article:modified_time" content="2021-05-19T08:59:01.866Z">
+<meta property="article:modified_time" content="2021-05-27T06:47:35.271Z">
 <meta property="article:author" content="xbs5520">
 <meta property="article:tag" content="深入理解计算机系统">
 <meta name="twitter:card" content="summary">
@@ -170,9 +170,18 @@
 <p>Linux内核将所有文件都组织成一个目录层次结构，由名为/的根目录确定</p>
 <h2 id="10-3-打开和关闭文件"><a href="#10-3-打开和关闭文件" class="headerlink" title="10.3 打开和关闭文件"></a>10.3 打开和关闭文件</h2><p>进程通过调用open函数来打开一个已存在的文件或者新建一个文件</p>
 <p>O_RDONLY    只读<br>O_WRONLY    只写<br>O_RDWR        可读可写</p>
-<h2 id="10-4-读和写文件"><a href="#10-4-读和写文件" class="headerlink" title="10.4 读和写文件"></a>10.4 读和写文件</h2><p>应用程序是通过调用read和write函数来执行输入和输出的<br>read函数从描述符为fd的当前文件位置复制最多n个字节到内存位置buf<br>wirte函数从内存位置buf复制至多n个字节到描述符fd的当前文件位置</p>
+<h2 id="10-4-读和写文件"><a href="#10-4-读和写文件" class="headerlink" title="10.4 读和写文件"></a>10.4 读和写文件</h2><p>应用程序是通过调用read和write函数来执行输入和输出的<br>read函数从描述符为fd的当前文件位置复制最多n个字节到内存位置buf<br>wirte函数从内存位置buf复制至多n个字节到描述符fd的当前文件位置 </p>
 <p>read和write传送的字节比应用程序要求的要少，这些不足值不表示有错误<br>1.读时遇到EOF<br>2.从终端读文本行<br>3.读和写网络套接字</p>
 <h2 id="10-5-用RIO包健壮地读写"><a href="#10-5-用RIO包健壮地读写" class="headerlink" title="10.5 用RIO包健壮地读写"></a>10.5 用RIO包健壮地读写</h2><p>健壮地IO包，它会自动为你处理不足值<br>RIO提供了两类不同地函数<br>无缓冲地输入输出函数<br>带缓冲地输入函数</p>
+<h2 id="RIO的无缓冲的输入输出函数"><a href="#RIO的无缓冲的输入输出函数" class="headerlink" title="RIO的无缓冲的输入输出函数"></a>RIO的无缓冲的输入输出函数</h2><p>通过调用rio_readn rio_writen 函数<br>应用程序可以在内存和文件之间直接传送数据</p>
+<h2 id="RIO的带缓冲的输入函数"><a href="#RIO的带缓冲的输入函数" class="headerlink" title="RIO的带缓冲的输入函数"></a>RIO的带缓冲的输入函数</h2><p>调用一个包装幻术，它从一个内部读缓冲区复制一个文本行，当缓冲区变空时，会自动地调用read重新填满缓冲区，<br>对于即包含文本行也包含二进制数据的文件，也提供了<br>带缓冲的rio_readnb函数</p>
+<p>对于一个应用程序，rio_read函数和Linux_read函数有同样的语义，在出错时，它返回值-1，并且适当地设置errno，在EOF时返回0</p>
+<h2 id="10-6-读取文件元数据"><a href="#10-6-读取文件元数据" class="headerlink" title="10.6 读取文件元数据"></a>10.6 读取文件元数据</h2><p>应用程序能够调用sata 和 fsata 函数，检索到关于文件的信息（有时也称为文件的元数据）</p>
+<p>st_mode 成员则编码了文件访问许可位和文件类型<br>S_ISREG(m)    是否为普通文件<br>S_ISDIR(m)    是否为目录文件<br>S_ISSOCK(m)    是否为网络套接字</p>
+<h2 id="10-7-读取目录内容"><a href="#10-7-读取目录内容" class="headerlink" title="10.7 读取目录内容"></a>10.7 读取目录内容</h2><p>使用readdir系列来读取目录的内容<br>函数opendir以路径名为参数，返回指向目录流的指针。流是对条目有序列表的抽象在这里是指目录项的列表</p>
+<h2 id="10-8-共享文件"><a href="#10-8-共享文件" class="headerlink" title="10.8    共享文件"></a>10.8    共享文件</h2><p>内核用三个相关的数据结构来表示打开的文件<br>描述附表：    每个进程都有它独立的描述符表，它的表项是由进程打开的文件描述符来引索的<br>文件表：    打开文件的集合是由一张文件表来表示的，所有的进程共享这张表<br>v-node表：    同文件表一样，所有的进程共享这张v-node表，每个表项包含stat结构中的大多数信息，包括st_mode和st_size成员</p>
+<h2 id="10-9-I-O重定向"><a href="#10-9-I-O重定向" class="headerlink" title="10.9 I/O重定向"></a>10.9 I/O重定向</h2><p>Linux shell提供了IO重定向操作符，允许用户将磁盘文件和标准输入输出联系起来</p>
+<h2 id="10-10-标准IO"><a href="#10-10-标准IO" class="headerlink" title="10.10 标准IO"></a>10.10 标准IO</h2><p>C语言定义了一组高级输入输出函数称为标准IO库<br>打开与关闭文件    fopen 和 fclose<br>读写字节        fread 和 fwrite<br>读写字符串        fgets 和 fputs<br>复杂格式化        scanf 和 printf</p>
 
       
 
@@ -276,6 +285,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2021/05/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          第十一章 网络编程
+        
+      </div>
+    </a>
   
   
     <a href="/2021/05/19/%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/" id="article-nav-older" class="article-nav-link-wrap">
