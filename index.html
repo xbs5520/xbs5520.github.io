@@ -161,9 +161,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>只是记录每天刷题内容与学习框架<br>作为日程表<br>无意义</p>
-<h2 id="起始日期2021-4-12"><a href="#起始日期2021-4-12" class="headerlink" title="起始日期2021.4.12"></a>起始日期2021.4.12</h2><h2 id="528任务"><a href="#528任务" class="headerlink" title="528任务"></a>528任务</h2><p>学习《深入理解计算机系统》12章<br>4个Acwing</p>
-<h2 id="5-27"><a href="#5-27" class="headerlink" title="5.27"></a>5.27</h2><p>算法课程<br>数学知识3<br>10章总结<br>学习《深入理解计算机系统》11章<br>学习《Effective C++》条款 19 20</p>
-<h3 id="1-842-排列数字"><a href="#1-842-排列数字" class="headerlink" title="1.842 排列数字"></a>1.842 排列数字</h3><h3 id="2-843-n皇后-两种方法"><a href="#2-843-n皇后-两种方法" class="headerlink" title="2.843 n皇后(两种方法)"></a>2.843 n皇后(两种方法)</h3><h3 id="3-844-走迷宫"><a href="#3-844-走迷宫" class="headerlink" title="3.844 走迷宫"></a>3.844 走迷宫</h3><h3 id="4-845-八码数"><a href="#4-845-八码数" class="headerlink" title="4.845 八码数"></a>4.845 八码数</h3><h2 id="5-24"><a href="#5-24" class="headerlink" title="5.24"></a>5.24</h2><p>算法课程<br>数学知识2<br>几个AcWing题目</p>
+<h2 id="起始日期2021-4-12"><a href="#起始日期2021-4-12" class="headerlink" title="起始日期2021.4.12"></a>起始日期2021.4.12</h2><h2 id="62目标"><a href="#62目标" class="headerlink" title="62目标"></a>62目标</h2><p>算法课程<br>DP1<br>学习 计算机网络书籍<br>学习《Effective C++》条款 21 22<br>4个acwing</p>
+<h2 id="6-1"><a href="#6-1" class="headerlink" title="6.1"></a>6.1</h2><p>超额完成<br>算法课程<br>数学知识4<br>学习《深入理解计算机系统》12章<br>几个AcWing题目</p>
         
       
 
@@ -347,6 +346,111 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/04/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%BA%8C%E7%AB%A0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+ <!--添加代码开始-->
+
+        <div class="declare" hidden="hidden"></div>
+      
+  
+    <article id="post-计算机系统笔记第十二章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/">第十一章 并发编程</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/" class="archive-article-date">
+  	<time datetime="2021-06-01T08:52:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="12-1基于进程的并发编程"><a href="#12-1基于进程的并发编程" class="headerlink" title="12.1基于进程的并发编程"></a>12.1基于进程的并发编程</h2><p>构造并发程序的最简单方法就是使用进程，在父进程中接受客户端的连接请求，创建一个子进程为每个新客户进行服务</p>
+<p>父子进程中的已连接描述符都指向同一个文件表表项，所以父进程关闭它的已连接描述符副本是十分关键的<br>否则，将永不会释放已连接描述符的文件条目</p>
+<h3 id="基于进程的并发服务器"><a href="#基于进程的并发服务器" class="headerlink" title="基于进程的并发服务器"></a>基于进程的并发服务器</h3><p>通常服务器会运行很长时间，所以我们必须要包括一个SIGCHLD处理程序，来回收僵死子进程的资源<br>父进程必须关闭它们各自的connfd副本，必须关闭它的已连接描述符，以避免内存泄漏<br>直到父子进程的connfd都关闭了到客户端的连接才会终止</p>
+<h3 id="进程的优劣"><a href="#进程的优劣" class="headerlink" title="进程的优劣"></a>进程的优劣</h3><p>父子进程见共享状态信息，有一个十分清晰的模型：共享文件表，但是不共享用户地址空间</p>
+<p>进程有独立的地址空间即使优点也是缺点<br>优：一个进程不可能不小心覆盖到另一个进程的虚拟内存<br>缺：独立的地址空间使得进程共享状态信息变得更加困难</p>
+<h2 id="12-2基于IO多路复用的并发编程"><a href="#12-2基于IO多路复用的并发编程" class="headerlink" title="12.2基于IO多路复用的并发编程"></a>12.2基于IO多路复用的并发编程</h2><h3 id="基于IO多路复用的并发事件驱动服务器"><a href="#基于IO多路复用的并发事件驱动服务器" class="headerlink" title="基于IO多路复用的并发事件驱动服务器"></a>基于IO多路复用的并发事件驱动服务器</h3><p>IO多路复用可以用做并发事件驱动程序的基础，在事件驱动程序中，某些事件会导致流向前推进。<br>一般的思路是将逻辑流模型化为状态机<br>一个状态机就是一组状态、输出事件和转移，其中转移是将状态和输入事件映射到状态<br>自循环是同一输入和输出状态之间的转移</p>
+<h3 id="IO多路复用技术的优劣"><a href="#IO多路复用技术的优劣" class="headerlink" title="IO多路复用技术的优劣"></a>IO多路复用技术的优劣</h3><p>事件驱动设计<br>优：比基于进程的设计给了程序员更多的对程序行为的控制。<br>一个基于IO多路复用的事件驱动服务器是运行在单一进程上下文中，<br>因此每个逻辑流都能访问该进程的全部地址空间，这使得在流之间共享数据变得容易<br>缺：编码复杂</p>
+<h2 id="12-3基于线程的并发编程"><a href="#12-3基于线程的并发编程" class="headerlink" title="12.3基于线程的并发编程"></a>12.3基于线程的并发编程</h2><p>线程就是运行在进程上下文中的逻辑流，线程由内核自动调度，每个线程都有自己的上下文，<br>包括线程ID、栈、栈指针、程序计数器、通用目的寄存器和条件码</p>
+<p>基于线程的逻辑流结合了基于进程和IO多路复用流的特性</p>
+<h3 id="Posix线程"><a href="#Posix线程" class="headerlink" title="Posix线程"></a>Posix线程</h3><p>是C程序中处理线程的一个标准接口定义大约60个函数<br>运行程序创建、杀死和回收线程，与对线程安全地共享数据，还可以通知对等线程系统状态的变化。</p>
+<h3 id="创建线程"><a href="#创建线程" class="headerlink" title="创建线程"></a>创建线程</h3><p>int pthread_create(pthread_create *tid, pthread_attr_t *attr, func *f, void *arg)<br>创建线程</p>
+<p>pthread_t pthread_self(void)_<br>获得自己线程ID</p>
+<h3 id="终止线程"><a href="#终止线程" class="headerlink" title="终止线程"></a>终止线程</h3><p>当顶层线程例程返回时，线程隐式地终止<br>显式终止<br>void pthread_exit(void *thread_return);</p>
+<h3 id="回收已终止线程地资源"><a href="#回收已终止线程地资源" class="headerlink" title="回收已终止线程地资源"></a>回收已终止线程地资源</h3><p>int pthread_join(pthread_t tid, void **thread_return)</p>
+<h3 id="分离线程"><a href="#分离线程" class="headerlink" title="分离线程"></a>分离线程</h3><p>在任何时间点上，线程是可结合的或是分离地，一个可结合地线程能被其他线程回收和杀死。<br>再被其他线程回收之前，它地内存资源是不释放的。<br>一个分离的线程是不能被其他线程回收或杀死的，它的内存资源在它终止时由系统自动释放</p>
+<p>int pthread_detach(pthread_t tid);</p>
+<h3 id="初始化线程"><a href="#初始化线程" class="headerlink" title="初始化线程"></a>初始化线程</h3><p>int pthread_once(pthread_once_t *once_control, void (*int_routine)(void));</p>
+<h2 id="12-4多线程程序中的共享变量"><a href="#12-4多线程程序中的共享变量" class="headerlink" title="12.4多线程程序中的共享变量"></a>12.4多线程程序中的共享变量</h2><p>线程很有吸引力的一方面为多个线程很容易共享相同的程序变量。</p>
+<h3 id="线程内存模型"><a href="#线程内存模型" class="headerlink" title="线程内存模型"></a>线程内存模型</h3><p>每个线程都有独立的线程上下文，包括线程ID、栈、栈指针、程序计数器、通用目的寄存器值和条件码 </p>
+<p>让一个线程去读另一个线程的寄存器是不可能的，任何线程都可以访问共享虚拟内存的任意位置。<br>如果某个线程修改了一个内存位置，那么其他每个线程最终都能在它读这个位置时发现这个变化<br>因此寄存器是从不共享的，而虚拟内存总是共享的</p>
+<h3 id="将变量映射到内存"><a href="#将变量映射到内存" class="headerlink" title="将变量映射到内存"></a>将变量映射到内存</h3><p>全局变量：定义在函数之外<br>本地自动变量：定义在函数内部但没有static属性的变量<br>本地静态变量：定义在函数内部并有static属性的变量</p>
+<h2 id="12-5用信号量同步线程"><a href="#12-5用信号量同步线程" class="headerlink" title="12.5用信号量同步线程"></a>12.5用信号量同步线程</h2><h3 id="进度图"><a href="#进度图" class="headerlink" title="进度图"></a>进度图</h3><p>进度条将n个并发线程的执行模型化为一条n维笛卡尔空间中的轨迹线，每条轴k对应于线程k的进度</p>
+<h3 id="信号量"><a href="#信号量" class="headerlink" title="信号量"></a>信号量</h3><p>信号量是具有非负整数值的全局变量，只能通过操作P V进行处理<br>P，V的定义确保了一个正在运行的程序绝不可能进入到这样一种状态，也就是正确初始化了信号量有一个负值<br>这个属性称为信号不变性</p>
+<h3 id="使用信号量来实现互斥"><a href="#使用信号量来实现互斥" class="headerlink" title="使用信号量来实现互斥"></a>使用信号量来实现互斥</h3><p>信号量提供了一种很方便的方法来确保对共享变量的互斥访问，基本思想是将每个共享变量与一个信号量s<br>联系起来，然后P和V操作将相应的临界区包围起来<br>被保护的信号量叫做二元信号量</p>
+<h2 id="12-7其他并发问题"><a href="#12-7其他并发问题" class="headerlink" title="12.7其他并发问题"></a>12.7其他并发问题</h2><p>必须小心的编写那些具有称为线程安全性属性的函数，一个函数被称为线程安全的，当且仅当<br>多个并发线程反复地调用时会产生正确地结果<br>第一类：不保护共享变量地函数<br>第二类：保持跨越多个调用状态地函数<br>第三类：返回指向静态变量地指针的函数<br>第四类：调用线程不安全函数的函数</p>
+<h3 id="可重入性"><a href="#可重入性" class="headerlink" title="可重入性"></a>可重入性</h3><p>当函数被多个线程调用时不会引用任何共享数据<br>线程安全函数包含可重入函数</p>
+<h3 id="在线程化的程序中使用已存在的库函数"><a href="#在线程化的程序中使用已存在的库函数" class="headerlink" title="在线程化的程序中使用已存在的库函数"></a>在线程化的程序中使用已存在的库函数</h3><h3 id="竞争"><a href="#竞争" class="headerlink" title="竞争"></a>竞争</h3><p>当一个程序的正确性依赖于一个线程要在另一个线程到达y点之前到达它的控制流中的x点时，<br>就会发生竞争。通常发生竞争是因为程序员假定线程将按照某种特殊的轨迹线穿过执行状态空间，<br>忘记另一条准则：多线程的程序必须对任何可行的轨迹线都正确工作</p>
+<h3 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h3><p>信号量引入了一种潜在的令人厌恶的运行时错误，叫做死锁，它指的是一组线程被阻塞了<br>等待一个永远也不会为真的条件<br>程序员使用PV操作顺序不当以至于两个信号量的禁止区域重叠<br>重叠的禁止区域引起了一组称为死锁区域的状态<br>死锁不总是可以预测的</p>
+<p>互斥锁加锁顺序规则：给定所有互斥操作的一个全序，如果每个线程都是以一种顺序来获得互斥锁<br>并以相反的顺序释放，那么这个程序就是无死锁的。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深入理解计算机系统</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/">展开全文 >></a>
         </p>
       
 
@@ -710,7 +814,27 @@
 <p>889</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">qmi</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> k, <span class="keyword">int</span> p)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(k)&#123;</span><br><span class="line">        <span class="keyword">if</span>(k &amp; <span class="number">1</span>) res = (LL)res * a % p;</span><br><span class="line">        a = (LL)a * a % p;</span><br><span class="line">        k &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">2</span> * n, b = n;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">1</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = a; i &gt; a - b; i--) res = (LL) res * i % mod;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= b; i++) res = (LL) res * <span class="built_in">qmi</span>(i, mod - <span class="number">2</span>, mod) % mod;</span><br><span class="line">    res = (LL)res * <span class="built_in">qmi</span>(n + <span class="number">1</span>, mod - <span class="number">2</span>, mod) % mod;</span><br><span class="line">    cout &lt;&lt; res  &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h2 id="容斥原理"><a href="#容斥原理" class="headerlink" title="容斥原理"></a>容斥原理</h2><p>集合求并！<br>c(n,0) + c(n,1)+ …+c(n,n) = 2^n(每个数选或者不选)<br>从n个数中任选多个数的方案<br>时间复杂度 2^n<br>n个圆<br>1 - 2 + 3 - 4 + 5 - … + (-1)^(n - 1) × n</p>
+<p>三个<br>s表示集合内元素<br>s1 ∪ s2 ∪ s2 = s1 + s2 + s3 - s1∩s2- s1∩s3- s2∩s3 + s1∩s2∩s3<br>奇正偶负</p>
+<p>能被整除的数<br>位运算与容斥原理</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">20</span>;</span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="keyword">int</span> p[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="comment">//读入</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) cin &gt;&gt; p[i];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//从1到2^m(1 &lt;&lt; m)</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">1</span> &lt;&lt; m; i++)&#123;</span><br><span class="line">        <span class="comment">//t表示当前所有数的乘积 </span></span><br><span class="line">        <span class="comment">//cnt 表示当前选法中有几个集合  位运算1表示选择0表示不选</span></span><br><span class="line">        <span class="keyword">int</span> t = <span class="number">1</span>, cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//从0开始枚举m位</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; m; j++)</span><br><span class="line">            <span class="comment">//如果选择当前集合</span></span><br><span class="line">            <span class="keyword">if</span>(i &gt;&gt; j &amp; <span class="number">1</span>)&#123;</span><br><span class="line">                cnt++;</span><br><span class="line">                <span class="comment">//如果结果大于n则不用继续求</span></span><br><span class="line">                <span class="keyword">if</span>((LL)t * p[j] &gt; n)&#123;</span><br><span class="line">                    t = <span class="number">-1</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                t *= p[j];</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">if</span>(t != <span class="number">-1</span>)&#123;</span><br><span class="line">            <span class="comment">//看是奇数集合还是偶数</span></span><br><span class="line">            <span class="keyword">if</span>(cnt % <span class="number">2</span>) res += n / t;</span><br><span class="line">            <span class="keyword">else</span> res -= n / t;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; res &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+
+<h2 id="博弈论"><a href="#博弈论" class="headerlink" title="博弈论"></a>博弈论</h2><p>公平组合游戏ICG<br>若一个游戏满足：</p>
+<p>1.由两名玩家交替行动；<br>2.在游戏进程的任意时刻，可以执行的合法行动与轮到哪名玩家无关；<br>3.不能行动的玩家判负；<br>则称该游戏为一个公平组合游戏。<br>NIM博弈属于公平组合游戏，但城建的棋类游戏，比如围棋，就不是公平组合游戏。<br>因为围棋交战双方分别只能落黑子和白子，胜负判定也比较复杂，不满足条件2和条件3。</p>
+<h3 id="Nim游戏"><a href="#Nim游戏" class="headerlink" title="Nim游戏"></a>Nim游戏</h3><p>给定N堆物品，第i堆物品有Ai个。两名玩家轮流行动，每次可以任选一堆，取走任意多个物品，可把一堆取光，但不能不取。取走最后一件物品者获胜。两人都采取最优策略，问先手是否必胜。</p>
+<p>我们把这种游戏称为NIM博弈。把游戏过程中面临的状态称为局面。<br>整局游戏第一个行动的称为先手，第二个行动的称为后手。<br>若在某一局面下无论采取何种行动，都会输掉游戏，则称该局面必败。<br>所谓采取最优策略是指，若在某一局面下存在某种行动，使得行动后对面面临必败局面，则优先采取该行动。<br>同时，这样的局面被称为必胜。我们讨论的博弈问题一般都只考虑理想情况，<br>即两人均无失误，都采取最优策略行动时游戏的结果。<br>NIM博弈不存在平局，只有先手必胜和先手必败两种情况。</p>
+<p>定理： NIM博弈先手必胜，当且仅当 A1 ^ A2 ^ … ^ An != 0</p>
+<p>a为每一堆石子个数<br>先手必败状态： 不能操作 不管怎么操作都是必胜状态<br>a1 ∩ a2 ∩ … ∩ an = 0</p>
+<p>异或 ∩</p>
+<p>先手必胜状态： 可转变为必败<br>a1 ∩ a2 ∩ … ∩ an ≠ 0</p>
+<p>所以任意时刻先手必胜一定不是0<br>必败一定是0 </p>
+<p>所以只需判断初始状态 再根据先后手就可得出结论</p>
+<h3 id="SG函数"><a href="#SG函数" class="headerlink" title="SG函数"></a>SG函数</h3><p>Mex运算<br>设S表示一个非负整数集合。定义mex(S)为求出不属于集合S的最小非负整数的运算，即：<br>mex(S) = min{x}, x属于自然数，且x不属于S</p>
+<p>在有向图游戏中，对于每个节点x，设从x出发共有k条有向边，<br>分别到达节点y1, y2, …, yk，定义SG(x)为x的后继节点y1, y2, …, yk<br>的SG函数值构成的集合再执行mex(S)运算的结果，即：<br>SG(x) = mex({SG(y1), SG(y2), …, SG(yk)})<br>特别地，整个有向图游戏G的SG函数值被定义为有向图游戏起点s的SG函数值，<br>即SG(G) = SG(s)。</p>
+<p>SG(x) = 0    必败<br>SG(x) ≠ 0     必胜</p>
+<p>如果有n张图 将其异或起来就是结果</p>
+<h3 id="有向图游戏"><a href="#有向图游戏" class="headerlink" title="有向图游戏"></a>有向图游戏</h3><p>给定一个有向无环图，图中有一个唯一的起点，在起点上放有一枚棋子。<br>两名玩家交替地把这枚棋子沿有向边进行移动，每次可以移动一步，无法移动者判负。<br>该游戏被称为有向图游戏。任何一个公平组合游戏都可以转化为有向图游戏。<br>具体方法是，把每个局面看成图中的一个节点，并且从每个局面向沿着合法行动能够到达的下一个局面连有向边。</p>
 
       
 
@@ -813,6 +937,8 @@
 <p>有向图 a-&gt;b<br>邻接矩阵 g[a][b] n^2 一般不用</p>
 <p>邻接表<br>对每一个点开一个单链表 存储能到那些点</p>
 <h3 id="dfs"><a href="#dfs" class="headerlink" title="dfs"></a>dfs</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u)</span> </span>&#123;</span><br><span class="line">	st[u] = <span class="literal">true</span>; 	<span class="comment">//标记已被搜索</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = h[u]; i != <span class="number">-1</span>; u = ne[i])&#123;</span><br><span class="line">		<span class="keyword">int</span> j = e[i];</span><br><span class="line">		<span class="keyword">if</span>(!st[j]) <span class="built_in">dfs</span>(j);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>846树的重心</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int N &#x3D; 100010, M &#x3D; N * 2;</span><br><span class="line"></span><br><span class="line">int n, m;</span><br><span class="line">int h[N], e[M], ne[M], idx;</span><br><span class="line">bool st[N];</span><br><span class="line"></span><br><span class="line">int ans &#x3D; N;</span><br><span class="line"></span><br><span class="line">void add(int a, int b)&#123;</span><br><span class="line">    e[idx] &#x3D; b, ne[idx] &#x3D; h[a], h[a] &#x3D; idx++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;以u为根的子树中点的数量</span><br><span class="line">int dfs(int u)&#123;</span><br><span class="line">    st[u] &#x3D; true;   &#x2F;&#x2F;标记已经被搜索</span><br><span class="line">    </span><br><span class="line">    int sum &#x3D; 1, res &#x3D; 0;</span><br><span class="line">    &#x2F;&#x2F;遍历u的所有出边</span><br><span class="line">    for(int i &#x3D; h[u]; i !&#x3D; -1; i &#x3D; ne[i])&#123;</span><br><span class="line">        int j &#x3D; e[i];</span><br><span class="line">        if(!st[j])&#123;</span><br><span class="line">            int s &#x3D; dfs(j);</span><br><span class="line">            res &#x3D; max(res, s);</span><br><span class="line">            sum +&#x3D; s;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    res &#x3D; max(res, n - sum);</span><br><span class="line">    ans &#x3D; min(ans, res);</span><br><span class="line">    return sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    </span><br><span class="line">    memset(h, -1, sizeof h);</span><br><span class="line">    </span><br><span class="line">    for(int i &#x3D; 0; i &lt; n - 1; i++ )&#123;</span><br><span class="line">        int a, b;</span><br><span class="line">        cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">        add(a, b), add(b, a);   &#x2F;&#x2F;无向边</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    dfs(1);</span><br><span class="line">    cout &lt;&lt; ans &lt;&lt;endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>重边 两个点有多条边<br>自环 一条边指向自己</p>
 <h3 id="拓扑序列-有向图才有"><a href="#拓扑序列-有向图才有" class="headerlink" title="拓扑序列(有向图才有)"></a>拓扑序列(有向图才有)</h3><p>若一个由图中所有点构成的序列 A 满足：<br>对于图中的每条边 (x,y)，x 在 A 中都出现在 y 之前，<br>则称 A 是该图的一个拓扑序列。</p>
@@ -820,7 +946,7 @@
 <p>有向无环图(也被称为拓扑图) 一定存在拓扑序列</p>
 <p>入度： 有多少条边指向自己<br>出度： 从自己有多少条边出去</p>
 <p>入度为零 则放到最前</p>
-<h4 id="848-有向图的拓扑排序"><a href="#848-有向图的拓扑排序" class="headerlink" title="848 有向图的拓扑排序"></a>848 有向图的拓扑排序</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    e[idx] = b, ne[idx] = h[a], h[a] = idx++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">topsort</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> hh = <span class="number">0</span>, tt = <span class="number">-1</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!d[i])</span><br><span class="line">            q[++tt] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(hh &lt;= tt)&#123;</span><br><span class="line">        <span class="keyword">int</span> t = q[hh++];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = h[t]; i != <span class="number">-1</span>; i = ne[i])&#123;</span><br><span class="line">            <span class="keyword">int</span> j = e[i];</span><br><span class="line">            d[j]--;</span><br><span class="line">            <span class="keyword">if</span>(d[j] == <span class="number">0</span>) q[++t] = j;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> tt == n - <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="848-有向图的拓扑排序"><a href="#848-有向图的拓扑排序" class="headerlink" title="848 有向图的拓扑排序"></a>848 有向图的拓扑排序</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">100010</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="keyword">int</span> h[N], e[N], ne[N], idx;</span><br><span class="line"><span class="comment">//d为入度</span></span><br><span class="line"><span class="keyword">int</span> d[N], q[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    e[idx] = b, ne[idx] = h[a], h[a] = idx++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">topsort</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> hh = <span class="number">0</span>, tt = <span class="number">-1</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!d[i])</span><br><span class="line">            q[++tt] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(hh &lt;= tt)&#123;</span><br><span class="line">        <span class="keyword">int</span> t = q[hh++];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = h[t]; i != <span class="number">-1</span>; i = ne[i])&#123;</span><br><span class="line">            <span class="keyword">int</span> j = e[i];</span><br><span class="line">            d[j]--;</span><br><span class="line">            <span class="keyword">if</span>(d[j] == <span class="number">0</span>) q[++tt] = j;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> tt == n - <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">memset</span>(h, <span class="number">-1</span>, <span class="keyword">sizeof</span> h);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++ )&#123;</span><br><span class="line">        <span class="keyword">int</span> a, b;</span><br><span class="line">        cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">        <span class="built_in">add</span>(a, b);</span><br><span class="line">		<span class="comment">//有一条指向b的边 入度加一</span></span><br><span class="line">        d[b]++;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">topsort</span>())&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,q[i]);</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="built_in">puts</span>(<span class="string">&quot;-1&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 <h2 id="最短路问题"><a href="#最短路问题" class="headerlink" title="最短路问题"></a>最短路问题</h2><h3 id="单源最短路"><a href="#单源最短路" class="headerlink" title="单源最短路"></a>单源最短路</h3><p>n为点数量 m为边数量</p>
@@ -1215,124 +1341,6 @@ flip(k) 把第k位取反
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/05/07/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
- <!--添加代码开始-->
-
-        <div class="declare" hidden="hidden"></div>
-      
-  
-    <article id="post-计算机系统笔记第八章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/05/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%85%AB%E7%AB%A0/">第八章 异常控制流</a>
-    </h1>
-  
-
-        
-        <a href="/2021/05/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%85%AB%E7%AB%A0/" class="archive-article-date">
-  	<time datetime="2021-05-06T06:31:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>现代系统通过使控制流发生突变来对这些情况做出反应。一般而言，我们把这些突变称为异常控制流（ECF）<br>异常控制流发生在计算机系统的各个层次。</p>
-<h2 id="8-1-异常控制流"><a href="#8-1-异常控制流" class="headerlink" title="8.1 异常控制流"></a>8.1 异常控制流</h2><p>异常是异常控制流的一种形式，它一部分由硬件实现，一部分由操作系统实现。<br>异常就是控制流中的突变，用来响应处理器状态中的某些变化<br>在任何情况下，当处理器检测到有事件发生时，它就会通过一张叫做异常表的跳转表进行一个间接过程的调用，来启动异常处理程序<br>一般会返回三类<br>1.当前指令<br>2.下一条指令<br>3.终止被中断的程序</p>
-<h3 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h3><p>异常表的起始地址存放在异常表基址寄存器<br>每个异常分配了唯一的一个非负整数异常号<br>通过上述两个找到异常表中的位置来启动异常处理程序</p>
-<h3 id="异常的类别"><a href="#异常的类别" class="headerlink" title="异常的类别"></a>异常的类别</h3><p>1.中断<br>是异步发生的，硬件中断的异常处理程序常常称为中断处理程序<br>结果是程序继续执行(下一条) 好像没有发生中断一样<br>其余的异常类型都是同步发生的(称为故障指令)</p>
-<p>2.陷阱和系统调用<br>陷阱是有意的异常，是执行一条指令的结果，陷阱最重要的用途就是在用户程序和内核之间提供一个像过程一样的接口，叫做系统调用</p>
-<p>3.故障<br>故障由错误引起，他可能能够被故障处理程序修正<br>修正则返回到当前指令<br>否则返回终止(abort)</p>
-<p>4.终止<br>终止是不可恢复的致命错误造成的结果，通常是一些硬件错误<br>返回终止(abort)</p>
-<h3 id="linux-x86-64系统中的异常"><a href="#linux-x86-64系统中的异常" class="headerlink" title="linux/x86-64系统中的异常"></a>linux/x86-64系统中的异常</h3><p>0-31 为 Intel架构师定义的异常<br>32-255 对应操作系统定义的中断和陷阱</p>
-<h2 id="8-2-进程"><a href="#8-2-进程" class="headerlink" title="8.2 进程"></a>8.2 进程</h2><p>异常是进程概念的基本构造块，进程是计算机科学中最深刻、最成功的概念之一<br>进程的经典定义是一个执行中的程序实例<br>进程的关键抽象：<br>1.一个独立的逻辑控制流，提供假象：程序独占地使用处理器<br>2.一个私有地地址空间，提供假象：程序独占地使用内存系统</p>
-<h3 id="逻辑控制流"><a href="#逻辑控制流" class="headerlink" title="逻辑控制流"></a>逻辑控制流</h3><p>程序计数器(PC)值地序列叫做逻辑控制流，简称逻辑流<br>逻辑流有许多不同形式：<br>异常处理程序 进程 信号处理程序 线程 Java进程</p>
-<h3 id="并发流"><a href="#并发流" class="headerlink" title="并发流"></a>并发流</h3><p>一个逻辑流地执行在时间上与另一个流重叠，称为并发流，这两个流称为并发地运行<br>多个流并发地执行地一般现象称为并发<br>一个进程和其他进程轮流运行的概念称为多任务<br>一个进程执行它的控制流的一部分的每一时间段叫做时间片<br>多任务也成为时间分片</p>
-<p>如果两个流并发地运行在不同的处理器核或计算机上，称为并行流，它们并行地运行，且并行地执行</p>
-<h3 id="私有空间地址"><a href="#私有空间地址" class="headerlink" title="私有空间地址"></a>私有空间地址</h3><p>进程为每个程序提供它自己的私有地址空间<br>每个空间都有相同的结构<br>底部空间是保留给用户程序的，包括通常的代码、数据、堆和栈段<br>代码总是以地址0x40000开始的</p>
-<h3 id="用户模式和内核模式"><a href="#用户模式和内核模式" class="headerlink" title="用户模式和内核模式"></a>用户模式和内核模式</h3><p>限制一个应用可以执行的指令以及它可以访问的地址空间范围<br>处理器通过某个寄存器中的模式位来提供这种功能<br>当设置了模式位时，进程就运行在内核模式中（超级用户模式），可以执行指令集中的任何指令，并且可以访问系统中的任何内存位置</p>
-<p>用户模式可以通过中断、故障或者陷入系统调用这样的异常来进入内核模式</p>
-<h3 id="上下文切换"><a href="#上下文切换" class="headerlink" title="上下文切换"></a>上下文切换</h3><p>操作系统通过上下文切换来实现多任务<br>内核为每一个进程维持一个上下文<br>由调度器进行调度，当内核选择一个新的进程运行时，称为内核调度了这个进程<br>上下文切换：<br>1.保存当前上下文<br>2.恢复某个先前被抢占的进程被保存的上下文<br>3.将控制传递给这个新恢复的进程<br>当内核代表用户执行系统调用时，可能发生上下文切换(read  sleep)<br>中断也可能发生上下文切换</p>
-<h2 id="8-4-进程控制"><a href="#8-4-进程控制" class="headerlink" title="8.4 进程控制"></a>8.4 进程控制</h2><p>下为Unix重要函数</p>
-<h3 id="获取进程ID"><a href="#获取进程ID" class="headerlink" title="获取进程ID"></a>获取进程ID</h3><p>getpid </p>
-<h3 id="创建和终止进程"><a href="#创建和终止进程" class="headerlink" title="创建和终止进程"></a>创建和终止进程</h3><p>进程总处于 1.运行 2.停止 3.终止 状态中的一个<br>exit<br>父进程通过 fork 创建子进程<br>fork 函数特点：1.调用一次返回两次 2.并发执行 3.相同但是独立的地址空间 4.共享文件</p>
-<h3 id="回收子进程"><a href="#回收子进程" class="headerlink" title="回收子进程"></a>回收子进程</h3><p>waitpid 函数<br>wait 为简单版本</p>
-<h3 id="加载并运行程序"><a href="#加载并运行程序" class="headerlink" title="加载并运行程序"></a>加载并运行程序</h3><p>execve函数</p>
-<h2 id="8-5-信号"><a href="#8-5-信号" class="headerlink" title="8.5 信号"></a>8.5 信号</h2><p>linux信号 是一种更高层的软件形式的异常，它允许进程和内核中断其他进程<br>信号就是一条小道消息，它通知进程系统中发生了一个某种类型的事件，linux上支持30中不同类型的信号</p>
-<h3 id="信号术语"><a href="#信号术语" class="headerlink" title="信号术语"></a>信号术语</h3><p>一个信号到目的进程是由两个不同步骤组成的<br>发送信号<br>1.内核检测到一个系统时间，比如零错误或者子进程终止<br>2.一个进程调用了kill函数显式地要求内核发送一个信号给目的进程</p>
-<p>接收信号<br>进程对信号做出反映，可以忽略这个信号，终止或者通过执行一个称为信号处理程序的用户层函数捕捉这个信号</p>
-<h3 id="发送信号"><a href="#发送信号" class="headerlink" title="发送信号"></a>发送信号</h3><p>1.进程组<br>每个信号都只属于一个进程组，进程组是由一个正整数进程组ID来标识的。getpgrp函数返回当前进程的进程组ID<br>一个子进程和它的父进程同属于一个进程组<br>2.用/bin/kill程序发送信号<br>3.从键盘发送信号<br>Unix shell使用作业这个抽象的概念来表示为对一条命令行求值而创建的进程<br>4.用kill函数发送信号<br>进程通过调用kill函数发送信号给其他进程（包括它们自己）<br>5.用alarm函数发送信号<br>进程可以调用alarm函数向它自己发送SIGALRM信号</p>
-<h3 id="接收信号"><a href="#接收信号" class="headerlink" title="接收信号"></a>接收信号</h3><p>每个信号类型都有一个预定的默认行为：<br>进程终止<br>进程终止并转储内存<br>进程停止（挂起）直到被SIGCONT信号重启<br>进程忽略该信号</p>
-<p>signal函数可以通过下列三种方法之一来改变和信号signum相关联的行为</p>
-<p>当一个进程捕获了一个类型为k的信号时，会调用为信号k设置的处理程序，一个整数参数被设置为k，这个参数允许同一个处理函数捕获不同类型的信号</p>
-<h3 id="阻塞和解除阻塞信号"><a href="#阻塞和解除阻塞信号" class="headerlink" title="阻塞和解除阻塞信号"></a>阻塞和解除阻塞信号</h3><p>Linux提供阻塞信号的隐式和显示的机制<br>隐式阻塞机制：内核默认阻塞任何当前处理程序正在处理信号类型的待处理的信号<br>显示阻塞机制：应用程序可以使用sigprocmask函数和它的辅助函数，明确地阻塞和解除阻塞选定地信号</p>
-<h3 id="编写信号处理程序"><a href="#编写信号处理程序" class="headerlink" title="编写信号处理程序"></a>编写信号处理程序</h3><p>处理程序属性，使其很难推理分析：<br>1.处理程序与主程序并发允许，共享同样地全局变量，因此可能与主程序和其他处理程序互相干扰<br>2.如何以及合适接收信号地规则常常有违人的直觉<br>3.不同地系统有不同地信号处理语义</p>
-<p>1.安全的信号处理<br>信号处理程序与主程序和其他信号处理程序并发的允许，结构时不可预知的，经常是致命的<br>a.处理程序要尽可能简单</p>
-<p>b.在处理程序中只调用异步信号安全的函数<br>异步信号寒气函数能够被信号处理程序安全地调用<br>要么它是可重入地，要么不能被信号处理程序中断</p>
-<p>c.保存和恢复errno<br>在进入处理程序时吧errno保存在一个局部变量中，在处理程序返回前恢复它</p>
-<p>d.阻塞所有地信号，保护对共享全局数据结构地访问</p>
-<p>e.用volatile声明全局变量<br>告诉编译器不要缓存这个变量<br>volatile int g</p>
-<p>f.用sig atomic t 声明标志<br>处理程序会写全局标志来记录收到了信号<br>c语言提供一种整形数据类型sig_atomic_t 对它的读和写保证会是原子的</p>
-<p>2.正确的信号处理<br>未处理的信号是不排队的，每种类型最多只能有一个未处理的信号<br>不可能用信号来对其它进程中发生的事件计数</p>
-<p>3.可移植的信号处理<br>不同的系统有不同的信号处理语义<br>signal函数的语义各有不同<br>系统调用可以被中断</p>
-<p>Posix标准定义了sigaction函数，它允许用户在蛇者信号处理时，明确指定他们想要的信号处理语义</p>
-<h3 id="同步流以避免讨厌的并发错误"><a href="#同步流以避免讨厌的并发错误" class="headerlink" title="同步流以避免讨厌的并发错误"></a>同步流以避免讨厌的并发错误</h3><h2 id="8-6-非本地跳转"><a href="#8-6-非本地跳转" class="headerlink" title="8.6 非本地跳转"></a>8.6 非本地跳转</h2><p>C语言提供了一种用户级异常控制流形式，称为非本地跳转，它将控制直接从一个函数转移到另一个当前正在执行的函数，而不需要经过正常的调用-返回序列<br>非本地跳转是通过setjmp 与 longjmp 函数来提供的</p>
-<p>非本地跳转的另一个重要应用是使一个信号处理程序分支到一个特殊的代码位置，而不是返回到被信号到达中断了的指令的位置<br>当用户在键盘上键入Ctrl + c 这个程序用信号和非本地跳转来实现软重启</p>
-<h2 id="8-7-操作进程的工具"><a href="#8-7-操作进程的工具" class="headerlink" title="8.7 操作进程的工具"></a>8.7 操作进程的工具</h2><p>STRACE 打印轨迹<br>PS 列出进程<br>TOP 打印资源使用信息<br>PMAP 显示进程内存映射</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深入理解计算机系统</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/05/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%85%AB%E7%AB%A0/">展开全文 >></a>
         </p>
       
 
