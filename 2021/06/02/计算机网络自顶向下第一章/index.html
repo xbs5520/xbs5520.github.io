@@ -16,7 +16,7 @@
 <meta property="og:description" content="client   —   server TCP                TCP IP                IP 物理层            物理层 网络层(IP)尽力而为的（无保障）主机 - 主机 end to end 传输层(TCP UDP)进程 - 进程    point to point 将IP层提供的不可靠的服务变为可靠的 应用逻辑层面是 client 与 server">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-06-02T06:28:23.000Z">
-<meta property="article:modified_time" content="2021-06-02T08:35:29.871Z">
+<meta property="article:modified_time" content="2021-06-03T08:27:28.240Z">
 <meta property="article:author" content="xbs5520">
 <meta property="article:tag" content="计算机网络自顶向下">
 <meta name="twitter:card" content="summary">
@@ -201,7 +201,38 @@
 <p>2.无流量控制</p>
 <p>3.无拥塞控制</p>
 <p>应用：流媒体 远程会议 DNS Internet电话</p>
-
+<h2 id="3-网络核心"><a href="#3-网络核心" class="headerlink" title="3.网络核心"></a>3.网络核心</h2><p>定义： 路由器的网状网络</p>
+<p>方式：</p>
+<h3 id="电路-线路-交换"><a href="#电路-线路-交换" class="headerlink" title="电路(线路)交换"></a>电路(线路)交换</h3><p>信令系统 拨号等<br>需要建立连接</p>
+<p>独享资源<br>一旦建立起来可以保证性能<br>如果建立并没有使用则会被浪费<br>通常被传统电话网络采用</p>
+<p>网络资源(如带宽)被分成片<br>频分FDM、时分TDM、波分WDM<br>CDM 3G</p>
+<h4 id="电路-线路-交换不适合计算机之间的通信"><a href="#电路-线路-交换不适合计算机之间的通信" class="headerlink" title="电路(线路)交换不适合计算机之间的通信"></a>电路(线路)交换不适合计算机之间的通信</h4><p>建立连接时间长<br>通信具有突发性浪费会很多<br>可靠性不高？</p>
+<h3 id="分组交换"><a href="#分组交换" class="headerlink" title="分组交换"></a>分组交换</h3><p>统计多路复用 同样资源支持用户更多<br>以分组单位存储转发方式<br>将链路分为多段每时刻使用一段</p>
+<p>传输时使用全部带宽<br>主机之间传输数据分为packet</p>
+<p>按需使用<br>延迟较长 每次存储延迟<br>但拥有共享性 可以一起传到下一个节点 无排队时间</p>
+<h4 id="排队延迟与丢失"><a href="#排队延迟与丢失" class="headerlink" title="排队延迟与丢失"></a>排队延迟与丢失</h4><p>如果到达率&gt;链路的输出速率<br>分组将会排队 等待传输<br>如果路由器缓冲用完了 分组将会被抛弃</p>
+<h4 id="分组交换适用于突发式的数据传输"><a href="#分组交换适用于突发式的数据传输" class="headerlink" title="分组交换适用于突发式的数据传输"></a>分组交换适用于突发式的数据传输</h4><p>资源共享<br>简单、不必建立呼叫<br>过渡使用会造成网络阻塞。分组延时、丢失<br>利用网络带宽保障等方式来实现电路交换功能</p>
+<h4 id="分组交换方式"><a href="#分组交换方式" class="headerlink" title="分组交换方式"></a>分组交换方式</h4><p>1.数据报网络<br>不建立连接<br>不考虑连接状态</p>
+<p>2.虚电路网络<br>握手 保持状态<br>建立虚拟线路<br>利用信令建立</p>
+<h3 id="网络核心的关键功能"><a href="#网络核心的关键功能" class="headerlink" title="网络核心的关键功能"></a>网络核心的关键功能</h3><p>路由：决定分组采用的源到目标的路径 (路由算法)<br>转发：将分组从路由器的输入链路转移到输出链路</p>
+<h2 id="4-接入网络和物理媒体"><a href="#4-接入网络和物理媒体" class="headerlink" title="4.接入网络和物理媒体"></a>4.接入网络和物理媒体</h2><p>接入：住宅、单位、无线<br>带宽 共享/独享？</p>
+<p>住宅接入modern(猫)方式</p>
+<p>DSL方式<br>与mao一样也是调制和解调方式<br>分为上行和下行<br>IDSL上下行不相等</p>
+<p>线缆网络<br>有线电视的线缆<br>分为上下行 非对称 30Mpbs 2Mbps<br>共享带宽</p>
+<p>无线接入网络<br>无线LANs wifi<br>广域无线网45G</p>
+<h3 id="物理媒体-第0层"><a href="#物理媒体-第0层" class="headerlink" title="物理媒体(第0层)"></a>物理媒体(第0层)</h3><p>导引性媒体<br>有实体介质 同轴电缆、光纤、双绞线TP</p>
+<p>非导引性媒体<br>无线电</p>
+<p>无线链路类型<br>地面微波<br>LAN<br>wide-area 蜂窝<br>卫星</p>
+<h2 id="5-Internet结构与ISP"><a href="#5-Internet结构与ISP" class="headerlink" title="5.Internet结构与ISP"></a>5.Internet结构与ISP</h2><p>互联网结构 网络的网络<br>ISP Internet Service Provider</p>
+<p>通过ISP接入网络<br>ISP之间互相连接<br>global ISP 之间 对等连接 或者接入交换点<br>google 微信等自己在全球各地建立专线和Data station</p>
+<p>多层ISP</p>
+<h3 id="连接方式"><a href="#连接方式" class="headerlink" title="连接方式"></a>连接方式</h3><p>pop：高层ISP面向客户网络的接入点，涉及费用结算<br>对等接入：两个ISP对等互联，不涉及费用<br>IXP：多个对等ISP互联之处 一般不涉及费用<br>ICP自己部署专属网络同时和各级ISP连接</p>
+<h2 id="6-分组延迟、丢失和屯吐量"><a href="#6-分组延迟、丢失和屯吐量" class="headerlink" title="6.分组延迟、丢失和屯吐量"></a>6.分组延迟、丢失和屯吐量</h2><h3 id="发生原因"><a href="#发生原因" class="headerlink" title="发生原因"></a>发生原因</h3><p>1.分组到达链路的速率超过了链路的传输能力<br>2.分组等待排到队头、被传输</p>
+<h3 id="四种分组延迟"><a href="#四种分组延迟" class="headerlink" title="四种分组延迟"></a>四种分组延迟</h3><p>1.处理延迟<br>查表等</p>
+<p>2.排队延迟</p>
+<p>3.传输延迟<br>带宽R<br>分组长度L<br>延时 = L / R</p>
+<p>4.传播延时<br>物理长度 d<br>传播速度 s<br>d / s</p>
+<h4 id="路由器之间-段-条-hop"><a href="#路由器之间-段-条-hop" class="headerlink" title="路由器之间 段/条 hop"></a>路由器之间 段/条 hop</h4>
       
 
       
