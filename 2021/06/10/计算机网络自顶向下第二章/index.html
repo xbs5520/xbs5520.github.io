@@ -16,7 +16,7 @@
 <meta property="og:description" content="目标：网络应用的原理：网络应用协议的概念和实现方面网络应用的实例：互联网流行的应用层协议编程：网应用程序 Socket API 1. 应用层原理创建一个新的网络运用编程 搭建服务器网络核心中无应用 体系结构可能的应用架构1. C-S服务器一直运行固定端口&#x2F;IP客户端请求资源 缺点：可扩展性差 服务能力随着用户增加达到阈值断崖式下降 P2P        peer to peer几乎没有一直运行的服">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-06-10T08:23:23.000Z">
-<meta property="article:modified_time" content="2021-06-22T12:55:43.070Z">
+<meta property="article:modified_time" content="2021-06-22T14:48:44.972Z">
 <meta property="article:author" content="xbs5520">
 <meta property="article:tag" content="计算机网络自顶向下">
 <meta name="twitter:card" content="summary">
@@ -266,7 +266,23 @@
 <p>streaming 流化服务<br>下载和看并行</p>
 <h3 id="DASH-流化服务常用协议"><a href="#DASH-流化服务常用协议" class="headerlink" title="DASH 流化服务常用协议"></a>DASH 流化服务常用协议</h3><p>服务器：<br>将视频文件分割成多个块<br>每个块独立存储，编码于不同码率<br>告示文件 提供不同块URL</p>
 <p>客户端：<br>先获取告示文件<br>周期性地策略服务到客户端地带宽<br>查询告示文件，在一个时刻请求一个块，HTTP头部指定字节范围</p>
-<h2 id="8-TCP-socket-编程"><a href="#8-TCP-socket-编程" class="headerlink" title="8.TCP socket 编程"></a>8.TCP socket 编程</h2>
+<h2 id="8-TCP-socket-编程"><a href="#8-TCP-socket-编程" class="headerlink" title="8.TCP socket 编程"></a>8.TCP socket 编程</h2><p>TCP：可靠的 字节流的服务</p>
+<p>应用进程使用传输层提供的服务才能交换报文，实现应用协议，实现应用<br>TCP/IP 应用进程使用Socket 方式 Socket API</p>
+<p>目标：学习如何构建能借助sockets进行通信的C/S应用程序</p>
+<p>socket：分布式应用进程之间的门，传输层协议提供的端到端服务接口</p>
+<p>服务器首先运行等待连接建立</p>
+<p>1.服务器进程必须先处于运行状态<br>创建欢迎socket<br>和本地端口捆绑<br>在欢迎socket上阻塞式等待接收用户的连接</p>
+<p>客户端主动与服务器建立连接<br>2.创建客户端本地套接字（隐式捆绑到本地port）<br>指定服务器进程的IP地址和端口号，与服务器进程连接</p>
+<p>3.当与客户端连接请求到来时<br>服务器接受来自用户端的请求，解除阻塞式等待，返回一个新的socket 与客户端通信<br>允许服务器与多个客户端通信<br>使用源IP和端口来区分不同的客户端</p>
+<p>4.连接API调用有效时，客户端P与服务器建立了TCP连接</p>
+<h3 id="数据结构-sockaddr-in"><a href="#数据结构-sockaddr-in" class="headerlink" title="数据结构 sockaddr_in"></a>数据结构 sockaddr_in</h3><p>IP地址和port捆绑关系的数据结构（标示进程的端节点）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span>&#123;</span></span><br><span class="line">	<span class="keyword">short</span> sin_family;			<span class="comment">//地址族</span></span><br><span class="line">	u_short sin_port;			<span class="comment">//端口号</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">in_addr</span> <span class="title">sin_addr</span>;</span>	<span class="comment">//IP地址</span></span><br><span class="line">	<span class="keyword">char</span> sin_zero[<span class="number">8</span>]			<span class="comment">//对齐</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="数据结构-hostent"><a href="#数据结构-hostent" class="headerlink" title="数据结构 hostent"></a>数据结构 hostent</h3><p>域名和IP地址的数据结构</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">host_ent&#123;</span><br><span class="line">	*h_name 		<span class="comment">//主机域名</span></span><br><span class="line">	**h_aliases 	<span class="comment">//二维别名</span></span><br><span class="line">	h_length		<span class="comment">//长度</span></span><br><span class="line">	**h_add_list	<span class="comment">//IP地址列表</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>作为调用域名解析函数时的参数<br>返回后，将IP地址拷贝到sockaddr_in的IP地址部分</p>
+
       
 
       
@@ -524,6 +540,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">TCP/IP</a>
               </li>
             
             <div class="clearfix"></div>
