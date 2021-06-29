@@ -140,6 +140,163 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-计算机系统笔记第五章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/04/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%BA%94%E7%AB%A0/">第五章 优化程序性能</a>
+    </h1>
+  
+
+        
+        <a href="/2021/04/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%BA%94%E7%AB%A0/" class="archive-article-date">
+  	<time datetime="2021-04-22T12:46:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>编写高效程序需要做到以下几点：第一，必须选择一组适当的算法和数据结构。第二，必须编写出编译器能够有效优化以转换成高效可执行代码的源代码。</p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深入理解计算机系统</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/04/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%BA%94%E7%AB%A0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+ <!--添加代码开始-->
+
+        <div class="declare" hidden="hidden"></div>
+      
+  
+    <article id="post-栈与队列" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/04/21/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/">stack与queue有关算法题</a>
+    </h1>
+  
+
+        
+        <a href="/2021/04/21/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/" class="archive-article-date">
+  	<time datetime="2021-04-21T15:12:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-LeetCode-716-最大栈"><a href="#1-LeetCode-716-最大栈" class="headerlink" title="1. LeetCode 716 最大栈"></a>1. LeetCode 716 最大栈</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>设计一个最大栈数据结构，既支持栈操作，又支持查找栈中最大元素。</p>
+<p>实现 MaxStack 类：</p>
+<p>MaxStack() 初始化栈对象<br>void push(int x) 将元素 x 压入栈中。<br>int pop() 移除栈顶元素并返回这个元素。<br>int top() 返回栈顶元素，无需移除。<br>int peekMax() 检索并返回栈中最大元素，无需移除。<br>int popMax() 检索并返回栈中最大元素，并将其移除。如果有多个最大元素，只要移除 最靠近栈顶 的那个</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>由于栈具有先进后出的特性，如需实现任何特定顺序的读取操作，往往可以借助两个stack互相倾倒来实现特定顺序<br>另一个stack进行辅助</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MaxStack</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">/** initialize your data structure here. */</span></span><br><span class="line">    stack&lt;<span class="keyword">int</span>&gt; num_stk;</span><br><span class="line">    stack&lt;<span class="keyword">int</span>&gt; max_stk;     <span class="comment">//最大栈，元素个数与数字栈同步</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">MaxStack</span>() </span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (max_stk.<span class="built_in">size</span>()==<span class="number">0</span> || x &gt; max_stk.<span class="built_in">top</span>() )</span><br><span class="line">            max_stk.<span class="built_in">push</span>(x);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            max_stk.<span class="built_in">push</span>(max_stk.<span class="built_in">top</span>());    <span class="comment">//当前最大的压进栈</span></span><br><span class="line">        num_stk.<span class="built_in">push</span>(x);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        max_stk.<span class="built_in">pop</span>();                      <span class="comment">//同步</span></span><br><span class="line">        <span class="keyword">int</span> tmp = num_stk.<span class="built_in">top</span>();</span><br><span class="line">        num_stk.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">return</span> tmp;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> num_stk.<span class="built_in">top</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">peekMax</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> max_stk.<span class="built_in">top</span>();</span><br><span class="line">    &#125;   </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">popMax</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> cur_max = max_stk.<span class="built_in">top</span>();</span><br><span class="line">        stack&lt;<span class="keyword">int</span>&gt; tmp;</span><br><span class="line">        <span class="keyword">while</span>(<span class="built_in">top</span>() != cur_max)     <span class="comment">//从数组栈里找</span></span><br><span class="line">        &#123;</span><br><span class="line">            tmp.<span class="built_in">push</span>(num_stk.<span class="built_in">top</span>());</span><br><span class="line">            <span class="built_in">pop</span>();                  <span class="comment">//2个栈要同步，一起弹</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">pop</span>();                      <span class="comment">//找到第一个，弹出</span></span><br><span class="line">        <span class="keyword">while</span>(tmp.<span class="built_in">size</span>())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">push</span>(tmp.<span class="built_in">top</span>());        <span class="comment">//再从缓冲区倒回去  2个栈同步，一起压新数据</span></span><br><span class="line">            tmp.<span class="built_in">pop</span>();</span><br><span class="line">        &#125;                     </span><br><span class="line">        <span class="keyword">return</span> cur_max;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">算法题整合</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/04/21/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+ <!--添加代码开始-->
+
+        <div class="declare" hidden="hidden"></div>
+      
+  
     <article id="post-计算机系统笔记第四章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -823,164 +980,9 @@
         <div class="declare" hidden="hidden"></div>
       
   
-    <article id="post-Math" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/12/Math/">Math有关算法题</a>
-    </h1>
-  
-
-        
-        <a href="/2021/04/12/Math/" class="archive-article-date">
-  	<time datetime="2021-04-12T08:41:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-LeetCode-263-丑数"><a href="#1-LeetCode-263-丑数" class="headerlink" title="1.LeetCode 263 丑数"></a>1.LeetCode 263 丑数</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>判断整数n是否为丑数<br>丑数就是只包含质因数2、3或5的正整数。</p>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>用 2 3 5 循环 除这个数看是否最后结果为 1<br>为1则只有它们 不为1则还有其他</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">算法题整合</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/12/Math/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
- <!--添加代码开始-->
-
-        <div class="declare" hidden="hidden"></div>
-      
-  
-    <article id="post-String" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/12/String/">String有关算法题</a>
-    </h1>
-  
-
-        
-        <a href="/2021/04/12/String/" class="archive-article-date">
-  	<time datetime="2021-04-12T08:41:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-unique-string"><a href="#1-unique-string" class="headerlink" title="1.unique string"></a>1.unique string</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>判断一个字符串中有没有重复字符</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">算法题整合</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/12/String/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
- <!--添加代码开始-->
-
-        <div class="declare" hidden="hidden"></div>
-      
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+      <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1092,6 +1094,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">LeetCode狂刷</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">嵌入设相关</a>
               </li>
             
             <div class="clearfix"></div>

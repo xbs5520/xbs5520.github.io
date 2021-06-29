@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>二叉树有关算法题 | xbs5520&#39;s blog</title>
+  <title>IMX6ULL基础笔记 | xbs5520&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.LeetCode 783 二叉搜索树节点最小距离题目给你一个二叉搜索树的根节点 root ，返回树中任意两不同节点值之间的最小差值root &#x3D; [4,2,6,1,3] 分析dfs 中序遍历每次更新 最小值">
+  <meta name="description" content="芯片介绍NXP出品的，528~900MHz的Cortex-A7内核的MPU。Cortex-A7架构 I.MX6U IO表示形式STM32：管脚名字：PA015，PB015 PC、PD… I.MX6ULL: 管脚名字：PAD_BOOT_MODE0，管脚的复用功能：IOMUXC_SNVS_SW_MUX_CTL_PAD_BOOT_MODE0IOMUXC_SNVS_SW_PAD_CTL_PAD_BOOT_">
 <meta property="og:type" content="article">
-<meta property="og:title" content="二叉树有关算法题">
-<meta property="og:url" content="http://yoursite.com/2021/04/13/Binary%20Tree/index.html">
+<meta property="og:title" content="IMX6ULL基础笔记">
+<meta property="og:url" content="http://yoursite.com/2021/06/29/I.MX6ULL%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="xbs5520&#39;s blog">
-<meta property="og:description" content="1.LeetCode 783 二叉搜索树节点最小距离题目给你一个二叉搜索树的根节点 root ，返回树中任意两不同节点值之间的最小差值root &#x3D; [4,2,6,1,3] 分析dfs 中序遍历每次更新 最小值">
+<meta property="og:description" content="芯片介绍NXP出品的，528~900MHz的Cortex-A7内核的MPU。Cortex-A7架构 I.MX6U IO表示形式STM32：管脚名字：PA015，PB015 PC、PD… I.MX6ULL: 管脚名字：PAD_BOOT_MODE0，管脚的复用功能：IOMUXC_SNVS_SW_MUX_CTL_PAD_BOOT_MODE0IOMUXC_SNVS_SW_PAD_CTL_PAD_BOOT_">
 <meta property="og:locale">
-<meta property="article:published_time" content="2021-04-13T13:26:43.000Z">
-<meta property="article:modified_time" content="2021-04-14T14:17:51.539Z">
+<meta property="article:published_time" content="2021-06-29T14:53:30.000Z">
+<meta property="article:modified_time" content="2021-06-29T15:19:22.550Z">
 <meta property="article:author" content="xbs5520">
-<meta property="article:tag" content="算法题整合">
+<meta property="article:tag" content="嵌入设相关">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="xbs5520&#39;s blog" type="application/atom+xml">
@@ -141,56 +141,47 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Binary Tree" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-I.MX6ULL笔记" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      二叉树有关算法题
+      IMX6ULL基础笔记
     </h1>
   
 
         
-        <a href="/2021/04/13/Binary%20Tree/" class="archive-article-date">
-  	<time datetime="2021-04-13T13:26:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-13</time>
+        <a href="/2021/06/29/I.MX6ULL%E7%AC%94%E8%AE%B0/" class="archive-article-date">
+  	<time datetime="2021-06-29T14:53:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-LeetCode-783-二叉搜索树节点最小距离"><a href="#1-LeetCode-783-二叉搜索树节点最小距离" class="headerlink" title="1.LeetCode 783 二叉搜索树节点最小距离"></a>1.LeetCode 783 二叉搜索树节点最小距离</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给你一个二叉搜索树的根节点 root ，返回树中任意两不同节点值之间的最小差值<br>root = [4,2,6,1,3]</p>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>dfs 中序遍历<br>每次更新 最小值</p>
-<span id="more"></span>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfsInOrder</span><span class="params">(TreeNode* root, <span class="keyword">int</span>&amp; pre, <span class="keyword">int</span>&amp; ans)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//左</span></span><br><span class="line">    <span class="built_in">dfsInOrder</span>(root-&gt;left, pre, ans);</span><br><span class="line">    <span class="comment">//中</span></span><br><span class="line">    <span class="keyword">if</span> (pre == <span class="number">-1</span>) &#123;</span><br><span class="line">        pre = root-&gt;val;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        ans = <span class="built_in">min</span>(ans, root-&gt;val - pre);</span><br><span class="line">        pre = root-&gt;val;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//右</span></span><br><span class="line">    <span class="built_in">dfsInOrder</span>(root-&gt;right, pre, ans);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">minDiffInBST</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans = INT_MAX, pre = <span class="number">-1</span>;</span><br><span class="line">    <span class="built_in">dfsInOrder</span>(root, pre, ans);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="2-LeetCode-208-实现前缀树"><a href="#2-LeetCode-208-实现前缀树" class="headerlink" title="2.LeetCode 208 实现前缀树"></a>2.LeetCode 208 实现前缀树</h2><h3 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h3><p>Trie前缀树是一种树形数据结构，<br>用于高效地存储和检索字符串数据集中的键。<br>这一数据结构有相当多的应用情景，例如自动补完和拼写检查。</p>
-<p>Trie() 初始化前缀树对象。</p>
-<p>void insert(String word) 向前缀树中插入字符串 word 。</p>
-<p>boolean search(String word) 如果字符串 word 在前缀树中，<br>返回 true（即，在检索之前已经插入）；否则，返回 false 。</p>
-<p>boolean startsWith(String prefix) 如果之前已经插入的<br>字符串 word 的前缀之一为 prefix ，返回 true ；否则，返回 false 。</p>
-<h3 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h3><p>主要核心 用下标代表26个字母 不需要多添加数据查找方便</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Trie</span> &#123;</span></span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">	<span class="comment">//创建26个空指针每一个代表一个字母</span></span><br><span class="line">    Trie *child[<span class="number">26</span>]=&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">	<span class="comment">//判断是否有在此结尾的</span></span><br><span class="line">    <span class="keyword">bool</span> is_string=<span class="literal">false</span>;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Trie</span>() &#123;&#125;；</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">        Trie* root=<span class="keyword">this</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">char</span> ch:word)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!root-&gt;child[ch-<span class="string">&#x27;a&#x27;</span>])&#123;</span><br><span class="line">                root-&gt;child[ch-<span class="string">&#x27;a&#x27;</span>]=<span class="keyword">new</span> <span class="built_in">Trie</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            root=root-&gt;child[ch-<span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        root-&gt;is_string=<span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">search</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">        Trie* root=<span class="keyword">this</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">char</span> ch:word)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!root-&gt;child[ch-<span class="string">&#x27;a&#x27;</span>])&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            root=root-&gt;child[ch-<span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> root-&gt;is_string;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">startsWith</span><span class="params">(string prefix)</span> </span>&#123;</span><br><span class="line">        Trie* root=<span class="keyword">this</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">char</span> ch:prefix)&#123;</span><br><span class="line">           <span class="keyword">if</span>(!root-&gt;child[ch-<span class="string">&#x27;a&#x27;</span>])</span><br><span class="line">               <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            root=root-&gt;child[ch-<span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+        <h2 id="芯片介绍"><a href="#芯片介绍" class="headerlink" title="芯片介绍"></a>芯片介绍</h2><p>NXP出品的，528~900MHz的Cortex-A7内核的MPU。<br>Cortex-A7架构</p>
+<h3 id="I-MX6U-IO表示形式"><a href="#I-MX6U-IO表示形式" class="headerlink" title="I.MX6U IO表示形式"></a>I.MX6U IO表示形式</h3><p>STM32：管脚名字：PA0<del>15，PB0</del>15 PC、PD…</p>
+<p>I.MX6ULL: 管脚名字：PAD_BOOT_MODE0，管脚的复用功能：<br>IOMUXC_SNVS_SW_MUX_CTL_PAD_BOOT_MODE0<br>IOMUXC_SNVS_SW_PAD_CTL_PAD_BOOT_MODE0<br>对于6ULL，查看管脚复用的步骤：<br>① 打开参考手册<br>② 找到IO复用章节(32章)<br>③ 查找对应的管脚。</p>
+<h2 id="Linux-C编程"><a href="#Linux-C编程" class="headerlink" title="Linux C编程"></a>Linux C编程</h2><p>使用VIM编辑器编写程序，也可以使用vscode。</p>
+<h3 id="设置vim编辑器，一个TAB-4个字节。"><a href="#设置vim编辑器，一个TAB-4个字节。" class="headerlink" title="设置vim编辑器，一个TAB=4个字节。"></a>设置vim编辑器，一个TAB=4个字节。</h3><h3 id="设置vim编译器，显示行号。"><a href="#设置vim编译器，显示行号。" class="headerlink" title="设置vim编译器，显示行号。"></a>设置vim编译器，显示行号。</h3><p>用 vi 打开文件/etc/vim/vimrc，<br>在此文件最后面输入如下代码：<br>set ts=4<br>set nu</p>
+<h3 id="使用gcc编译器编译C程序。"><a href="#使用gcc编译器编译C程序。" class="headerlink" title="使用gcc编译器编译C程序。"></a>使用gcc编译器编译C程序。</h3><p>gcc -v 查看版本号<br>gcc main.c 编译c文件 输出为本目录 .out 文件<br>-O -O2 优化 但编译过程会变慢</p>
+<p>GCC 编译器的编译流程是：预处理、汇编、编译和链接。</p>
+<h2 id="makefile基础"><a href="#makefile基础" class="headerlink" title="makefile基础"></a>makefile基础</h2><p>书籍《跟我一起写Makefile》</p>
+<p>make：一般说GNU Make，是一个软件，用于将源代码文件编译为可执行的二进制文件，<br>make工具主要用于完成自动化编译。make工具编译的时候需要Makefile文件提供编译文件。</p>
+<p>Makefile：make工具所使用的文件，Makefile指明了编译规则。</p>
+<h3 id="makefile语法"><a href="#makefile语法" class="headerlink" title="makefile语法"></a>makefile语法</h3><h4 id="Makefile规则格式"><a href="#Makefile规则格式" class="headerlink" title="Makefile规则格式"></a>Makefile规则格式</h4><p>目标 … ： 依赖文件集合……<br>    命令1<br>    命令2<br>    …</p>
+<p>eg:<br>main: main.o input.o calcu.o<br>    gcc -o main main.o input.o calcu.o</p>
+<p>总结一下， Makefile 中规则用来描述在什么情况下使用什么命令来构建一个特定的文件，<br>这个文件就是规则的“目标”，为了生成这个“目标”而作为材料的其它文件称为“目标”的依<br>赖，规则的命令是用来创建或者更新目标的。<br>除了 Makefile 的“终极目标”所在的规则以外，其它规则的顺序在 Makefile 中是没有意义<br>的，“终极目标”就是指在使用 make 命令的时候没有指定具体的目标时， make 默认的那个目<br>标，它是 Makefile 文件中第一个规则的目标，如果 Makefile 中的第一个规则有多个目标，那么<br>这些目标中的第一个目标就是 make 的“终极目标”。</p>
+<h4 id="Makefile-变量"><a href="#Makefile-变量" class="headerlink" title="Makefile 变量"></a>Makefile 变量</h4><ol>
+<li>赋值符 =<br>使用“=”在给变量的赋值的时候，<br>不一定要用已经定义好的值，也可以使用后面定义的值，</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">name &#x3D; zzk</span><br><span class="line">curname &#x3D; $(name)</span><br><span class="line">name &#x3D; zuozhongkai</span><br><span class="line"></span><br><span class="line">print:</span><br><span class="line">	@echo curname: $(curname)</span><br></pre></td></tr></table></figure>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<ol start="2">
+<li></li>
+</ol>
 
       
 
@@ -225,7 +216,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">算法题整合</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">嵌入设相关</a>
         		</li>
       		
 		</ul>
@@ -281,7 +272,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2021/04/13/Binary%20Tree/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2021/06/29/I.MX6ULL%E7%AC%94%E8%AE%B0/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -295,18 +286,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/04/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%B8%89%E7%AB%A0/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          第三章 程序的机器级表示
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/04/13/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">基础算法</div>
+    <a href="/2021/06/29/LeetCode%E7%8B%82%E5%88%B73/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">21 ~ 30</div>
       <i class="icon-circle-right"></i>
     </a>
   

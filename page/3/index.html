@@ -140,6 +140,215 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-计算机系统笔记第十二章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/">第十一章 并发编程</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/" class="archive-article-date">
+  	<time datetime="2021-06-01T08:52:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="12-1基于进程的并发编程"><a href="#12-1基于进程的并发编程" class="headerlink" title="12.1基于进程的并发编程"></a>12.1基于进程的并发编程</h2><p>构造并发程序的最简单方法就是使用进程，在父进程中接受客户端的连接请求，创建一个子进程为每个新客户进行服务</p>
+<p>父子进程中的已连接描述符都指向同一个文件表表项，所以父进程关闭它的已连接描述符副本是十分关键的<br>否则，将永不会释放已连接描述符的文件条目</p>
+<h3 id="基于进程的并发服务器"><a href="#基于进程的并发服务器" class="headerlink" title="基于进程的并发服务器"></a>基于进程的并发服务器</h3><p>通常服务器会运行很长时间，所以我们必须要包括一个SIGCHLD处理程序，来回收僵死子进程的资源<br>父进程必须关闭它们各自的connfd副本，必须关闭它的已连接描述符，以避免内存泄漏<br>直到父子进程的connfd都关闭了到客户端的连接才会终止</p>
+<h3 id="进程的优劣"><a href="#进程的优劣" class="headerlink" title="进程的优劣"></a>进程的优劣</h3><p>父子进程见共享状态信息，有一个十分清晰的模型：共享文件表，但是不共享用户地址空间</p>
+<p>进程有独立的地址空间即使优点也是缺点<br>优：一个进程不可能不小心覆盖到另一个进程的虚拟内存<br>缺：独立的地址空间使得进程共享状态信息变得更加困难</p>
+<h2 id="12-2基于IO多路复用的并发编程"><a href="#12-2基于IO多路复用的并发编程" class="headerlink" title="12.2基于IO多路复用的并发编程"></a>12.2基于IO多路复用的并发编程</h2><h3 id="基于IO多路复用的并发事件驱动服务器"><a href="#基于IO多路复用的并发事件驱动服务器" class="headerlink" title="基于IO多路复用的并发事件驱动服务器"></a>基于IO多路复用的并发事件驱动服务器</h3><p>IO多路复用可以用做并发事件驱动程序的基础，在事件驱动程序中，某些事件会导致流向前推进。<br>一般的思路是将逻辑流模型化为状态机<br>一个状态机就是一组状态、输出事件和转移，其中转移是将状态和输入事件映射到状态<br>自循环是同一输入和输出状态之间的转移</p>
+<h3 id="IO多路复用技术的优劣"><a href="#IO多路复用技术的优劣" class="headerlink" title="IO多路复用技术的优劣"></a>IO多路复用技术的优劣</h3><p>事件驱动设计<br>优：比基于进程的设计给了程序员更多的对程序行为的控制。<br>一个基于IO多路复用的事件驱动服务器是运行在单一进程上下文中，<br>因此每个逻辑流都能访问该进程的全部地址空间，这使得在流之间共享数据变得容易<br>缺：编码复杂</p>
+<h2 id="12-3基于线程的并发编程"><a href="#12-3基于线程的并发编程" class="headerlink" title="12.3基于线程的并发编程"></a>12.3基于线程的并发编程</h2><p>线程就是运行在进程上下文中的逻辑流，线程由内核自动调度，每个线程都有自己的上下文，<br>包括线程ID、栈、栈指针、程序计数器、通用目的寄存器和条件码</p>
+<p>基于线程的逻辑流结合了基于进程和IO多路复用流的特性</p>
+<h3 id="Posix线程"><a href="#Posix线程" class="headerlink" title="Posix线程"></a>Posix线程</h3><p>是C程序中处理线程的一个标准接口定义大约60个函数<br>运行程序创建、杀死和回收线程，与对线程安全地共享数据，还可以通知对等线程系统状态的变化。</p>
+<h3 id="创建线程"><a href="#创建线程" class="headerlink" title="创建线程"></a>创建线程</h3><p>int pthread_create(pthread_create *tid, pthread_attr_t *attr, func *f, void *arg)<br>创建线程</p>
+<p>pthread_t pthread_self(void)_<br>获得自己线程ID</p>
+<h3 id="终止线程"><a href="#终止线程" class="headerlink" title="终止线程"></a>终止线程</h3><p>当顶层线程例程返回时，线程隐式地终止<br>显式终止<br>void pthread_exit(void *thread_return);</p>
+<h3 id="回收已终止线程地资源"><a href="#回收已终止线程地资源" class="headerlink" title="回收已终止线程地资源"></a>回收已终止线程地资源</h3><p>int pthread_join(pthread_t tid, void **thread_return)</p>
+<h3 id="分离线程"><a href="#分离线程" class="headerlink" title="分离线程"></a>分离线程</h3><p>在任何时间点上，线程是可结合的或是分离地，一个可结合地线程能被其他线程回收和杀死。<br>再被其他线程回收之前，它地内存资源是不释放的。<br>一个分离的线程是不能被其他线程回收或杀死的，它的内存资源在它终止时由系统自动释放</p>
+<p>int pthread_detach(pthread_t tid);</p>
+<h3 id="初始化线程"><a href="#初始化线程" class="headerlink" title="初始化线程"></a>初始化线程</h3><p>int pthread_once(pthread_once_t *once_control, void (*int_routine)(void));</p>
+<h2 id="12-4多线程程序中的共享变量"><a href="#12-4多线程程序中的共享变量" class="headerlink" title="12.4多线程程序中的共享变量"></a>12.4多线程程序中的共享变量</h2><p>线程很有吸引力的一方面为多个线程很容易共享相同的程序变量。</p>
+<h3 id="线程内存模型"><a href="#线程内存模型" class="headerlink" title="线程内存模型"></a>线程内存模型</h3><p>每个线程都有独立的线程上下文，包括线程ID、栈、栈指针、程序计数器、通用目的寄存器值和条件码 </p>
+<p>让一个线程去读另一个线程的寄存器是不可能的，任何线程都可以访问共享虚拟内存的任意位置。<br>如果某个线程修改了一个内存位置，那么其他每个线程最终都能在它读这个位置时发现这个变化<br>因此寄存器是从不共享的，而虚拟内存总是共享的</p>
+<h3 id="将变量映射到内存"><a href="#将变量映射到内存" class="headerlink" title="将变量映射到内存"></a>将变量映射到内存</h3><p>全局变量：定义在函数之外<br>本地自动变量：定义在函数内部但没有static属性的变量<br>本地静态变量：定义在函数内部并有static属性的变量</p>
+<h2 id="12-5用信号量同步线程"><a href="#12-5用信号量同步线程" class="headerlink" title="12.5用信号量同步线程"></a>12.5用信号量同步线程</h2><h3 id="进度图"><a href="#进度图" class="headerlink" title="进度图"></a>进度图</h3><p>进度条将n个并发线程的执行模型化为一条n维笛卡尔空间中的轨迹线，每条轴k对应于线程k的进度</p>
+<h3 id="信号量"><a href="#信号量" class="headerlink" title="信号量"></a>信号量</h3><p>信号量是具有非负整数值的全局变量，只能通过操作P V进行处理<br>P，V的定义确保了一个正在运行的程序绝不可能进入到这样一种状态，也就是正确初始化了信号量有一个负值<br>这个属性称为信号不变性</p>
+<h3 id="使用信号量来实现互斥"><a href="#使用信号量来实现互斥" class="headerlink" title="使用信号量来实现互斥"></a>使用信号量来实现互斥</h3><p>信号量提供了一种很方便的方法来确保对共享变量的互斥访问，基本思想是将每个共享变量与一个信号量s<br>联系起来，然后P和V操作将相应的临界区包围起来<br>被保护的信号量叫做二元信号量</p>
+<h2 id="12-7其他并发问题"><a href="#12-7其他并发问题" class="headerlink" title="12.7其他并发问题"></a>12.7其他并发问题</h2><p>必须小心的编写那些具有称为线程安全性属性的函数，一个函数被称为线程安全的，当且仅当<br>多个并发线程反复地调用时会产生正确地结果<br>第一类：不保护共享变量地函数<br>第二类：保持跨越多个调用状态地函数<br>第三类：返回指向静态变量地指针的函数<br>第四类：调用线程不安全函数的函数</p>
+<h3 id="可重入性"><a href="#可重入性" class="headerlink" title="可重入性"></a>可重入性</h3><p>当函数被多个线程调用时不会引用任何共享数据<br>线程安全函数包含可重入函数</p>
+<h3 id="在线程化的程序中使用已存在的库函数"><a href="#在线程化的程序中使用已存在的库函数" class="headerlink" title="在线程化的程序中使用已存在的库函数"></a>在线程化的程序中使用已存在的库函数</h3><h3 id="竞争"><a href="#竞争" class="headerlink" title="竞争"></a>竞争</h3><p>当一个程序的正确性依赖于一个线程要在另一个线程到达y点之前到达它的控制流中的x点时，<br>就会发生竞争。通常发生竞争是因为程序员假定线程将按照某种特殊的轨迹线穿过执行状态空间，<br>忘记另一条准则：多线程的程序必须对任何可行的轨迹线都正确工作</p>
+<h3 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h3><p>信号量引入了一种潜在的令人厌恶的运行时错误，叫做死锁，它指的是一组线程被阻塞了<br>等待一个永远也不会为真的条件<br>程序员使用PV操作顺序不当以至于两个信号量的禁止区域重叠<br>重叠的禁止区域引起了一组称为死锁区域的状态<br>死锁不总是可以预测的</p>
+<p>互斥锁加锁顺序规则：给定所有互斥操作的一个全序，如果每个线程都是以一种顺序来获得互斥锁<br>并以相反的顺序释放，那么这个程序就是无死锁的。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深入理解计算机系统</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+ <!--添加代码开始-->
+
+        <div class="declare" hidden="hidden"></div>
+      
+  
+    <article id="post-计算机系统笔记第十一章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/05/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0/">第十一章 网络编程</a>
+    </h1>
+  
+
+        
+        <a href="/2021/05/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0/" class="archive-article-date">
+  	<time datetime="2021-05-27T06:48:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="11-1-客户端-服务器编程模型"><a href="#11-1-客户端-服务器编程模型" class="headerlink" title="11.1 客户端-服务器编程模型"></a>11.1 客户端-服务器编程模型</h2><p>每个网络应用都是基于客户端-服务器模型的<br>一个应用是有一个服务器进程和一个或多个客户端进程组成的，服务器管理某种资源，<br>并且通过操作这种资源来为它的客户端提供服务</p>
+<p>一个客户端-服务器事物由四步组成<br>1.当一个客户端需要服务时，它向服务器发送一个请求，发起一个事物<br>2.服务器收到请求后，解释它，并以适当的方式操作他的资源<br>3.服务器给客户端发送一个响应，并等待下一个请求<br>4.客户端收到相应并处理它</p>
+<h2 id="11-2-网络"><a href="#11-2-网络" class="headerlink" title="11.2 网络"></a>11.2 网络</h2><p>物理上而言网络是一个按照地理 远近组成的层次系统，最低级为LAN 局域网<br>最流行的局域网技术是以太网<br>以太网段包括线缆和一个集线器的盒子构成<br>使用电缆和网桥，多个以太网段可以连接成较大的局域网，称为桥接以太网</p>
+<p>在每台主机和路由器上的协议技术，消除了不同网络之间的差异<br>这种协议必须提供两种基本能力，命名机制和传送机制</p>
+<h2 id="11-3-全球IP因特网"><a href="#11-3-全球IP因特网" class="headerlink" title="11.3 全球IP因特网"></a>11.3 全球IP因特网</h2><p>全球IP因特网是最著名和最成功的互联网络实现，每台因特网主机都运行实现TCP/IP协议的软件，<br>几乎所有现代计算机系统都支持这个协议，英特网的客户端和服务器混合使用套接字接口函数和IO函数来进行通信</p>
+<p>TCP/IP协议实际是一个协议族，其中内一个都提供不同的功能</p>
+<h3 id="IP地址"><a href="#IP地址" class="headerlink" title="IP地址"></a>IP地址</h3><p>一个IP地址就是一个32位的无符号整数，IP地址通常是以一种称为点分十进制表示法来表示的</p>
+<h3 id="因特网命名"><a href="#因特网命名" class="headerlink" title="因特网命名"></a>因特网命名</h3><p>因特网定义了一组更加人性化的域名，以及一种将域名映射到IP地址的机制<br>域名集合形成了一个层次结构，每个域名编码了它在这个层次中的位置</p>
+<h3 id="因特网连接"><a href="#因特网连接" class="headerlink" title="因特网连接"></a>因特网连接</h3><p>因特网客户端和服务器通过在连接上发送和接受字节流来通信。<br>从连接一对进程的意义上而言，连接是点对点的，从数据可以同时双向流动的角度来说它是双工的<br>并且从由源进程发出的字节流最终被目的进程以发出的顺序收到它的角度来说它也是可靠的</p>
+<h2 id="11-4-套接字接口"><a href="#11-4-套接字接口" class="headerlink" title="11.4 套接字接口"></a>11.4 套接字接口</h2><p>套接字接口（socket interface）是一组函数，他们与Unix IO函数结合起来用于创建网络应用</p>
+<h3 id="套接字地址结构"><a href="#套接字地址结构" class="headerlink" title="套接字地址结构"></a>套接字地址结构</h3><p>从linux内核的角度来看，一个套接字就是通信的一个端点，从Linux程序的角度来看，<br>套接字就是一个有相应描述符的打开文件</p>
+<h3 id="socket函数"><a href="#socket函数" class="headerlink" title="socket函数"></a>socket函数</h3><p>int socket(int domain, int type, int protocol);<br>创建一个套接字描述符，返回的描述符仅是部分打开的，还不能用于读写</p>
+<h3 id="connect函数"><a href="#connect函数" class="headerlink" title="connect函数"></a>connect函数</h3><p>int connect(int clinetfd, const struck sockaddr *addr, socklen_t addrlen);<br>建立和服务器的连接<br>函数试图与套接字地址为addr的服务器建立一个因特网连接，其中addrlen为sizeof<br>connect函数会阻塞，一直到连接成功建立或是发生错误</p>
+<h3 id="bind函数"><a href="#bind函数" class="headerlink" title="bind函数"></a>bind函数</h3><p>int bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen);<br>函数告诉内核将addr中的服务器套接字地址和套接字描述符sockfd联系起来</p>
+<h3 id="listen函数"><a href="#listen函数" class="headerlink" title="listen函数"></a>listen函数</h3><p>int listen(int sockfd, int backlog);<br>客户端是发起连接请求的主动实体买服务器是等待来自客户端的连接请求的被动实体。</p>
+<h3 id="accept函数"><a href="#accept函数" class="headerlink" title="accept函数"></a>accept函数</h3><p>int accept(int listenfd, struct sockaddr *addr, int *addrlen);<br>函数等待来自客户端的连接请求到达侦听描述符listenfd 然后在addr填写客户端的套接字地址<br>并且返回一个已连接描述符，这个描述符可被用来利用UnixIO函数与客户端通信</p>
+<h3 id="主机和服务的转换"><a href="#主机和服务的转换" class="headerlink" title="主机和服务的转换"></a>主机和服务的转换</h3><p>Linux提供了一些强大的函数，实现二进制套接字地址结构和主机名、主机地址、服务器名<br>和端口号的字符串表示之间的相互转化</p>
+<p>1.getaddrinfo 函数<br>int getaddrinfo(const char *host, const char *service,<br>                const struct addrinfo *hints, struct addrinfo **result);<br>将主机名、主机地址、服务器名和端口号的字符串表示转化成套接字地址结构</p>
+<p>函数默认返回IPv4和IPv6套接字地址<br>对于host关联的每个地址，函数最多返回三个addrinfo结构</p>
+<p>2.getnameinfo函数<br>int getnameinfo(const struct sockaddr *sa, socklen salen,<br>                char *host, size_t hostlen, char *service, size_t servlen, int flags);</p>
+<h3 id="套接字接口的辅助函数"><a href="#套接字接口的辅助函数" class="headerlink" title="套接字接口的辅助函数"></a>套接字接口的辅助函数</h3><p>1.open_clientfd<br>int open_clientfd(char *hostname, char *port)<br>函数建立与服务器的连接，该服务器运行在主机hostname上，并且在端号口port上监听连接请求</p>
+<p>2.open_listenfd<br>int open_listenfd(char *port);<br>函数打开和返回一个监听描述符，这个描述符准备号在端口port上接受连接请求</p>
+<h2 id="11-5-Web服务器"><a href="#11-5-Web服务器" class="headerlink" title="11.5 Web服务器"></a>11.5 Web服务器</h2><h3 id="web基础"><a href="#web基础" class="headerlink" title="web基础"></a>web基础</h3><p>web客户端和服务器之间的交互用的是一个基于文本的应用级协议，叫做Http超文本传输协议，一个web<br>客户端即浏览器打开一个服务器的因特网来连接，并且请求某些内容，服务器响应所请求的内容<br>然后关闭来连接。浏览器读取这些内容，并把它显示在屏幕上</p>
+<h3 id="web内容"><a href="#web内容" class="headerlink" title="web内容"></a>web内容</h3><p>对于web客户端与服务器而言，内容是一个MIME多用途得到网际邮件扩充协议类型相关的字序列<br>web服务器有两种方式向客户端提供内容<br>1.取一个磁盘文件，并将它的内容返回给客户端。磁盘文件称为静态内容，而返回文件给客户端的过程称为服务器静态内容<br>2.运行一个可执行文件，并将它的输出内容返回给客户端</p>
+<p>确定一个URL指向的是静态内容还是动态内容没有标准规则，每个服务器对他所管理的文件都有自己的规则<br>后缀中的最开始“/”不表示linux根目录，而表示被请求内容的主目录<br>最小的URL后缀是“/”字符所有的服务器将其扩展为某个默认的主页</p>
+<h3 id="HTTP事务"><a href="#HTTP事务" class="headerlink" title="HTTP事务"></a>HTTP事务</h3><p>因为HTTP是基于在因特网连接上传送文本行的，我们可使用linux的TELENT程序来和因特网上任何Web服务器执行事物</p>
+<p>1.HTTP请求<br>组成： 一个请求行，后面跟随零个或多个请求报头，再跟随一个空的文本行来终止报头列表<br>形式： method URI version</p>
+<p>2.HTTP响应<br>组成： 一个响应行，后面跟随零个或多个请求报头，再跟随一个终止报头的空行，再跟随一个响应主体<br>形式： version status-code status-message<br>vesion段表示响应所遵循的HTTP版本</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深入理解计算机系统</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/05/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+ <!--添加代码开始-->
+
+        <div class="declare" hidden="hidden"></div>
+      
+  
     <article id="post-计算机系统笔记第十章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1269,166 +1478,9 @@ flip(k) 把第k位取反
         <div class="declare" hidden="hidden"></div>
       
   
-    <article id="post-计算机系统笔记第五章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%BA%94%E7%AB%A0/">第五章 优化程序性能</a>
-    </h1>
-  
-
-        
-        <a href="/2021/04/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%BA%94%E7%AB%A0/" class="archive-article-date">
-  	<time datetime="2021-04-22T12:46:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>编写高效程序需要做到以下几点：第一，必须选择一组适当的算法和数据结构。第二，必须编写出编译器能够有效优化以转换成高效可执行代码的源代码。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深入理解计算机系统</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%BA%94%E7%AB%A0/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
- <!--添加代码开始-->
-
-        <div class="declare" hidden="hidden"></div>
-      
-  
-    <article id="post-栈与队列" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/21/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/">stack与queue有关算法题</a>
-    </h1>
-  
-
-        
-        <a href="/2021/04/21/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/" class="archive-article-date">
-  	<time datetime="2021-04-21T15:12:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-LeetCode-716-最大栈"><a href="#1-LeetCode-716-最大栈" class="headerlink" title="1. LeetCode 716 最大栈"></a>1. LeetCode 716 最大栈</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>设计一个最大栈数据结构，既支持栈操作，又支持查找栈中最大元素。</p>
-<p>实现 MaxStack 类：</p>
-<p>MaxStack() 初始化栈对象<br>void push(int x) 将元素 x 压入栈中。<br>int pop() 移除栈顶元素并返回这个元素。<br>int top() 返回栈顶元素，无需移除。<br>int peekMax() 检索并返回栈中最大元素，无需移除。<br>int popMax() 检索并返回栈中最大元素，并将其移除。如果有多个最大元素，只要移除 最靠近栈顶 的那个</p>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>由于栈具有先进后出的特性，如需实现任何特定顺序的读取操作，往往可以借助两个stack互相倾倒来实现特定顺序<br>另一个stack进行辅助</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MaxStack</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">/** initialize your data structure here. */</span></span><br><span class="line">    stack&lt;<span class="keyword">int</span>&gt; num_stk;</span><br><span class="line">    stack&lt;<span class="keyword">int</span>&gt; max_stk;     <span class="comment">//最大栈，元素个数与数字栈同步</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">MaxStack</span>() </span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (max_stk.<span class="built_in">size</span>()==<span class="number">0</span> || x &gt; max_stk.<span class="built_in">top</span>() )</span><br><span class="line">            max_stk.<span class="built_in">push</span>(x);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            max_stk.<span class="built_in">push</span>(max_stk.<span class="built_in">top</span>());    <span class="comment">//当前最大的压进栈</span></span><br><span class="line">        num_stk.<span class="built_in">push</span>(x);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        max_stk.<span class="built_in">pop</span>();                      <span class="comment">//同步</span></span><br><span class="line">        <span class="keyword">int</span> tmp = num_stk.<span class="built_in">top</span>();</span><br><span class="line">        num_stk.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">return</span> tmp;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> num_stk.<span class="built_in">top</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">peekMax</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> max_stk.<span class="built_in">top</span>();</span><br><span class="line">    &#125;   </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">popMax</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> cur_max = max_stk.<span class="built_in">top</span>();</span><br><span class="line">        stack&lt;<span class="keyword">int</span>&gt; tmp;</span><br><span class="line">        <span class="keyword">while</span>(<span class="built_in">top</span>() != cur_max)     <span class="comment">//从数组栈里找</span></span><br><span class="line">        &#123;</span><br><span class="line">            tmp.<span class="built_in">push</span>(num_stk.<span class="built_in">top</span>());</span><br><span class="line">            <span class="built_in">pop</span>();                  <span class="comment">//2个栈要同步，一起弹</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">pop</span>();                      <span class="comment">//找到第一个，弹出</span></span><br><span class="line">        <span class="keyword">while</span>(tmp.<span class="built_in">size</span>())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">push</span>(tmp.<span class="built_in">top</span>());        <span class="comment">//再从缓冲区倒回去  2个栈同步，一起压新数据</span></span><br><span class="line">            tmp.<span class="built_in">pop</span>();</span><br><span class="line">        &#125;                     </span><br><span class="line">        <span class="keyword">return</span> cur_max;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">算法题整合</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/21/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
- <!--添加代码开始-->
-
-        <div class="declare" hidden="hidden"></div>
-      
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1540,6 +1592,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">LeetCode狂刷</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">嵌入设相关</a>
               </li>
             
             <div class="clearfix"></div>
