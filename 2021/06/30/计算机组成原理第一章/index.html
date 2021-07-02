@@ -6,16 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: TCP/IP | xbs5520&#39;s blog</title>
+  <title>第一章 计算机系统概述 | xbs5520&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录每日学习内容">
-<meta property="og:type" content="website">
-<meta property="og:title" content="xbs5520&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/tags/TCP-IP/index.html">
+  <meta name="description" content="1.简介基本部件的结构和组织方式基本运算的操作原理基本部件和单元的设计思路 基本结构都具有共性 计算机系统 ：软件    具有各类特殊功能的程序组成        系统软件–用来管理整个计算机系统            语言处理程序            操作系统            数据管理系统            网络软件     应用软件--按任务需要编制成的各种程序  硬件    计算">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第一章 计算机系统概述">
+<meta property="og:url" content="http://yoursite.com/2021/06/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%AC%E4%B8%80%E7%AB%A0/index.html">
 <meta property="og:site_name" content="xbs5520&#39;s blog">
-<meta property="og:description" content="记录每日学习内容">
+<meta property="og:description" content="1.简介基本部件的结构和组织方式基本运算的操作原理基本部件和单元的设计思路 基本结构都具有共性 计算机系统 ：软件    具有各类特殊功能的程序组成        系统软件–用来管理整个计算机系统            语言处理程序            操作系统            数据管理系统            网络软件     应用软件--按任务需要编制成的各种程序  硬件    计算">
 <meta property="og:locale">
+<meta property="article:published_time" content="2021-06-30T07:39:30.000Z">
+<meta property="article:modified_time" content="2021-07-01T08:41:43.414Z">
 <meta property="article:author" content="xbs5520">
+<meta property="article:tag" content="计算机组成原理">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="xbs5520&#39;s blog" type="application/atom+xml">
@@ -138,62 +141,204 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-计算机组成原理第一章" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/06/23/TCPIP%E8%AF%A6%E8%A7%A31/" class="archive-article-date">
-  	<time datetime="2021-06-23T06:43:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-23</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/06/23/TCPIP%E8%AF%A6%E8%A7%A31/">Day1</a>
+    <h1 class="article-title" itemprop="name">
+      第一章 计算机系统概述
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2021/06/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%AC%E4%B8%80%E7%AB%A0/" class="archive-article-date">
+  	<time datetime="2021-06-30T07:39:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>基本部件的结构和组织方式<br>基本运算的操作原理<br>基本部件和单元的设计思路</p>
+<p>基本结构都具有共性</p>
+<p>计算机系统 ：<br>软件    具有各类特殊功能的程序组成<br>        系统软件–用来管理整个计算机系统<br>            语言处理程序<br>            操作系统<br>            数据管理系统<br>            网络软件</p>
+<pre><code>    应用软件--按任务需要编制成的各种程序
+</code></pre>
+<p>硬件    计算机实体</p>
+<h2 id="2-发展历程"><a href="#2-发展历程" class="headerlink" title="2.发展历程"></a>2.发展历程</h2><p>硬件发展： 以逻辑元件发展历程划分<br>1.电子管<br>2.晶体管                    FORTRAN            有了操作系统雏形<br>3.中小规模集成电路            高级语言发展    有了分时操作系统<br>4.大规模、超大规模集成电路    微处理器<br>    新概念： 并行 流水线 高速缓存 虚拟存储器</p>
+<p>高级语言 – 编译器 –&gt; 汇编语言 – 汇编器 –&gt; 机器语言(二进制)<br>高级语言可以通过解释程序直接变为机器语言</p>
+<p>机器字长 计算机一次整数运算所能处理的二进制位数</p>
+<h2 id="3-计算机系统的分类和发展方向"><a href="#3-计算机系统的分类和发展方向" class="headerlink" title="3.计算机系统的分类和发展方向"></a>3.计算机系统的分类和发展方向</h2><p>电子模拟计算机    数值连续</p>
+<p>电子数字计算机    数值离散</p>
+<p>指令和数据流分类：<br>1.单指令流 单数流 SISD 冯诺依曼体系结构<br>2.单指令流 多数据流 SIMD 阵列处理器 向量处理器<br>3.多指令流 单数据流 MISD 不存在<br>4.多指令流 多数据流 MIMD 多处理器 多计算机</p>
+<p>发展方向： 两级分化<br>微型 &lt;–&gt; 巨型</p>
+<h2 id="4-计算机硬件组成"><a href="#4-计算机硬件组成" class="headerlink" title="4.计算机硬件组成"></a>4.计算机硬件组成</h2><h3 id="冯诺依曼计算机"><a href="#冯诺依曼计算机" class="headerlink" title="冯诺依曼计算机"></a>冯诺依曼计算机</h3><p>“存储程序”：将指令以代码的形式先输入到计算机主存储器中，<br>然后按其在存储器中的首地址执行程序的第一条指令，<br>以后就按照该程序的规定顺序执行其他指令直到程序执行结束</p>
+<p>特点：<br>1.计算机硬件系统由运算器、存储器、控制器、输入设备和输出设备5大部件组成<br>2.指令和数据以同等地位存于存储器中，并可按地址寻访<br>3.指令和数据均用二进制代码表示<br>4.指令由操作码和地址码组成，操作码用来表示操作的性质，地址码用来表示操作数在存储器中的位置<br>5.指令在存储器内按顺序存放。通常，指令是顺序执行的，<br>在特定条件下，可根据运算结果过根据设定的条件改变执行顺序<br>6.早期的冯诺伊曼机以运算器为中心，输入输出设备通过运算器与存储器传送数据</p>
+<p>现代计算机–以存储器为核心<br>(运算器 + 控制器) = CPU<br>CPU + 主存储器 = 主机(概念)</p>
+<p>输入 + 输出设备 = IO设备<br>IO设备 + 辅助存储器 = 外设</p>
+<h2 id="5-主存储器的结构和功能"><a href="#5-主存储器的结构和功能" class="headerlink" title="5.主存储器的结构和功能"></a>5.主存储器的结构和功能</h2><p>地址访问方式</p>
+<p>主存储器：<br>存储体 + MAR(地址addr存储器) + MDR(数据data存储器)<br>利用时序控制逻辑控制</p>
+<p>MDR 和 MAR 逻辑上在主存中 物理实际上在CPU中</p>
+<h2 id="6-计算机的功能部件"><a href="#6-计算机的功能部件" class="headerlink" title="6.计算机的功能部件"></a>6.计算机的功能部件</h2><p>运算器<br>MQ<br>ACC<br>ALU        核心 算术逻辑单元<br>X<br>PSW</p>
+<p>控制器    指挥中心<br>CU    控制单元 分析指令 给出控制信号<br>IR    指令寄存器    存放当前执行的指令<br>PC    程序计数器 存放当前指令地址 自动加一执行下一条</p>
+<p>M: 主存中某存储单元<br>ACC、MQ、X、MAR、MDR…:相应寄存器<br>M(MAR): 取存储单元中的数据<br>(ACC)…：取相应寄存器中的数据</p>
+<p>指令： 操作码 + 地址码<br>OP(IR)    取操作码<br>Ad(IR)    取地址码</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">TCP/IP</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">计算机组成原理</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2021/06/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%AC%E4%B8%80%E7%AB%A0/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2021/07/02/LeetCode%E7%8B%82%E5%88%B75/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          41~50
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2021/06/29/LeetCode%E7%8B%82%E5%88%B74/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">31 ~ 41</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
 
+  
 
+  
+
+ <!--添加代码开始-->
+
+        <div class="declare" hidden="hidden"></div>
+      
           </div>
         </div>
       </div>
@@ -214,9 +359,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

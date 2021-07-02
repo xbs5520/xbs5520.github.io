@@ -140,6 +140,348 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-计算机系统笔记第八章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/05/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%85%AB%E7%AB%A0/">第八章 异常控制流</a>
+    </h1>
+  
+
+        
+        <a href="/2021/05/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%85%AB%E7%AB%A0/" class="archive-article-date">
+  	<time datetime="2021-05-06T06:31:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>现代系统通过使控制流发生突变来对这些情况做出反应。一般而言，我们把这些突变称为异常控制流（ECF）<br>异常控制流发生在计算机系统的各个层次。</p>
+<h2 id="8-1-异常控制流"><a href="#8-1-异常控制流" class="headerlink" title="8.1 异常控制流"></a>8.1 异常控制流</h2><p>异常是异常控制流的一种形式，它一部分由硬件实现，一部分由操作系统实现。<br>异常就是控制流中的突变，用来响应处理器状态中的某些变化<br>在任何情况下，当处理器检测到有事件发生时，它就会通过一张叫做异常表的跳转表进行一个间接过程的调用，来启动异常处理程序<br>一般会返回三类<br>1.当前指令<br>2.下一条指令<br>3.终止被中断的程序</p>
+<h3 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h3><p>异常表的起始地址存放在异常表基址寄存器<br>每个异常分配了唯一的一个非负整数异常号<br>通过上述两个找到异常表中的位置来启动异常处理程序</p>
+<h3 id="异常的类别"><a href="#异常的类别" class="headerlink" title="异常的类别"></a>异常的类别</h3><p>1.中断<br>是异步发生的，硬件中断的异常处理程序常常称为中断处理程序<br>结果是程序继续执行(下一条) 好像没有发生中断一样<br>其余的异常类型都是同步发生的(称为故障指令)</p>
+<p>2.陷阱和系统调用<br>陷阱是有意的异常，是执行一条指令的结果，陷阱最重要的用途就是在用户程序和内核之间提供一个像过程一样的接口，叫做系统调用</p>
+<p>3.故障<br>故障由错误引起，他可能能够被故障处理程序修正<br>修正则返回到当前指令<br>否则返回终止(abort)</p>
+<p>4.终止<br>终止是不可恢复的致命错误造成的结果，通常是一些硬件错误<br>返回终止(abort)</p>
+<h3 id="linux-x86-64系统中的异常"><a href="#linux-x86-64系统中的异常" class="headerlink" title="linux/x86-64系统中的异常"></a>linux/x86-64系统中的异常</h3><p>0-31 为 Intel架构师定义的异常<br>32-255 对应操作系统定义的中断和陷阱</p>
+<h2 id="8-2-进程"><a href="#8-2-进程" class="headerlink" title="8.2 进程"></a>8.2 进程</h2><p>异常是进程概念的基本构造块，进程是计算机科学中最深刻、最成功的概念之一<br>进程的经典定义是一个执行中的程序实例<br>进程的关键抽象：<br>1.一个独立的逻辑控制流，提供假象：程序独占地使用处理器<br>2.一个私有地地址空间，提供假象：程序独占地使用内存系统</p>
+<h3 id="逻辑控制流"><a href="#逻辑控制流" class="headerlink" title="逻辑控制流"></a>逻辑控制流</h3><p>程序计数器(PC)值地序列叫做逻辑控制流，简称逻辑流<br>逻辑流有许多不同形式：<br>异常处理程序 进程 信号处理程序 线程 Java进程</p>
+<h3 id="并发流"><a href="#并发流" class="headerlink" title="并发流"></a>并发流</h3><p>一个逻辑流地执行在时间上与另一个流重叠，称为并发流，这两个流称为并发地运行<br>多个流并发地执行地一般现象称为并发<br>一个进程和其他进程轮流运行的概念称为多任务<br>一个进程执行它的控制流的一部分的每一时间段叫做时间片<br>多任务也成为时间分片</p>
+<p>如果两个流并发地运行在不同的处理器核或计算机上，称为并行流，它们并行地运行，且并行地执行</p>
+<h3 id="私有空间地址"><a href="#私有空间地址" class="headerlink" title="私有空间地址"></a>私有空间地址</h3><p>进程为每个程序提供它自己的私有地址空间<br>每个空间都有相同的结构<br>底部空间是保留给用户程序的，包括通常的代码、数据、堆和栈段<br>代码总是以地址0x40000开始的</p>
+<h3 id="用户模式和内核模式"><a href="#用户模式和内核模式" class="headerlink" title="用户模式和内核模式"></a>用户模式和内核模式</h3><p>限制一个应用可以执行的指令以及它可以访问的地址空间范围<br>处理器通过某个寄存器中的模式位来提供这种功能<br>当设置了模式位时，进程就运行在内核模式中（超级用户模式），可以执行指令集中的任何指令，并且可以访问系统中的任何内存位置</p>
+<p>用户模式可以通过中断、故障或者陷入系统调用这样的异常来进入内核模式</p>
+<h3 id="上下文切换"><a href="#上下文切换" class="headerlink" title="上下文切换"></a>上下文切换</h3><p>操作系统通过上下文切换来实现多任务<br>内核为每一个进程维持一个上下文<br>由调度器进行调度，当内核选择一个新的进程运行时，称为内核调度了这个进程<br>上下文切换：<br>1.保存当前上下文<br>2.恢复某个先前被抢占的进程被保存的上下文<br>3.将控制传递给这个新恢复的进程<br>当内核代表用户执行系统调用时，可能发生上下文切换(read  sleep)<br>中断也可能发生上下文切换</p>
+<h2 id="8-4-进程控制"><a href="#8-4-进程控制" class="headerlink" title="8.4 进程控制"></a>8.4 进程控制</h2><p>下为Unix重要函数</p>
+<h3 id="获取进程ID"><a href="#获取进程ID" class="headerlink" title="获取进程ID"></a>获取进程ID</h3><p>getpid </p>
+<h3 id="创建和终止进程"><a href="#创建和终止进程" class="headerlink" title="创建和终止进程"></a>创建和终止进程</h3><p>进程总处于 1.运行 2.停止 3.终止 状态中的一个<br>exit<br>父进程通过 fork 创建子进程<br>fork 函数特点：1.调用一次返回两次 2.并发执行 3.相同但是独立的地址空间 4.共享文件</p>
+<h3 id="回收子进程"><a href="#回收子进程" class="headerlink" title="回收子进程"></a>回收子进程</h3><p>waitpid 函数<br>wait 为简单版本</p>
+<h3 id="加载并运行程序"><a href="#加载并运行程序" class="headerlink" title="加载并运行程序"></a>加载并运行程序</h3><p>execve函数</p>
+<h2 id="8-5-信号"><a href="#8-5-信号" class="headerlink" title="8.5 信号"></a>8.5 信号</h2><p>linux信号 是一种更高层的软件形式的异常，它允许进程和内核中断其他进程<br>信号就是一条小道消息，它通知进程系统中发生了一个某种类型的事件，linux上支持30中不同类型的信号</p>
+<h3 id="信号术语"><a href="#信号术语" class="headerlink" title="信号术语"></a>信号术语</h3><p>一个信号到目的进程是由两个不同步骤组成的<br>发送信号<br>1.内核检测到一个系统时间，比如零错误或者子进程终止<br>2.一个进程调用了kill函数显式地要求内核发送一个信号给目的进程</p>
+<p>接收信号<br>进程对信号做出反映，可以忽略这个信号，终止或者通过执行一个称为信号处理程序的用户层函数捕捉这个信号</p>
+<h3 id="发送信号"><a href="#发送信号" class="headerlink" title="发送信号"></a>发送信号</h3><p>1.进程组<br>每个信号都只属于一个进程组，进程组是由一个正整数进程组ID来标识的。getpgrp函数返回当前进程的进程组ID<br>一个子进程和它的父进程同属于一个进程组<br>2.用/bin/kill程序发送信号<br>3.从键盘发送信号<br>Unix shell使用作业这个抽象的概念来表示为对一条命令行求值而创建的进程<br>4.用kill函数发送信号<br>进程通过调用kill函数发送信号给其他进程（包括它们自己）<br>5.用alarm函数发送信号<br>进程可以调用alarm函数向它自己发送SIGALRM信号</p>
+<h3 id="接收信号"><a href="#接收信号" class="headerlink" title="接收信号"></a>接收信号</h3><p>每个信号类型都有一个预定的默认行为：<br>进程终止<br>进程终止并转储内存<br>进程停止（挂起）直到被SIGCONT信号重启<br>进程忽略该信号</p>
+<p>signal函数可以通过下列三种方法之一来改变和信号signum相关联的行为</p>
+<p>当一个进程捕获了一个类型为k的信号时，会调用为信号k设置的处理程序，一个整数参数被设置为k，这个参数允许同一个处理函数捕获不同类型的信号</p>
+<h3 id="阻塞和解除阻塞信号"><a href="#阻塞和解除阻塞信号" class="headerlink" title="阻塞和解除阻塞信号"></a>阻塞和解除阻塞信号</h3><p>Linux提供阻塞信号的隐式和显示的机制<br>隐式阻塞机制：内核默认阻塞任何当前处理程序正在处理信号类型的待处理的信号<br>显示阻塞机制：应用程序可以使用sigprocmask函数和它的辅助函数，明确地阻塞和解除阻塞选定地信号</p>
+<h3 id="编写信号处理程序"><a href="#编写信号处理程序" class="headerlink" title="编写信号处理程序"></a>编写信号处理程序</h3><p>处理程序属性，使其很难推理分析：<br>1.处理程序与主程序并发允许，共享同样地全局变量，因此可能与主程序和其他处理程序互相干扰<br>2.如何以及合适接收信号地规则常常有违人的直觉<br>3.不同地系统有不同地信号处理语义</p>
+<p>1.安全的信号处理<br>信号处理程序与主程序和其他信号处理程序并发的允许，结构时不可预知的，经常是致命的<br>a.处理程序要尽可能简单</p>
+<p>b.在处理程序中只调用异步信号安全的函数<br>异步信号寒气函数能够被信号处理程序安全地调用<br>要么它是可重入地，要么不能被信号处理程序中断</p>
+<p>c.保存和恢复errno<br>在进入处理程序时吧errno保存在一个局部变量中，在处理程序返回前恢复它</p>
+<p>d.阻塞所有地信号，保护对共享全局数据结构地访问</p>
+<p>e.用volatile声明全局变量<br>告诉编译器不要缓存这个变量<br>volatile int g</p>
+<p>f.用sig atomic t 声明标志<br>处理程序会写全局标志来记录收到了信号<br>c语言提供一种整形数据类型sig_atomic_t 对它的读和写保证会是原子的</p>
+<p>2.正确的信号处理<br>未处理的信号是不排队的，每种类型最多只能有一个未处理的信号<br>不可能用信号来对其它进程中发生的事件计数</p>
+<p>3.可移植的信号处理<br>不同的系统有不同的信号处理语义<br>signal函数的语义各有不同<br>系统调用可以被中断</p>
+<p>Posix标准定义了sigaction函数，它允许用户在蛇者信号处理时，明确指定他们想要的信号处理语义</p>
+<h3 id="同步流以避免讨厌的并发错误"><a href="#同步流以避免讨厌的并发错误" class="headerlink" title="同步流以避免讨厌的并发错误"></a>同步流以避免讨厌的并发错误</h3><h2 id="8-6-非本地跳转"><a href="#8-6-非本地跳转" class="headerlink" title="8.6 非本地跳转"></a>8.6 非本地跳转</h2><p>C语言提供了一种用户级异常控制流形式，称为非本地跳转，它将控制直接从一个函数转移到另一个当前正在执行的函数，而不需要经过正常的调用-返回序列<br>非本地跳转是通过setjmp 与 longjmp 函数来提供的</p>
+<p>非本地跳转的另一个重要应用是使一个信号处理程序分支到一个特殊的代码位置，而不是返回到被信号到达中断了的指令的位置<br>当用户在键盘上键入Ctrl + c 这个程序用信号和非本地跳转来实现软重启</p>
+<h2 id="8-7-操作进程的工具"><a href="#8-7-操作进程的工具" class="headerlink" title="8.7 操作进程的工具"></a>8.7 操作进程的工具</h2><p>STRACE 打印轨迹<br>PS 列出进程<br>TOP 打印资源使用信息<br>PMAP 显示进程内存映射</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深入理解计算机系统</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/05/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%85%AB%E7%AB%A0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+ <!--添加代码开始-->
+
+        <div class="declare" hidden="hidden"></div>
+      
+  
+    <article id="post-计算机系统笔记第七章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/04/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%B8%83%E7%AB%A0/">第七章 链接</a>
+    </h1>
+  
+
+        
+        <a href="/2021/04/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%B8%83%E7%AB%A0/" class="archive-article-date">
+  	<time datetime="2021-04-30T01:44:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>链接是将各种代码和数据片段收集并组合成为一个单一文件的过程，这个文件可以被加载到内存并执行。<br>链接可以执行于编译时，也就是在源代码被翻译成机器代码时，也可以执行于加载时，也就是在程序被加载器加载到内存并执行时<br>甚至执行于运行时，也就是由应用程序来执行</p>
+<h2 id="7-1-编译器驱动程序"><a href="#7-1-编译器驱动程序" class="headerlink" title="7.1 编译器驱动程序"></a>7.1 编译器驱动程序</h2><p>linux&gt; gcc -Og -o prog mian.c sum.c<br>程序由 .c – .s – .o </p>
+<h2 id="7-2-静态链接"><a href="#7-2-静态链接" class="headerlink" title="7.2 静态链接"></a>7.2 静态链接</h2><p>链接器必须完成两个主要任务<br>符号解析与重定位</p>
+<h2 id="7-3-目标文件"><a href="#7-3-目标文件" class="headerlink" title="7.3 目标文件"></a>7.3 目标文件</h2><p>目标文件有三种形式<br>可重定位目标文件<br>可执行目标文件<br>共享目标文件</p>
+<h2 id="7-5-符号和符号表"><a href="#7-5-符号和符号表" class="headerlink" title="7.5 符号和符号表"></a>7.5 符号和符号表</h2><p>由模块m定位目标模块m都有一个符号表，它包含m定义和引用的符号信息。在链接器的上下文中，有三种不同的符号<br>1.由模块m定义并能被其他模块引用的全局符号<br>2.由其他模块定义并能被模块m引用的全局符号<br>3.只被模块m定义和引用的局部符号</p>
+<h2 id="7-6-符号解析"><a href="#7-6-符号解析" class="headerlink" title="7.6 符号解析"></a>7.6 符号解析</h2><p>链接器解析符号引用的方法是将每个引用与它输出的可重定位目标文件的符号表中的一个确定的符号定义关联起来。<br>对于全局符号解析很棘手，因为多个目标文件可能会定义相同名字的全局符号</p>
+<h3 id="链接器如何解析多重定义的全局符号"><a href="#链接器如何解析多重定义的全局符号" class="headerlink" title="链接器如何解析多重定义的全局符号"></a>链接器如何解析多重定义的全局符号</h3><p>强：  int x = 100<br>弱    int x </p>
+<p>linux链接器使用如下规则<br>1.不允许有多个同名的强符号<br>2.如果有一个强符号和多个弱符号同名，那么选择强符号<br>3.如果有多个弱符号同名，从弱符号中任意选择一个</p>
+<h3 id="与静态库链接"><a href="#与静态库链接" class="headerlink" title="与静态库链接"></a>与静态库链接</h3><p>所有的编译系统都提供一种机制，将所有相关的目标模块打包成为一个单独的文件，称为静态库，它可以用来做链接器的输入<br>如果不使用链接器，有两种方法实现<br>1.让编译器辨认出对标准函数的调用，并直接生成相应的代码<br>将给编译器增加显著的复杂性</p>
+<p>2.将所有标准C函数都放在一个单独的可重新定位目标模块中<br>优点：将编译器的实现与标准函数的实现分离开来 仍然保存便利<br>缺点：对磁盘空间有很大的占用浪费</p>
+<p>静态库概念被提出，以解决这些不同方法的缺点。相关函数可以被编译为独立的目标模块，然后封装成一个单独的静态库文件。<br>然后，应用程序可以通过在命令上指定单独的文件名字来使用这些在库中定义的函数<br>在链接时，链接器将只复制被程序引用的目标模块，这就减少了可执行文件在磁盘和内存中的大小</p>
+<h2 id="7-7-重定位"><a href="#7-7-重定位" class="headerlink" title="7.7 重定位"></a>7.7 重定位</h2><p>一旦链接器完成了符号解析这一步，就把代码中的每个符号引用和正好一个符号关联起来<br>将合并输入模块，并为每个符号分配运行时地址，重定位由两步构成<br>1.重定位节和符号定义。在这一步中链接器将所有同类型的节合并为同一类型的新的聚合结<br>2.重定位节中的符号引用。在这一步中，链接器修改代码节和数据节中对每个符号的引用，使得它们指向正确的运行时地址</p>
+<h3 id="重定位条目"><a href="#重定位条目" class="headerlink" title="重定位条目"></a>重定位条目</h3><p>无论何时汇编器遇到对最终位置未知的目标引用，他就会生成一个重定位条目，告诉链接器在将目标文件合并成可执行文件时如何修改这个引用。<br>我们只关心最基本的两种重定位类型<br>1.R_X86_64_PC32        重定位一个使用32位PC相对地址的引用<br>2.R_X86_64_32        重定位一个使用32位绝对地址的引用</p>
+<h2 id="7-8-可执行目标文件"><a href="#7-8-可执行目标文件" class="headerlink" title="7.8 可执行目标文件"></a>7.8 可执行目标文件</h2><p>可执行目标文件的格式类似于可重定位目标文件的格式，ELF头描述文件的总体格式，它还包括程序的入口点，也就是当程序运行时要执行的第一条指令<br>的地址。<br>ELF可执行文件被设计得很容易加载到内存，可执行文件得连续得片被映射到连续的内存段，程序头部表描述了这种映射关系。</p>
+<h2 id="7-9-加载可执行文件"><a href="#7-9-加载可执行文件" class="headerlink" title="7.9 加载可执行文件"></a>7.9 加载可执行文件</h2><p>当加载器运行时，在程序头部表的引导下，加载器可将执行文件的片复制到代码段和数据段，接下来加载器跳转到程序的入口点<br>也就是_start函数的地址，_start函数调用系统启动函数__libc_start_main 该函数定义在libc.so中 初始化执行环境，调用<br>用户层的main函数，处理main函数的返回值，并且在需要的时候把控制返回给内存</p>
+<h2 id="7-10-动态链接共享库"><a href="#7-10-动态链接共享库" class="headerlink" title="7.10 动态链接共享库"></a>7.10 动态链接共享库</h2><p>静态库仍然有一些明显的缺点，静态库与所有软件一样，需要定期维护和更新。<br>共享库是致力于解决静态库缺陷的一个现代创新产物，共享库是一个目标模块，在运行或加载时，可以加载到任意的内存地址，并和<br>一个在内存中的程序链接起来，这个过程称为动态链接，是由一个叫做动态链接器的程序来执行的，共享库也被称为共享目标，在linux<br>系统中通常用.so后缀来表示</p>
+<h2 id="7-11-从应用程序中加载和链接共享库"><a href="#7-11-从应用程序中加载和链接共享库" class="headerlink" title="7.11 从应用程序中加载和链接共享库"></a>7.11 从应用程序中加载和链接共享库</h2><p>应用程序还可以在它运行时要求动态链接器加载和链接某个共享库，而无需在编译时将那些库链接到应用中<br>实际例子<br>分发软件、构建高性能web服务器</p>
+<h2 id="7-12-位置无关代码"><a href="#7-12-位置无关代码" class="headerlink" title="7.12 位置无关代码"></a>7.12 位置无关代码</h2><p>共享库的一个主要目的就是允许多个正在运行的进程共享内存中相同的库代码，因而节约宝贵的内存资源。<br>现代系统以这样一种方式编译共享的代码段，使得可以把它们加载到内存的任何位置而无需链接器修改，使用这种方法，无限多个进程可以共享<br>一个共享模块的代码段的单一副本<br>可以加载而无需重新定位的代码称为位置无关代码(PIC)<br>1.PIC数据引用<br>代码段中任何指令和数据段中任何变量之间的距离都是一个运行时的常量，与代码段和数据段的绝对内存位置无关<br>在数据段开始的地方创建了一个表叫做全局变量偏移表(GOT)</p>
+<p>2.PIC函数调用<br>延迟绑定，将过程地址的绑定推迟到第一次调用该过程时</p>
+<h2 id="7-13-库打桩机制"><a href="#7-13-库打桩机制" class="headerlink" title="7.13 库打桩机制"></a>7.13 库打桩机制</h2><p>linux链接器支持一个很强大的技术，称为库打桩，它允许你解惑对共享库函数的调用，取而代之执行自己的代码<br>使用打仗机制，可以追踪对某个特殊库函数的调用次数，验证和追踪它的输入和输出值，或者把他替换成一个完全不同的实现</p>
+<h3 id="编译时打桩"><a href="#编译时打桩" class="headerlink" title="编译时打桩"></a>编译时打桩</h3><p>mymalloc.c中的包装函数调用目标函数，打印追踪记录，并返回，本地的malloc.h头文件指示预处理器用相对应包装函数的调用替换<br>掉对目标函数的调用</p>
+<h3 id="链接时打桩"><a href="#链接时打桩" class="headerlink" title="链接时打桩"></a>链接时打桩</h3><p>linux静态链接器支持用–wrap f标志进行链接时打桩</p>
+<h3 id="运行时打桩"><a href="#运行时打桩" class="headerlink" title="运行时打桩"></a>运行时打桩</h3><p>基于动态链接器的LD_PRELOAD环境变量</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深入理解计算机系统</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/04/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%B8%83%E7%AB%A0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+ <!--添加代码开始-->
+
+        <div class="declare" hidden="hidden"></div>
+      
+  
+    <article id="post-计算机系统笔记第六章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/04/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%85%AD%E7%AB%A0/">第六章 存储器层次结构</a>
+    </h1>
+  
+
+        
+        <a href="/2021/04/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%85%AD%E7%AB%A0/" class="archive-article-date">
+  	<time datetime="2021-04-27T01:36:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="6-1-存储技术"><a href="#6-1-存储技术" class="headerlink" title="6.1 存储技术"></a>6.1 存储技术</h2><h3 id="随机访问存储器"><a href="#随机访问存储器" class="headerlink" title="随机访问存储器"></a>随机访问存储器</h3><p>RAM 分为两类静态与动态 SRAM DRAM<br>S比D更快也更贵<br>SRAM 用来作为高速缓存存储器，即可在CPU芯片上也可以在片下        不超过几兆字节<br>DRAM 用来作为主存以及图形系统的帧缓冲区                            几百或几千兆</p>
+<p>静态RAM<br>SRAM将每个存储在一个双稳态的存储器单元里，每个单元可以无限期的保持在两个不同的电压配置</p>
+<p>动态RAM<br>DRAM将每个位存储为对一个电容充电，这个电容非常小</p>
+<p>传统DRAM<br>DRAM芯片中单元被分为d个超单元，每个都由w个DRAM单元组成<br>总共储存了d×w位信息<br>信息通过称为引脚的外部连接器流入和流出芯片<br>每个DRAM芯片被连接到某个称为内存控制器的电路<br>行地址 称为RAS<br>列地址 称为CAS<br>电路设计者将DRAM组织成二维阵列而不是线性数组的一个原因是降低芯片上地址引脚数量</p>
+<p>内存模块<br>DRAM封装在内存模块 它插到主板的扩展槽上</p>
+<p>增强的DRAM<br>有许多DRAM存储器：<br>快页模式DRAM 扩展数据输出DRAM 同步DRAM 双倍数据速率同步DRAM(DDR DDR2 DDR3) 视频RAM</p>
+<p>非易失性存储器<br>如果断电DRAM与SRAM会丢失它们的信息 它们是易失的<br>非易失性存储器即使在关电后仍然保存这信息.<br>PROM只能被编程一次<br>可擦写可编程ROM有一个透明的石英窗口，允许光达到存储单元<br>闪存是一类非易失性存储器，基于EEPROM 以及成为了一种重要的闪存技术<br>存储在ROM设备中的程序通常被称为固件</p>
+<p>访问主存<br>数据流通过称为总线的共享电子电路在处理器和DRAM主存之间来回<br>每次CPU和主存之间的数据传送都是通过一些了步骤来完成的，称为总线事务<br>读事务 从主存传送到CPU<br>写事务 从CPU传送数据到主存</p>
+<h3 id="磁盘储存"><a href="#磁盘储存" class="headerlink" title="磁盘储存"></a>磁盘储存</h3><p>磁盘是为了保存大量数据的设备<br>从磁盘上读信息的时间为毫秒级<br>比从DRAM慢10万倍<br>比从SRAM慢100万倍</p>
+<p>磁盘构造<br>磁盘是由盘片构成的，每个盘片有两面或者称为表面，表面覆盖着磁性记录材料<br>盘片中央有一个可以旋转的主轴</p>
+<p>磁盘容量<br>由以下因素决定<br>记录密度：磁道一英寸的段中可以放入的位数<br>磁道密度：从盘片中心出发半径上一英寸的段内可以有的磁道数<br>面密度：记录密度与磁道密度的乘积</p>
+<p>磁盘操作<br>磁盘用读写头来读写存储在磁性表面的位，而读写头连接到传动臂的一端<br>磁盘以扇区大小的快来读写数据，对扇区的访问时间有三个主要部分<br>寻道时间 旋转时间 传送时间</p>
+<p>逻辑磁盘块<br>逻辑块序列 编号为0,1,…,B - 1 B个扇区<br>磁盘封装中有个小硬件/固件设备，称为磁盘控制器，维护着逻辑块号和实际磁盘扇区之间的映射关系</p>
+<p>连接I/O设备<br>如图形卡、监视器、鼠标、键盘、磁盘这样的输入输出设备都是通过IO总线与外围连接的<br>有三种不同类型的设备连接到总线<br>通用串行总线 USB<br>图形卡包含硬件和软件逻辑<br>主机总线适配器将一个或多个磁盘连接到IO总线两个常用接口为SCSI 与 SATA</p>
+<p>访问磁盘<br>设备可以自己执行读或写总线事务而不需要CPU的干涉称为直接内存访问<br>这种称为DMA传送</p>
+<h3 id="固态硬盘"><a href="#固态硬盘" class="headerlink" title="固态硬盘"></a>固态硬盘</h3><p>SSD是一种基于闪存的存储技术<br>读SSD比写要快<br>数据是以页为单位读写的，只有在一页所属的块整个被擦除后才能写这一页</p>
+<h3 id="储存技术趋势"><a href="#储存技术趋势" class="headerlink" title="储存技术趋势"></a>储存技术趋势</h3><p>不同的存储技术有不同的价格和性能折中。SRAM比DRAM块一些，而DRAM比磁盘要块很多。另一方面，快速存储总是比慢速存储要贵的。<br>SRAM每字节的造价比DRAM高 DRAM的造价又比磁盘造价高得多 SSD位于DRAM与旋转磁盘之间</p>
+<h2 id="6-2-局部性"><a href="#6-2-局部性" class="headerlink" title="6.2 局部性"></a>6.2 局部性</h2><p>重复引用相同的变量的程序具有良好的时间局部性<br>对于具有步长为k的引用模式步长越小，空间局部性越好，具有步长为1的引用模式的程序有很好的空间局部性<br>在内存中以大步长跳来跳去的程序空间局部性会很差<br>对于取值令来说，循环有很好的时间和空间局部性，循环体越小，循环迭代次数越多，局部性越好</p>
+<h2 id="6-3-存储器层次结构"><a href="#6-3-存储器层次结构" class="headerlink" title="6.3 存储器层次结构"></a>6.3 存储器层次结构</h2><p>存储技术：不同存储技术的访问时间差异很大<br>计算机软件：一个编写良好的程序倾向于展示出良好的局部性</p>
+<p>互相补充的性质使人想到一种组织存储器系统的方法称为存储器层次结构<br>从上而下<br>寄存器 L1高度缓存 L2高速缓存 L3高速缓存 主存 本地二级存储 远程二级存储</p>
+<h3 id="存储器层次结构中的缓存"><a href="#存储器层次结构中的缓存" class="headerlink" title="存储器层次结构中的缓存"></a>存储器层次结构中的缓存</h3><p>对于每个k位于k层的更快更小的存储设备作为位于k+1层的更大更慢的存储设备的缓存，直到最小的缓存-cpu寄存器组<br>数据总是以块为大小为传送单元在k层和k+1层之间来回复制的<br>1.缓存命中<br>当程序需要第K+1层的某个数据对象d时，他首先在当前存储在第K层的一个块中查找d<br>如果d刚好在缓存在第k层，那么就称为缓存命中</p>
+<p>2.缓存不命中<br>当没有d称为缓存不命中<br>覆盖一个现存的块的过程称为替换或驱逐这个快</p>
+<p>3.缓存不命中的种类<br>一个空的缓存有时被称为冷缓存<br>此类命中称为强制性不命中或冷不命中<br>只要发生了不命中，在第k层的缓存就必须执行某个放置策略</p>
+<p>4.缓存管理<br>在每一层上，某种形式的逻辑必须管理缓存，其逻辑可以是硬件、软件或是两者的结合</p>
+<h2 id="6-4-高速缓存存储器"><a href="#6-4-高速缓存存储器" class="headerlink" title="6.4 高速缓存存储器"></a>6.4 高速缓存存储器</h2><p>早期计算机存储结构只有三层<br>CPU寄存器 DRAM主存储器 磁盘存储<br>后面在CPU寄存器文件和主存之间插入一个小的SRAM高速缓存存储器，<br>称为L1高速缓存<br>L1高度缓存 访问速度4个时钟周期<br>L2高速缓存 10个  L3高速缓存 50个</p>
+<h3 id="通用的高速缓存存储器组织结构"><a href="#通用的高速缓存存储器组织结构" class="headerlink" title="通用的高速缓存存储器组织结构"></a>通用的高速缓存存储器组织结构</h3><p>基本参数<br>|参数|描述|<br>|:—-:|:—-:|<br>|S = 2^k|组数|<br>|E|每个组数的行数|<br>|B = 2^b|块大小（字节）|<br>|m = log2(M)|（主存）物理地址位数|</p>
+<p>衍生出的量<br>|参数|描述|<br>|:—-:|:—-:|<br>|M = 2^m|内存地址的最大数量|<br>|s = log2(S)|组索引位数量|<br>|b = log2(B)|块偏移数量|<br>|t = m-(s+b)|标记位数量|<br>|C = B×E×S|不包括像有效位和标记位这样开销的高速缓存大小（字节）|</p>
+<p>高速缓存结构可以用元组(S,E,B,m)来描述 大小C指所有块的大小的和，标记位和有效位不包括在内 所以C = B×E×S</p>
+<h3 id="直接映射高速缓存"><a href="#直接映射高速缓存" class="headerlink" title="直接映射高速缓存"></a>直接映射高速缓存</h3><p>每个组只有一行的高速缓存称为直接映射高速缓存<br>1.直接映射高速缓存中的组选择<br>高速缓存从w的地址中间抽取出s个组索引位，解释成一个对应的无符号整数</p>
+<p>2.直接映射高速缓存中的行匹配<br>接下来的一步就是要确定是否有字w的一个副本存储在组i包含的一个高速缓存行中</p>
+<p>3.直接映射高速缓存中的字选择<br>最后一步确定所需要的字在块中是从哪里开始的</p>
+<p>4.直接映射高速缓存中不命中时的行替换<br>如果缓存不命中，那么它需要从存储器层次结构的下一层取出被请求的块，然后将新的块存储在组索引位指示的组中的一个高速缓存行中</p>
+<p>5.综合：运行中的直接映射高速缓存<br>标记位和索引位连接起来唯一地标识了内存中的每个块<br>因为有八个内存块但是只有4个高速缓存组多个块会被映射到同一个高速缓存组<br>映射到同一个高速缓存组的块由标记位唯一地标识</p>
+<h3 id="组相连高速缓存"><a href="#组相连高速缓存" class="headerlink" title="组相连高速缓存"></a>组相连高速缓存</h3><p>组相连高速缓存每个组都保存有多于一个地高速缓存行<br>1.组选择<br>组索引位标识组</p>
+<p>2.行匹配<br>必须检测多个行地标记位和有效位，以确定所请求地字是否在集合中<br>组中的任意一行都可以包含任何映射到这个组地内存块</p>
+<p>3.不命中时地行替换<br>高速缓存必须从内存中取出包含这个字的块</p>
+<h3 id="全相关高速缓存"><a href="#全相关高速缓存" class="headerlink" title="全相关高速缓存"></a>全相关高速缓存</h3><p>是由一个包含所有高速缓存行的组组成的<br>1.组选择<br>地址只被划分成了一个标记和一个块偏移</p>
+<p>2.行匹配于字选择<br>与组相连高速缓存中的是一样的，它们之间的主要区别时规模大小的问题<br>高速缓存电路必须并行地搜索许多相匹配地标记，构造一个又大又快地相联高速缓存很困难而且很昂贵</p>
+<h3 id="有关写的问题"><a href="#有关写的问题" class="headerlink" title="有关写的问题"></a>有关写的问题</h3><p>直写：立即将w地高速缓存块写回到紧挨着地第一层    会引起总线流量<br>写回：尽可能地推迟更新，只有当替换算法要驱逐这个更新过的块时，才把它写到紧挨着的第一层</p>
+<p>处理不命中<br>写分配：加载相应的第一层中的块到高速缓存中，然后更新这个高速缓存块<br>非写分配：避开高速缓存，直接把这个字写到低一层中</p>
+<h3 id="一个真实的高速缓存层次结构"><a href="#一个真实的高速缓存层次结构" class="headerlink" title="一个真实的高速缓存层次结构"></a>一个真实的高速缓存层次结构</h3><p>高速缓存既保存数据，也保存指令。<br>只保存指令称为Ii-cache         一般为只读<br>只保存程序数据称为d-cache</p>
+<h3 id="高速缓存参数的性能影响"><a href="#高速缓存参数的性能影响" class="headerlink" title="高速缓存参数的性能影响"></a>高速缓存参数的性能影响</h3><p>不命中率： 不命中数量/引用数量<br>命中率：1-不命中率<br>命中时间  从高速缓存传送一个字到CPU所需的时间<br>不命中处罚 由于不命中所需要的额外时间</p>
+<p>1.高速缓存大小的影响<br>较大的高速缓存可能会提高命中率，使大存储器运行得更快总是要难一些</p>
+<p>2.块大小的影响<br>较大的块能利用程序中可能存在的空间局部性，帮助提高命中率</p>
+<p>3.相联度的影响<br>较高的相联度降低了高速缓存由于冲突不命中出现抖动的可能，不过较高的相联度会造成较高的成本</p>
+<p>4.写策略的影响<br>直写较容易实现，能使用独立于高速缓存的写缓冲区用来更新内存<br>读不命中开销没这么大 不会触发内存写<br>写回高速缓存引起的传送比较少，允许更多的到内存的带宽用于执行DMA的IO设备</p>
+<h2 id="6-5-编写高速缓存友好的代码"><a href="#6-5-编写高速缓存友好的代码" class="headerlink" title="6.5 编写高速缓存友好的代码"></a>6.5 编写高速缓存友好的代码</h2><p>局部性好的程序更容易有较低的不命中率<br>1.让最常见的情况运行得更快<br>2.尽量减小每个循环内部的缓存不命中数量(如数值遍历次序)</p>
+<h2 id="6-6-综合：高速缓存对程序性能的影响"><a href="#6-6-综合：高速缓存对程序性能的影响" class="headerlink" title="6.6 综合：高速缓存对程序性能的影响"></a>6.6 综合：高速缓存对程序性能的影响</h2><h3 id="储存器山"><a href="#储存器山" class="headerlink" title="储存器山"></a>储存器山</h3><p>一个程序从存储系统中读数据的速率称为读吞吐量<br>存储器系统的性能不是一个数字就能描述的，相反它是一座时间和空间局部性的山，山上高度差别可以超过一个数量级。<br>明智的程序员构造其程序使其运行在山峰而不是低估。目标就是利用时间局部性，使得频繁使用的字从L1中取出，<br>还要利用空间局部性，使得尽可能多的字从一个L1高速缓存行中访问</p>
+<h3 id="在程序中利用局部性"><a href="#在程序中利用局部性" class="headerlink" title="在程序中利用局部性"></a>在程序中利用局部性</h3><p>存储系统被组织成一个存储设备的层次结构，较小、较快的设备靠近顶部，较大、较慢的设备靠近底部<br>将你的注意力集中在内循环上，大部分计算和内存访问都发生在这里<br>通过按照数据对象储存在内存中的顺序、以步长为1的来读数据，从而使你的程序中的空间局部性最大<br>一旦从存储器中读入了一个数据对象，就尽可能多地使用它，从而使得程序中得时间局部性最大</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深入理解计算机系统</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/04/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%85%AD%E7%AB%A0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+ <!--添加代码开始-->
+
+        <div class="declare" hidden="hidden"></div>
+      
+  
     <article id="post-计算机系统笔记第五章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -746,240 +1088,6 @@
         <div class="declare" hidden="hidden"></div>
       
   
-    <article id="post-Binary Tree" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/13/Binary%20Tree/">二叉树有关算法题</a>
-    </h1>
-  
-
-        
-        <a href="/2021/04/13/Binary%20Tree/" class="archive-article-date">
-  	<time datetime="2021-04-13T13:26:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-LeetCode-783-二叉搜索树节点最小距离"><a href="#1-LeetCode-783-二叉搜索树节点最小距离" class="headerlink" title="1.LeetCode 783 二叉搜索树节点最小距离"></a>1.LeetCode 783 二叉搜索树节点最小距离</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给你一个二叉搜索树的根节点 root ，返回树中任意两不同节点值之间的最小差值<br>root = [4,2,6,1,3]</p>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>dfs 中序遍历<br>每次更新 最小值</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">算法题整合</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/13/Binary%20Tree/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
- <!--添加代码开始-->
-
-        <div class="declare" hidden="hidden"></div>
-      
-  
-    <article id="post-基础算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/13/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">基础算法</a>
-    </h1>
-  
-
-        
-        <a href="/2021/04/13/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2021-04-13T13:26:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="学习主要思想"><a href="#学习主要思想" class="headerlink" title="学习主要思想"></a>学习主要思想</h2><h3 id="理解背过模板-调试通过"><a href="#理解背过模板-调试通过" class="headerlink" title="理解背过模板!!! 调试通过"></a>理解背过模板!!! 调试通过</h3><h3 id="题目-检验模板"><a href="#题目-检验模板" class="headerlink" title="题目 检验模板"></a>题目 检验模板</h3><h3 id="熟练度提高-删掉重写-3-5次"><a href="#熟练度提高-删掉重写-3-5次" class="headerlink" title="熟练度提高 删掉重写 3-5次!!!"></a>熟练度提高 删掉重写 3-5次!!!</h3><h2 id="一、快速排序–分治"><a href="#一、快速排序–分治" class="headerlink" title="一、快速排序–分治"></a>一、快速排序–分治</h2><h3 id="主要思路"><a href="#主要思路" class="headerlink" title="主要思路"></a>主要思路</h3><p>1.确定分界点 q[l] q[(l+r)/2] q[r] 左中右 随机</p>
-<p>2.调整区间 第一个区间小于等于x 第二个大于等于x  x不一定在分界点！！  难点</p>
-<p>3.递归处理左右两端</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Level-2</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/13/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
- <!--添加代码开始-->
-
-        <div class="declare" hidden="hidden"></div>
-      
-  
-    <article id="post-Array" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/12/Array/">Array有关算法题</a>
-    </h1>
-  
-
-        
-        <a href="/2021/04/12/Array/" class="archive-article-date">
-  	<time datetime="2021-04-12T08:41:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-LeetCode-11-Container-With-Most-Water"><a href="#1-LeetCode-11-Container-With-Most-Water" class="headerlink" title="1.LeetCode 11 Container With Most Water"></a>1.LeetCode 11 Container With Most Water</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给出1个非负整数数组 a1， a2， a3， …… an，<br>每个整数标识一个竖立在坐标轴 x 位置的一堵高度为ai的墙，<br>选择两堵墙，和 x 轴构成的容器可以容纳最多的水</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">算法题整合</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/12/Array/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
- <!--添加代码开始-->
-
-        <div class="declare" hidden="hidden"></div>
-      
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next &amp;raquo;</a>
@@ -1098,6 +1206,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">嵌入设相关</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
               </li>
             
             <div class="clearfix"></div>
