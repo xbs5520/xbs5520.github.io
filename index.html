@@ -830,6 +830,118 @@
         <div class="declare" hidden="hidden"></div>
       
   
+    <article id="post-LeetCode狂刷6" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/07/03/LeetCode%E7%8B%82%E5%88%B76/">51~60</a>
+    </h1>
+  
+
+        
+        <a href="/2021/07/03/LeetCode%E7%8B%82%E5%88%B76/" class="archive-article-date">
+  	<time datetime="2021-07-03T06:25:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="51-N-皇后"><a href="#51-N-皇后" class="headerlink" title="51. N 皇后"></a>51. N 皇后</h2><p>n 皇后问题 研究的是如何将 n 个皇后放置在 n×n 的棋盘上，并且使皇后彼此之间不能相互攻击。<br>给你一个整数 n ，返回所有不同的 n 皇后问题 的解决方案。<br>每一种解法包含一个不同的 n 皇后问题的棋子放置方案，该方案中 ‘Q’ 和 ‘.’ 分别代表了皇后和空位。</p>
+<p>3个bool数组+全排列</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> n ;</span><br><span class="line">    vector&lt;<span class="keyword">bool</span>&gt; col, dg, udg;</span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; ans;</span><br><span class="line">    vector&lt;string&gt; path;</span><br><span class="line"></span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; <span class="built_in">solveNQueens</span>(<span class="keyword">int</span> _n) &#123;</span><br><span class="line">        n = _n;</span><br><span class="line">        col = vector&lt;<span class="keyword">bool</span>&gt;(n);</span><br><span class="line">        dg = udg = vector&lt;<span class="keyword">bool</span>&gt;(n * <span class="number">2</span>);</span><br><span class="line">        path = vector&lt;string&gt;(n, <span class="built_in">string</span>(n, <span class="string">&#x27;.&#x27;</span>));</span><br><span class="line"></span><br><span class="line">        <span class="built_in">dfs</span>(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> ans;    </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(u == n)&#123;</span><br><span class="line">            ans.<span class="built_in">push_back</span>(path);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!col[i] &amp;&amp; !dg[u - i + n] &amp;&amp; !udg[u + i])&#123;</span><br><span class="line">                col[i] = dg[u - i + n] = udg[i + u] = <span class="literal">true</span>;</span><br><span class="line">                path[u][i] = <span class="string">&#x27;Q&#x27;</span>;</span><br><span class="line">                <span class="built_in">dfs</span>(u + <span class="number">1</span>);</span><br><span class="line">                path[u][i] = <span class="string">&#x27;.&#x27;</span>;</span><br><span class="line">                col[i] = dg[u - i + n] = udg[u + i] = <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="52-N皇后-II"><a href="#52-N皇后-II" class="headerlink" title="52. N皇后 II"></a>52. N皇后 II</h2><p>n 皇后问题 研究的是如何将 n 个皇后放置在 n×n 的棋盘上，<br>并且使皇后彼此之间不能相互攻击。<br>给你一个整数n ，返回n皇后问题不同的解决方案的数量。</p>
+<p>与上题一样</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line">    vector&lt;<span class="keyword">bool</span>&gt; col, dg, udg;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">totalNQueens</span><span class="params">(<span class="keyword">int</span> _n)</span> </span>&#123;</span><br><span class="line">        n = _n;</span><br><span class="line">        col = vector&lt;<span class="keyword">bool</span>&gt;(n);</span><br><span class="line">        dg = udg = vector&lt;<span class="keyword">bool</span>&gt;(<span class="number">2</span> * n);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">dfs</span>(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(u == n) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!col[i] &amp;&amp; !dg[u - i + n] &amp;&amp; !udg[u + i])&#123;</span><br><span class="line">                col[i] = dg[u - i + n] = udg[u + i] = <span class="literal">true</span>;</span><br><span class="line">                res += <span class="built_in">dfs</span>(u + <span class="number">1</span>);</span><br><span class="line">                col[i] = dg[u - i + n] = udg[u + i] = <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="53-最大子序和"><a href="#53-最大子序和" class="headerlink" title="53. 最大子序和"></a>53. 最大子序和</h2><p>给定一个整数数组 nums ，<br>找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p>
+<p>DP<br>状态表示 f[i] 所有以nums[i] 为结尾的区间中的最大和为多少</p>
+<p>状态划分<br>    区间长度 大于等于2            f(i - 1) + nums[i]<br>             nums[i] 自己        nums[i]</p>
+<p>f[i] = max(f(i - 1) + nums[i] , nums[i])<br>     = nums[i] + max(f(i - 1), 0)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = INT_MIN;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>, last = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">            last = nums[i] + <span class="built_in">max</span>(last, <span class="number">0</span>);</span><br><span class="line">            res = <span class="built_in">max</span>(res, last);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="54-螺旋矩阵"><a href="#54-螺旋矩阵" class="headerlink" title="54. 螺旋矩阵"></a>54. 螺旋矩阵</h2><p>给你一个 m 行 n 列的矩阵 matrix ，<br>请按照顺时针螺旋顺序 ，返回矩阵中的所有元素。</p>
+<p>定义四个方向 走到头走下一个方向 </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">spiralOrder</span><span class="params">(vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; matrix)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line">        <span class="keyword">int</span> n = matrix.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span>(!n) <span class="keyword">return</span> res;</span><br><span class="line">        <span class="keyword">int</span> m = matrix[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> dx[] = &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>&#125;, dy[] = &#123;<span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>, <span class="number">0</span>&#125;;</span><br><span class="line">        vector&lt;vector&lt;<span class="keyword">bool</span>&gt;&gt; <span class="built_in">st</span>(n, vector&lt;<span class="keyword">bool</span>&gt; (m));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>, x = <span class="number">0</span>, y = <span class="number">0</span>, d = <span class="number">0</span>; i &lt; m * n; i++)&#123;</span><br><span class="line">            res.<span class="built_in">push_back</span>(matrix[x][y]);</span><br><span class="line">            st[x][y] = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">int</span> a =  x + dx[d], b = y + dy[d];</span><br><span class="line">            <span class="keyword">if</span>(a &lt; <span class="number">0</span> || a &gt;= n|| b &lt; <span class="number">0</span> || b &gt;= m || st[a][b])&#123;</span><br><span class="line">                d = (d + <span class="number">1</span>) % <span class="number">4</span>;</span><br><span class="line">                a = x + dx[d], b = y + dy[d];</span><br><span class="line">            &#125;</span><br><span class="line">            x = a, y = b;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="55-跳跃游戏"><a href="#55-跳跃游戏" class="headerlink" title="55. 跳跃游戏"></a>55. 跳跃游戏</h2><p>给定一个非负整数数组 nums ，你最初位于数组的 第一个下标 。<br>数组中的每个元素代表你在该位置可以跳跃的最大长度。<br>判断你是否能够到达最后一个下标。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">canJump</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(j &lt; i) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            j = <span class="built_in">max</span>(j, i + nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="56-合并区间"><a href="#56-合并区间" class="headerlink" title="56. 合并区间"></a>56. 合并区间</h2><p>以数组 intervals 表示若干个区间的集合<br>其中单个区间为 intervals[i] = [starti, endi] 。请你合并所有重叠的区间，<br>并返回一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间。</p>
+<p>模板题<br>1.按左端点排序 顺次处理<br>2.下一个有交集 更新右端点<br>    没交集     则保存当前区间</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">merge</span>(vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; a) &#123;</span><br><span class="line">        vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; res;</span><br><span class="line">        <span class="keyword">if</span>(a.<span class="built_in">empty</span>()) <span class="keyword">return</span> res;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">sort</span>(a.<span class="built_in">begin</span>(), a.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">int</span> l = a[<span class="number">0</span>][<span class="number">0</span>], r = a[<span class="number">0</span>][<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; a.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(a[i][<span class="number">0</span>] &gt; r)&#123;</span><br><span class="line">                res.<span class="built_in">push_back</span>(&#123;l, r&#125;);</span><br><span class="line">                l = a[i][<span class="number">0</span>], r = a[i][<span class="number">1</span>];</span><br><span class="line">            &#125;<span class="keyword">else</span> r = <span class="built_in">max</span>(r, a[i][<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        res.<span class="built_in">push_back</span>(&#123;l, r&#125;);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="57-插入区间"><a href="#57-插入区间" class="headerlink" title="57. 插入区间"></a>57. 插入区间</h2><p>给你一个 无重叠的 ，按照区间起始端点排序的区间列表。<br>在列表中插入一个新的区间，你需要确保列表中的区间仍然有序且不重叠<br>（如果有必要的话，可以合并区间）。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">insert</span>(vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; a, vector&lt;<span class="keyword">int</span>&gt;&amp; b) &#123;</span><br><span class="line">        vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; res;</span><br><span class="line">        <span class="keyword">int</span> k = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(k &lt; a.<span class="built_in">size</span>() &amp;&amp; a[k][<span class="number">1</span>] &lt; b[<span class="number">0</span>]) res.<span class="built_in">push_back</span>(a[k ++]);      <span class="comment">//左边完全没有交集的部分</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(k &lt; a.<span class="built_in">size</span>())&#123;</span><br><span class="line">            b[<span class="number">0</span>] = <span class="built_in">min</span>(b[<span class="number">0</span>], a[k][<span class="number">0</span>]);</span><br><span class="line">            <span class="keyword">while</span>(k &lt; a.<span class="built_in">size</span>() &amp;&amp; a[k][<span class="number">0</span>] &lt;= b[<span class="number">1</span>]) b[<span class="number">1</span>] = <span class="built_in">max</span>(b[<span class="number">1</span>], a[k++][<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        res.<span class="built_in">push_back</span>(b);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(k &lt; a.<span class="built_in">size</span>()) res.<span class="built_in">push_back</span>(a[k++]);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="58-最后一个单词的长度"><a href="#58-最后一个单词的长度" class="headerlink" title="58. 最后一个单词的长度"></a>58. 最后一个单词的长度</h2><p>给你一个字符串 s，由若干单词组成，单词之间用空格隔开。<br>返回字符串中最后一个单词的长度。<br>如果不存在最后一个单词，请返回 0 。<br>单词 是指仅由字母组成、不包含任何空格字符的最大子字符串。</p>
+<p>stringstream/ 双指针</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">lengthOfLastWord</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = s.<span class="built_in">size</span>() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s[i] == <span class="string">&#x27; &#x27;</span>) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">int</span> j = i - <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span>(j &gt;= <span class="number">0</span> &amp;&amp; s[j] != <span class="string">&#x27; &#x27;</span>) j--;</span><br><span class="line">            <span class="keyword">return</span> i - j;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="59-螺旋矩阵-II"><a href="#59-螺旋矩阵-II" class="headerlink" title="59. 螺旋矩阵 II"></a>59. 螺旋矩阵 II</h2><p>给你一个正整数 n ，生成一个包含 1 到 n2 所有元素，<br>且元素按顺时针顺序螺旋排列的 n x n 正方形矩阵 matrix 。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">generateMatrix</span>(<span class="keyword">int</span> n) &#123;</span><br><span class="line">        vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">res</span>(n, vector&lt;<span class="keyword">int</span>&gt; (n));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> dx[] = &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>&#125;, dy[] = &#123;<span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>, <span class="number">0</span>&#125;;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>, x = <span class="number">0</span>, y = <span class="number">0</span>, d = <span class="number">0</span>; i &lt;= n * n; i++)&#123;</span><br><span class="line">            res[x][y] = i;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">int</span> a =  x + dx[d], b = y + dy[d];</span><br><span class="line">            <span class="keyword">if</span>(a &lt; <span class="number">0</span> || a &gt;= n|| b &lt; <span class="number">0</span> || b &gt;= n || res[a][b])&#123;</span><br><span class="line">                d = (d + <span class="number">1</span>) % <span class="number">4</span>;</span><br><span class="line">                a = x + dx[d], b = y + dy[d];</span><br><span class="line">            &#125;</span><br><span class="line">            x = a, y = b;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="60-排列序列"><a href="#60-排列序列" class="headerlink" title="60. 排列序列"></a>60. 排列序列</h2><p>给出集合 [1,2,3,…,n]，其所有元素共有 n! 种排列。<br>按大小顺序列出所有排列情况，并一一标记，当 n = 3 时, 所有排列如下：<br>“123”<br>“132”<br>“213”<br>“231”<br>“312”<br>“321”<br>给定 n 和 k，返回第 k 个排列。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.语法做法	O n!*k</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">getPermutation</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        string res;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) res += <span class="built_in">to_string</span>(i);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k - <span class="number">1</span>; i++)&#123;</span><br><span class="line">            <span class="built_in">next_permutation</span>(res.<span class="built_in">begin</span>(), res.<span class="built_in">end</span>());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//2.计数DP	每一位填几都能确定在哪个区间 O n^2</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">getPermutation</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        string res;</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">bool</span>&gt; <span class="title">st</span><span class="params">(<span class="number">10</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> fact = <span class="number">1</span>;</span><br><span class="line">			<span class="comment">//后面数的阶乘为个数</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n - i - <span class="number">1</span>; j++) fact *= j;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(!st[j])&#123;</span><br><span class="line">                    <span class="keyword">if</span>(fact &lt; k) k -= fact;</span><br><span class="line">                    <span class="keyword">else</span>&#123;</span><br><span class="line">                        res += <span class="built_in">to_string</span>(j);</span><br><span class="line">                        st[j] = <span class="literal">true</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">LeetCode狂刷</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/07/03/LeetCode%E7%8B%82%E5%88%B76/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+ <!--添加代码开始-->
+
+        <div class="declare" hidden="hidden"></div>
+      
+  
     <article id="post-LeetCode狂刷5" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1148,119 +1260,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/06/29/LeetCode%E7%8B%82%E5%88%B74/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
- <!--添加代码开始-->
-
-        <div class="declare" hidden="hidden"></div>
-      
-  
-    <article id="post-I.MX6ULL笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/29/I.MX6ULL%E7%AC%94%E8%AE%B0/">IMX6ULL基础笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/29/I.MX6ULL%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2021-06-29T14:53:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="芯片介绍"><a href="#芯片介绍" class="headerlink" title="芯片介绍"></a>芯片介绍</h2><p>NXP出品的，528~900MHz的Cortex-A7内核的MPU。<br>Cortex-A7架构</p>
-<h3 id="I-MX6U-IO表示形式"><a href="#I-MX6U-IO表示形式" class="headerlink" title="I.MX6U IO表示形式"></a>I.MX6U IO表示形式</h3><p>STM32：管脚名字：PA0<del>15，PB0</del>15 PC、PD…</p>
-<p>I.MX6ULL: 管脚名字：PAD_BOOT_MODE0，管脚的复用功能：<br>IOMUXC_SNVS_SW_MUX_CTL_PAD_BOOT_MODE0<br>IOMUXC_SNVS_SW_PAD_CTL_PAD_BOOT_MODE0<br>对于6ULL，查看管脚复用的步骤：<br>① 打开参考手册<br>② 找到IO复用章节(32章)<br>③ 查找对应的管脚。</p>
-<h2 id="Linux-C编程"><a href="#Linux-C编程" class="headerlink" title="Linux C编程"></a>Linux C编程</h2><p>使用VIM编辑器编写程序，也可以使用vscode。</p>
-<h3 id="设置vim编辑器，一个TAB-4个字节。"><a href="#设置vim编辑器，一个TAB-4个字节。" class="headerlink" title="设置vim编辑器，一个TAB=4个字节。"></a>设置vim编辑器，一个TAB=4个字节。</h3><h3 id="设置vim编译器，显示行号。"><a href="#设置vim编译器，显示行号。" class="headerlink" title="设置vim编译器，显示行号。"></a>设置vim编译器，显示行号。</h3><p>用 vi 打开文件/etc/vim/vimrc，<br>在此文件最后面输入如下代码：<br>set ts=4<br>set nu</p>
-<h3 id="使用gcc编译器编译C程序。"><a href="#使用gcc编译器编译C程序。" class="headerlink" title="使用gcc编译器编译C程序。"></a>使用gcc编译器编译C程序。</h3><p>gcc -v 查看版本号<br>gcc main.c 编译c文件 输出为本目录 .out 文件<br>-O -O2 优化 但编译过程会变慢</p>
-<p>GCC 编译器的编译流程是：预处理、汇编、编译和链接。</p>
-<h2 id="makefile基础"><a href="#makefile基础" class="headerlink" title="makefile基础"></a>makefile基础</h2><p>书籍《跟我一起写Makefile》</p>
-<p>make：一般说GNU Make，是一个软件，用于将源代码文件编译为可执行的二进制文件，<br>make工具主要用于完成自动化编译。make工具编译的时候需要Makefile文件提供编译文件。</p>
-<p>Makefile：make工具所使用的文件，Makefile指明了编译规则。</p>
-<h3 id="makefile语法"><a href="#makefile语法" class="headerlink" title="makefile语法"></a>makefile语法</h3><h4 id="Makefile规则格式"><a href="#Makefile规则格式" class="headerlink" title="Makefile规则格式"></a>Makefile规则格式</h4><p>目标 … ： 依赖文件集合……<br>    命令1<br>    命令2<br>    …</p>
-<p>eg:<br>main: main.o input.o calcu.o<br>    gcc -o main main.o input.o calcu.o</p>
-<p>总结一下， Makefile 中规则用来描述在什么情况下使用什么命令来构建一个特定的文件，<br>这个文件就是规则的“目标”，为了生成这个“目标”而作为材料的其它文件称为“目标”的依<br>赖，规则的命令是用来创建或者更新目标的。<br>除了 Makefile 的“终极目标”所在的规则以外，其它规则的顺序在 Makefile 中是没有意义<br>的，“终极目标”就是指在使用 make 命令的时候没有指定具体的目标时， make 默认的那个目<br>标，它是 Makefile 文件中第一个规则的目标，如果 Makefile 中的第一个规则有多个目标，那么<br>这些目标中的第一个目标就是 make 的“终极目标”。</p>
-<h4 id="Makefile-变量"><a href="#Makefile-变量" class="headerlink" title="Makefile 变量"></a>Makefile 变量</h4><ol>
-<li>赋值符 =<br>使用“=”在给变量的赋值的时候，<br>不一定要用已经定义好的值，也可以使用后面定义的值，</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">name &#x3D; xbs</span><br><span class="line">curname &#x3D; $(name)</span><br><span class="line">name &#x3D; xbs5520</span><br><span class="line"></span><br><span class="line">print:</span><br><span class="line">	@echo curname: $(curname)</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>赋值号 :=</li>
-</ol>
-<p>赋值符“:=”不会使用后面定义的变量，<br>只能使用前面已经定义好的，这就是“=”和“:=”两个的区别。</p>
-<ol start="3">
-<li>赋值号 ?=</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curname ?&#x3D; xbs5520</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>如果变量 curname 前面没有被赋值，那么此变量就是“xbs5520”，<br>如果前面已经赋过值了，那么就使用前面赋的值。</p>
-<p>4 追加变量 +=</p>
-<p>Makefile中的变量是字符串，有时候我们需要给前面已经定义好的变量添加一些字符串进去，<br>此时就要使用到符号“+=”</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">objects = main.o inpiut.o</span><br><span class="line">objects += calcu.o</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>一开始变量 objects 的值为“main.o input.o”，后面我们给他追加了一个“calcu.o”，因此变<br>量 objects 变成了“main.o input.o calcu.o”，这个就是变量的追加。</p>
-<h2 id="Linux-连接文件"><a href="#Linux-连接文件" class="headerlink" title="Linux 连接文件"></a>Linux 连接文件</h2><p>Linux有两种连接文件：符号连接(软连接)和硬链接，符号链接类似Windows下的快捷方式。<br>硬链接通过文件系统的inode连接来产生新文件名，而不是产生新文件。<br>inode：记录文件属性，一个文件一个inode。<br>inode相当于文件ID，查找文件的时候要先找到inode，然后才能读出文件的内容。</p>
-<h3 id="ln命令"><a href="#ln命令" class="headerlink" title="ln命令"></a>ln命令</h3><p>用于创建连接文件：<br>ln [选项] 源文件 目标文件<br>选项：-s 创建符号链接(软连接)<br>      -f 强制创建连接文件，如果目标存在，那么先删除掉目标文件，然后再建立连接文件。</p>
-<h3 id="硬连接"><a href="#硬连接" class="headerlink" title="硬连接"></a>硬连接</h3><p>硬链接是多个文件都指向同一个inode，硬链接知识点：<br>    ①具有相同inode的多个文件互为硬链接文件，创建硬链接相当于文件实体多了入口。<br>    ②对于硬链接文件，只有删除了源文件以及对应的所有硬连接文件，文件实体才会被删除。<br>    ③根据硬链接文件的特点，我们可以通过给文件创建硬连接的方式来防止文件误删除。<br>    ④不论修改源文件还是连接文件，另一个文件的数据都会被改变。<br>    ⑤硬连接不能跨文件系统。<br>    ⑥硬连接不能连接到目录。<br>因为以上这些限制，硬链接其实不常用。</p>
-<h3 id="符号连接-软连接"><a href="#符号连接-软连接" class="headerlink" title="符号连接(软连接)"></a>符号连接(软连接)</h3><p>符号连接类似Windows下的快捷方式，符号链接也叫做软连接，软连接要用的多。<br>符号连接相当于创建了一个独立的文件，这个文件会让数据读取指向它连接的哪个文件的文件名。<br>软连接的特点：<br>    ①可以连接到目录。<br>    ②可以跨文件系统。<br>    ③删除源文件以后，软连接文件也就“打不开了”。<br>    ④符号连接文件通过-&gt;来指示具体的连接文件。<br>    ⑤符号连接要使用绝对路径，否则连接出问题。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">嵌入设相关</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/29/I.MX6ULL%E7%AC%94%E8%AE%B0/">展开全文 >></a>
         </p>
       
 
