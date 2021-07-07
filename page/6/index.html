@@ -6,19 +6,16 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>第二章 应用层 | xbs5520&#39;s blog</title>
+  <title>xbs5520&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="目标：网络应用的原理：网络应用协议的概念和实现方面网络应用的实例：互联网流行的应用层协议编程：网应用程序 Socket API 1. 应用层原理创建一个新的网络运用编程 搭建服务器网络核心中无应用 体系结构可能的应用架构1. C-S服务器一直运行固定端口&#x2F;IP客户端请求资源 缺点：可扩展性差 服务能力随着用户增加达到阈值断崖式下降 P2P        peer to peer几乎没有一直运行的服">
-<meta property="og:type" content="article">
-<meta property="og:title" content="第二章 应用层">
-<meta property="og:url" content="http://yoursite.com/2021/06/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0/index.html">
+  <meta name="description" content="记录每日学习内容">
+<meta property="og:type" content="website">
+<meta property="og:title" content="xbs5520&#39;s blog">
+<meta property="og:url" content="http://yoursite.com/page/6/index.html">
 <meta property="og:site_name" content="xbs5520&#39;s blog">
-<meta property="og:description" content="目标：网络应用的原理：网络应用协议的概念和实现方面网络应用的实例：互联网流行的应用层协议编程：网应用程序 Socket API 1. 应用层原理创建一个新的网络运用编程 搭建服务器网络核心中无应用 体系结构可能的应用架构1. C-S服务器一直运行固定端口&#x2F;IP客户端请求资源 缺点：可扩展性差 服务能力随着用户增加达到阈值断崖式下降 P2P        peer to peer几乎没有一直运行的服">
+<meta property="og:description" content="记录每日学习内容">
 <meta property="og:locale">
-<meta property="article:published_time" content="2021-06-10T08:23:23.000Z">
-<meta property="article:modified_time" content="2021-06-22T14:48:44.972Z">
 <meta property="article:author" content="xbs5520">
-<meta property="article:tag" content="计算机网络自顶向下">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="xbs5520&#39;s blog" type="application/atom+xml">
@@ -141,179 +138,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-计算机网络自顶向下第二章" class="article article-type-post " itemscope itemprop="blogPost">
+            
+  
+    <article id="post-Math" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      第二章 应用层
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/04/12/Math/">Math有关算法题</a>
     </h1>
   
 
         
-        <a href="/2021/06/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0/" class="archive-article-date">
-  	<time datetime="2021-06-10T08:23:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-10</time>
+        <a href="/2021/04/12/Math/" class="archive-article-date">
+  	<time datetime="2021-04-12T08:41:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-12</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>目标：<br>网络应用的原理：网络应用协议的概念和实现方面<br>网络应用的实例：互联网流行的应用层协议<br>编程：网应用程序 Socket API</p>
-<h2 id="1-应用层原理"><a href="#1-应用层原理" class="headerlink" title="1. 应用层原理"></a>1. 应用层原理</h2><p>创建一个新的网络运用<br>编程 搭建服务器<br>网络核心中无应用</p>
-<h3 id="体系结构"><a href="#体系结构" class="headerlink" title="体系结构"></a>体系结构</h3><p>可能的应用架构<br>1.</p>
-<h4 id="C-S"><a href="#C-S" class="headerlink" title="C-S"></a>C-S</h4><p>服务器一直运行<br>固定端口/IP<br>客户端请求资源</p>
-<p>缺点：可扩展性差 服务能力随着用户增加达到阈值断崖式下降</p>
-<h4 id="P2P-peer-to-peer"><a href="#P2P-peer-to-peer" class="headerlink" title="P2P        peer to peer"></a>P2P        peer to peer</h4><p>几乎没有一直运行的服务器<br>服务能力必须有节点上线<br>每个peer既是客户端又是服务器</p>
-<h4 id="混合体"><a href="#混合体" class="headerlink" title="混合体"></a>混合体</h4><p>向服务器请求<br>再向next用户进行分享</p>
-<h3 id="进程通信"><a href="#进程通信" class="headerlink" title="进程通信"></a>进程通信</h3><p>进程：在主机上运行的应用程序<br>在同一个主机内 使用进程间通信机制通信（操作系统定义）<br>不同主机间通过交换报文(Message)来通信<br>使用OS提供的通信服务<br>按照应用协议交换报文</p>
-<p>C-S<br>客户端进程：发起通信的进程<br>服务器进程：等待连接的进程</p>
-<h3 id="分布式进程通信需要解决的问题"><a href="#分布式进程通信需要解决的问题" class="headerlink" title="分布式进程通信需要解决的问题"></a>分布式进程通信需要解决的问题</h3><p>1.进程标展示和寻址<br>主机IP<br>所采用协议：TCP/UDP<br>端口号port</p>
-<p>2.传输层-应用层提供服务是如何进行的<br>位置 SAP        TCP/IP:socket<br>形式 API        TCP/IP:socket API</p>
-<p>传输信息<br>SDU 报文<br>UDP 端口<br>对方 UDP 端口</p>
-<p>TCP/UDP 将上述进行封装</p>
-<p>如果利用Socket API每次传输报文都携带如此多的信息，则会太繁琐<br>用代号（整数）标示通信双方或者单方 socket</p>
-<h4 id="TCP-socket：与端口号进行区分"><a href="#TCP-socket：与端口号进行区分" class="headerlink" title="TCP socket：与端口号进行区分"></a>TCP socket：与端口号进行区分</h4><p>可以用一个整数表示两个应用实体之间的通信关系，本地标示！！<br>信息较少 便于管理</p>
-<p>对于使用面向连接服务TCP的应用而言，套接字是4元组的一个具有本地意义的标示<br>4元组：(源IP 源port 目标IP 目标port)<br>唯一的制定了一个两进程之间的会话<br>使用这个标示与远程应用进行通信<br>不必要在每一个报文都发送4元组<br>简单便于管理</p>
-<h4 id="UDP-socket"><a href="#UDP-socket" class="headerlink" title="UDP socket"></a>UDP socket</h4><p>每个报文都是独立传输的<br>前后报文可能给不同的分布式 进程<br>因此只能用一个整数表示本应用实体的标示<br>因为这个报文可能传给另一个分布式进程<br>穿过层间接口的信息大小最小<br>UDP socket 本IP 本端口<br>但是传输报文时 需要提供对方 IP、port<br>接受报文时 传输层需要上传对方的 IP、port</p>
-<p>2元组 (源IP 源port )</p>
-<p>3.如何使用传输层提供的服务，实现应用进程之间的报文交换，实现应用<br>定义应用层协议：报文格式 解释 时序等<br>编制程序</p>
-<h2 id="2-Web与HTTP"><a href="#2-Web与HTTP" class="headerlink" title="2.Web与HTTP"></a>2.Web与HTTP</h2><h3 id="Web页"><a href="#Web页" class="headerlink" title="Web页"></a>Web页</h3><p>由一些对象组成<br>对象可以是HTML文件 JPEG图像 Java程序 声音剪辑文件等</p>
-<p>Web页内含有一个基本的HTML文件，该基本HTML文件又包含若干对象的引用<br>通过URL对每个对象进行引用<br>访问协议、用户名、口令字、端口等</p>
-<p>URL格式：<br>协议名://用户:口令 主机名 路径名 端口</p>
-<h3 id="HTTP概述"><a href="#HTTP概述" class="headerlink" title="HTTP概述"></a>HTTP概述</h3><p>超文本传输协议<br>CS模式</p>
-<p>使用TCP：<br>客户发起一个与服务器的TCP连接端口号为80<br>服务器接受客户的TCP连接<br>在浏览器HTTP客户端 与 服务器HTTP服务器 交换 HTTP报文<br>TCp连接关闭</p>
-<h3 id="HTTP是无状态的"><a href="#HTTP是无状态的" class="headerlink" title="HTTP是无状态的"></a>HTTP是无状态的</h3><p>服务器并不维护关于客户的任何信息</p>
-<p>维护状态的协议很复杂<br>必须维护历史信息<br>如果服务器/客户端死机，它们信息状态可能不一致<br>无状态的服务器能够支持更多的客户端</p>
-<h3 id="HTTP连接"><a href="#HTTP连接" class="headerlink" title="HTTP连接"></a>HTTP连接</h3><p>非持久HTTP<br>最多只有一个对象在TCP连接上发送<br>下载多个对象需要多个TCP连接<br>HTTP1.0使用非持久连接</p>
-<p>持久HTTP 连接不关闭<br>多个对象可以在一个TCP连接上传输<br>HTTP1.1默认使用持久连接</p>
-<h3 id="响应时间模型"><a href="#响应时间模型" class="headerlink" title="响应时间模型"></a>响应时间模型</h3><p>往返时间 RTT<br>一个小的分组从C到S再回到C的时间<br>一个RTT发起TCP<br>一个RTT用来请求HTTP并等待HTTP响应<br>文件传输时间<br>共 2RTT + 传输时间</p>
-<p>非持久HTTP缺点<br>每个对象需要两个RTT<br>操作系统必须为每个TCP连接分配资源</p>
-<p>持久HTTP<br>在相同客户端和服务器之间的后续请求和响应报文通过相同的连接进行传送<br>客户端在遇到一个引用对象的时候，就可以尽快发送该对象的请求</p>
-<p>非流水持久和流水持久HTTP</p>
-<h3 id="HTTP请求报文"><a href="#HTTP请求报文" class="headerlink" title="HTTP请求报文"></a>HTTP请求报文</h3><p>请求<br>ACSII (人可读)</p>
-<p>请求行（GET POST HEAD）<br>首部行</p>
-<p>提交表单输入</p>
-<p>POST 方式<br>网页通常包括表单输入<br>包含在实体主体中的输入被提交到服务器</p>
-<p>URL方式<br>方法：GET<br>输入通过请求行的URL字段上载</p>
-<h3 id="HTTP响应报文"><a href="#HTTP响应报文" class="headerlink" title="HTTP响应报文"></a>HTTP响应报文</h3><p>状态行(协议版本、状态码和相应状态信息)<br>首部行<br>数据，如请求的HTML文件</p>
-<p>HTTP相应状态码</p>
-<p>200 OK<br>301 Moved Permanently<br>400 Bad Request<br>404 Not Found<br>505 HTTP Version Not Supported</p>
-<h3 id="CS状态-cookies"><a href="#CS状态-cookies" class="headerlink" title="CS状态 cookies"></a>CS状态 cookies</h3><p>4个组成部分<br>1.在HTTP响应报文中有一个cookie的首部行<br>2.在HTTP请求报文含有一个cookie的首部行<br>3.在用户端系统保留一个cookie文件，由用户的浏览器管理<br>4.在Web站点有一个后端数据库</p>
-<h3 id="Web缓存-代理服务器"><a href="#Web缓存-代理服务器" class="headerlink" title="Web缓存(代理服务器)"></a>Web缓存(代理服务器)</h3><p>目标：不访问原始服务器，就满足客户的请求<br>用户设置浏览器：通过缓存访问Web<br>浏览器将所有的HTTP请求发给缓存</p>
-<p>条件式get获取请求<br>如果后续改变则修改缓存 否则不用修改<br>解决缓存版本与服务器不一致的情况</p>
-<h2 id="3-FTP"><a href="#3-FTP" class="headerlink" title="3.FTP"></a>3.FTP</h2><p>状态<br>用户端-&gt;FTP用户接口-&gt;FTP客户端-&gt;FTP服务器</p>
-<p>FTP客户端之间通过端口进行联系并使用TCP为传输协议<br>FTP控制连接与数据连接分开<br>客户端通过控制连接获得身份确认<br>客户端通过控制连接发送命令浏览远程目录<br>收到一个文件传输命令时，服务器打开一个到客户端的数据连接<br>一个文件传输完成后服务器关闭丽娜姐</p>
-<h2 id="4-Email"><a href="#4-Email" class="headerlink" title="4.Email"></a>4.Email</h2><p>三个组成部分</p>
-<h3 id="用户代理"><a href="#用户代理" class="headerlink" title="用户代理"></a>用户代理</h3><p>客户端软件 </p>
-<h3 id="邮件服务器"><a href="#邮件服务器" class="headerlink" title="邮件服务器"></a>邮件服务器</h3><p>邮箱中管理和维护发送给用户的邮件<br>输出报文队列保持待发送邮件报文<br>邮件服务器之间的SMTP协议：发送email报文</p>
-<h3 id="简单邮件传输协议：SMTP"><a href="#简单邮件传输协议：SMTP" class="headerlink" title="简单邮件传输协议：SMTP"></a>简单邮件传输协议：SMTP</h3><p>使用TCP 在CS之间传送报文端口号为25</p>
-<p>直接传输：从发送方服务器到接收方服务器</p>
-<p>传输的三个阶段：握手 传输报文 关闭</p>
-<p>命令响应交互：<br>命令 ASCII文本<br>响应 状态码和状态信息</p>
-<p>SMTP 使用持久连接<br>报文必须为7位ASCII</p>
-<p>HTTP 拉 pull(POP3 TMAP HTTP)<br>SMTP 推 push</p>
-<p>HTTP 每个响应报最多一个对象<br>SMTP 多个对象可封装到一个message当中</p>
-<p>用户代理 –SMTP– 发送方邮件服务器 –SMTP– 接收方邮件服务器 –pull– 用户代理</p>
-<p>pop3：邮局访问协议 用户身份确认并下载</p>
-<p>IMAP Internet邮件访问协议<br>更多特性（更复杂）<br>在服务器上处理存储的报文</p>
-<p>HTTP 方便</p>
-<h2 id="5-DNS"><a href="#5-DNS" class="headerlink" title="5.DNS"></a>5.DNS</h2><p>给其他应用使用的应用</p>
-<p>解析系统<br>域名与IP地址的转换</p>
-<p>IP地址 功能<br>寻址 标识</p>
-<h3 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h3><p>分层、基于域的命名机制<br>若干分布式的数据库完成名字到IP地址的转换<br>运行再UDP之上端口号为53的应用服务<br>核心的Internet 功能 但以应用层协议实现</p>
-<h3 id="主要目的"><a href="#主要目的" class="headerlink" title="主要目的"></a>主要目的</h3><p>实现主机名-IP地址的转换<br>其他目的<br>别名-规范名字的转换 使服务器负载均衡</p>
-<h3 id="DNS域名结构"><a href="#DNS域名结构" class="headerlink" title="DNS域名结构"></a>DNS域名结构</h3><p>一个层面命名设备会有很多重名<br>DNS采用层次树状结构的命名方法<br>Internet根被划为几百个顶级域<br>每个域下面可划分若干子域<br>树叶是主机</p>
-<p>共有13个根名字服务器</p>
-<h3 id="域名-Domain-Name"><a href="#域名-Domain-Name" class="headerlink" title="域名 Domain Name"></a>域名 Domain Name</h3><p>从本域往上，直到树根<br>中间使用. 间隔不同的级别<br>域的域名：可以用于表示一个域<br>主机的域名：一个域上的一个主机</p>
-<p>一个域管理其下的子域<br>创建一个新的域必须征得他所属域的同意</p>
-<p>域遵从组织网络界限，而不是物理网络<br>域的划分是逻辑的，而不是物理的</p>
-<h3 id="区域名字服务器维护资源记录"><a href="#区域名字服务器维护资源记录" class="headerlink" title="区域名字服务器维护资源记录"></a>区域名字服务器维护资源记录</h3><p>资源记录：</p>
-<table>
-<thead>
-<tr>
-<th align="center">DN</th>
-<th align="center">TTL</th>
-<th align="center">Class</th>
-<th align="center">value</th>
-<th align="center">T</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">WWW.</td>
-<td align="center">时效</td>
-<td align="center">IN/Other</td>
-<td align="center">IP地址</td>
-<td align="center">类型标识</td>
-</tr>
-</tbody></table>
-<h3 id="DNS工作过程"><a href="#DNS工作过程" class="headerlink" title="DNS工作过程"></a>DNS工作过程</h3><p>应用调用 解析器<br>解析器作为客户向Name Server发出查询报文<br>Name Server 返回响应报文</p>
-<p>查询域名到IP地址的关系<br>迭代查询<br>递归查询 </p>
-<h2 id="6-P2P应用"><a href="#6-P2P应用" class="headerlink" title="6.P2P应用"></a>6.P2P应用</h2><p>没有一直运行的服务器<br>任意端系统可以直接通信<br>利用oeer的服务能力<br>Peer节点间歇上网，每次IP地址都有可能变化</p>
-<p>文件分发 流媒体 VoIP等</p>
-<h3 id="非结构化P2P"><a href="#非结构化P2P" class="headerlink" title="非结构化P2P"></a>非结构化P2P</h3><p>具有邻居关系<br>Overlay 覆盖网（逻辑网）<br>任意建立关系</p>
-<p>集中化目录 可以维护当前活跃的 以及其资源<br>单点故障<br>性能瓶颈<br>侵犯版权</p>
-<p>完全分布式 没有中心节点<br>泛洪 flooding 查询</p>
-<p>混合体 组长和组员<br>先在组内查询 没有再向外查询</p>
-<p>利用hash对文件进行唯一标识</p>
-<p>BitTorrent 利用bitmap 表示自己拥有资源信息</p>
-<h3 id="DHT-结构化-P2P"><a href="#DHT-结构化-P2P" class="headerlink" title="DHT(结构化)P2P"></a>DHT(结构化)P2P</h3><p>构成树或环的关系 </p>
-<h2 id="7-视频流化服务和CDN"><a href="#7-视频流化服务和CDN" class="headerlink" title="7.视频流化服务和CDN"></a>7.视频流化服务和CDN</h2><p>内容加速地服务<br>在全球部署很多缓存节点 将视频先存入节点 进行加速</p>
-<p>视频为图像的序列</p>
-<p>时间空间上的冗余度 进行压缩</p>
-<p>streaming 流化服务<br>下载和看并行</p>
-<h3 id="DASH-流化服务常用协议"><a href="#DASH-流化服务常用协议" class="headerlink" title="DASH 流化服务常用协议"></a>DASH 流化服务常用协议</h3><p>服务器：<br>将视频文件分割成多个块<br>每个块独立存储，编码于不同码率<br>告示文件 提供不同块URL</p>
-<p>客户端：<br>先获取告示文件<br>周期性地策略服务到客户端地带宽<br>查询告示文件，在一个时刻请求一个块，HTTP头部指定字节范围</p>
-<h2 id="8-TCP-socket-编程"><a href="#8-TCP-socket-编程" class="headerlink" title="8.TCP socket 编程"></a>8.TCP socket 编程</h2><p>TCP：可靠的 字节流的服务</p>
-<p>应用进程使用传输层提供的服务才能交换报文，实现应用协议，实现应用<br>TCP/IP 应用进程使用Socket 方式 Socket API</p>
-<p>目标：学习如何构建能借助sockets进行通信的C/S应用程序</p>
-<p>socket：分布式应用进程之间的门，传输层协议提供的端到端服务接口</p>
-<p>服务器首先运行等待连接建立</p>
-<p>1.服务器进程必须先处于运行状态<br>创建欢迎socket<br>和本地端口捆绑<br>在欢迎socket上阻塞式等待接收用户的连接</p>
-<p>客户端主动与服务器建立连接<br>2.创建客户端本地套接字（隐式捆绑到本地port）<br>指定服务器进程的IP地址和端口号，与服务器进程连接</p>
-<p>3.当与客户端连接请求到来时<br>服务器接受来自用户端的请求，解除阻塞式等待，返回一个新的socket 与客户端通信<br>允许服务器与多个客户端通信<br>使用源IP和端口来区分不同的客户端</p>
-<p>4.连接API调用有效时，客户端P与服务器建立了TCP连接</p>
-<h3 id="数据结构-sockaddr-in"><a href="#数据结构-sockaddr-in" class="headerlink" title="数据结构 sockaddr_in"></a>数据结构 sockaddr_in</h3><p>IP地址和port捆绑关系的数据结构（标示进程的端节点）</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span>&#123;</span></span><br><span class="line">	<span class="keyword">short</span> sin_family;			<span class="comment">//地址族</span></span><br><span class="line">	u_short sin_port;			<span class="comment">//端口号</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">in_addr</span> <span class="title">sin_addr</span>;</span>	<span class="comment">//IP地址</span></span><br><span class="line">	<span class="keyword">char</span> sin_zero[<span class="number">8</span>]			<span class="comment">//对齐</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="数据结构-hostent"><a href="#数据结构-hostent" class="headerlink" title="数据结构 hostent"></a>数据结构 hostent</h3><p>域名和IP地址的数据结构</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">host_ent&#123;</span><br><span class="line">	*h_name 		<span class="comment">//主机域名</span></span><br><span class="line">	**h_aliases 	<span class="comment">//二维别名</span></span><br><span class="line">	h_length		<span class="comment">//长度</span></span><br><span class="line">	**h_add_list	<span class="comment">//IP地址列表</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>作为调用域名解析函数时的参数<br>返回后，将IP地址拷贝到sockaddr_in的IP地址部分</p>
-
+        <h2 id="1-LeetCode-263-丑数"><a href="#1-LeetCode-263-丑数" class="headerlink" title="1.LeetCode 263 丑数"></a>1.LeetCode 263 丑数</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>判断整数n是否为丑数<br>丑数就是只包含质因数2、3或5的正整数。</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>用 2 3 5 循环 除这个数看是否最后结果为 1<br>为1则只有它们 不为1则还有其他</p>
+        
       
 
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
       
     </div>
     <div class="article-info article-info-index">
-      
-        <div class="article-pop-out tagcloud">
-          <i class="icon-tuding"></i>
-          <a class="article-tag-list-link color3">置顶</a>
-        </div>
       
       
 	<div class="article-tag tagcloud">
@@ -321,7 +175,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">计算机网络自顶向下</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">算法题整合</a>
         		</li>
       		
 		</ul>
@@ -330,84 +184,16 @@
       
 
       
-
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/04/12/Math/">展开全文 >></a>
+        </p>
       
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
 
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2021/06/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2021/06/11/%E8%B4%AA%E5%BF%83/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          贪心
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2021/06/02/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E7%AC%AC%E4%B8%80%E7%AB%A0/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">第一章 计算机网络和因特网</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -427,20 +213,95 @@
 
 
 
+ <!--添加代码开始-->
+
+        <div class="declare" hidden="hidden"></div>
+      
   
+    <article id="post-String" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/04/12/String/">String有关算法题</a>
+    </h1>
   
 
-  
+        
+        <a href="/2021/04/12/String/" class="archive-article-date">
+  	<time datetime="2021-04-12T08:41:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-unique-string"><a href="#1-unique-string" class="headerlink" title="1.unique string"></a>1.unique string</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>判断一个字符串中有没有重复字符</p>
+        
+      
 
-  
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">算法题整合</a>
+        		</li>
+      		
+		</ul>
+	</div>
 
-  
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/04/12/String/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
 
  <!--添加代码开始-->
 
         <div class="declare" hidden="hidden"></div>
       
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/5/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
+    </nav>
+  
+
+
           </div>
         </div>
       </div>
@@ -460,8 +321,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: false,
-		isPost: true,
+		isHome: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
