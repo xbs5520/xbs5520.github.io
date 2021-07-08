@@ -6,16 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 嵌入式相关 | xbs5520&#39;s blog</title>
+  <title>c/c++知识点 | xbs5520&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录每日学习内容">
-<meta property="og:type" content="website">
-<meta property="og:title" content="xbs5520&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%9B%B8%E5%85%B3/index.html">
+  <meta name="description" content="关键字C语言宏中”#”和”##”的用法1.(#)字符串化操作符关键字volatile有什么含义？并举出例子volatile提醒编译器它后面所定义的变量随时都有可能改变，因此编译后的程序每次需要存储或读取这个变量的时候，都会直接从变量地址中读取数据。如果没有volatile关键字，则编译器可能优化读取和存储，可能暂时使用寄存器中的值，如果这个变量由别的程序更新了的话，将出现不一致的现象。 1.并行设">
+<meta property="og:type" content="article">
+<meta property="og:title" content="c&#x2F;c++知识点">
+<meta property="og:url" content="http://yoursite.com/2021/07/06/%E5%B5%8C%E5%85%A5%E8%AE%BEc-c++/index.html">
 <meta property="og:site_name" content="xbs5520&#39;s blog">
-<meta property="og:description" content="记录每日学习内容">
+<meta property="og:description" content="关键字C语言宏中”#”和”##”的用法1.(#)字符串化操作符关键字volatile有什么含义？并举出例子volatile提醒编译器它后面所定义的变量随时都有可能改变，因此编译后的程序每次需要存储或读取这个变量的时候，都会直接从变量地址中读取数据。如果没有volatile关键字，则编译器可能优化读取和存储，可能暂时使用寄存器中的值，如果这个变量由别的程序更新了的话，将出现不一致的现象。 1.并行设">
 <meta property="og:locale">
+<meta property="article:published_time" content="2021-07-06T11:13:32.000Z">
+<meta property="article:modified_time" content="2021-07-08T15:24:29.657Z">
 <meta property="article:author" content="xbs5520">
+<meta property="article:tag" content="嵌入式相关">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="xbs5520&#39;s blog" type="application/atom+xml">
@@ -138,36 +141,64 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-嵌入设c-c++" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      c/c++知识点
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/07/06/%E5%B5%8C%E5%85%A5%E8%AE%BEc-c++/" class="archive-article-date">
+
+        
+        <a href="/2021/07/06/%E5%B5%8C%E5%85%A5%E8%AE%BEc-c++/" class="archive-article-date">
   	<time datetime="2021-07-06T11:13:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-06</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/06/%E5%B5%8C%E5%85%A5%E8%AE%BEc-c++/">c/c++知识点</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h2><h3 id="C语言宏中”-”和”-”的用法"><a href="#C语言宏中”-”和”-”的用法" class="headerlink" title="C语言宏中”#”和”##”的用法"></a>C语言宏中”#”和”##”的用法</h3><h4 id="1-字符串化操作符"><a href="#1-字符串化操作符" class="headerlink" title="1.(#)字符串化操作符"></a>1.(#)字符串化操作符</h4><h3 id="关键字volatile有什么含义？并举出例子"><a href="#关键字volatile有什么含义？并举出例子" class="headerlink" title="关键字volatile有什么含义？并举出例子"></a>关键字volatile有什么含义？并举出例子</h3><p>volatile提醒编译器它后面所定义的变量随时都有可能改变，<br>因此编译后的程序每次需要存储或读取这个变量的时候，<br>都会直接从变量地址中读取数据。如果没有volatile关键字，<br>则编译器可能优化读取和存储，可能暂时使用寄存器中的值，<br>如果这个变量由别的程序更新了的话，将出现不一致的现象。</p>
+<p>1.并行设备的硬件寄存器<br>存储器映射的硬件寄存器通常加volatile,因为寄存器随时可以被外设硬件修改。<br>当声明指向设备寄存器的指针时一定要用volatile，它会告诉编辑器不要堆存储在这个地址的数据进行假设</p>
+<p>2.一个中断服务程序中修改的供其他程序检测的变量<br>volatile提醒编辑器，它后面所定义的变量随时都有可能改变。因此编译后的程序每次需要存储或读取这个变量的时候，<br>都会直接从变量地址中读取数据。如果没有volatile关键字，则编译器可能优化读取和存储，可能暂时使用寄存器中的值，<br>如果这个变量由别的程序更新了的话，将出现不一致的现象</p>
+<p>3.多线程应用中被几个任务共享的变量<br>对于如下代码</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">RES[<span class="number">2</span>] = <span class="number">0x55</span>;</span><br><span class="line">RES[<span class="number">3</span>] = <span class="number">0x56</span>;</span><br><span class="line">RES[<span class="number">4</span>] = <span class="number">0x57</span>;</span><br><span class="line">RES[<span class="number">5</span>] = <span class="number">0x58</span>;</span><br></pre></td></tr></table></figure>
+<p>对硬件来说，上述四条语句分别表示不同的操作，会产生四种不同的动作，但编译器会将上述优化，<br>只执行最后一条，若键入volatile，编译器会逐一的进行编译并产生相应的机器代码</p>
+<h3 id="关键字static的作用是什么"><a href="#关键字static的作用是什么" class="headerlink" title="关键字static的作用是什么"></a>关键字static的作用是什么</h3><p>1.在函数体，只会被初始化一次，一个声明为静态的变量在这一函数被调用的过程中维持其值不变<br>2.在模块内(函数体外),一个被声明为静态的变量可以被模块内所用函数访问,但不能被模块外其他函数访问。<br>它是一个本地的全局变量(只能被当前文件使用)<br>3.在模块内，一个被声明的静态函数只可被这一模块内其他函数调用，<br>这个函数被限制在声明它的模块本地范围内使用(只能被当前文件使用)</p>
+<h3 id="C语言中，为什么static变量只初始化一次"><a href="#C语言中，为什么static变量只初始化一次" class="headerlink" title="C语言中，为什么static变量只初始化一次"></a>C语言中，为什么static变量只初始化一次</h3><p>对于所有的对象(不仅仅是静态),初始化都只有一次,而由于静态变量在初始化后一直都没有被销毁,都会保存在内存区域中,<br>所以，不会再次初始化。存放在静态区的变量的声明周期一般比较长,它与整个程序同生共死,所以它只需初始化一次,<br>而auto变量,即自动变量,由于它存放在栈区,一旦函数调用结束,就会被销毁</p>
+<h3 id="extern”C”-的作用是什么"><a href="#extern”C”-的作用是什么" class="headerlink" title="extern”C” 的作用是什么"></a>extern”C” 的作用是什么</h3><p>extern “C”的主要作用是为了能够正确实现C++代码调用其他C语言代码，<br>加上后会指示编译器这部分代码按C语言进行编译，而不是C++的</p>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -179,59 +210,120 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2021/07/06/%E5%B5%8C%E5%85%A5%E8%AE%BEc-c++/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/06/29/I.MX6ULL%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2021-06-29T14:53:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-29</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2021/07/07/LeetCode%E7%8B%82%E5%88%B711/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          101~110
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/07/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%AC%E4%BA%8C%E7%AB%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">第二章 数据的表示和运算</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/06/29/I.MX6ULL%E7%AC%94%E8%AE%B0/">IMX6ULL基础笔记</a>
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">嵌入式相关</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
+  
 
+  
 
+  
+
+ <!--添加代码开始-->
+
+        <div class="declare" hidden="hidden"></div>
+      
           </div>
         </div>
       </div>
@@ -252,9 +344,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
