@@ -6,16 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2021 | xbs5520&#39;s blog</title>
+  <title>151~166 | xbs5520&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录每日学习内容">
-<meta property="og:type" content="website">
-<meta property="og:title" content="xbs5520&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/archives/2021/page/5/index.html">
+  <meta name="description" content="151. 翻转字符串里的单词给你一个字符串 s ，逐个翻转字符串中的所有单词 。单词 是由非空格字符组成的字符串。s 中使用至少一个空格将字符串中的 单词 分隔开。请你返回一个翻转 s 中单词顺序并用单个空格相连的字符串。说明：输入字符串 s 可以在前面、后面或者单词间包含多余的空格。翻转后单词间应当仅用一个空格分隔。翻转后的字符串中不应包含额外的空格。 O11.将整个字符串反转2.将每个单词内部">
+<meta property="og:type" content="article">
+<meta property="og:title" content="151~166">
+<meta property="og:url" content="http://yoursite.com/2021/07/12/LeetCode%E7%8B%82%E5%88%B716/index.html">
 <meta property="og:site_name" content="xbs5520&#39;s blog">
-<meta property="og:description" content="记录每日学习内容">
+<meta property="og:description" content="151. 翻转字符串里的单词给你一个字符串 s ，逐个翻转字符串中的所有单词 。单词 是由非空格字符组成的字符串。s 中使用至少一个空格将字符串中的 单词 分隔开。请你返回一个翻转 s 中单词顺序并用单个空格相连的字符串。说明：输入字符串 s 可以在前面、后面或者单词间包含多余的空格。翻转后单词间应当仅用一个空格分隔。翻转后的字符串中不应包含额外的空格。 O11.将整个字符串反转2.将每个单词内部">
 <meta property="og:locale">
+<meta property="article:published_time" content="2021-07-12T15:26:56.000Z">
+<meta property="article:modified_time" content="2021-07-14T02:46:39.802Z">
 <meta property="article:author" content="xbs5520">
+<meta property="article:tag" content="LeetCode狂刷">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="xbs5520&#39;s blog" type="application/atom+xml">
@@ -138,397 +141,224 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-LeetCode狂刷16" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      151~166
+    </h1>
+  
+
+        
+        <a href="/2021/07/12/LeetCode%E7%8B%82%E5%88%B716/" class="archive-article-date">
+  	<time datetime="2021-07-12T15:26:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-12</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="151-翻转字符串里的单词"><a href="#151-翻转字符串里的单词" class="headerlink" title="151. 翻转字符串里的单词"></a>151. 翻转字符串里的单词</h2><p>给你一个字符串 s ，逐个翻转字符串中的所有单词 。<br>单词 是由非空格字符组成的字符串。s 中使用至少一个空格将字符串中的 单词 分隔开。<br>请你返回一个翻转 s 中单词顺序并用单个空格相连的字符串。<br>说明：<br>输入字符串 s 可以在前面、后面或者单词间包含多余的空格。<br>翻转后单词间应当仅用一个空格分隔。<br>翻转后的字符串中不应包含额外的空格。</p>
+<p>O1<br>1.将整个字符串反转<br>2.将每个单词内部反转</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">reverseWords</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> k = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s[i] == <span class="string">&#x27; &#x27;</span>) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">int</span> j = i, t = k;</span><br><span class="line">            <span class="keyword">while</span>(j &lt; s.<span class="built_in">size</span>() &amp;&amp; s[j] != <span class="string">&#x27; &#x27;</span>) s[t++] = s[j++];</span><br><span class="line">            <span class="built_in">reverse</span>(s.<span class="built_in">begin</span>() + k, s.<span class="built_in">begin</span>() + t);</span><br><span class="line">            s[t++] = <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">            k = t, i = j;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(k) k--;</span><br><span class="line">        s.<span class="built_in">erase</span>(s.<span class="built_in">begin</span>() + k, s.<span class="built_in">end</span>());</span><br><span class="line">        <span class="built_in">reverse</span>(s.<span class="built_in">begin</span>(), s.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="152-乘积最大子数组"><a href="#152-乘积最大子数组" class="headerlink" title="152. 乘积最大子数组"></a>152. 乘积最大子数组</h2><p>给你一个整数数组 nums ，请你找出数组中乘积最大的连续子数组（该子数组中至少包含一个数字），<br>并返回该子数组所对应的乘积。</p>
+<p>记录i前的最小值和最大值2个 进行dp</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxProduct</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">int</span> f = nums[<span class="number">0</span>], g = nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> a = nums[i], fa = f * a, ga = g * a;</span><br><span class="line">            f = <span class="built_in">max</span>(a, <span class="built_in">max</span>(fa, ga));</span><br><span class="line">            g = <span class="built_in">min</span>(a, <span class="built_in">min</span>(fa, ga));</span><br><span class="line">            res = <span class="built_in">max</span>(res, f);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="153-寻找旋转排序数组中的最小值"><a href="#153-寻找旋转排序数组中的最小值" class="headerlink" title="153. 寻找旋转排序数组中的最小值"></a>153. 寻找旋转排序数组中的最小值</h2><p>已知一个长度为 n 的数组，预先按照升序排列，经由 1 到 n 次 旋转 后，得到输入数组。<br>例如，原数组 nums = [0,1,2,4,5,6,7] 在变化后可能得到：<br>若旋转 4 次，则可以得到 [4,5,6,7,0,1,2]<br>若旋转 7 次，则可以得到 [0,1,2,4,5,6,7]<br>注意，数组 [a[0], a[1], a[2], …, a[n-1]] 旋转一次的结果为<br>数组 [a[n-1], a[0], a[1], a[2], …, a[n-2]] 。<br>给你一个元素值互不相同的数组 nums ，它原来是一个升序排列的数组，并按上述情形进行了多次旋转。<br>请你找出并返回数组中的最小元素 。</p>
+<p>二分 简单题</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findMin</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">0</span>, r = nums.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(nums[r] &gt;= nums[l]) <span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">while</span>(l &lt; r)&#123;</span><br><span class="line">            <span class="keyword">int</span> mid = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid] &lt; nums[<span class="number">0</span>]) r = mid;</span><br><span class="line">            <span class="keyword">else</span> l = mid + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums[r];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="154-寻找旋转排序数组中的最小值-II"><a href="#154-寻找旋转排序数组中的最小值-II" class="headerlink" title="154. 寻找旋转排序数组中的最小值 II"></a>154. 寻找旋转排序数组中的最小值 II</h2><p>已知一个长度为 n 的数组，预先按照升序排列，经由 1 到 n 次 旋转 后，得到输入数组。<br>例如，原数组 nums = [0,1,4,4,5,6,7] 在变化后可能得到：<br>若旋转 4 次，则可以得到 [4,5,6,7,0,1,4]<br>若旋转 7 次，则可以得到 [0,1,4,4,5,6,7]</p>
+<p>给你一个可能存在重复元素值的数组 nums ，它原来是一个升序排列的数组，<br>并按上述情形进行了多次旋转。请你找出并返回数组中的 最小元素 。</p>
+<p>将后面与第一个元素相同的删掉<br>转化为第一题</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findMin</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">0</span>, r = nums.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(l &lt; r &amp;&amp; nums[r] == nums[<span class="number">0</span>]) r--;</span><br><span class="line">        <span class="keyword">if</span>(nums[l] &lt;= nums[r]) <span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">while</span>(l &lt; r)&#123;</span><br><span class="line">            <span class="keyword">int</span> mid = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid] &lt; nums[<span class="number">0</span>]) r = mid;</span><br><span class="line">            <span class="keyword">else</span> l = mid + <span class="number">1</span>;</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">return</span> nums[r];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="155-最小栈"><a href="#155-最小栈" class="headerlink" title="155. 最小栈"></a>155. 最小栈</h2><p>设计一个支持 push ，pop ，top 操作，并能在常数时间内检索到最小元素的栈。<br>push(x) —— 将元素 x 推入栈中。<br>pop() —— 删除栈顶的元素。<br>top() —— 获取栈顶元素。<br>getMin() —— 检索栈中的最小元素。</p>
+<p>两个栈 pop为优化后 只能优化常数空间</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MinStack</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    stack&lt;<span class="keyword">int</span>&gt; stk;</span><br><span class="line">    stack&lt;<span class="keyword">int</span>&gt; f;</span><br><span class="line">    <span class="built_in">MinStack</span>() &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        stk.<span class="built_in">push</span>(x);</span><br><span class="line">        <span class="keyword">if</span>(f.<span class="built_in">empty</span>() || f.<span class="built_in">top</span>() &gt;= x) f.<span class="built_in">push</span>(x);</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">//！！！！</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(stk.<span class="built_in">top</span>() &lt;= f.<span class="built_in">top</span>()) f.<span class="built_in">pop</span>();</span><br><span class="line">        stk.<span class="built_in">pop</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> stk.<span class="built_in">top</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getMin</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> f.<span class="built_in">top</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="160-相交链表"><a href="#160-相交链表" class="headerlink" title="160. 相交链表"></a>160. 相交链表</h2><p>给你两个单链表的头节点 headA 和 headB ，请你找出并返回两个单链表相交的起始节点。<br>如果两个链表没有交点，返回 null 。</p>
+<p>两个指针速度一致 走到结尾从另一个开始走 相遇时 a + c + b = b + c + a<br>如果都为空则结束</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="162-寻找峰值"><a href="#162-寻找峰值" class="headerlink" title="162. 寻找峰值"></a>162. 寻找峰值</h2><p>峰值元素是指其值大于左右相邻值的元素。<br>给你一个输入数组 nums，找到峰值元素并返回其索引。数组可能包含多个峰值，在这种情况下，<br>返回 任何一个峰值 所在位置即可。<br>你可以假设 nums[-1] = nums[n] = -∞ 。</p>
+<p>二分</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findPeakElement</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">0</span>, r = nums.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(l &lt; r)&#123;</span><br><span class="line">            <span class="keyword">int</span> mid = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid] &gt; nums[mid + <span class="number">1</span>]) r = mid;</span><br><span class="line">            <span class="keyword">else</span> l = mid + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> r;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="164-最大间距"><a href="#164-最大间距" class="headerlink" title="164. 最大间距"></a>164. 最大间距</h2><p>给定一个无序的数组，找出数组在排序之后，相邻元素之间最大的差值。<br>如果数组元素个数小于 2，则返回 0。</p>
+<p>min max</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maximumGap</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">Range</span>&#123;</span></span><br><span class="line">            <span class="keyword">int</span> min, max;</span><br><span class="line">            <span class="keyword">bool</span> used;</span><br><span class="line">            <span class="built_in">Range</span>(): <span class="built_in">min</span>(INT_MAX), <span class="built_in">max</span>(INT_MIN), <span class="built_in">used</span>(<span class="literal">false</span>)&#123;&#125;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> Min = INT_MAX, Max = INT_MIN;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> x : nums)&#123;</span><br><span class="line">            Min = <span class="built_in">min</span>(Min, x);</span><br><span class="line">            Max = <span class="built_in">max</span>(Max, x);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(n &lt; <span class="number">2</span> || Min == Max) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="function">vector&lt;Range&gt; <span class="title">r</span><span class="params">(n - <span class="number">1</span>)</span></span>;</span><br><span class="line">        <span class="keyword">int</span> len = (Max - Min + n - <span class="number">2</span>) / (n - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> x : nums)&#123;</span><br><span class="line">            <span class="keyword">if</span>(x == Min) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">int</span> k = (x - Min - <span class="number">1</span>) / len ;</span><br><span class="line">            r[k].used = <span class="literal">true</span>;</span><br><span class="line">            r[k].min = <span class="built_in">min</span>(r[k].min, x);</span><br><span class="line">            r[k].max = <span class="built_in">max</span>(r[k].max, x);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>, last = Min; i &lt; n - <span class="number">1</span>; i++)</span><br><span class="line">            <span class="keyword">if</span>(r[i].used)&#123;</span><br><span class="line">                res = <span class="built_in">max</span>(res, r[i].min - last);</span><br><span class="line">                last = r[i].max;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="165-比较版本号"><a href="#165-比较版本号" class="headerlink" title="165. 比较版本号"></a>165. 比较版本号</h2><p>给你两个版本号 version1 和 version2 ，请你比较它们。<br>版本号由一个或多个修订号组成，各修订号由一个 ‘.’ 连接。每个修订号由 多位数字 组成，<br>可能包含 前导零 。每个版本号至少包含一个字符。修订号从左到右编号，下标从 0 开始，<br>最左边的修订号下标为 0 ，下一个修订号下标为 1 ，以此类推。例如，2.5.33 和 0.1 都是有效的版本号。<br>比较版本号时，请按从左到右的顺序依次比较它们的修订号。比较修订号时，<br>只需比较 忽略任何前导零后的整数值 。也就是说，修订号 1 和修订号 001 相等 。<br>如果版本号没有指定某个下标处的修订号，则该修订号视为 0 。<br>例如，版本 1.0 小于版本 1.1 ，因为它们下标为 0 的修订号相同，<br>而下标为 1 的修订号分别为 0 和 1 ，0 &lt; 1 。</p>
+<p>返回规则如下：</p>
+<p>如果 version1 &gt; version2 返回 1，<br>如果 version1 &lt; version2 返回 -1，<br>除此之外返回 0。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">compareVersion</span><span class="params">(string v1, string v2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>; i &lt; v1.<span class="built_in">size</span>() || j &lt; v2.<span class="built_in">size</span>();)&#123;</span><br><span class="line">            <span class="keyword">int</span> a = i, b = j;</span><br><span class="line">            <span class="keyword">while</span>(a &lt; v1.<span class="built_in">size</span>() &amp;&amp; v1[a] != <span class="string">&#x27;.&#x27;</span>) a++;</span><br><span class="line">            <span class="keyword">while</span>(b &lt; v2.<span class="built_in">size</span>() &amp;&amp; v2[b] != <span class="string">&#x27;.&#x27;</span>) b++;</span><br><span class="line">            <span class="keyword">int</span> x = a == i ? <span class="number">0</span> : <span class="built_in">stoi</span>(v1.<span class="built_in">substr</span>(i, a - i));</span><br><span class="line">            <span class="keyword">int</span> y = b == j ? <span class="number">0</span> : <span class="built_in">stoi</span>(v2.<span class="built_in">substr</span>(j, b - j));</span><br><span class="line">            <span class="keyword">if</span>(x &gt; y) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(x &lt; y) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">            i = a + <span class="number">1</span>, j = b + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="166-分数到小数"><a href="#166-分数到小数" class="headerlink" title="166. 分数到小数"></a>166. 分数到小数</h2><p>给定两个整数，分别表示分数的分子 numerator 和分母 denominator，以 字符串形式返回小数 。<br>如果小数部分为循环小数，则将循环的部分括在括号内。<br>如果存在多个答案，只需返回 任意一个 。<br>对于所有给定的输入，保证 答案字符串的长度小于 104 。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">fractionToDecimal</span><span class="params">(<span class="keyword">int</span> numerator, <span class="keyword">int</span> denominator)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</span><br><span class="line">        LL x = numerator, y = denominator;</span><br><span class="line">        <span class="keyword">if</span>(x % y == <span class="number">0</span>) <span class="keyword">return</span> <span class="built_in">to_string</span>(x / y);</span><br><span class="line">        string res;</span><br><span class="line">        <span class="keyword">if</span>((x &lt; <span class="number">0</span>) ^ (y &lt; <span class="number">0</span>)) res += <span class="string">&#x27;-&#x27;</span>;</span><br><span class="line">        x = <span class="built_in">abs</span>(x), y = <span class="built_in">abs</span>(y);</span><br><span class="line">        res += <span class="built_in">to_string</span>(x / y) + <span class="string">&#x27;.&#x27;</span>, x %= y;</span><br><span class="line">        unordered_map&lt;LL, <span class="keyword">int</span>&gt; hash;</span><br><span class="line">        <span class="keyword">while</span>(x)&#123;</span><br><span class="line">            hash[x] = res.<span class="built_in">size</span>();</span><br><span class="line">            x *= <span class="number">10</span>;</span><br><span class="line">            res += <span class="built_in">to_string</span>(x / y);</span><br><span class="line">            x %= y;</span><br><span class="line">            <span class="keyword">if</span>(hash.<span class="built_in">count</span>(x))&#123;</span><br><span class="line">                res = res.<span class="built_in">substr</span>(<span class="number">0</span>,hash[x]) + <span class="string">&#x27;(&#x27;</span> + res.<span class="built_in">substr</span>(hash[x]) + <span class="string">&#x27;)&#x27;</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/05/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%B9%9D%E7%AB%A0/" class="archive-article-date">
-  	<time datetime="2021-05-07T07:55:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/05/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%B9%9D%E7%AB%A0/">第九章 虚拟内存</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深入理解计算机系统</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">LeetCode狂刷</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2021/07/12/LeetCode%E7%8B%82%E5%88%B716/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/05/07/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="archive-article-date">
-  	<time datetime="2021-05-07T00:48:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-07</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2021/07/12/LeetCode%E7%8B%82%E5%88%B715/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          141~150
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/07/12/LeetCode%E7%8B%82%E5%88%B717/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">167~188</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/05/07/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Level-2</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/05/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%85%AB%E7%AB%A0/" class="archive-article-date">
-  	<time datetime="2021-05-06T06:31:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/05/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%85%AB%E7%AB%A0/">第八章 异常控制流</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深入理解计算机系统</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%B8%83%E7%AB%A0/" class="archive-article-date">
-  	<time datetime="2021-04-30T01:44:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%B8%83%E7%AB%A0/">第七章 链接</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深入理解计算机系统</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%85%AD%E7%AB%A0/" class="archive-article-date">
-  	<time datetime="2021-04-27T01:36:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%85%AD%E7%AB%A0/">第六章 存储器层次结构</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深入理解计算机系统</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%BA%94%E7%AB%A0/" class="archive-article-date">
-  	<time datetime="2021-04-22T12:46:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%BA%94%E7%AB%A0/">第五章 优化程序性能</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深入理解计算机系统</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/21/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/" class="archive-article-date">
-  	<time datetime="2021-04-21T15:12:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/21/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/">stack与queue有关算法题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">算法题整合</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/20/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%9B%9B%E7%AB%A0/" class="archive-article-date">
-  	<time datetime="2021-04-20T08:15:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/20/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%9B%9B%E7%AB%A0/">第四章 程序的机器级表示</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深入理解计算机系统</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/19/Effective%20C++/" class="archive-article-date">
-  	<time datetime="2021-04-19T09:15:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/19/Effective%20C++/">Effective C++知识点</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/15/DP/" class="archive-article-date">
-  	<time datetime="2021-04-15T15:00:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/15/DP/">动态规划有关算法题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">算法题整合</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2021/page/4/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2021/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2021/page/3/">3</a><a class="page-number" href="/archives/2021/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/archives/2021/page/6/">6</a><a class="extend next" rel="next" href="/archives/2021/page/6/">Next &amp;raquo;</a>
-    </nav>
-  
+        
+        
+    </div>
+</aside>
 
 
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+ <!--添加代码开始-->
+
+        <div class="declare" hidden="hidden"></div>
+      
           </div>
         </div>
       </div>
@@ -549,8 +379,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

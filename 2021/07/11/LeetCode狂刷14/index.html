@@ -6,16 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2021 | xbs5520&#39;s blog</title>
+  <title>131~140 | xbs5520&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录每日学习内容">
-<meta property="og:type" content="website">
-<meta property="og:title" content="xbs5520&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/archives/2021/page/5/index.html">
+  <meta name="description" content="131. 分割回文串给你一个字符串s 请你将s分割成一些子串，使每个子串都是回文串 。返回s所有可能的分割方案。回文串是正着读和反着读都一样的字符串。 先递归判断所有ij直接是否为回文再暴搜 123456789101112131415161718192021222324252627282930313233class Solution &amp;#123;public:    vector&lt;vecto">
+<meta property="og:type" content="article">
+<meta property="og:title" content="131~140">
+<meta property="og:url" content="http://yoursite.com/2021/07/11/LeetCode%E7%8B%82%E5%88%B714/index.html">
 <meta property="og:site_name" content="xbs5520&#39;s blog">
-<meta property="og:description" content="记录每日学习内容">
+<meta property="og:description" content="131. 分割回文串给你一个字符串s 请你将s分割成一些子串，使每个子串都是回文串 。返回s所有可能的分割方案。回文串是正着读和反着读都一样的字符串。 先递归判断所有ij直接是否为回文再暴搜 123456789101112131415161718192021222324252627282930313233class Solution &amp;#123;public:    vector&lt;vecto">
 <meta property="og:locale">
+<meta property="article:published_time" content="2021-07-11T14:56:32.000Z">
+<meta property="article:modified_time" content="2021-07-12T13:05:58.629Z">
 <meta property="article:author" content="xbs5520">
+<meta property="article:tag" content="LeetCode狂刷">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="xbs5520&#39;s blog" type="application/atom+xml">
@@ -138,397 +141,220 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-LeetCode狂刷14" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      131~140
+    </h1>
+  
+
+        
+        <a href="/2021/07/11/LeetCode%E7%8B%82%E5%88%B714/" class="archive-article-date">
+  	<time datetime="2021-07-11T14:56:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-11</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="131-分割回文串"><a href="#131-分割回文串" class="headerlink" title="131. 分割回文串"></a>131. 分割回文串</h2><p>给你一个字符串s 请你将s分割成一些子串，使每个子串都是回文串 。<br>返回s所有可能的分割方案。<br>回文串是正着读和反着读都一样的字符串。</p>
+<p>先递归判断所有ij直接是否为回文<br>再暴搜</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">bool</span>&gt;&gt; f;</span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; ans;</span><br><span class="line">    vector&lt;string&gt; path;</span><br><span class="line"></span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; <span class="built_in">partition</span>(string s) &#123;</span><br><span class="line">        <span class="keyword">int</span> n = s.<span class="built_in">size</span>();</span><br><span class="line">        f = vector&lt;vector&lt;<span class="keyword">bool</span>&gt;&gt; (n, vector&lt;<span class="keyword">bool</span>&gt;(n));</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++)</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= j; i++)</span><br><span class="line">                <span class="keyword">if</span>(i == j) f[i][j] = <span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == s[j])&#123;</span><br><span class="line">                    <span class="comment">//只有俩个字符或者前面两个也相当</span></span><br><span class="line">                    <span class="keyword">if</span>(i + <span class="number">1</span> &gt; j - <span class="number">1</span> || f[i + <span class="number">1</span>][j - <span class="number">1</span>]) f[i][j] = <span class="literal">true</span>;</span><br><span class="line">                &#125;    </span><br><span class="line"></span><br><span class="line">        <span class="built_in">dfs</span>(s, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(string &amp;s, <span class="keyword">int</span> u)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(u == s.<span class="built_in">size</span>()) ans.<span class="built_in">push_back</span>(path);</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = u; i &lt; s.<span class="built_in">size</span>(); i++)</span><br><span class="line">                <span class="keyword">if</span>(f[u][i])&#123;</span><br><span class="line">                    path.<span class="built_in">push_back</span>(s.<span class="built_in">substr</span>(u, i - u + <span class="number">1</span>));</span><br><span class="line">                    <span class="built_in">dfs</span>(s, i + <span class="number">1</span>);</span><br><span class="line">                    path.<span class="built_in">pop_back</span>();</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="132-分割回文串-II"><a href="#132-分割回文串-II" class="headerlink" title="132. 分割回文串 II"></a>132. 分割回文串 II</h2><p>给你一个字符串s，请你将s分割成一些子串，使每个子串都是回文。<br>返回符合要求的最少分割次数 。</p>
+<p>预处理(上一题) + dp</p>
+<p>f(i) s(1~i) 的所有方案<br>    属性 min</p>
+<p>状态计算<br>    将后面 k-i分为一段<br>    则前面为f(k - 1) + 1</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minCut</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = s.<span class="built_in">size</span>();</span><br><span class="line">        s = <span class="string">&#x27; &#x27;</span> + s;</span><br><span class="line">        vector&lt;vector&lt;<span class="keyword">bool</span>&gt;&gt; <span class="built_in">g</span>(n + <span class="number">1</span>, vector&lt;<span class="keyword">bool</span>&gt;(n + <span class="number">1</span>));</span><br><span class="line"></span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">f</span><span class="params">(n + <span class="number">1</span>, <span class="number">1e8</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j++)</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">                <span class="keyword">if</span>(i == j) g[i][j] = <span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == s[j])&#123;</span><br><span class="line">                    <span class="keyword">if</span>(i + <span class="number">1</span> &gt; j - <span class="number">1</span> || g[i + <span class="number">1</span>][j - <span class="number">1</span>]) g[i][j] = <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">        </span><br><span class="line">        f[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= i; j++)</span><br><span class="line">                <span class="keyword">if</span>(g[j][i])</span><br><span class="line">                    f[i] = <span class="built_in">min</span>(f[i], f[j - <span class="number">1</span>] + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> f[n] - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="133-克隆图"><a href="#133-克隆图" class="headerlink" title="133. 克隆图"></a>133. 克隆图</h2><p>给你无向 连通 图中一个节点的引用，请你返回该图的 深拷贝（克隆）。<br>图中的每个节点都包含它的值 val（int） 和其邻居的列表（list[Node]）。</p>
+<p>1.复制所有点<br>hash 做映射 原点-新点</p>
+<p>2.复制所有边</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line">    unordered_map&lt;Node*, Node*&gt; hash;</span><br><span class="line"></span><br><span class="line">    <span class="function">Node* <span class="title">cloneGraph</span><span class="params">(Node* node)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!node) <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        <span class="built_in">dfs</span>(node);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> [s, d] : hash)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> ver: s-&gt;neighbors)</span><br><span class="line">                d-&gt;neighbors.<span class="built_in">push_back</span>(hash[ver]);</span><br><span class="line">        &#125;        </span><br><span class="line">        <span class="keyword">return</span> hash[node];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(Node* node)</span></span>&#123;</span><br><span class="line">        hash[node] = <span class="keyword">new</span> <span class="built_in">Node</span>(node-&gt;val);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> ver: node-&gt;neighbors)</span><br><span class="line">            <span class="keyword">if</span>(hash.<span class="built_in">count</span>(ver) == <span class="number">0</span>)</span><br><span class="line">                <span class="built_in">dfs</span>(ver);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="134-加油站"><a href="#134-加油站" class="headerlink" title="134. 加油站"></a>134. 加油站</h2><p>在一条环路上有 N 个加油站，其中第 i 个加油站有汽油 gas[i] 升。<br>你有一辆油箱容量无限的的汽车，从第 i 个加油站开往第 i+1 个加油站需要消耗汽油 cost[i] 升。<br>你从其中的一个加油站出发，开始时油箱为空。<br>如果你可以绕环路行驶一周，则返回出发时加油站的编号，否则返回 -1。<br>说明: <br>如果题目有解，该答案即为唯一答案。<br>输入数组均为非空数组，且长度相同。<br>输入数组中的元素均为非负数。</p>
+<p>遍历 从i走能否走完全部<br>   走到j 停止 则i-j中任意一点不能过j 直接 i = j + 1开始</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">canCompleteCircuit</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; gas, vector&lt;<span class="keyword">int</span>&gt;&amp; cost)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = gas.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>, j; i &lt; n; )&#123;<span class="comment">//枚举起点</span></span><br><span class="line">            <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(j = <span class="number">0</span>; j &lt; n; j++)&#123;</span><br><span class="line">                <span class="keyword">int</span> k = (i + j) % n;</span><br><span class="line">                left += gas[k] - cost[k];</span><br><span class="line">                <span class="keyword">if</span>(left &lt; <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(j == n) <span class="keyword">return</span> i;</span><br><span class="line">            i = i + j + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="135-分发糖果"><a href="#135-分发糖果" class="headerlink" title="135. 分发糖果"></a>135. 分发糖果</h2><p>老师想给孩子们分发糖果，有 N 个孩子站成了一条直线，<br>老师会根据每个孩子的表现，预先给他们评分。<br>你需要按照以下要求，帮助老师给这些孩子分发糖果：<br>每个孩子至少分配到 1 个糖果。<br>评分更高的孩子必须比他两侧的邻位孩子获得更多的糖果。<br>那么这样下来，老师至少需要准备多少颗糖果呢？</p>
+<p>每个格子向比其低的走 最多走几步 记为fi<br>fi就是其最小值</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;<span class="keyword">int</span>&gt; f;</span><br><span class="line">    vector&lt;<span class="keyword">int</span>&gt; w;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">candy</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; ratings)</span> </span>&#123;</span><br><span class="line">        n = ratings.<span class="built_in">size</span>();</span><br><span class="line">        w = ratings;</span><br><span class="line">        f.<span class="built_in">resize</span>(n, <span class="number">-1</span>);</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) res += <span class="built_in">dp</span>(i);</span><br><span class="line">        <span class="keyword">return</span> res;    </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">dp</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(f[x] != <span class="number">-1</span>) <span class="keyword">return</span> f[x];</span><br><span class="line">        f[x] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(x &amp;&amp; w[x - <span class="number">1</span>] &lt; w[x]) f[x] = <span class="built_in">max</span>(f[x], <span class="built_in">dp</span>(x - <span class="number">1</span>) + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span>(x + <span class="number">1</span> &lt; n &amp;&amp; w[x + <span class="number">1</span>] &lt; w[x]) f[x] = <span class="built_in">max</span>(f[x], <span class="built_in">dp</span>(x + <span class="number">1</span>) + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> f[x];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="136-只出现一次的数字"><a href="#136-只出现一次的数字" class="headerlink" title="136. 只出现一次的数字"></a>136. 只出现一次的数字</h2><p>给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。<br>找出那个只出现了一次的元素。<br>说明：<br>你的算法应该具有线性时间复杂度。 你可以不使用额外空间来实现吗？</p>
+<p>a ^ a = 0</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">singleNumber</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">unsigned</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;x : nums) sum ^= x;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="137-只出现一次的数字-II"><a href="#137-只出现一次的数字-II" class="headerlink" title="137. 只出现一次的数字 II"></a>137. 只出现一次的数字 II</h2><p>给你一个整数数组nums,除某个元素仅出现一次外，其余每个元素都恰出现三次 。<br>请你找出并返回那个只出现了一次的元素。</p>
+<p>状态机 </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">singleNumber</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> ones = <span class="number">0</span>, twos = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> x : nums)&#123;</span><br><span class="line">            ones = (ones ^ x) &amp; ~twos;</span><br><span class="line">            twos = (twos ^ x) &amp; ~ones;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//改为twos 可以计算 全是3* 其中一个为2* 的数</span></span><br><span class="line">		<span class="comment">//利用状态机状态可以算出 全是3* 其中一个为k* 的 数</span></span><br><span class="line">        <span class="keyword">return</span> ones;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="138-复制带随机指针的链表"><a href="#138-复制带随机指针的链表" class="headerlink" title="138. 复制带随机指针的链表"></a>138. 复制带随机指针的链表</h2><p>给你一个长度为 n 的链表，每个节点包含一个额外增加的随机指针 random ，<br>该指针可以指向链表中的任何节点或空节点。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">Node* <span class="title">copyRandomList</span><span class="params">(Node* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!head) <span class="keyword">return</span> head;</span><br><span class="line">        <span class="keyword">auto</span> dummy = <span class="keyword">new</span> <span class="built_in">Node</span>(<span class="number">-1</span>);</span><br><span class="line">        dummy-&gt;next = head;</span><br><span class="line">        <span class="keyword">auto</span> p = head;</span><br><span class="line">        <span class="keyword">while</span>(p)&#123;</span><br><span class="line">            <span class="keyword">auto</span> next = p-&gt;next;</span><br><span class="line">            <span class="keyword">auto</span> q = <span class="keyword">new</span> <span class="built_in">Node</span>(p-&gt;val);</span><br><span class="line">            p-&gt;next = q;</span><br><span class="line">            q-&gt;next = next;</span><br><span class="line">            p = next;</span><br><span class="line">        &#125;   </span><br><span class="line">        p = head;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(p)&#123;</span><br><span class="line">            <span class="keyword">auto</span> q = p-&gt;next;</span><br><span class="line">            <span class="keyword">if</span>(p-&gt;random != <span class="literal">nullptr</span>)</span><br><span class="line">                q-&gt;random = p-&gt;random-&gt;next;</span><br><span class="line">            <span class="keyword">if</span>(!p-&gt;next-&gt;next) <span class="keyword">break</span>;</span><br><span class="line">            p = p-&gt;next-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        p = head;</span><br><span class="line">        <span class="keyword">auto</span> res = head-&gt;next;</span><br><span class="line">        <span class="keyword">while</span>(p-&gt;next)&#123;</span><br><span class="line">            <span class="keyword">auto</span> q = p-&gt;next;</span><br><span class="line">            p-&gt;next = q-&gt;next;</span><br><span class="line">            p = q;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="139-单词拆分"><a href="#139-单词拆分" class="headerlink" title="139. 单词拆分"></a>139. 单词拆分</h2><p>给定一个非空字符串 s 和一个包含非空单词的列表 wordDict，<br>判定 s 是否可以被空格拆分为一个或多个在字典中出现的单词。<br>说明：<br>拆分时可以重复使用字典中的单词。<br>你可以假设字典中没有重复的单词</p>
+<p>利用unordered_map<string> + substr 为n<br>利用字符串hash 为1</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">wordBreak</span><span class="params">(string s, vector&lt;string&gt;&amp; wordDict)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> ULL;</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">int</span> P = <span class="number">131</span>;</span><br><span class="line">        unordered_set&lt;ULL&gt; hash;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span>&amp; word : wordDict)&#123;</span><br><span class="line">            ULL h = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> c : word) h = h * P + c;</span><br><span class="line">            hash.<span class="built_in">insert</span>(h);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> n = s.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">bool</span>&gt; <span class="title">f</span><span class="params">(n + <span class="number">1</span>)</span></span>;</span><br><span class="line">        f[<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">        s = <span class="string">&#x27; &#x27;</span> + s;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">            <span class="keyword">if</span>(f[i])&#123;</span><br><span class="line">                ULL h = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt;= n; j++)&#123;</span><br><span class="line">                    h = h * P + s[j];</span><br><span class="line">                    <span class="keyword">if</span>(hash.<span class="built_in">count</span>(h)) f[j] = <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> f[n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="140-单词拆分-II"><a href="#140-单词拆分-II" class="headerlink" title="140. 单词拆分 II"></a>140. 单词拆分 II</h2><p>给定一个非空字符串 s 和一个包含非空单词列表的字典 wordDict，在字符串中增加空格来构建一个句子，<br>使得句子中所有的单词都在词典中。返回所有这些可能的句子。<br>说明：<br>分隔时可以重复使用字典中的单词。<br>你可以假设字典中没有重复的单词。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;<span class="keyword">bool</span>&gt; f;</span><br><span class="line">    vector&lt;string&gt; ans;</span><br><span class="line">    unordered_set&lt;string&gt; hash;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line">    <span class="function">vector&lt;string&gt; <span class="title">wordBreak</span><span class="params">(string s, vector&lt;string&gt;&amp; wordDict)</span> </span>&#123;</span><br><span class="line">        n = s.<span class="built_in">size</span>();</span><br><span class="line">        f.<span class="built_in">resize</span>(n + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> word: wordDict) hash.<span class="built_in">insert</span>(word);</span><br><span class="line"></span><br><span class="line">        f[n] = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = n - <span class="number">1</span>; ~i; i--)</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = i; j &lt; n; j++)</span><br><span class="line">                <span class="keyword">if</span>(hash.<span class="built_in">count</span>(s.<span class="built_in">substr</span>(i, j - i + <span class="number">1</span>)) &amp;&amp; f[j + <span class="number">1</span>])</span><br><span class="line">                    f[i] = <span class="literal">true</span>;</span><br><span class="line">        <span class="built_in">dfs</span>(s, <span class="number">0</span>, <span class="string">&quot;&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(string&amp; s, <span class="keyword">int</span> u, string path)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(u == n)&#123;</span><br><span class="line">            path.<span class="built_in">pop_back</span>();</span><br><span class="line">            ans.<span class="built_in">push_back</span>(path);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = u; i &lt; n; i++)</span><br><span class="line">                <span class="keyword">if</span>(hash.<span class="built_in">count</span>(s.<span class="built_in">substr</span>(u, i - u + <span class="number">1</span>)) &amp;&amp; f[i + <span class="number">1</span>])</span><br><span class="line">                    <span class="built_in">dfs</span>(s, i + <span class="number">1</span>, path + s.<span class="built_in">substr</span>(u, i - u + <span class="number">1</span>) + <span class="string">&#x27; &#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/05/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%B9%9D%E7%AB%A0/" class="archive-article-date">
-  	<time datetime="2021-05-07T07:55:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/05/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%B9%9D%E7%AB%A0/">第九章 虚拟内存</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深入理解计算机系统</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">LeetCode狂刷</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2021/07/11/LeetCode%E7%8B%82%E5%88%B714/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/05/07/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="archive-article-date">
-  	<time datetime="2021-05-07T00:48:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-07</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2021/07/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%AC%E4%B8%89%E7%AB%A0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          第二章 存储系统
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/07/10/LeetCode%E7%8B%82%E5%88%B713/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">121~130</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/05/07/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Level-2</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/05/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%85%AB%E7%AB%A0/" class="archive-article-date">
-  	<time datetime="2021-05-06T06:31:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/05/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%85%AB%E7%AB%A0/">第八章 异常控制流</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深入理解计算机系统</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%B8%83%E7%AB%A0/" class="archive-article-date">
-  	<time datetime="2021-04-30T01:44:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%B8%83%E7%AB%A0/">第七章 链接</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深入理解计算机系统</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%85%AD%E7%AB%A0/" class="archive-article-date">
-  	<time datetime="2021-04-27T01:36:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%85%AD%E7%AB%A0/">第六章 存储器层次结构</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深入理解计算机系统</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%BA%94%E7%AB%A0/" class="archive-article-date">
-  	<time datetime="2021-04-22T12:46:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%BA%94%E7%AB%A0/">第五章 优化程序性能</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深入理解计算机系统</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/21/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/" class="archive-article-date">
-  	<time datetime="2021-04-21T15:12:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/21/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/">stack与queue有关算法题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">算法题整合</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/20/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%9B%9B%E7%AB%A0/" class="archive-article-date">
-  	<time datetime="2021-04-20T08:15:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/20/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%9B%9B%E7%AB%A0/">第四章 程序的机器级表示</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深入理解计算机系统</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/19/Effective%20C++/" class="archive-article-date">
-  	<time datetime="2021-04-19T09:15:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/19/Effective%20C++/">Effective C++知识点</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/15/DP/" class="archive-article-date">
-  	<time datetime="2021-04-15T15:00:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/15/DP/">动态规划有关算法题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">算法题整合</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2021/page/4/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2021/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2021/page/3/">3</a><a class="page-number" href="/archives/2021/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/archives/2021/page/6/">6</a><a class="extend next" rel="next" href="/archives/2021/page/6/">Next &amp;raquo;</a>
-    </nav>
-  
+        
+        
+    </div>
+</aside>
 
 
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+ <!--添加代码开始-->
+
+        <div class="declare" hidden="hidden"></div>
+      
           </div>
         </div>
       </div>
@@ -549,8 +375,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
