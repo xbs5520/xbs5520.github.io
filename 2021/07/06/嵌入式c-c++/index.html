@@ -16,7 +16,7 @@
 <meta property="og:description" content="关键字C语言宏中”#”和”##”的用法1.(#)字符串化操作符关键字volatile有什么含义？并举出例子volatile提醒编译器它后面所定义的变量随时都有可能改变，因此编译后的程序每次需要存储或读取这个变量的时候，都会直接从变量地址中读取数据。如果没有volatile关键字，则编译器可能优化读取和存储，可能暂时使用寄存器中的值，如果这个变量由别的程序更新了的话，将出现不一致的现象。 1.并行设">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-07-06T11:13:32.000Z">
-<meta property="article:modified_time" content="2021-07-13T15:28:59.757Z">
+<meta property="article:modified_time" content="2021-07-18T13:54:40.442Z">
 <meta property="article:author" content="xbs5520">
 <meta property="article:tag" content="嵌入式相关">
 <meta name="twitter:card" content="summary">
@@ -213,7 +213,61 @@
 <h3 id="数组名和指针的区别与联系是什么？"><a href="#数组名和指针的区别与联系是什么？" class="headerlink" title="数组名和指针的区别与联系是什么？"></a>数组名和指针的区别与联系是什么？</h3><h4 id="1-数据保存方面"><a href="#1-数据保存方面" class="headerlink" title="1.数据保存方面"></a>1.数据保存方面</h4><p>指针保存的是地址（保存目标数据地址，自身地址由编译器分配），内存访问偏移量为4个字节，<br>无论其中保存的是何种数据均已地址类型进行解析。<br>数组保存的数据。数组名表示的是第一个元素的地址，内存偏移量是保存数据类型的内存偏移量；<br>只有对数组名取地址（&amp;数组名）时数组名才表示整个数组,内存偏移量是整个数组的大小(sizeof(数组名))</p>
 <h4 id="2-数据访问方面"><a href="#2-数据访问方面" class="headerlink" title="2.数据访问方面"></a>2.数据访问方面</h4><p>指针对数据的访问方式是间接访问，需要用到解引用符号(*数组名)。<br>数组对数据的访问则是直接访问，可通过下标访问或数组名 + 元素偏移量的方式</p>
 <h4 id="3-使用环境"><a href="#3-使用环境" class="headerlink" title="3.使用环境"></a>3.使用环境</h4><p>指针多用于动态数据结构（如链表，等等）和动态内存开辟。<br>数组多用于存储固定个数且类型统一的数据结构（如线性表等等）和隐式分配。</p>
-<h4 id="指针进行强制类型转换后与地址进行加法运算，结果是什么？"><a href="#指针进行强制类型转换后与地址进行加法运算，结果是什么？" class="headerlink" title="指针进行强制类型转换后与地址进行加法运算，结果是什么？"></a>指针进行强制类型转换后与地址进行加法运算，结果是什么？</h4><p>假设在32位机器上，在对齐为4的情况下sizeof（long）的结果为4字节，sizeof（char*）的结果为4字节，<br>sizeof（short int）的结果与sizeof（short）的结果都为2字节，sizeofchar）结果为1字节，<br>sizeof（int）的结果为4字节，由于32位机器上是4字节对齐，以如下结构体为例：</p>
+<h4 id="指针进行强制类型转换后与地址进行加法运算，结果是什么？"><a href="#指针进行强制类型转换后与地址进行加法运算，结果是什么？" class="headerlink" title="指针进行强制类型转换后与地址进行加法运算，结果是什么？"></a>指针进行强制类型转换后与地址进行加法运算，结果是什么？</h4><p>假设在32位机器上，在对齐为4的情况下sizeof（long）的结果为4字节，sizeof（char*）的结果为4字节，<br>sizeof（short int）的结果与sizeof（short）的结果都为2字节，sizeofchar）结果为1字节，<br>sizeof（int）的结果为4字节，由于32位机器上是4字节对齐。</p>
+<h3 id="指针常量，常量指针，指向常量的常量指针有什么区别？"><a href="#指针常量，常量指针，指向常量的常量指针有什么区别？" class="headerlink" title="指针常量，常量指针，指向常量的常量指针有什么区别？"></a>指针常量，常量指针，指向常量的常量指针有什么区别？</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.指针常量</span></span><br><span class="line"><span class="comment">//先看const再看*，p是一个常量类型的指针，不能修改这个指针的指向，</span></span><br><span class="line"><span class="comment">//但是这个指针所指向的地址上存储的值可以修改。</span></span><br><span class="line"><span class="keyword">int</span> * <span class="keyword">const</span> p;</span><br><span class="line"></span><br><span class="line"><span class="comment">//2.常量指针</span></span><br><span class="line"><span class="comment">//先看*再看const，定义一个指针指向一个常量，不能通过指针来修改这个指针指向的值</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *p</span><br><span class="line"><span class="keyword">int</span> <span class="keyword">const</span> *p</span><br><span class="line"></span><br><span class="line"><span class="comment">//3.指向常量的常量指针</span></span><br><span class="line"><span class="comment">//对于&quot;指向常量的常量指针&quot;，就必须同时满足上述1和2中的内容，</span></span><br><span class="line"><span class="comment">//既不可以修改指针的值，也不可以修改指针指向的值，</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> * <span class="keyword">const</span> p;</span><br></pre></td></tr></table></figure>
+
+<h3 id="指针和引用的异同是什么？如何相互转换？"><a href="#指针和引用的异同是什么？如何相互转换？" class="headerlink" title="指针和引用的异同是什么？如何相互转换？"></a>指针和引用的异同是什么？如何相互转换？</h3><p>相同<br>1，都是地址的概念，指针指向某一内存、它的内容是所指内存的地址；引用则是某块内存的别名。<br>2.从内存分配上看：两者都占内存，程序为指针会分配内存，一般是4个字节；<br>而引用的本质是指针常量，指向对象不能变，但指向对象的值可以变。<br>两者都是地址概念，所以本身都会占用内存。</p>
+<p>区别<br>1.指针是实体，而引用是别名。<br>2.指针和引用的自增（++）运算符意义不同，指针是对内存地址自增，而引用是对值的自增。<br>3.引用使用时无需解引用（*），指针需要解引用；。<br>4.引用只能在定义时被初始化一次，之后不可变；指针可变。<br>5.引用不能为空，指针可以为空。<br>6.”sizeof引用”得到的是所指向的变量（对象）的大小，而”sizeof指针”得到的是指针本身的大小，<br>在32位系统指针变量一般占用4字节内存。</p>
+<p>转换<br>1，指针转引用：把指针用*就可以转换成对象，可以用在引用参数当中。<br>2，引用转指针：把引用类型的对象用&amp;取地址就获得指针了。</p>
+<p>野指针是什么？<br>1.野指针是指向不可用内存的指针，当指针被创建时，指针不可能自动指向NULL，<br>这时，默认值是随机的，此时的指针成为野指针。<br>2.当指针被free或delete释放掉时，如果没有把指针设置为NULL，则会产生野指针，<br>因为释放掉的仅仅是指针指向的内存，并没有把指针本身释放掉。<br>3.第三个造成野指针的原因是指针操作超越了变量的作用范围。</p>
+<p>如何避免野指针？<br>1.对指针进行初始化。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将指针初始化为NULL</span></span><br><span class="line"><span class="keyword">char</span> *p = <span class="literal">NULL</span>;</span><br><span class="line"><span class="comment">//用malloc进行分配内存</span></span><br><span class="line"><span class="keyword">char</span> *p = (<span class="keyword">char</span> *) <span class="built_in">malloc</span>(<span class="built_in"><span class="keyword">sizeof</span></span>(<span class="keyword">char</span>));</span><br><span class="line"><span class="comment">//用已有合法的可访问内存地址对指针初始化</span></span><br><span class="line"><span class="keyword">char</span> num[<span class="number">30</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="keyword">char</span> *p = num;</span><br></pre></td></tr></table></figure>
+
+<p>2.指针用完后释放内存 将指针赋为NULL</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in"><span class="keyword">delete</span></span>(p);</span><br><span class="line">p = <span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure>
+<p>注：malloc函数分配完内存后需注意：<br>a.检查是否分配成功（若分配成功，返回内存的首地址；分配不成功，返回NULL，可以通过f语句来判断）<br>b.清空内存中的数据（malloc分配的空间里可能存在垃圾值，用memset或bzero函数清空内存）</p>
+<h4 id="C-中的智能指针是什么？"><a href="#C-中的智能指针是什么？" class="headerlink" title="C++中的智能指针是什么？"></a>C++中的智能指针是什么？</h4><p>智能指针是一个类，用来存储指针（指向动态分配对象的指针）。<br>C++程序设计中使用堆内存是非常频繁的操作，堆内存的申请和释放都由程序员自己管理。<br>程序员自己管理堆内存可以提高了程序的效率，但是整体来说堆内存的管理是麻烦的，<br>C++11中引入了智能指针的概念，方便管理堆内存。使用普通指针，<br>容易造成堆内存泄露（忘记释放），二次释放，程序发生异常时内存泄露等问题等，<br>使用智能指针能更好的管理堆内存。</p>
+<h4 id="智能指针的内存泄漏如何解决？"><a href="#智能指针的内存泄漏如何解决？" class="headerlink" title="智能指针的内存泄漏如何解决？"></a>智能指针的内存泄漏如何解决？</h4><p>为了解决循环引用导致的内存泄漏，引了弱指针weak-ptr，<br>weak-ptr的构造函数不会修改引用计数的值，从而不会对对象的内存进行管理，<br>其类似一个普通指针，但是不会指向引用计数的共享内存，<br>但是可以检测到所管理的对象是否已经被释放，从而避免非法访问。</p>
+<h2 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h2><h3 id="预处理器标识-error的目的是什么？"><a href="#预处理器标识-error的目的是什么？" class="headerlink" title="预处理器标识#error的目的是什么？"></a>预处理器标识#error的目的是什么？</h3><p>如 #error预处理指令的作用是，编译程序时，只要遇到#error就会生成一个编译错误提示消息，<br>并停止编译。其语法格式为：#error error-message.</p>
+<h3 id="define与const"><a href="#define与const" class="headerlink" title="define与const"></a>define与const</h3><p>define既可以替代常数值，又可以替代表达式，甚至是代码段，但是容易出错，<br>而const的引入可以增强程序的可读性，它使程序的维护与调试变得更加方便。<br>具体而言，它们的差异主要表现在以下3个方面。<br>1，define只是用来进行单纯的文本替换，define常量的生命周期止于编译期，不分配内存空间，<br>它存在于程序的代码段，在实际程序中，它只是一个常数；而const常量存在于程序的数据段，<br>并在堆栈中分配了空间，const常量在程序中确确实实存在，并且可以被调用、传递<br>2.const常量有数据类型，而define常量没有数据类型。编译器可以对const常量进行类型安全检查，<br>如类型、语句结构等，而define不行。<br>3，很多IDE支持调试const定义的常量，而不支持define定义的常量由于const修饰的变量可以排除程序之间的不安全性因素，<br>保护程序中的常量不被修改，而且对数据类型也会进行相应的检查，极大地提高了程序的健壮性，<br>所以一般更加倾向于用const来定义常量类型。</p>
+<h3 id="typede和define有什么区别？"><a href="#typede和define有什么区别？" class="headerlink" title="typede和define有什么区别？"></a>typede和define有什么区别？</h3><p>typedef与define都是替一个对象取一个别名，以此来增强程序的可读性，<br>但是它们在使用和作用上也存在着以下4个方面的不同。</p>
+<h4 id="1-原理不同"><a href="#1-原理不同" class="headerlink" title="1.原理不同"></a>1.原理不同</h4><p>如 #define是C语言中定义的语法，它是预处理指令，在预处理时进行简单而机械的字符串替换，<br>不做正确性检查，不管含义是否正确照样代入，只有在编译已被展开的源程序时，<br>才会发现可能的错误并报错。<br>例如，#define P13.1415926，当程序执行area=Pr<em>r语句时，PI会被替换为3.1415926，<br>于是该语句被替换为area-3.1415926</em>r*r。如果把#define语句中的数字9写成了g，<br>预处理也照样代入，而不去检查其是否合理、合法</p>
+<p>typedef是关键字，它在编译时处理，所以typedef具有类型检查的功能。<br>它在自己的作用域内给一个已经存在的类型一个别名，但是不能在一个函数定义里面使用标识符typedef，<br>例如，typedef int INTEGER，这以后就可用INTEGER来代替int作整型变量的类型说明了，<br>例如：INTEGER a，b；</p>
+<p>用typedef定义数组、指针、结构等类型将带来很大的方便，<br>不仅使程序书写简单而且使意义更为明确，因而增强了可读性。例如：typedef int a[10]</p>
+<p>表示a是整型数组类型，数组长度为10，然后就可用a说明变量，例如：语句a s1，s2；<br>完全等效于语句int s1[10]，s2[10].同理，typedef void（*p）（void）<br>表示p是一种指向void型的指针类型。</p>
+<h4 id="2-功能不同"><a href="#2-功能不同" class="headerlink" title="2.功能不同"></a>2.功能不同</h4><p>typedef用来定义类型的别名，这些类型不仅包含内部类型（int，char等），<br>还包括自定义类型（如struct），可以起到使类型易于记忆的功能。<br>例如：typedef int（<em>PF）（const char</em>，const char*）</p>
+<p>定义一个指向函数的指针的数据类型PF，其中函数返回值为int，参数为const chart.typedef还有另外一个重要的用途，<br>那就是定义机器无关的类型。例如，可以定义一个叫REAL的浮点类型，<br>在目标机器上它可以获得最高的精度：typedef long double REAL，<br>在不支持long double的机器上，该typedef看起来会是下面这样：typedef double real，<br>在double都不支持的机器上，该typedef看起来会是这样：typedef float REAL</p>
+<p>如 #define不只是可以为类型取别名，还可以定义常量、变量、编译开关等</p>
+<h4 id="3-作用域不同"><a href="#3-作用域不同" class="headerlink" title="3.作用域不同"></a>3.作用域不同</h4><p>typede有自己的作用域。 #define没有作用域的限制，只要是之前预定义过的宏，在以后的程序中都可以使用</p>
+<h4 id="4-对指针的操作不同"><a href="#4-对指针的操作不同" class="headerlink" title="4.对指针的操作不同"></a>4.对指针的操作不同</h4><p>两者修饰指针类型时，作用不同。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INTPTR1 int*</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span>* INTPTR2;</span><br><span class="line">INTPTR1 pl, p2;</span><br><span class="line">INTPTR2 p3, p4;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       
 

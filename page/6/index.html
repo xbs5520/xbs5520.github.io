@@ -140,6 +140,288 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-计算机系统笔记第六章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/04/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%85%AD%E7%AB%A0/">第六章 存储器层次结构</a>
+    </h1>
+  
+
+        
+        <a href="/2021/04/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%85%AD%E7%AB%A0/" class="archive-article-date">
+  	<time datetime="2021-04-27T01:36:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="6-1-存储技术"><a href="#6-1-存储技术" class="headerlink" title="6.1 存储技术"></a>6.1 存储技术</h2><h3 id="随机访问存储器"><a href="#随机访问存储器" class="headerlink" title="随机访问存储器"></a>随机访问存储器</h3><p>RAM 分为两类静态与动态 SRAM DRAM<br>S比D更快也更贵<br>SRAM 用来作为高速缓存存储器，即可在CPU芯片上也可以在片下        不超过几兆字节<br>DRAM 用来作为主存以及图形系统的帧缓冲区                            几百或几千兆</p>
+<p>静态RAM<br>SRAM将每个存储在一个双稳态的存储器单元里，每个单元可以无限期的保持在两个不同的电压配置</p>
+<p>动态RAM<br>DRAM将每个位存储为对一个电容充电，这个电容非常小</p>
+<p>传统DRAM<br>DRAM芯片中单元被分为d个超单元，每个都由w个DRAM单元组成<br>总共储存了d×w位信息<br>信息通过称为引脚的外部连接器流入和流出芯片<br>每个DRAM芯片被连接到某个称为内存控制器的电路<br>行地址 称为RAS<br>列地址 称为CAS<br>电路设计者将DRAM组织成二维阵列而不是线性数组的一个原因是降低芯片上地址引脚数量</p>
+<p>内存模块<br>DRAM封装在内存模块 它插到主板的扩展槽上</p>
+<p>增强的DRAM<br>有许多DRAM存储器：<br>快页模式DRAM 扩展数据输出DRAM 同步DRAM 双倍数据速率同步DRAM(DDR DDR2 DDR3) 视频RAM</p>
+<p>非易失性存储器<br>如果断电DRAM与SRAM会丢失它们的信息 它们是易失的<br>非易失性存储器即使在关电后仍然保存这信息.<br>PROM只能被编程一次<br>可擦写可编程ROM有一个透明的石英窗口，允许光达到存储单元<br>闪存是一类非易失性存储器，基于EEPROM 以及成为了一种重要的闪存技术<br>存储在ROM设备中的程序通常被称为固件</p>
+<p>访问主存<br>数据流通过称为总线的共享电子电路在处理器和DRAM主存之间来回<br>每次CPU和主存之间的数据传送都是通过一些了步骤来完成的，称为总线事务<br>读事务 从主存传送到CPU<br>写事务 从CPU传送数据到主存</p>
+<h3 id="磁盘储存"><a href="#磁盘储存" class="headerlink" title="磁盘储存"></a>磁盘储存</h3><p>磁盘是为了保存大量数据的设备<br>从磁盘上读信息的时间为毫秒级<br>比从DRAM慢10万倍<br>比从SRAM慢100万倍</p>
+<p>磁盘构造<br>磁盘是由盘片构成的，每个盘片有两面或者称为表面，表面覆盖着磁性记录材料<br>盘片中央有一个可以旋转的主轴</p>
+<p>磁盘容量<br>由以下因素决定<br>记录密度：磁道一英寸的段中可以放入的位数<br>磁道密度：从盘片中心出发半径上一英寸的段内可以有的磁道数<br>面密度：记录密度与磁道密度的乘积</p>
+<p>磁盘操作<br>磁盘用读写头来读写存储在磁性表面的位，而读写头连接到传动臂的一端<br>磁盘以扇区大小的快来读写数据，对扇区的访问时间有三个主要部分<br>寻道时间 旋转时间 传送时间</p>
+<p>逻辑磁盘块<br>逻辑块序列 编号为0,1,…,B - 1 B个扇区<br>磁盘封装中有个小硬件/固件设备，称为磁盘控制器，维护着逻辑块号和实际磁盘扇区之间的映射关系</p>
+<p>连接I/O设备<br>如图形卡、监视器、鼠标、键盘、磁盘这样的输入输出设备都是通过IO总线与外围连接的<br>有三种不同类型的设备连接到总线<br>通用串行总线 USB<br>图形卡包含硬件和软件逻辑<br>主机总线适配器将一个或多个磁盘连接到IO总线两个常用接口为SCSI 与 SATA</p>
+<p>访问磁盘<br>设备可以自己执行读或写总线事务而不需要CPU的干涉称为直接内存访问<br>这种称为DMA传送</p>
+<h3 id="固态硬盘"><a href="#固态硬盘" class="headerlink" title="固态硬盘"></a>固态硬盘</h3><p>SSD是一种基于闪存的存储技术<br>读SSD比写要快<br>数据是以页为单位读写的，只有在一页所属的块整个被擦除后才能写这一页</p>
+<h3 id="储存技术趋势"><a href="#储存技术趋势" class="headerlink" title="储存技术趋势"></a>储存技术趋势</h3><p>不同的存储技术有不同的价格和性能折中。SRAM比DRAM块一些，而DRAM比磁盘要块很多。另一方面，快速存储总是比慢速存储要贵的。<br>SRAM每字节的造价比DRAM高 DRAM的造价又比磁盘造价高得多 SSD位于DRAM与旋转磁盘之间</p>
+<h2 id="6-2-局部性"><a href="#6-2-局部性" class="headerlink" title="6.2 局部性"></a>6.2 局部性</h2><p>重复引用相同的变量的程序具有良好的时间局部性<br>对于具有步长为k的引用模式步长越小，空间局部性越好，具有步长为1的引用模式的程序有很好的空间局部性<br>在内存中以大步长跳来跳去的程序空间局部性会很差<br>对于取值令来说，循环有很好的时间和空间局部性，循环体越小，循环迭代次数越多，局部性越好</p>
+<h2 id="6-3-存储器层次结构"><a href="#6-3-存储器层次结构" class="headerlink" title="6.3 存储器层次结构"></a>6.3 存储器层次结构</h2><p>存储技术：不同存储技术的访问时间差异很大<br>计算机软件：一个编写良好的程序倾向于展示出良好的局部性</p>
+<p>互相补充的性质使人想到一种组织存储器系统的方法称为存储器层次结构<br>从上而下<br>寄存器 L1高度缓存 L2高速缓存 L3高速缓存 主存 本地二级存储 远程二级存储</p>
+<h3 id="存储器层次结构中的缓存"><a href="#存储器层次结构中的缓存" class="headerlink" title="存储器层次结构中的缓存"></a>存储器层次结构中的缓存</h3><p>对于每个k位于k层的更快更小的存储设备作为位于k+1层的更大更慢的存储设备的缓存，直到最小的缓存-cpu寄存器组<br>数据总是以块为大小为传送单元在k层和k+1层之间来回复制的<br>1.缓存命中<br>当程序需要第K+1层的某个数据对象d时，他首先在当前存储在第K层的一个块中查找d<br>如果d刚好在缓存在第k层，那么就称为缓存命中</p>
+<p>2.缓存不命中<br>当没有d称为缓存不命中<br>覆盖一个现存的块的过程称为替换或驱逐这个快</p>
+<p>3.缓存不命中的种类<br>一个空的缓存有时被称为冷缓存<br>此类命中称为强制性不命中或冷不命中<br>只要发生了不命中，在第k层的缓存就必须执行某个放置策略</p>
+<p>4.缓存管理<br>在每一层上，某种形式的逻辑必须管理缓存，其逻辑可以是硬件、软件或是两者的结合</p>
+<h2 id="6-4-高速缓存存储器"><a href="#6-4-高速缓存存储器" class="headerlink" title="6.4 高速缓存存储器"></a>6.4 高速缓存存储器</h2><p>早期计算机存储结构只有三层<br>CPU寄存器 DRAM主存储器 磁盘存储<br>后面在CPU寄存器文件和主存之间插入一个小的SRAM高速缓存存储器，<br>称为L1高速缓存<br>L1高度缓存 访问速度4个时钟周期<br>L2高速缓存 10个  L3高速缓存 50个</p>
+<h3 id="通用的高速缓存存储器组织结构"><a href="#通用的高速缓存存储器组织结构" class="headerlink" title="通用的高速缓存存储器组织结构"></a>通用的高速缓存存储器组织结构</h3><p>基本参数<br>|参数|描述|<br>|:—-:|:—-:|<br>|S = 2^k|组数|<br>|E|每个组数的行数|<br>|B = 2^b|块大小（字节）|<br>|m = log2(M)|（主存）物理地址位数|</p>
+<p>衍生出的量<br>|参数|描述|<br>|:—-:|:—-:|<br>|M = 2^m|内存地址的最大数量|<br>|s = log2(S)|组索引位数量|<br>|b = log2(B)|块偏移数量|<br>|t = m-(s+b)|标记位数量|<br>|C = B×E×S|不包括像有效位和标记位这样开销的高速缓存大小（字节）|</p>
+<p>高速缓存结构可以用元组(S,E,B,m)来描述 大小C指所有块的大小的和，标记位和有效位不包括在内 所以C = B×E×S</p>
+<h3 id="直接映射高速缓存"><a href="#直接映射高速缓存" class="headerlink" title="直接映射高速缓存"></a>直接映射高速缓存</h3><p>每个组只有一行的高速缓存称为直接映射高速缓存<br>1.直接映射高速缓存中的组选择<br>高速缓存从w的地址中间抽取出s个组索引位，解释成一个对应的无符号整数</p>
+<p>2.直接映射高速缓存中的行匹配<br>接下来的一步就是要确定是否有字w的一个副本存储在组i包含的一个高速缓存行中</p>
+<p>3.直接映射高速缓存中的字选择<br>最后一步确定所需要的字在块中是从哪里开始的</p>
+<p>4.直接映射高速缓存中不命中时的行替换<br>如果缓存不命中，那么它需要从存储器层次结构的下一层取出被请求的块，然后将新的块存储在组索引位指示的组中的一个高速缓存行中</p>
+<p>5.综合：运行中的直接映射高速缓存<br>标记位和索引位连接起来唯一地标识了内存中的每个块<br>因为有八个内存块但是只有4个高速缓存组多个块会被映射到同一个高速缓存组<br>映射到同一个高速缓存组的块由标记位唯一地标识</p>
+<h3 id="组相连高速缓存"><a href="#组相连高速缓存" class="headerlink" title="组相连高速缓存"></a>组相连高速缓存</h3><p>组相连高速缓存每个组都保存有多于一个地高速缓存行<br>1.组选择<br>组索引位标识组</p>
+<p>2.行匹配<br>必须检测多个行地标记位和有效位，以确定所请求地字是否在集合中<br>组中的任意一行都可以包含任何映射到这个组地内存块</p>
+<p>3.不命中时地行替换<br>高速缓存必须从内存中取出包含这个字的块</p>
+<h3 id="全相关高速缓存"><a href="#全相关高速缓存" class="headerlink" title="全相关高速缓存"></a>全相关高速缓存</h3><p>是由一个包含所有高速缓存行的组组成的<br>1.组选择<br>地址只被划分成了一个标记和一个块偏移</p>
+<p>2.行匹配于字选择<br>与组相连高速缓存中的是一样的，它们之间的主要区别时规模大小的问题<br>高速缓存电路必须并行地搜索许多相匹配地标记，构造一个又大又快地相联高速缓存很困难而且很昂贵</p>
+<h3 id="有关写的问题"><a href="#有关写的问题" class="headerlink" title="有关写的问题"></a>有关写的问题</h3><p>直写：立即将w地高速缓存块写回到紧挨着地第一层    会引起总线流量<br>写回：尽可能地推迟更新，只有当替换算法要驱逐这个更新过的块时，才把它写到紧挨着的第一层</p>
+<p>处理不命中<br>写分配：加载相应的第一层中的块到高速缓存中，然后更新这个高速缓存块<br>非写分配：避开高速缓存，直接把这个字写到低一层中</p>
+<h3 id="一个真实的高速缓存层次结构"><a href="#一个真实的高速缓存层次结构" class="headerlink" title="一个真实的高速缓存层次结构"></a>一个真实的高速缓存层次结构</h3><p>高速缓存既保存数据，也保存指令。<br>只保存指令称为Ii-cache         一般为只读<br>只保存程序数据称为d-cache</p>
+<h3 id="高速缓存参数的性能影响"><a href="#高速缓存参数的性能影响" class="headerlink" title="高速缓存参数的性能影响"></a>高速缓存参数的性能影响</h3><p>不命中率： 不命中数量/引用数量<br>命中率：1-不命中率<br>命中时间  从高速缓存传送一个字到CPU所需的时间<br>不命中处罚 由于不命中所需要的额外时间</p>
+<p>1.高速缓存大小的影响<br>较大的高速缓存可能会提高命中率，使大存储器运行得更快总是要难一些</p>
+<p>2.块大小的影响<br>较大的块能利用程序中可能存在的空间局部性，帮助提高命中率</p>
+<p>3.相联度的影响<br>较高的相联度降低了高速缓存由于冲突不命中出现抖动的可能，不过较高的相联度会造成较高的成本</p>
+<p>4.写策略的影响<br>直写较容易实现，能使用独立于高速缓存的写缓冲区用来更新内存<br>读不命中开销没这么大 不会触发内存写<br>写回高速缓存引起的传送比较少，允许更多的到内存的带宽用于执行DMA的IO设备</p>
+<h2 id="6-5-编写高速缓存友好的代码"><a href="#6-5-编写高速缓存友好的代码" class="headerlink" title="6.5 编写高速缓存友好的代码"></a>6.5 编写高速缓存友好的代码</h2><p>局部性好的程序更容易有较低的不命中率<br>1.让最常见的情况运行得更快<br>2.尽量减小每个循环内部的缓存不命中数量(如数值遍历次序)</p>
+<h2 id="6-6-综合：高速缓存对程序性能的影响"><a href="#6-6-综合：高速缓存对程序性能的影响" class="headerlink" title="6.6 综合：高速缓存对程序性能的影响"></a>6.6 综合：高速缓存对程序性能的影响</h2><h3 id="储存器山"><a href="#储存器山" class="headerlink" title="储存器山"></a>储存器山</h3><p>一个程序从存储系统中读数据的速率称为读吞吐量<br>存储器系统的性能不是一个数字就能描述的，相反它是一座时间和空间局部性的山，山上高度差别可以超过一个数量级。<br>明智的程序员构造其程序使其运行在山峰而不是低估。目标就是利用时间局部性，使得频繁使用的字从L1中取出，<br>还要利用空间局部性，使得尽可能多的字从一个L1高速缓存行中访问</p>
+<h3 id="在程序中利用局部性"><a href="#在程序中利用局部性" class="headerlink" title="在程序中利用局部性"></a>在程序中利用局部性</h3><p>存储系统被组织成一个存储设备的层次结构，较小、较快的设备靠近顶部，较大、较慢的设备靠近底部<br>将你的注意力集中在内循环上，大部分计算和内存访问都发生在这里<br>通过按照数据对象储存在内存中的顺序、以步长为1的来读数据，从而使你的程序中的空间局部性最大<br>一旦从存储器中读入了一个数据对象，就尽可能多地使用它，从而使得程序中得时间局部性最大</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深入理解计算机系统</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/04/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%85%AD%E7%AB%A0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+ <!--添加代码开始-->
+
+        <div class="declare" hidden="hidden"></div>
+      
+  
+    <article id="post-计算机系统笔记第五章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/04/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%BA%94%E7%AB%A0/">第五章 优化程序性能</a>
+    </h1>
+  
+
+        
+        <a href="/2021/04/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%BA%94%E7%AB%A0/" class="archive-article-date">
+  	<time datetime="2021-04-22T12:46:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>编写高效程序需要做到以下几点：第一，必须选择一组适当的算法和数据结构。第二，必须编写出编译器能够有效优化以转换成高效可执行代码的源代码。</p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深入理解计算机系统</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/04/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%BA%94%E7%AB%A0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+ <!--添加代码开始-->
+
+        <div class="declare" hidden="hidden"></div>
+      
+  
+    <article id="post-栈与队列" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/04/21/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/">stack与queue有关算法题</a>
+    </h1>
+  
+
+        
+        <a href="/2021/04/21/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/" class="archive-article-date">
+  	<time datetime="2021-04-21T15:12:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-LeetCode-716-最大栈"><a href="#1-LeetCode-716-最大栈" class="headerlink" title="1. LeetCode 716 最大栈"></a>1. LeetCode 716 最大栈</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>设计一个最大栈数据结构，既支持栈操作，又支持查找栈中最大元素。</p>
+<p>实现 MaxStack 类：</p>
+<p>MaxStack() 初始化栈对象<br>void push(int x) 将元素 x 压入栈中。<br>int pop() 移除栈顶元素并返回这个元素。<br>int top() 返回栈顶元素，无需移除。<br>int peekMax() 检索并返回栈中最大元素，无需移除。<br>int popMax() 检索并返回栈中最大元素，并将其移除。如果有多个最大元素，只要移除 最靠近栈顶 的那个</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>由于栈具有先进后出的特性，如需实现任何特定顺序的读取操作，往往可以借助两个stack互相倾倒来实现特定顺序<br>另一个stack进行辅助</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MaxStack</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">/** initialize your data structure here. */</span></span><br><span class="line">    stack&lt;<span class="keyword">int</span>&gt; num_stk;</span><br><span class="line">    stack&lt;<span class="keyword">int</span>&gt; max_stk;     <span class="comment">//最大栈，元素个数与数字栈同步</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">MaxStack</span>() </span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (max_stk.<span class="built_in">size</span>()==<span class="number">0</span> || x &gt; max_stk.<span class="built_in">top</span>() )</span><br><span class="line">            max_stk.<span class="built_in">push</span>(x);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            max_stk.<span class="built_in">push</span>(max_stk.<span class="built_in">top</span>());    <span class="comment">//当前最大的压进栈</span></span><br><span class="line">        num_stk.<span class="built_in">push</span>(x);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        max_stk.<span class="built_in">pop</span>();                      <span class="comment">//同步</span></span><br><span class="line">        <span class="keyword">int</span> tmp = num_stk.<span class="built_in">top</span>();</span><br><span class="line">        num_stk.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">return</span> tmp;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> num_stk.<span class="built_in">top</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">peekMax</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> max_stk.<span class="built_in">top</span>();</span><br><span class="line">    &#125;   </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">popMax</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> cur_max = max_stk.<span class="built_in">top</span>();</span><br><span class="line">        stack&lt;<span class="keyword">int</span>&gt; tmp;</span><br><span class="line">        <span class="keyword">while</span>(<span class="built_in">top</span>() != cur_max)     <span class="comment">//从数组栈里找</span></span><br><span class="line">        &#123;</span><br><span class="line">            tmp.<span class="built_in">push</span>(num_stk.<span class="built_in">top</span>());</span><br><span class="line">            <span class="built_in">pop</span>();                  <span class="comment">//2个栈要同步，一起弹</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">pop</span>();                      <span class="comment">//找到第一个，弹出</span></span><br><span class="line">        <span class="keyword">while</span>(tmp.<span class="built_in">size</span>())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">push</span>(tmp.<span class="built_in">top</span>());        <span class="comment">//再从缓冲区倒回去  2个栈同步，一起压新数据</span></span><br><span class="line">            tmp.<span class="built_in">pop</span>();</span><br><span class="line">        &#125;                     </span><br><span class="line">        <span class="keyword">return</span> cur_max;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">算法题整合</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/04/21/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+ <!--添加代码开始-->
+
+        <div class="declare" hidden="hidden"></div>
+      
+  
     <article id="post-计算机系统笔记第四章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -746,241 +1028,9 @@
         <div class="declare" hidden="hidden"></div>
       
   
-    <article id="post-Array" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/12/Array/">Array有关算法题</a>
-    </h1>
-  
-
-        
-        <a href="/2021/04/12/Array/" class="archive-article-date">
-  	<time datetime="2021-04-12T08:41:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-LeetCode-11-Container-With-Most-Water"><a href="#1-LeetCode-11-Container-With-Most-Water" class="headerlink" title="1.LeetCode 11 Container With Most Water"></a>1.LeetCode 11 Container With Most Water</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给出1个非负整数数组 a1， a2， a3， …… an，<br>每个整数标识一个竖立在坐标轴 x 位置的一堵高度为ai的墙，<br>选择两堵墙，和 x 轴构成的容器可以容纳最多的水</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">算法题整合</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/12/Array/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
- <!--添加代码开始-->
-
-        <div class="declare" hidden="hidden"></div>
-      
-  
-    <article id="post-Math" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/12/Math/">Math有关算法题</a>
-    </h1>
-  
-
-        
-        <a href="/2021/04/12/Math/" class="archive-article-date">
-  	<time datetime="2021-04-12T08:41:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-LeetCode-263-丑数"><a href="#1-LeetCode-263-丑数" class="headerlink" title="1.LeetCode 263 丑数"></a>1.LeetCode 263 丑数</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>判断整数n是否为丑数<br>丑数就是只包含质因数2、3或5的正整数。</p>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>用 2 3 5 循环 除这个数看是否最后结果为 1<br>为1则只有它们 不为1则还有其他</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">算法题整合</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/12/Math/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
- <!--添加代码开始-->
-
-        <div class="declare" hidden="hidden"></div>
-      
-  
-    <article id="post-String" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/12/String/">String有关算法题</a>
-    </h1>
-  
-
-        
-        <a href="/2021/04/12/String/" class="archive-article-date">
-  	<time datetime="2021-04-12T08:41:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-unique-string"><a href="#1-unique-string" class="headerlink" title="1.unique string"></a>1.unique string</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>判断一个字符串中有没有重复字符</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">算法题整合</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/12/String/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
- <!--添加代码开始-->
-
-        <div class="declare" hidden="hidden"></div>
-      
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/5/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
+      <a class="extend prev" rel="prev" href="/page/5/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/">Next &amp;raquo;</a>
     </nav>
   
 
