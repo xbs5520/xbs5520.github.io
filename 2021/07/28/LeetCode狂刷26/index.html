@@ -6,16 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2021 | xbs5520&#39;s blog</title>
+  <title>316~329 | xbs5520&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录每日学习内容">
-<meta property="og:type" content="website">
-<meta property="og:title" content="xbs5520&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/archives/2021/page/2/index.html">
+  <meta name="description" content="316. 去除重复字母给你一个字符串s，请你去除字符串中重复的字母，使得每个字母只出现一次。需保证返回结果的字典序最小（要求不能打乱其他字符的相对位置）。 贪心从前向后扫描Tj &gt; Si 且Tj能被删除(后面有) 则删Tj 123456789101112131415161718192021class Solution &amp;#123;public:    string removeDuplica">
+<meta property="og:type" content="article">
+<meta property="og:title" content="316~329">
+<meta property="og:url" content="http://yoursite.com/2021/07/28/LeetCode%E7%8B%82%E5%88%B726/index.html">
 <meta property="og:site_name" content="xbs5520&#39;s blog">
-<meta property="og:description" content="记录每日学习内容">
+<meta property="og:description" content="316. 去除重复字母给你一个字符串s，请你去除字符串中重复的字母，使得每个字母只出现一次。需保证返回结果的字典序最小（要求不能打乱其他字符的相对位置）。 贪心从前向后扫描Tj &gt; Si 且Tj能被删除(后面有) 则删Tj 123456789101112131415161718192021class Solution &amp;#123;public:    string removeDuplica">
 <meta property="og:locale">
+<meta property="article:published_time" content="2021-07-27T20:42:04.000Z">
+<meta property="article:modified_time" content="2021-07-27T22:14:00.168Z">
 <meta property="article:author" content="xbs5520">
+<meta property="article:tag" content="LeetCode狂刷">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="xbs5520&#39;s blog" type="application/atom+xml">
@@ -138,36 +141,96 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-LeetCode狂刷26" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      316~329
+    </h1>
+  
+
+        
+        <a href="/2021/07/28/LeetCode%E7%8B%82%E5%88%B726/" class="archive-article-date">
+  	<time datetime="2021-07-27T20:42:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-28</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="316-去除重复字母"><a href="#316-去除重复字母" class="headerlink" title="316. 去除重复字母"></a>316. 去除重复字母</h2><p>给你一个字符串s，请你去除字符串中重复的字母，使得每个字母只出现一次。<br>需保证返回结果的字典序最小（要求不能打乱其他字符的相对位置）。</p>
+<p>贪心<br>从前向后扫描<br>Tj &gt; Si 且Tj能被删除(后面有) 则删Tj</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">removeDuplicateLetters</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        string stk;</span><br><span class="line">        unordered_map&lt;<span class="keyword">char</span>, <span class="keyword">bool</span>&gt; ins;</span><br><span class="line">        unordered_map&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt; last;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.<span class="built_in">size</span>(); i++) last[s[i]] = i;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(ins[s[i]]) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">while</span>(stk.<span class="built_in">size</span>() &amp;&amp; stk.<span class="built_in">back</span>() &gt; s[i] &amp;&amp; last[stk.<span class="built_in">back</span>()] &gt; i)&#123;</span><br><span class="line">                ins[stk.<span class="built_in">back</span>()] = <span class="literal">false</span>;</span><br><span class="line">                stk.<span class="built_in">pop_back</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            stk += s[i];</span><br><span class="line">            ins[s[i]] = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> stk;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="318-最大单词长度乘积"><a href="#318-最大单词长度乘积" class="headerlink" title="318. 最大单词长度乘积"></a>318. 最大单词长度乘积</h2><p>给定一个字符串数组 words，找到 length(word[i]) * length(word[j]) 的最大值，<br>并且这两个单词不含有公共字母。你可以认为每个单词只包含小写字母。<br>如果不存在这样的两个单词，返回 0。</p>
+<p>快速判断两个字符串是否有相同字母 26<br>二进制 0~2^26-1 每个单词用一个二进制数表示其有多少种字母</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxProduct</span><span class="params">(vector&lt;string&gt;&amp; words)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; state;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> word: words)&#123;</span><br><span class="line">            <span class="keyword">int</span> s = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> c : word)</span><br><span class="line">                s |= <span class="number">1</span> &lt;&lt; (c - <span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">            state.<span class="built_in">push_back</span>(s);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; words.<span class="built_in">size</span>(); i++)</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; words.<span class="built_in">size</span>(); j++)</span><br><span class="line">                <span class="keyword">if</span>((state[i] &amp; state[j]) == <span class="number">0</span>)</span><br><span class="line">                    res = <span class="built_in">max</span>(res, (<span class="keyword">int</span>)(words[i].<span class="built_in">size</span>() * words[j].<span class="built_in">size</span>()));</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="319-灯泡开关"><a href="#319-灯泡开关" class="headerlink" title="319. 灯泡开关"></a>319. 灯泡开关</h2><p>初始时有 n 个灯泡处于关闭状态。<br>对某个灯泡切换开关意味着：如果灯泡状态为关闭，那该灯泡就会被开启；<br>而灯泡状态为开启，那该灯泡就会被关闭。<br>第 1 轮，每个灯泡切换一次开关。即，打开所有的灯泡。<br>第 2 轮，每两个灯泡切换一次开关。 即，每两个灯泡关闭一个。<br>第 3 轮，每三个灯泡切换一次开关。<br>第 i 轮，每 i 个灯泡切换一次开关。 而第 n 轮，你只切换最后一个灯泡的开关。<br>找出 n 轮后有多少个亮着的灯泡。</p>
+<p>找到约数个数为奇数的所有数 完全平方数<br>也就是求 1~n中所有完全平方数个数 = 根号n下取整</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">bulbSwitch</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sqrt</span>(n);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="321-拼接最大数"><a href="#321-拼接最大数" class="headerlink" title="321. 拼接最大数"></a>321. 拼接最大数</h2><p>给定长度分别为 m 和 n 的两个数组，其元素由 0-9 构成，表示两个自然数各位上的数字。<br>现在从这两个数组中选出 k (k &lt;= m + n) 个数字拼接成一个新的数，<br>要求从同一个数组中取出的数字保持其在原数组中的相对顺序。<br>求满足该条件的最大数。结果返回一个表示该最大数的长度为 k 的数组。</p>
+<p>1 枚举数组1选几个 i个<br>2 一个长度为m的数组 按顺序选k个数 字典序最大 转化为316<br>3 按顺序合并两个数组 字典序最大 难点！!</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">maxNumber</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums1, vector&lt;<span class="keyword">int</span>&gt;&amp; nums2, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums1.<span class="built_in">size</span>(), m = nums2.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">res</span><span class="params">(k, INT_MIN)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="built_in">max</span>(<span class="number">0</span>, k - m); i &lt;= <span class="built_in">min</span>(k, n); i++)&#123;</span><br><span class="line">            <span class="keyword">auto</span> a = <span class="built_in">maxArray</span>(nums1, i);</span><br><span class="line">            <span class="keyword">auto</span> b = <span class="built_in">maxArray</span>(nums2, k - i);</span><br><span class="line">            <span class="keyword">auto</span> c = <span class="built_in">merge</span>(a, b);</span><br><span class="line">            res  = <span class="built_in">max</span>(res, c);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">merge</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt; &amp;a, vector&lt;<span class="keyword">int</span>&gt; &amp;b)</span></span>&#123;</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; c;</span><br><span class="line">        <span class="keyword">while</span>(a.<span class="built_in">size</span>() &amp;&amp; b.<span class="built_in">size</span>())</span><br><span class="line">            <span class="keyword">if</span>(a &gt; b) c.<span class="built_in">push_back</span>(a[<span class="number">0</span>]), a.<span class="built_in">erase</span>(a.<span class="built_in">begin</span>());</span><br><span class="line">            <span class="keyword">else</span> c.<span class="built_in">push_back</span>(b[<span class="number">0</span>]), b.<span class="built_in">erase</span>(b.<span class="built_in">begin</span>());</span><br><span class="line">        <span class="keyword">while</span>(a.<span class="built_in">size</span>()) c.<span class="built_in">push_back</span>(a[<span class="number">0</span>]), a.<span class="built_in">erase</span>(a.<span class="built_in">begin</span>());</span><br><span class="line">        <span class="keyword">while</span>(b.<span class="built_in">size</span>()) c.<span class="built_in">push_back</span>(b[<span class="number">0</span>]), b.<span class="built_in">erase</span>(b.<span class="built_in">begin</span>());</span><br><span class="line">        <span class="keyword">return</span> c;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">maxArray</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt; &amp; nums, <span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">res</span><span class="params">(k)</span></span>;</span><br><span class="line">        <span class="keyword">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> x = nums[i];</span><br><span class="line">            <span class="keyword">while</span>(j &amp;&amp; res[j - <span class="number">1</span>] &lt; x &amp;&amp; j + n - i &gt; k) j--;</span><br><span class="line">            <span class="keyword">if</span>(j &lt; k) res[j++] = x;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="322-零钱兑换"><a href="#322-零钱兑换" class="headerlink" title="322. 零钱兑换"></a>322. 零钱兑换</h2><p>给你一个整数数组 coins ，表示不同面额的硬币；以及一个整数 amount ，表示总金额。<br>计算并返回可以凑成总金额所需的 最少的硬币个数 。如果没有任何一种硬币组合能组成总金额，返回 -1 。<br>你可以认为每种硬币的数量是无限的。</p>
+<p>完全背包</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">coinChange</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; coins, <span class="keyword">int</span> m)</span> </span>&#123;</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">f</span><span class="params">(m + <span class="number">1</span>, <span class="number">1e8</span>)</span></span>;</span><br><span class="line">        f[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> v : coins)</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = v; j &lt;= m; j++)</span><br><span class="line">                f[j] = <span class="built_in">min</span>(f[j], f[j - v] + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span>(f[m] == <span class="number">1e8</span>) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">return</span> f[m];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="324-摆动排序-II"><a href="#324-摆动排序-II" class="headerlink" title="324. 摆动排序 II"></a>324. 摆动排序 II</h2><p>给你一个整数数组 nums，将它重新排列成 nums[0] &lt; nums[1] &gt; nums[2] &lt; nums[3]… 的顺序。<br>你可以假设所有输入数组都可以得到满足题目要求的结果。</p>
+<p>找到中位数 快速选择算法<br>1.大于 中位数<br>2.等于 中位数<br>3.小于 中位数</p>
+<p>映射<br>A(i) = (2i + 1) % (n | 1)<br>转化为75题</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">wiggleSort</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">auto</span> midptr = nums.<span class="built_in">begin</span>() + n / <span class="number">2</span>;</span><br><span class="line">        <span class="built_in">nth_element</span>(nums.<span class="built_in">begin</span>(), midptr, nums.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">int</span> mid = *midptr;</span><br><span class="line"></span><br><span class="line">        <span class="meta">#<span class="meta-keyword">define</span> A(i) nums[(i * 2 + 1) % (n | 1)]</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>, k = n - <span class="number">1</span>; i &lt;= k;)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">A</span>(i) &gt; mid) <span class="built_in">swap</span>(<span class="built_in">A</span>(i++), <span class="built_in">A</span>(j++));</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">A</span>(i) &lt; mid) <span class="built_in">swap</span>(<span class="built_in">A</span>(i), <span class="built_in">A</span>(k--));</span><br><span class="line">            <span class="keyword">else</span> i++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="326-3的幂"><a href="#326-3的幂" class="headerlink" title="326. 3的幂"></a>326. 3的幂</h2><p>给定一个整数，写一个函数来判断它是否是 3 的幂次方。<br>如果是，返回 true ；否则，返回 false 。<br>整数 n 是 3 的幂次方需满足：存在整数 x 使得 n == 3^x</p>
+<p>int 范围内 最大 3^19</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isPowerOfThree</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> n &gt; <span class="number">0</span> &amp;&amp; <span class="number">1162261467</span> % n == <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="327-区间和的个数"><a href="#327-区间和的个数" class="headerlink" title="327. 区间和的个数"></a>327. 区间和的个数</h2><p>给你一个整数数组 nums 以及两个整数 lower 和 upper 。求数组中，值位于范围 [lower, upper]<br>（包含 lower 和 upper）之内的 区间和的个数 。<br>区间和 S(i, j) 表示在 nums 中，位置从 i 到 j 的元素之和，包含 i 和 j (i ≤ j)。</p>
+<p>前缀和</p>
+<p>lower &lt;= si - sj &lt;= upper<br>si - upper &lt;= sj &lt;= si - lower</p>
+<p>离散化 + 数状数组 ？？</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> m;</span><br><span class="line">    vector&lt;<span class="keyword">int</span>&gt; tr;</span><br><span class="line">    vector&lt;LL&gt; numbers;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">get</span><span class="params">(LL x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">lower_bound</span>(numbers.<span class="built_in">begin</span>(), numbers.<span class="built_in">end</span>(), x) - numbers.<span class="built_in">begin</span>() + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">lowbit</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> x &amp; -x;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = x; i &lt;= m; i += <span class="built_in">lowbit</span>(i)) tr[i] += v;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = x; i; i -= <span class="built_in">lowbit</span>(i)) res += tr[i];</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countRangeSum</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> lower, <span class="keyword">int</span> upper)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;LL&gt; <span class="title">s</span><span class="params">(n + <span class="number">1</span>)</span></span>;</span><br><span class="line">        numbers.<span class="built_in">push_back</span>(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++ ) &#123;</span><br><span class="line">            s[i] = s[i - <span class="number">1</span>] + nums[i - <span class="number">1</span>];</span><br><span class="line">            numbers.<span class="built_in">push_back</span>(s[i]);</span><br><span class="line">            numbers.<span class="built_in">push_back</span>(s[i] - lower);</span><br><span class="line">            numbers.<span class="built_in">push_back</span>(s[i] - upper - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">sort</span>(numbers.<span class="built_in">begin</span>(), numbers.<span class="built_in">end</span>());</span><br><span class="line">        numbers.<span class="built_in">erase</span>(<span class="built_in">unique</span>(numbers.<span class="built_in">begin</span>(), numbers.<span class="built_in">end</span>()), numbers.<span class="built_in">end</span>());</span><br><span class="line">        m = numbers.<span class="built_in">size</span>();</span><br><span class="line">        tr.<span class="built_in">resize</span>(m + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">add</span>(<span class="built_in">get</span>(<span class="number">0</span>), <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++ ) &#123;</span><br><span class="line">            res += <span class="built_in">query</span>(<span class="built_in">get</span>(s[i] - lower)) - <span class="built_in">query</span>(<span class="built_in">get</span>(s[i] - upper - <span class="number">1</span>));</span><br><span class="line">            <span class="built_in">add</span>(<span class="built_in">get</span>(s[i]), <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="328-奇偶链表"><a href="#328-奇偶链表" class="headerlink" title="328. 奇偶链表"></a>328. 奇偶链表</h2><p>给定一个单链表，把所有的奇数节点和偶数节点分别排在一起。<br>请注意，这里的奇数节点和偶数节点指的是节点编号的奇偶性，而不是节点的值的奇偶性。<br>请尝试使用原地算法完成。你的算法的空间复杂度应为 O(1)，时间复杂度应为 O(nodes)，nodes 为节点总数。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">oddEvenList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!head || !head-&gt;next) <span class="keyword">return</span> head;</span><br><span class="line">        <span class="keyword">auto</span> oh = head, ot = oh;</span><br><span class="line">        <span class="keyword">auto</span> eh = head-&gt;next, et = eh;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> p = head-&gt;next-&gt;next; p; )&#123;</span><br><span class="line">            ot = ot-&gt;next = p;</span><br><span class="line">            p = p-&gt;next;</span><br><span class="line">            <span class="keyword">if</span>(p)&#123;</span><br><span class="line">                et = et-&gt;next = p;</span><br><span class="line">                p = p-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        ot-&gt;next = eh;</span><br><span class="line">        et-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">        <span class="keyword">return</span> oh;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="329-矩阵中的最长递增路径"><a href="#329-矩阵中的最长递增路径" class="headerlink" title="329. 矩阵中的最长递增路径"></a>329. 矩阵中的最长递增路径</h2><p>给定一个 m x n 整数矩阵 matrix ，找出其中最长递增路径的长度。<br>对于每个单元格，你可以往上，下，左，右四个方向移动。<br>你不能在对角线方向上移动或移动到边界外（即不允许环绕）。</p>
+<p>Dp的记忆化搜索  dfs帮助数组按照拓扑序计算<br>f(i,j) 以ij为起点的上升路径的 最大长度</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> n, m;</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; f, w;</span><br><span class="line">    <span class="keyword">int</span> dx[<span class="number">4</span>] = &#123;<span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>&#125;, dy[<span class="number">4</span>] = &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">dp</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span>&amp; v = f[x][y];</span><br><span class="line">        <span class="keyword">if</span> (v != <span class="number">-1</span>) <span class="keyword">return</span> v;</span><br><span class="line">        v = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i ++ ) &#123;</span><br><span class="line">            <span class="keyword">int</span> a = x + dx[i], b = y + dy[i];</span><br><span class="line">            <span class="keyword">if</span> (a &gt;= <span class="number">0</span> &amp;&amp; a &lt; n &amp;&amp; b &gt;= <span class="number">0</span> &amp;&amp; b &lt; m &amp;&amp; w[x][y] &lt; w[a][b])</span><br><span class="line">                v = <span class="built_in">max</span>(v, <span class="built_in">dp</span>(a, b) + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> v;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">longestIncreasingPath</span><span class="params">(vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; matrix)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (matrix.<span class="built_in">empty</span>() || matrix[<span class="number">0</span>].<span class="built_in">empty</span>()) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        w = matrix;</span><br><span class="line">        n = w.<span class="built_in">size</span>(), m = w[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        f = vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;(n, vector&lt;<span class="keyword">int</span>&gt;(m, <span class="number">-1</span>));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i ++ )</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; m; j ++ )</span><br><span class="line">                res = <span class="built_in">max</span>(res, <span class="built_in">dp</span>(i, j));</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/07/18/LeetCode%E7%8B%82%E5%88%B719/" class="archive-article-date">
-  	<time datetime="2021-07-18T15:39:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/18/LeetCode%E7%8B%82%E5%88%B719/">205~214</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -179,367 +242,111 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2021/07/28/LeetCode%E7%8B%82%E5%88%B726/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/07/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%AC%E5%9B%9B%E7%AB%A0/" class="archive-article-date">
-  	<time datetime="2021-07-18T07:31:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-18</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2021/07/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%AC%E5%85%AD%E7%AB%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">第六章 总线</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%AC%E5%9B%9B%E7%AB%A0/">第四章 指令系统</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">计算机组成原理</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/07/18/LeetCode%E7%8B%82%E5%88%B718/" class="archive-article-date">
-  	<time datetime="2021-07-18T01:09:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/18/LeetCode%E7%8B%82%E5%88%B718/">198~204</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">LeetCode狂刷</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/07/15/LeetCode%E7%8B%82%E5%88%B717/" class="archive-article-date">
-  	<time datetime="2021-07-15T15:26:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/15/LeetCode%E7%8B%82%E5%88%B717/">167~188</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">LeetCode狂刷</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/07/14/LeetCode%E7%8B%82%E5%88%B716/" class="archive-article-date">
-  	<time datetime="2021-07-14T15:26:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/14/LeetCode%E7%8B%82%E5%88%B716/">151~166</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">LeetCode狂刷</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/07/12/LeetCode%E7%8B%82%E5%88%B715/" class="archive-article-date">
-  	<time datetime="2021-07-12T15:26:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/12/LeetCode%E7%8B%82%E5%88%B715/">141~150</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">LeetCode狂刷</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/07/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%AC%E4%B8%89%E7%AB%A0/" class="archive-article-date">
-  	<time datetime="2021-07-12T06:25:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%AC%E4%B8%89%E7%AB%A0/">第三章 存储系统</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">计算机组成原理</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/07/11/LeetCode%E7%8B%82%E5%88%B714/" class="archive-article-date">
-  	<time datetime="2021-07-11T14:56:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/11/LeetCode%E7%8B%82%E5%88%B714/">131~140</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">LeetCode狂刷</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/07/10/LeetCode%E7%8B%82%E5%88%B713/" class="archive-article-date">
-  	<time datetime="2021-07-10T00:16:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/10/LeetCode%E7%8B%82%E5%88%B713/">121~130</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">LeetCode狂刷</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/07/08/LeetCode%E7%8B%82%E5%88%B712/" class="archive-article-date">
-  	<time datetime="2021-07-08T13:20:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/08/LeetCode%E7%8B%82%E5%88%B712/">111~120</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">LeetCode狂刷</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2021/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2021/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2021/page/3/">3</a><a class="page-number" href="/archives/2021/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2021/page/8/">8</a><a class="extend next" rel="next" href="/archives/2021/page/3/">Next &amp;raquo;</a>
-    </nav>
-  
+        
+        
+    </div>
+</aside>
 
 
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+ <!--添加代码开始-->
+
+        <div class="declare" hidden="hidden"></div>
+      
           </div>
         </div>
       </div>
@@ -560,8 +367,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
