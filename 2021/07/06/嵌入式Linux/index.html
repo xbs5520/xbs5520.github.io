@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Linux知识点 | xbs5520&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录每日学习内容">
+  <meta name="description" content="指令常用的Linux指令PS查看当前进程 exit执行退出 pwd查看当前路径 ls指出指定目录中的目录及文件 参数-a 显示所有文件及目录（开头的隐藏文件也会列出）-l 除文件名称外，亦将文件型态、权限、拥有者、文件大小等资讯详细列出-r 将文件以相反次序显示（原定依英文字母次序）-t 将文件依建立时间之先后次序列出-A 同-a，但不列出”.”（目前目录）及”..”（父目录）-F 在列出的文件名">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux知识点">
 <meta property="og:url" content="http://yoursite.com/2021/07/06/%E5%B5%8C%E5%85%A5%E5%BC%8FLinux/index.html">
 <meta property="og:site_name" content="xbs5520&#39;s blog">
-<meta property="og:description" content="记录每日学习内容">
+<meta property="og:description" content="指令常用的Linux指令PS查看当前进程 exit执行退出 pwd查看当前路径 ls指出指定目录中的目录及文件 参数-a 显示所有文件及目录（开头的隐藏文件也会列出）-l 除文件名称外，亦将文件型态、权限、拥有者、文件大小等资讯详细列出-r 将文件以相反次序显示（原定依英文字母次序）-t 将文件依建立时间之先后次序列出-A 同-a，但不列出”.”（目前目录）及”..”（父目录）-F 在列出的文件名">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-07-06T11:13:32.000Z">
-<meta property="article:modified_time" content="2021-07-23T02:26:02.031Z">
+<meta property="article:modified_time" content="2021-07-29T15:15:34.715Z">
 <meta property="article:author" content="xbs5520">
 <meta property="article:tag" content="嵌入式相关">
 <meta name="twitter:card" content="summary">
@@ -161,7 +161,76 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><h3 id="常用的Linux指令"><a href="#常用的Linux指令" class="headerlink" title="常用的Linux指令"></a>常用的Linux指令</h3><h4 id="PS"><a href="#PS" class="headerlink" title="PS"></a>PS</h4><p>查看当前进程</p>
+<h4 id="exit"><a href="#exit" class="headerlink" title="exit"></a>exit</h4><p>执行退出</p>
+<h4 id="pwd"><a href="#pwd" class="headerlink" title="pwd"></a>pwd</h4><p>查看当前路径</p>
+<h4 id="ls"><a href="#ls" class="headerlink" title="ls"></a>ls</h4><p>指出指定目录中的目录及文件</p>
+<p>参数<br>-a 显示所有文件及目录（开头的隐藏文件也会列出）<br>-l 除文件名称外，亦将文件型态、权限、拥有者、文件大小等资讯详细列出<br>-r 将文件以相反次序显示（原定依英文字母次序）<br>-t 将文件依建立时间之先后次序列出<br>-A 同-a，但不列出”.”（目前目录）及”..”（父目录）<br>-F 在列出的文件名称后加一符号；例如可执行档则加”*”，目录则加”/“<br>-R 若目录下有文件，则以下之文件亦皆依序列出</p>
+<h4 id="mkdir"><a href="#mkdir" class="headerlink" title="mkdir"></a>mkdir</h4><p>创建目录</p>
+<h4 id="vi-vim"><a href="#vi-vim" class="headerlink" title="vi vim"></a>vi vim</h4><p>创建文件</p>
+<h4 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h4><p>创建文件</p>
+<h4 id="echo"><a href="#echo" class="headerlink" title="echo"></a>echo</h4><p>echo”this is a new file” &gt; file3.txt<br>创建文件file3.txt并将this is a new file写入<br>(说明：使用&gt;指令覆盖文件原内容并重新输入内容，若文件不存在则创建文件。)</p>
+<p>echo “add contents” &gt;&gt;file3.txt<br>在已存在的文件补充写入新内容add contents<br>(说明：使用&gt;&gt;指令向文件追加内容，原内容将保存。)</p>
+<p>echo hello world<br>向屏幕输出带空格的字符串</p>
+<h4 id="less-more-cat"><a href="#less-more-cat" class="headerlink" title="less more cat"></a>less more cat</h4><p>三者都是将文件内容输出到标准输出，其中less和more可以分页显示，cat是显示全部。<br>三者可以根据已经存在的文件创建新的文件。</p>
+<p>cat-n textfilel<br>把textfile1的文档内容加上行号后输入到屏幕</p>
+<p>cat-n textfilel &gt; textfile2<br>把textfile1的文档内容加上行号后输入textfile2这个文档里</p>
+<p>cat-b textfilel textfile2 &gt;&gt; textfile3<br>把textfile1和textfile2的文档内容加上行号（空白行不加）之后将内容附加到textfile3文档里</p>
+<p>cat /dev/null &gt; /etc/test.txt<br>清空/etc/test.txt文档内容</p>
+<h4 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h4><p>cd最主要的作用是切换目录，在cd后面跟&gt;或&gt;&gt;再加上文件名就可以创建一个内容为空的文件。<br>它和echo的区别之处在于echo可写文件内容，而cd并不能。</p>
+<h4 id="cp"><a href="#cp" class="headerlink" title="cp"></a>cp</h4><p>cp-r test/newtest<br>将当前目录test/下的所有文件复制到新目录newtest</p>
+<h4 id="tail"><a href="#tail" class="headerlink" title="tail"></a>tail</h4><p>查看文件尾部 可指定行数</p>
+<h4 id="head"><a href="#head" class="headerlink" title="head"></a>head</h4><p>查看文件头部 可指定行数</p>
+<h4 id="mv"><a href="#mv" class="headerlink" title="mv"></a>mv</h4><p>mv A B<br>将源文件名A改为目标文件名B</p>
+<p>mv A Cata<br>将文件A移动到目标目录Cata中</p>
+<h4 id="rm"><a href="#rm" class="headerlink" title="rm"></a>rm</h4><p>rm -rf file/directory<br>删除当前目录下的所有文件及目录，并且是直接删除，无需逐一确认<br>rm -rf directory/<br>删除目录directory，不管该目录下是否有子目录或文件</p>
+<h4 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h4><p>grep test *file<br>在当前目录中，查找后缀有file字样的文件中包含test字符串的文件，并打印出该字符串的行</p>
+<p>grep -r update /etc/acpi<br>查找指定目录/etc/acpi 及其子目录（如果存在子目录的话）下所有文件中包含字符串”update”的文件</p>
+<p>grep -v test <em>test</em><br>查找文件名中包含test的文件中不包含test的行</p>
+<h4 id="find"><a href="#find" class="headerlink" title="find"></a>find</h4><p>find. -name “*.c”<br>将当前目录及其子目录下所有文件后缀为.c的文件列出来</p>
+<p>find. -ctime -20<br>将当前目录及其子目录下所有最近20天内更新过的文件列出</p>
+<h3 id="常用GCC指令"><a href="#常用GCC指令" class="headerlink" title="常用GCC指令"></a>常用GCC指令</h3><h4 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h4><p>gcc -E test.c -o test.i<br>把预处理的结果导出到test.i文件</p>
+<h4 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h4><p>gcc -S test.i -o test.s<br>编译器将test.i翻译成汇编语言，并将结果存储在test.s文件中。</p>
+<h4 id="汇编"><a href="#汇编" class="headerlink" title="汇编"></a>汇编</h4><p>gcc -c test.s -o test.o<br>将汇编代码编译为目标文件(.o)但不链接</p>
+<h4 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h4><p>gcc test.o -o test<br>将生成的目标文件test.o生成最终的可执行文件test</p>
+<h4 id="直接编译"><a href="#直接编译" class="headerlink" title="直接编译"></a>直接编译</h4><p>gcc test.c -o test<br>将源文件test.c编译链接为可执行文件test</p>
+<h4 id="多文件编译"><a href="#多文件编译" class="headerlink" title="多文件编译"></a>多文件编译</h4><p>gcc test1.c test2.c -o test</p>
+<h4 id="警告处理"><a href="#警告处理" class="headerlink" title="警告处理"></a>警告处理</h4><p>gcc -w test.c -o test<br>忽略编译时的警告</p>
+<p>gcc -wall test.c -o test<br>编译后显示所有警告</p>
+<p>gcc -werror test.c -o test<br>在产生警告的地方停止编译</p>
+<h3 id="GDB调试指令"><a href="#GDB调试指令" class="headerlink" title="GDB调试指令"></a>GDB调试指令</h3><p>gcc-g test.c-o test<br>编译时生成debug有关的程序信<br>gdb test<br>启动调试<br>help<br>查看命令帮助，具体命令查询在gdb中输入help +命令，简写h<br>run<br>重新开始运行文件（run-text：加载文本文件，run-bin：加载二进制文件），简写r<br>start<br>单步执行，运行程序，停在第一执行语句<br>list<br>查看原代码（1ist-n，从第n行开始查看代码。list+函数名：查看具体函数），简写l<br>set<br>设置变量的值<br>next<br>单步调试（逐过程，函数直接执行），简写n<br>step<br>单步调试（逐语句：跳入自定义函数内部执行），简写s<br>backtrace<br>查看函数的调用的栈帧和层级关系，简写bt<br>frame<br>切换函数的栈帧，简写f<br>info<br>查看函数内部局部变量的数值，简写i<br>finish<br>结束当前函数，返回到函数调用点<br>continue<br>继续运行，简写c<br>print<br>打印值及地址，简写p<br>quit<br>退出gdb，简写q<br>break+num<br>在第num行设置断点，简写b<br>info breakpoints<br>查看当前设置的所有断点delete breakpoints<br>num<br>删除第num个断点，简写d<br>display<br>追踪查看具体变量值<br>undisplay<br>取消追踪观察变量<br>watch<br>被设置观察点的变量发生修改时，打印显示<br>i watch<br>显示观察点<br>enable breakpoints<br>启用断点<br>disable breakpoints<br>禁用断点<br>x<br>查看内存x/20xw显示20个单元，16进制，4字节每单元<br>run argv[1] argv[2]<br>调试时命令行传参<br>set fol1ow-fork-mode child<br>Makefile项目管理：选择跟踪父子进程(fork())</p>
+<h3 id="常用的驱动开发指令"><a href="#常用的驱动开发指令" class="headerlink" title="常用的驱动开发指令"></a>常用的驱动开发指令</h3><h4 id="加载-卸载驱动"><a href="#加载-卸载驱动" class="headerlink" title="加载/卸载驱动"></a>加载/卸载驱动</h4><p>insmod/modprobe<br>加载驱动<br>rmmod<br>卸载驱动</p>
+<h4 id="Linux驱动如何查看驱动模块中打印信息？"><a href="#Linux驱动如何查看驱动模块中打印信息？" class="headerlink" title="Linux驱动如何查看驱动模块中打印信息？"></a>Linux驱动如何查看驱动模块中打印信息？</h4><p>dmesg</p>
+<h4 id="如何查看内核中已有的字符设备的信息？"><a href="#如何查看内核中已有的字符设备的信息？" class="headerlink" title="如何查看内核中已有的字符设备的信息？"></a>如何查看内核中已有的字符设备的信息？</h4><p>lsmod和modprobe，lsmod可以查看模块的依赖关系，modprobe在加载模块时会加载其他依赖的模块。</p>
+<h4 id="如何查看正在使用的有哪些中断号？"><a href="#如何查看正在使用的有哪些中断号？" class="headerlink" title="如何查看正在使用的有哪些中断号？"></a>如何查看正在使用的有哪些中断号？</h4><p>cat /proc/interrupt</p>
+<h2 id="Uboot"><a href="#Uboot" class="headerlink" title="Uboot"></a>Uboot</h2><h3 id="什么是bootloader？"><a href="#什么是bootloader？" class="headerlink" title="什么是bootloader？"></a>什么是bootloader？</h3><p>Linux系统要启动就必须需要一个bootloader程序，也就说芯片上电以后先运行一段bootloader程序。<br>这段bootloader程序会先初始化时钟，看门狗，中断，SDRAM，等外设，然后将Linux内核从<br>flash（NAND，NOR FLASH，SD，MMC等）拷贝到SDRAM中，最后启动Linux内核。<br>当然了，bootloader的实际工作要复杂的多，但是它最主要的工作就是启动Linux内核。</p>
+<p>bootloader和Linux内核的关系就跟PC上的BIOS和Windows的关系一样，bootloader就相当于BIOS。<br>总得来说，Bootloader就是一小段程序，它在系统上电时开始执行，初始化硬件设各、准备好软件环境，最后调用操作系统内核</p>
+<h3 id="uboot启动过程中做了那些事？"><a href="#uboot启动过程中做了那些事？" class="headerlink" title="uboot启动过程中做了那些事？"></a>uboot启动过程中做了那些事？</h3><p>第一阶段<br>初始化时钟，关闭看门狗，关中断，启动ICACHE，关闭DCACHE和TLB，关闭MMU，初始化SDRAM初始化NAND FLASH，重定位。</p>
+<p>第二阶段<br>初始化一个串口，检测系统内存映射，将内核映象和根文件系统映象从Flash上读到SDRAM空间中，为内核设置启动参数，调用内核。</p>
+<h3 id="uboot和内核如何完成参数传递？"><a href="#uboot和内核如何完成参数传递？" class="headerlink" title="uboot和内核如何完成参数传递？"></a>uboot和内核如何完成参数传递？</h3><p>uboot启动后已经完成了基本的硬件初始化（如：内存、串口等），接下来，<br>它的主要任务就是加载Linux内核到开发板的内存，然后跳转到Linux内核所在的地址运行。<br>ps：只要问到uboot，面试官必问uboot和内核的参数传递，所以一定要知道！<br>具体是如何跳转呢？做法很简单，直接修改PC寄存器的值为Linux内核所在的地址，<br>这样CPU就会从Linux内核所在的地址去取指令，从而执行内核代码<br>在前面我们已经知道，在跳转到内核以前，uboot需要做好以下三件事情：<br>（1）CPU寄存器的设置<br>RO = 0<br>R1 = 机器类型ID;    对于ARM结构的CPU，其机器类型ID可以参见linux/arch/arm tools/mach-types<br>R2 = 启动参数标记列表在RAM中起始基地址<br>（2）CPU工作模式<br>必须禁止中断（IRQs和FIQs）<br>CPU必须为SVC模式<br>（3）Cache和MMU的设置<br>MMU必须关闭<br>指令Cache可以打开也可以关闭<br>数据Cache必须关闭<br>其中上面第一步CPU寄存器的设置中，就是通过RO，R1，R2三个参数给内核传递参数的。</p>
+<h3 id="为什么要给内核传递参数呢？"><a href="#为什么要给内核传递参数呢？" class="headerlink" title="为什么要给内核传递参数呢？"></a>为什么要给内核传递参数呢？</h3><p>在此之前，uboot已经完成了硬件的初始化，可以说已经”适应了”这块开发板。<br>然而，内核并不是对于所有的开发板都能完美适配的（如果适配了，可想而知这个内核有多庞大，<br>又或者有新技术发明了，可以完美的适配各种开发板），此时，对于开发板的环境一无所知。<br>所以，要想启动Linux内核，uboot必须要给内核传递一些必要的信息来告诉内核当前所处的环境。</p>
+<h3 id="如何给内核传递参数？"><a href="#如何给内核传递参数？" class="headerlink" title="如何给内核传递参数？"></a>如何给内核传递参数？</h3><p>boot把机器ID通过R1传递给内核，Linux内核运行的时候，首先就从R1中读取机器ID来判断是否支持当前机器。<br>这个机器ID实际上就是开发板CPU的ID，每个厂家生产出一款CPU的时候都会给它指定一个唯一的ID，</p>
+<p>R2存放的是块内存的基地址，这块内存中存放的是uboot给Linux内核的其他参数。<br>这些参数有内存的起始地址、内存大小、Linux内核启动后挂载文件系统的方式等信息。<br>很明显，参数有多个，不同的参数有不同的内容，为了让Linux内核能精确的解析出这些参数，<br>双方在传递参数的时候要求参数在存放的时猴需要按照双方规定的格式存放。</p>
+<p>除了约定好参数存放的地址外，还要规定参数的结构。Linux2.4.x以后的内核都期望以<br>标记列表（tagged_list）的形式来传递启动参数。标记，就是一种数据结构；<br>标记列表，就是挨着存放的多个标记。标记列表以标记ATAG_CORE开始，以标记ATAG_NONE结束</p>
+<p>标记的数据结构为tag，它由一个tag_header结构和一个联合（union）组成。<br>tag-header结构表示标记的类型及长度，比如是表示内存还是表示命令行参数等。<br>对于不同类型的标记使用不同的联合（union），比如表示内存时使用tag-mem32，<br>表示命令行时使用tag_cmdline</p>
+<h3 id="为什么uboot要关掉caches？"><a href="#为什么uboot要关掉caches？" class="headerlink" title="为什么uboot要关掉caches？"></a>为什么uboot要关掉caches？</h3><p>caches是cpu内部的一个2级缓存，它的作用是将常用的数据和指令放在cpu内部。<br>caches是通过CP15管理的，刚上电的时候，cpu还不能管理caches，上电的时候指令cache可关闭，<br>也可不关闭，但数据cache一定要关闭，否则可能导致刚开始的代码里面，去取数据的时候，<br>从cache里面取，而这时候RAM中数据还没有caches过来，导致数据预取异常</p>
+<h2 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h2><h3 id="什么是根文件系统？"><a href="#什么是根文件系统？" class="headerlink" title="什么是根文件系统？"></a>什么是根文件系统？</h3><p>根文件系统首先是一种文件系统，该文件系统不仅具有普通文件系统的存储数据文件的功能，<br>但是相对于普通的文件系统，它的特殊之处在于，它是内核启动时所挂载（mount）的第一个文件系统，<br>内核代码的映像文件保存在根文件系统中，系统引导启动程序会在根文件系统挂载之后从中把一些初始化脚本<br>（如rcS，nittab）和服务加载到内存中去运行，里面包含了Linux系统能够运行所必需的应用程序、库等，<br>比如可以给用户提供操作Linux的控制界面的shel程序、动态连接的程序运行时需要的glibc库等。<br>我们要明白文件系统和内核是完全独立的两个部分。在嵌入式中移植的内核下载到开发板上，<br>是没有办法真正的启动Linux操作系统的，会出现无法加载文件系统的错误。</p>
+<h3 id="根文件系统为什么这么重要？"><a href="#根文件系统为什么这么重要？" class="headerlink" title="根文件系统为什么这么重要？"></a>根文件系统为什么这么重要？</h3><p>根文件系统之所以在前面加一个”根”，说明它是加载其它文件系统的”根”，那么如果没有这个根，<br>其它的文件系统也就没有办法进行加载的。根文件系统包含系统启动时所必须的目录和关键性的文件，<br>以及使其他文件系统得以挂载（mount）所必要的文件。<br>例如：<br>init进程的应用程序必须运行在根文件系统上。<br>根文件系统提供了根目录”/“.<br>linux挂载分区时所依赖的信息存放于根文件系统/etc/fstab这个文件中。<br>shell命令程序必须运行在根文件系统上，譬如ls，cd等命令。</p>
+<p>总之：一套linux体系，只有内核本身是不能工作的，必须要rootfs<br>（上的etc目录下的配置文件、/bin/sbin等目录下的shell命令，还有/ib目录下的库文件等）相配合才能工作。</p>
+<h3 id="可执行映像文件通常由几部分构成，它们有什么特点？"><a href="#可执行映像文件通常由几部分构成，它们有什么特点？" class="headerlink" title="可执行映像文件通常由几部分构成，它们有什么特点？"></a>可执行映像文件通常由几部分构成，它们有什么特点？</h3><p>可执行映像文件通常由以下几部分构成。<br>一个或多个代码段，代码段的属性为只读。<br>零个或多个包含初始化数据的数据段，数据段的属性为可读写。<br>零个或多个不包含初始化数据的数据段，数据段的属性为可读写。</p>
+<h2 id="中断"><a href="#中断" class="headerlink" title="中断"></a>中断</h2><h3 id="硬中断-软中断是什么？有什么区别？"><a href="#硬中断-软中断是什么？有什么区别？" class="headerlink" title="硬中断/软中断是什么？有什么区别？"></a>硬中断/软中断是什么？有什么区别？</h3><p>硬中断<br>1.硬中断是由硬件产生的，比如，像磁盘，网卡，键盘，时钟等。<br>每个设备或设备集都有它自己的IRQ（中断请求）。基于IRQ，CPU可以将相应的请求分发到对应的硬件驱动上<br>（注：硬件驱动通常是内核中的一个子程序，而不是一个独立的进程）.<br>2.处理中断的驱动是需要运行在CPU上的，因此，当中断产生的时候，CPU会中断当前正在运行的任务，来<br>处理中断。在有多核心的系统上，一个中断通常只能中断一颗CPU（也有一种特殊的情况，就是在大型主机上是有硬件通道的，它可以在没有主CPU的支持下，可以同时处理多个中断。）。<br>3.硬中断可以直接中断CPU，它会引起内核中相关的代码被触发。对于那些需要花费一些时间去处理的进程，中断代码本身也可以被其他的硬中断中断。<br>4.对于时钟中断，内核调度代码会将当前正在运行的进程挂起，从而让其他的进程来运行。它的存在是为了让调度代码（或称为调度器）可以调度多任务。</p>
+<p>软中断<br>1.软中断的处理非常像硬中断。然而，它们仅仅是由当前正在运行的进程所产生的。<br>2.通常，软中断是一些对IO的请求。这些请求会调用内核中可以调度IO发生的程序。对于某些设备，<br>IO请求需要被立即处理，而磁盘IO请求通常可以排队并且可以稍后处理。根据1/0模型的不同，<br>进程或许会被挂起直到/0完成，此时内核调度器就会选择另一个进程去运行。10可以在进程之间产生。并且调度过程通常和磁盘1/0的方式是相同<br>3.软中断仅与内核相联系。而内核主要负责对需要运行的任何其他的进程进行调度。<br>一些内核允许设备驱动的一些部分存在于用户空间，并且当需要的时候内核也会调度这个进程去运行。<br>4.软中断并不会直接中断CPU，也只有当前正在运行的代码（或进程）才会产生软中断。<br>这种中断是一种需要内核为正在运行的进程去做一些事情（通常为IO）的请求。<br>有一个特殊的软中断是Vield调用，它的作用是请求内核调度器去查看是否有一些其他的进程可以运行。</p>
+<p>区别<br>1.软中断是执行中断指令产生的，而硬中断是由外设引发的。<br>2.硬中断的中断号是由中断控制器提供的，软中断的中断号由指令直接指出，无需使用中断控制器。<br>3.硬中断是可屏蔽的，软中断不可屏蔽。<br>4.硬中断处理程序要确保它能快速地完成任务，这样程序执行时才不会等待较长时间，称为上半部。<br>5.软中断处理硬中断未完成的工作，是一种推后执行的机制，属于下半部。</p>
+<h3 id="中断为什么要区分上半部和下半部？"><a href="#中断为什么要区分上半部和下半部？" class="headerlink" title="中断为什么要区分上半部和下半部？"></a>中断为什么要区分上半部和下半部？</h3><p>Linux中断分为硬件中断和内部中断（异常），调用过程：<br>外部中断产生 -&gt; 发送中断信号到中断控制器 -&gt; 通知处理器产生中断的中断号，让其进一步处理。<br>对于中断上半部和下半部的产生，为了中断处理过程中被新的中断打断，将中断处理一分为二，<br>上半部登记新的中断，快速处理简单的任务，剩余复杂耗时的处理留给下半部处理，<br>下半部处理过程中可以被中断，上半部处理时不可被中断。</p>
+<h3 id="中断下半部一般如何实现？"><a href="#中断下半部一般如何实现？" class="headerlink" title="中断下半部一般如何实现？"></a>中断下半部一般如何实现？</h3><p>软中断、tasklet，工作队列。</p>
+<h3 id="linux中断的响应执行流程？中断的申请及何时执行（何时执行中断处理函数）？"><a href="#linux中断的响应执行流程？中断的申请及何时执行（何时执行中断处理函数）？" class="headerlink" title="linux中断的响应执行流程？中断的申请及何时执行（何时执行中断处理函数）？"></a>linux中断的响应执行流程？中断的申请及何时执行（何时执行中断处理函数）？</h3><p>中断的响应流程：<br>cpu接受中断 -&gt; 保存中断上下文跳转到中断处理历程 -&gt; 执行中断上半部 -&gt; 执行中断下半部 -&gt; 恢复中断上下文。<br>中断的申请request_irq的正确位置：应该是在第一次打开、硬件被告知终端之前。</p>
+<h2 id="Linux内核"><a href="#Linux内核" class="headerlink" title="Linux内核"></a>Linux内核</h2><h3 id="内核镜像格式有几种？分别有什么区别？"><a href="#内核镜像格式有几种？分别有什么区别？" class="headerlink" title="内核镜像格式有几种？分别有什么区别？"></a>内核镜像格式有几种？分别有什么区别？</h3><p>1.uboot经过编译直接生成的elf格式的可执行程序是u-boot，这个程序类似于windows下的exe格式，<br>在操作系统下是可以直接执行的。但是这种格式不能用来烧录下载。我们用来烧录下载的是u-boot.bin，<br>这个东西是由u-boot使用arm-linux-objcopy工具进行加工（主要目的是去掉一些无用的）得到的。<br>这个u-boot.bin就叫镜像（image），镜像就是用来烧录到iNand中执行的。</p>
+<p>2.linux内核经过编译后也会生成一个elf格式的可执行程序，叫vmlinux或vmlinuz，这个就是原始的未经任何处理加工的原版内核elf文件；<br>嵌入式系统部署时烧录的一般不是这个vmlinuz/vmlinux，而是要用objcopy工具去制作成烧录镜像格式<br>（就是u-boot.bin这种，但是内核没有.bin后缀），经过制作加工成烧录镜像的文件就叫Image<br>（制作把78M大的精简成了7.5M，因此这个制作烧录镜像主要目的就是缩减大小，节省磁盘）。</p>
+<p>3.原则上Image就可以直接被烧录到Flash上进行启动执行（类似于u-boot.bin），但是实际上并不是这么简单。<br>实际上linux的作者们觉得Image还是太大了所以对image进行了压缩，<br>并且在image压缩后的文件的前端附加了一部分解压缩代码。构成了一个压缩格式的镜像就叫zlmage.<br>（因为当年lmage大小刚好比一张软盘（软盘有2种，1.2M的和1.44MB两种）大，<br>为了节省1张软盘的钱于是乎设计了这种压缩Image成zimage的技术）.</p>
+<p>4.uboot为了启动linux内核，还发明了一种内核格式叫ulmage，ulmage是由zimage加工得到的uboot中有一个工具，<br>可以将zlmage加工生成ulmage，注意：ulmage不关linux内核的事，linux内核只管生成zimage即可，<br>然后uboot中的mkimage工具再去由zlmage加工生成ulmage来给uboot启动。<br>这个加工过程其实就是在zlmage前面加上64字节的ulmage的头信息即可。</p>
+<p>5.原则上uboot启动时应该给他ulmage格式的内核镜像，但是实际上uboot中也可以支持zimage是否支持就看x210_sd.h中是否定义了LINUXZIMAGE-MAGIC这个宏。<br>所以大家可以看出：有些boot是支持zlmage启动的，有些则不支持。但是所有的uboot肯定都支持ulmage启动。</p>
+<p>6.如果直接在kernel底下去make ulmage会提供mkimage command not found，<br>解决方案是去uboot/tools下cp mkimage/usr/local/bin/，复制mkimage工具到系统目录下。<br>再去make ulmage即可通过上面的介绍我们了解了内核镜像的各种格式，如果通过uboot启动内核，<br>Linux必须为ulmage格式。</p>
+
       
 
       
@@ -430,6 +499,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">嵌入式相关</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">操作系统</a>
               </li>
             
             <div class="clearfix"></div>
