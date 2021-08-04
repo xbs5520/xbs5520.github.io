@@ -140,6 +140,381 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-栈与队列" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/04/21/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/">stack与queue有关算法题</a>
+    </h1>
+  
+
+        
+        <a href="/2021/04/21/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/" class="archive-article-date">
+  	<time datetime="2021-04-21T15:12:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-LeetCode-716-最大栈"><a href="#1-LeetCode-716-最大栈" class="headerlink" title="1. LeetCode 716 最大栈"></a>1. LeetCode 716 最大栈</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>设计一个最大栈数据结构，既支持栈操作，又支持查找栈中最大元素。</p>
+<p>实现 MaxStack 类：</p>
+<p>MaxStack() 初始化栈对象<br>void push(int x) 将元素 x 压入栈中。<br>int pop() 移除栈顶元素并返回这个元素。<br>int top() 返回栈顶元素，无需移除。<br>int peekMax() 检索并返回栈中最大元素，无需移除。<br>int popMax() 检索并返回栈中最大元素，并将其移除。如果有多个最大元素，只要移除 最靠近栈顶 的那个</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>由于栈具有先进后出的特性，如需实现任何特定顺序的读取操作，往往可以借助两个stack互相倾倒来实现特定顺序<br>另一个stack进行辅助</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MaxStack</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">/** initialize your data structure here. */</span></span><br><span class="line">    stack&lt;<span class="keyword">int</span>&gt; num_stk;</span><br><span class="line">    stack&lt;<span class="keyword">int</span>&gt; max_stk;     <span class="comment">//最大栈，元素个数与数字栈同步</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">MaxStack</span>() </span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (max_stk.<span class="built_in">size</span>()==<span class="number">0</span> || x &gt; max_stk.<span class="built_in">top</span>() )</span><br><span class="line">            max_stk.<span class="built_in">push</span>(x);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            max_stk.<span class="built_in">push</span>(max_stk.<span class="built_in">top</span>());    <span class="comment">//当前最大的压进栈</span></span><br><span class="line">        num_stk.<span class="built_in">push</span>(x);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        max_stk.<span class="built_in">pop</span>();                      <span class="comment">//同步</span></span><br><span class="line">        <span class="keyword">int</span> tmp = num_stk.<span class="built_in">top</span>();</span><br><span class="line">        num_stk.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">return</span> tmp;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> num_stk.<span class="built_in">top</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">peekMax</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> max_stk.<span class="built_in">top</span>();</span><br><span class="line">    &#125;   </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">popMax</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> cur_max = max_stk.<span class="built_in">top</span>();</span><br><span class="line">        stack&lt;<span class="keyword">int</span>&gt; tmp;</span><br><span class="line">        <span class="keyword">while</span>(<span class="built_in">top</span>() != cur_max)     <span class="comment">//从数组栈里找</span></span><br><span class="line">        &#123;</span><br><span class="line">            tmp.<span class="built_in">push</span>(num_stk.<span class="built_in">top</span>());</span><br><span class="line">            <span class="built_in">pop</span>();                  <span class="comment">//2个栈要同步，一起弹</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">pop</span>();                      <span class="comment">//找到第一个，弹出</span></span><br><span class="line">        <span class="keyword">while</span>(tmp.<span class="built_in">size</span>())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">push</span>(tmp.<span class="built_in">top</span>());        <span class="comment">//再从缓冲区倒回去  2个栈同步，一起压新数据</span></span><br><span class="line">            tmp.<span class="built_in">pop</span>();</span><br><span class="line">        &#125;                     </span><br><span class="line">        <span class="keyword">return</span> cur_max;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">算法题整合</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/04/21/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+ <!--添加代码开始-->
+
+        <div class="declare" hidden="hidden"></div>
+      
+  
+    <article id="post-计算机系统笔记第四章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/04/20/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%9B%9B%E7%AB%A0/">第四章 程序的机器级表示</a>
+    </h1>
+  
+
+        
+        <a href="/2021/04/20/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%9B%9B%E7%AB%A0/" class="archive-article-date">
+  	<time datetime="2021-04-20T08:15:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="4-1-Y86-64指令集体结构"><a href="#4-1-Y86-64指令集体结构" class="headerlink" title="4.1 Y86-64指令集体结构"></a>4.1 Y86-64指令集体结构</h2><p>定义一个指令集体结构，包括定义各种状态单元、指令集和它们的编码、一组编程规范和异常事件处理。</p>
+<h3 id="程序员可见的转台"><a href="#程序员可见的转台" class="headerlink" title="程序员可见的转台"></a>程序员可见的转台</h3><p>Y86-64的状态类似于x86-64<br>有15个程序寄存器：%rax %rcx %rdx %rbx %rsp %rbp %rsi %rdi %r8~%r14<br>每个程序寄存器储存一个64位的字<br>三个一位的条件码：ZF SF OF</p>
+<p>Y86-64程序用虚拟地址来引用内存位置，硬件和操作系统软件联合起来将虚拟地址翻译成实际或物理地址，指明数据实际存在内存的哪个地方</p>
+<h3 id="Y86-64指令"><a href="#Y86-64指令" class="headerlink" title="Y86-64指令"></a>Y86-64指令</h3><p>1.4个整数操作指令：addq subq andq xorq<br>2.7个跳转指令：jmp jle jl je jne jge jge<br>3.6个条件传送指令：cmovle cmovl cmove cmovne cmovge cmovg<br>4.call指令将返回地址入栈，然后跳到目的地址，ret指令从这样的调用中返回<br>5.pushq和popq指令实现了入栈与出栈<br>6.halt指令停止指令的执行</p>
+<h3 id="指令编码"><a href="#指令编码" class="headerlink" title="指令编码"></a>指令编码</h3><p>每条指令需要1~10个字节不等<br>分为两个部分 高四位是代码部分，第四位是功能部分<br>指令集的一个重要性质就是字节编码必须有唯一的解释。任意一个字节序列要么是一个唯一的指令序列编码，要么就不是一个合法的字节序列</p>
+<h3 id="Y86-64异常"><a href="#Y86-64异常" class="headerlink" title="Y86-64异常"></a>Y86-64异常</h3><p>状态码stat</p>
+<table>
+<thead>
+<tr>
+<th align="center">值</th>
+<th align="center">名字</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">AOK</td>
+<td align="center">正常操作</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">HLT</td>
+<td align="center">遇到器执行halt指令</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">ADR</td>
+<td align="center">遇到非法地址</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">INS</td>
+<td align="center">遇到非法指令</td>
+</tr>
+</tbody></table>
+<h3 id="Y86-64程序"><a href="#Y86-64程序" class="headerlink" title="Y86-64程序"></a>Y86-64程序</h3><p>与X86-64代码的不同<br>1.Y86-64将常数加载到寄存器，因为它再算术指令中不能使用立即数<br>2.要实现从内存读取一个数值并将其与一个寄存器相加 Y86-64代码需要两条指令，而X86只需要一个addq</p>
+<h3 id="一些Y86-64指令的详情"><a href="#一些Y86-64指令的详情" class="headerlink" title="一些Y86-64指令的详情"></a>一些Y86-64指令的详情</h3><p>pushq指令会把栈栈指针减8<br>有两种不同的约定<br>1.压入%rsp的原始值<br>2.压入减去8的%rsp的值</p>
+<h2 id="4-2逻辑设计和硬件控制语言HCL"><a href="#4-2逻辑设计和硬件控制语言HCL" class="headerlink" title="4.2逻辑设计和硬件控制语言HCL"></a>4.2逻辑设计和硬件控制语言HCL</h2><p>大多数现代电路技术都是用信号线上的高电压或低电压来表示不同的位值<br>在当前的技术中，逻辑1使用1.0伏特左右的高压表示的，而逻辑0是用0.0伏特左右的低电压表示的<br>实现一个数字系统的三个主要组成部分<br>1.计算对位进行操作的函数的组合逻辑<br>2.储存位的储存器单元<br>3.控制储存器单元更新的时钟信号</p>
+<h3 id="逻辑门"><a href="#逻辑门" class="headerlink" title="逻辑门"></a>逻辑门</h3><p>逻辑门是数字电路的基本计算单元<br>AND 用 &amp;&amp; 表示<br>OR  用 || 表示<br>NOT 用 ！ 表示</p>
+<h3 id="组合电路和HCL布尔表达式"><a href="#组合电路和HCL布尔表达式" class="headerlink" title="组合电路和HCL布尔表达式"></a>组合电路和HCL布尔表达式</h3><p>将很多的逻辑门组成一个网，就能构建计算块<br>1.每个逻辑门的输入必须链接到下述选项之一<br>a.一个系统输入(主输入)<br>b.某个存储单元的输出<br>c.某个逻辑门的输出<br>2.两个或多个逻辑门的输出不能连接在一起<br>3.这个网必须是无环的否则可能有歧义</p>
+<p>HCL表达式与C语言有对应之处，但也有区别<br>1.因为组合电路是由一系列的逻辑门组成，它的属性是输出会持续的响应输入的变化<br>2.C逻辑表达式参数可以是任意整数，0表示FALSE其他任何值都表示TRUE而逻辑门只有0和1<br>3.C可能只被部分求值</p>
+<h3 id="字级的组合电路和HCL整数表达式"><a href="#字级的组合电路和HCL整数表达式" class="headerlink" title="字级的组合电路和HCL整数表达式"></a>字级的组合电路和HCL整数表达式</h3><p>在HCL中我们将所有的字级信号都声明位int 不指定字的大小<br>允许不互斥的选择表达式使得HCL代码的可读性更好，并解决任何可能的冲突，确保只有第一个满足才会被选中</p>
+<h3 id="储存器与时钟"><a href="#储存器与时钟" class="headerlink" title="储存器与时钟"></a>储存器与时钟</h3><p>组合电路不存储任何信息，只是简单地相应输入信号，产生等于输入的某个函数的输出<br>为了产生时序电路，必须引入按位储存信息的设备<br>储存设备都是由同一个时钟控制的，时钟是一个周期性信号<br>1.时钟寄存器（寄存器）存储单个位或字<br>2.随机访问存储器（内存）储存多个字</p>
+<h2 id="4-3-Y86-64的顺序实现"><a href="#4-3-Y86-64的顺序实现" class="headerlink" title="4.3 Y86-64的顺序实现"></a>4.3 Y86-64的顺序实现</h2><p>描述一个称为SEQ(“se-quential”)的处理器<br>每个时钟周期上，SEQ执行处理一条完整指令所需所有步骤</p>
+<h3 id="将处理组织成阶段"><a href="#将处理组织成阶段" class="headerlink" title="将处理组织成阶段"></a>将处理组织成阶段</h3><p>处理一条指令包括很多操作：<br>取值 译码 执行 访问 写回<br>处理器无限循环，执行这些阶段</p>
+<h3 id="SEQ硬件结构"><a href="#SEQ硬件结构" class="headerlink" title="SEQ硬件结构"></a>SEQ硬件结构</h3><p>所有硬件单元的处理都在一个时钟周期内完成<br>硬件单元与各个处理阶段相关联<br>取值：将程序计数器寄存器作为地址，指令内存读取指令的字节<br>译码：寄存器文件有两个读端口A与B，从这两个端口同时读寄存器值valA与valB<br>执行：执行阶段会根据指令的类型，将算术/逻辑单元(ALU)用于不同的目的<br>访存：在执行访存操作时，数据内存读出或写入一个内存字<br>写回：寄存器文件有两个写端口E写ALU计算出的值，M用来写从数据内存读出的值<br>PC更新：程序计数器的新值选择自：valP(下一条指令的地址) valC(调用指令或跳转指令的目标地址) valM(从内存读取的返回地址)</p>
+<h3 id="SEQ的时序"><a href="#SEQ的时序" class="headerlink" title="SEQ的时序"></a>SEQ的时序</h3><p>一个时钟变化会引起一个经过组合逻辑的流，来执行整个指令<br>SEQ实现包括泽合逻辑和两种储存器设备：<br>时钟寄存器(程序计数器和条件码寄存器)<br>随机访问储存器(寄存器文件、指令内存和数据内存)</p>
+<p>要控制处理器中活动的时序，只需要寄存器和内存的时钟控制<br>遵循从不回读原则：<br>处理器从来不需要为了完成一条指令的执行而去读由该指令更新了的状态</p>
+<p>用时钟来控制状态单元的更新，以及值通过组合逻辑来传播，足够控制我们SEQ实现中每条指令执行的计算了<br>每次时钟由低变高，处理器开始执行一条新指令</p>
+<h3 id="SEQ小结"><a href="#SEQ小结" class="headerlink" title="SEQ小结"></a>SEQ小结</h3><p>SEQ唯一问题就是太慢了，时钟必须非常慢，这种实现方法不能充分利用硬件单元<br>因为每个单元只在整个时钟周期的一部分时间内才被使用，引入流水线能获得更好的性能</p>
+<h2 id="4-4-流水线通用原理"><a href="#4-4-流水线通用原理" class="headerlink" title="4.4 流水线通用原理"></a>4.4 流水线通用原理</h2><p>在流水线化的系统中，待执行的任务会被划分成了若干个独立的阶段<br>流水线化的一个重要特性就是提高了系统的吞吐量</p>
+<h3 id="计算流水线"><a href="#计算流水线" class="headerlink" title="计算流水线"></a>计算流水线</h3><p>流水线的每个阶段完成指令执行的一部分<br>从头到尾执行一条指令所需要的时间称为延迟，为吞吐量的倒数</p>
+<h3 id="流水线操作的详细说明"><a href="#流水线操作的详细说明" class="headerlink" title="流水线操作的详细说明"></a>流水线操作的详细说明</h3><p>随着时钟周而复始地上升和下降，不同地指令就会通过流水线的各个阶段，不会相互干扰</p>
+<h3 id="流水线的局限性"><a href="#流水线的局限性" class="headerlink" title="流水线的局限性"></a>流水线的局限性</h3><p>每个阶段是原来逻辑的几分之一，但是会出现一些其他因素导致流水线的效率降低<br>1.不一致的划分<br>对于硬件设计者来说，系统计算设计划分成一组具有相同延迟的阶段是一个严峻的挑战<br>2.流水线过深，收益反而下降<br>将每个计算时钟的时间缩短两倍，由于通过流水线寄存器的延迟，吞吐量并没有加倍<br>为了提高时钟频率，现代处理器采用了很深的流水线，处理器架构师将指令的执行划分成很多非常简单的步骤，这样一来每个阶段的延迟就很小</p>
+<h3 id="带反馈的流水线系统"><a href="#带反馈的流水线系统" class="headerlink" title="带反馈的流水线系统"></a>带反馈的流水线系统</h3><p>对于指令之间可能互相相关，包括两种相关<br>数据相关与控制相关</p>
+<h2 id="4-5-Y86-64的流水线实现"><a href="#4-5-Y86-64的流水线实现" class="headerlink" title="4.5 Y86-64的流水线实现"></a>4.5 Y86-64的流水线实现</h2><p>设计一个流水线化的Y86-64处理器<br>首先将pc的计算挪到取值阶段</p>
+<h3 id="SEQ-：重新安排计算阶段"><a href="#SEQ-：重新安排计算阶段" class="headerlink" title="SEQ+：重新安排计算阶段"></a>SEQ+：重新安排计算阶段</h3><p>更新PC阶段在一个时钟周期开始时执行<br>SEQ-SEQ+中对状态单元的改变是一种很通用的改进的例子，这种改进称为电路重定时。<br>改变了一个系统的状态表示，但是不改变它的逻辑行为。<br>通常用它来平衡一个流水线系统中各个阶段之间的延迟</p>
+<h3 id="插入流水线寄存器"><a href="#插入流水线寄存器" class="headerlink" title="插入流水线寄存器"></a>插入流水线寄存器</h3><p>流水线寄存器按如下方式标号<br>F 保存程序计数器的预测值<br>D 位于取值和译码阶段之间<br>E 位于译码和执行阶段之间<br>M 位于执行和访问阶段之间<br>W 位于访存阶段和反馈路径之间</p>
+<p>对于流水线各阶段中指令的顺序，它们的出现顺序与在程序中列出的顺序一样，因为正常程序是从上到下列出的。</p>
+<h3 id="对信号进行重新排序和标号"><a href="#对信号进行重新排序和标号" class="headerlink" title="对信号进行重新排序和标号"></a>对信号进行重新排序和标号</h3><p>确保使用正确的版本信号否则会有很严重的错误<br>在信号名前面加上大写的流水线寄存器名字为前缀，使储存在流水线寄存器中的信号可以唯一地被标识<br>4个状态码可以为<br>D_stat E_stat M_stat W_stat<br>在取值和访存阶段中标号为”Stat“的逻辑控制块</p>
+<h3 id="预测下一个pc"><a href="#预测下一个pc" class="headerlink" title="预测下一个pc"></a>预测下一个pc</h3><p>流水线化设计的目的就是每个时钟周期发射一条新指令，要做到这一点，我们必须再取出当前指令之后，马上确定下一条指令的位值<br>通过预测PC的下一个值，大多数情况下，达到上述目的<br>猜测分支方向并根据猜测方向开始取值的技术称为分支预测<br>对于ret指令的新PC值几乎是无限的，因为返回地址是位于栈顶的字，其内容是任意的</p>
+<h3 id="流水线冒险"><a href="#流水线冒险" class="headerlink" title="流水线冒险"></a>流水线冒险</h3><p>PIPE-结构是创建一个流水线化的Y86-64处理器的好开端，将流水线引入一个带反馈的系统<br>1.数据相关 2.控制相关<br>这些相关可能会导致流水线产生计算错误，称为冒险分为<br>1.数据冒险 2.控制冒险</p>
+<p>1.用暂停来避免数据冒险<br>暂停技术就是让一组指令阻塞在它们所处的阶段，而允许其他指令继续通过流水线</p>
+<p>2.用转发来避免数据冒险<br>与其暂停直到写完成，不如简单的将要写的值传到流水线寄存器E作为源操作数<br>这种将结果值直接从一个流水线阶段传到较早阶段的技术称为数据转发/转发/旁路</p>
+<p>3.加载/使用数据冒险<br>有一类数据冒险不能单纯用转发来解决，因为内存读在流水线发生的比较晚，<br>对于这种我们可以将暂停和转发结合起来，避免加载/使用数据冒险<br>用这种暂停来处理加载/使用冒险的方法称为加载互锁，加载互锁和转发技术结合起来足以处理所有可能类型的数据冒险</p>
+<p>4.避免控制冒险<br>当处理器无法根据取值阶段的当前指令来确定下一条指令的地址时，就会出现控制冒险<br>控制冒险只会发生在ret指令和跳转指令<br>对控制冒险的讨论表明，通过慎重考虑流水线的控制逻辑，控制冒险是可以被处理的</p>
+<h3 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h3><p>三种内部产生的异常<br>1.halt指令<br>2.有非法指令和功能码组合的指令<br>3.取值或数据读写试图访问一个非法地址</p>
+<p>在一个更完整的设计中，处理器会继续调用异常处理程序，这是操作系统的一部分</p>
+<h3 id="PIPE各阶段的实现"><a href="#PIPE各阶段的实现" class="headerlink" title="PIPE各阶段的实现"></a>PIPE各阶段的实现</h3><p>1.PC选择和取值阶段<br>2.译码和写回阶段<br>3.执行阶段<br>4.访存阶段</p>
+<h3 id="流水线控制逻辑"><a href="#流水线控制逻辑" class="headerlink" title="流水线控制逻辑"></a>流水线控制逻辑</h3><p>加载/使用数据冒险：在一条从内存中读取一个值的指令和一条使用该值的指令之间，流水线必须暂停一个周期<br>处理ret：流水线必须暂停直到ret指令达到写回阶段<br>预测错误的分支：在分支逻辑发现不应该选择分支之前，分支目标处的几条指令已经进入流水线了，必须取消这些指令<br>异常：当一条指令导致异常，我们想要禁止后面的指令更新程序员可见的状态，并且在异常指令到达写回阶段时，停止执行</p>
+<p>1.特殊控制情况所期望的处理<br>2.发现特殊控制条件<br>3.流水线控制机制<br>4.控制条件的组合<br>5.控制逻辑的实现</p>
+<h3 id="性能分析"><a href="#性能分析" class="headerlink" title="性能分析"></a>性能分析</h3><p>所有需要流水线控制逻辑进行特殊处理的条件，都会导致流水线不能够实现每个时钟周期发射一条新指令的目标<br>这种衡量值是流水线平均吞吐量</p>
+<h3 id="未完成的工作"><a href="#未完成的工作" class="headerlink" title="未完成的工作"></a>未完成的工作</h3><p>1.多周期指令<br>2.与储存系统的接口</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深入理解计算机系统</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/04/20/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%9B%9B%E7%AB%A0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+ <!--添加代码开始-->
+
+        <div class="declare" hidden="hidden"></div>
+      
+  
+    <article id="post-Effective C++" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/04/19/Effective%20C++/">Effective C++知识点</a>
+    </h1>
+  
+
+        
+        <a href="/2021/04/19/Effective%20C++/" class="archive-article-date">
+  	<time datetime="2021-04-19T09:15:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-Accustoming-Yourself-to-C"><a href="#1-Accustoming-Yourself-to-C" class="headerlink" title="1.Accustoming Yourself to C++"></a>1.Accustoming Yourself to C++</h1><h2 id="条款1：视C-为多种语言的集合"><a href="#条款1：视C-为多种语言的集合" class="headerlink" title="条款1：视C++为多种语言的集合"></a>条款1：视C++为多种语言的集合</h2><h3 id="C-的高效编程守则视状况而变换，取决于你使用C-的哪一部分"><a href="#C-的高效编程守则视状况而变换，取决于你使用C-的哪一部分" class="headerlink" title="C++的高效编程守则视状况而变换，取决于你使用C++的哪一部分"></a>C++的高效编程守则视状况而变换，取决于你使用C++的哪一部分</h3><p>C++的4个次语言<br>1.C<br>C++以C为基础    区块 语句 预处理 内置数据类型 数组 指针等来自C</p>
+<p>2.Object-Oriented C++<br>C with Class<br>类(构造析构) 封装 继承 多态 虚函数(动态绑定)</p>
+<p>3.Template C++<br>C++泛型编程<br>威力强大    –&gt;    模板元编程(TMP) </p>
+<p>4.STL<br>对于 迭代器 容器 算法 函数对象的规约有极佳的紧密配合与协调</p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/04/19/Effective%20C++/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+ <!--添加代码开始-->
+
+        <div class="declare" hidden="hidden"></div>
+      
+  
+    <article id="post-DP" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/04/15/DP/">动态规划有关算法题</a>
+    </h1>
+  
+
+        
+        <a href="/2021/04/15/DP/" class="archive-article-date">
+  	<time datetime="2021-04-15T15:00:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-LeetCode-198-打家劫舍1"><a href="#1-LeetCode-198-打家劫舍1" class="headerlink" title="1.LeetCode 198 打家劫舍1"></a>1.LeetCode 198 打家劫舍1</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，<br>影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统<br>如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。<br>给定一个代表每个房屋存放金额的非负整数数组<br>计算你不触动警报装置的情况下<br>一夜之内能够偷窃到的最高金额。</p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">算法题整合</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/04/15/DP/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+ <!--添加代码开始-->
+
+        <div class="declare" hidden="hidden"></div>
+      
+  
     <article id="post-Link List" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -606,86 +981,9 @@
         <div class="declare" hidden="hidden"></div>
       
   
-    <article id="post-String" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/12/String/">String有关算法题</a>
-    </h1>
-  
-
-        
-        <a href="/2021/04/12/String/" class="archive-article-date">
-  	<time datetime="2021-04-12T08:41:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-unique-string"><a href="#1-unique-string" class="headerlink" title="1.unique string"></a>1.unique string</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>判断一个字符串中有没有重复字符</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">算法题整合</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/12/String/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
- <!--添加代码开始-->
-
-        <div class="declare" hidden="hidden"></div>
-      
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/7/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span>
+      <a class="extend prev" rel="prev" href="/page/7/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/9/">Next &amp;raquo;</a>
     </nav>
   
 
