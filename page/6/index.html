@@ -140,6 +140,149 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-剑指offer7" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/27/%E5%89%91%E6%8C%87offer7/">剑指offer刷题7</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/27/%E5%89%91%E6%8C%87offer7/" class="archive-article-date">
+  	<time datetime="2021-06-27T00:58:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="79-滑动窗口的最大值"><a href="#79-滑动窗口的最大值" class="headerlink" title="79. 滑动窗口的最大值"></a>79. 滑动窗口的最大值</h2><p>给定一个数组和滑动窗口的大小，请找出所有滑动窗口里的最大值。<br>例如，如果输入数组 [2,3,4,2,6,2,5,1] 及滑动窗口的大小 3，<br>那么一共存在 6 个滑动窗口，它们的最大值分别为 [4,4,6,6,6,5]。<br>注意<br>数据保证 k 大于 0，且 k 小于等于数组长度。</p>
+<p>单调队列</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">maxInWindows</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line">        deque&lt;<span class="keyword">int</span>&gt; q;   <span class="comment">//q内存储下标</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">            <span class="keyword">while</span>(q.<span class="built_in">size</span>() &amp;&amp; q.<span class="built_in">front</span>() &lt;= i - k) q.<span class="built_in">pop_front</span>();</span><br><span class="line">            <span class="keyword">while</span>(q.<span class="built_in">size</span>() &amp;&amp; nums[q.<span class="built_in">back</span>()] &lt;= nums[i]) q.<span class="built_in">pop_back</span>();</span><br><span class="line">            q.<span class="built_in">push_back</span>(i);</span><br><span class="line">            <span class="keyword">if</span>(i &gt;= k - <span class="number">1</span>) res.<span class="built_in">push_back</span>(nums[q.<span class="built_in">front</span>()]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="80-骰子的点数"><a href="#80-骰子的点数" class="headerlink" title="80. 骰子的点数"></a>80. 骰子的点数</h2><p>将一个骰子投掷 n 次，获得的总点数为 s，s 的可能范围为 n∼6n。<br>掷出某一点数，可能有多种掷法，例如投掷 2 次，掷出 3 点，共有 [1,2],[2,1] 两种掷法。<br>请求出投掷 n 次，掷出 n~6n 点分别有多少种掷法。</p>
+<p>递归方法 超时 注意思路<br>热狗划分法（1，2，3，4，5，6）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">numberOfDice</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = n; i &lt;= n * <span class="number">6</span>; i++) res.<span class="built_in">push_back</span>(<span class="built_in">dfs</span>(n, i));</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">	<span class="comment">//扔n次总和是sum的方案为多少</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> sum)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(sum &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(n == <span class="number">0</span>) <span class="keyword">return</span> !sum;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">		<span class="comment">//最后一次是几</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">6</span>; i ++)</span><br><span class="line">            res += <span class="built_in">dfs</span>(n - <span class="number">1</span>, sum - i);</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+<p>分组背包问题<br>dp<br>状态表示<br>f[i][j]    前i次总和为j的方案数</p>
+<p>状态计算 最后一次是几</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">numberOfDice</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">f</span>(n + <span class="number">1</span>, vector&lt;<span class="keyword">int</span>&gt; (n * <span class="number">6</span> + <span class="number">1</span>));</span><br><span class="line">        f[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= i * <span class="number">6</span>; j++)</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= <span class="built_in">min</span>(j, <span class="number">6</span>); k++)</span><br><span class="line">                    f[i][j] += f[i - <span class="number">1</span>][j - k];</span><br><span class="line">        </span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = n; i &lt;= n * <span class="number">6</span>; i++) res.<span class="built_in">push_back</span>(f[n][i]);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="81-扑克牌的顺子"><a href="#81-扑克牌的顺子" class="headerlink" title="81. 扑克牌的顺子"></a>81. 扑克牌的顺子</h2><p>从扑克牌中随机抽 5 张牌，判断是不是一个顺子，即这 5 张牌是不是连续的。<br>2~10 为数字本身，A 为 1，J 为 11，Q 为 12，K 为 13，大小王可以看做任意数字。<br>为了方便，大小王均以 0 来表示，并且假设这副牌中大小王均有两张。</p>
+<p>基础题</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isContinuous</span><span class="params">( vector&lt;<span class="keyword">int</span>&gt; nums )</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!nums.<span class="built_in">size</span>()) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="built_in">sort</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">int</span> k = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(!nums[k]) k++;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = k + <span class="number">1</span>; i &lt; nums.<span class="built_in">size</span>(); i++)</span><br><span class="line">            <span class="keyword">if</span>(nums[i] == nums[i - <span class="number">1</span>])</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> nums.<span class="built_in">back</span>() - nums[k] &lt;= <span class="number">4</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="82-圆圈中最后剩下的数字"><a href="#82-圆圈中最后剩下的数字" class="headerlink" title="82. 圆圈中最后剩下的数字"></a>82. 圆圈中最后剩下的数字</h2><p>0,1,…,n−1 这 n 个数字 (n&gt;0) 排成一个圆圈，<br>从数字 0 开始每次从这个圆圈里删除第 m 个数字。<br>求出这个圆圈里剩下的最后一个数字。</p>
+<p>约瑟夫问题  </p>
+<p>递推<br>f(n ,m) 共n个 每次第m个删除<br>删除以后从下一个重新编号<br>变为<br>f(n - 1, m)</p>
+<p>旧编号  m, m + 1, m + 2<br>新        0,    1,  2…<br>(新 + m) % n = 旧</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">lastRemaining</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(n == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> (<span class="built_in">lastRemaining</span>(n - <span class="number">1</span>, m) + m) % n;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="83-股票的最大利润"><a href="#83-股票的最大利润" class="headerlink" title="83. 股票的最大利润"></a>83. 股票的最大利润</h2><p>假设把某股票的价格按照时间先后顺序存储在数组中，<br>请问买卖 一次 该股票可能获得的利润是多少？<br>例如一只股票在某些时间节点的价格为 [9,11,8,5,7,12,16,14]。<br>如果我们能在价格为 5 的时候买入并在价格为 16 时卖出，则能收获最大的利润 11。</p>
+<p>如何枚举所有答案<br>按照在第几天卖枚举</p>
+<p>求前i天的最小值</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxDiff</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(!nums.<span class="built_in">size</span>()) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>, minv = nums[<span class="number">0</span>]; i &lt; nums.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">            res = <span class="built_in">max</span>(res, nums[i] - minv);</span><br><span class="line">            minv = <span class="built_in">min</span>(minv, nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="84-求1-2-…-n"><a href="#84-求1-2-…-n" class="headerlink" title="84. 求1+2+…+n"></a>84. 求1+2+…+n</h2><p>求 1+2+…+n，要求不能使用乘除法、for、while、if、else、switch、case<br>等关键字及条件判断语句 (A?B:C)。</p>
+<p>语法题 利用 &amp;&amp; 代替if</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getSum</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = n;</span><br><span class="line">        n &gt; <span class="number">0</span> &amp;&amp; (res += <span class="built_in">getSum</span>(n - <span class="number">1</span>));</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="85-不用加减乘除做加法"><a href="#85-不用加减乘除做加法" class="headerlink" title="85. 不用加减乘除做加法"></a>85. 不用加减乘除做加法</h2><p>写一个函数，求两个整数之和，要求在函数体内不得使用 ＋、－、×、÷ 四则运算符号。</p>
+<p>二进制 A + B = C D<br>D = A 异或 B<br>C = A &amp; B</p>
+<p>多位<br>A + B = A 异或 B +(A &amp; B) &lt;&lt; 1<br>          不进位部分 + 进位部分 &lt;&lt; 1</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> num1, <span class="keyword">int</span> num2)</span></span>&#123;</span><br><span class="line">		<span class="comment">//最多执行32次每次num2后面一位变成0</span></span><br><span class="line">        <span class="keyword">while</span>(num2)&#123;</span><br><span class="line">            <span class="keyword">int</span> sum = num1 ^ num2;</span><br><span class="line">            <span class="keyword">int</span> carry = (num1 &amp; num2) &lt;&lt; <span class="number">1</span>;</span><br><span class="line">            num1 = sum;</span><br><span class="line">            num2 = carry</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="86-构建乘积数组"><a href="#86-构建乘积数组" class="headerlink" title="86. 构建乘积数组"></a>86. 构建乘积数组</h2><p>给定一个数组A[0, 1, …, n-1]，请构建一个数组B[0, 1, …, n-1]，<br>其中B中的元素B[i]=A[0]×A[1]×… ×A[i-1]×A[i+1]×…×A[n-1]。<br>不能使用除法。</p>
+<p>输入：[1, 2, 3, 4, 5]<br>输出：[120, 60, 40, 30, 24]</p>
+<p>思考题：<br>能不能只使用常数空间？（除了输出的数组之外）</p>
+<p>i前数乘积 乘 i后数乘积</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">multiply</span><span class="params">(<span class="keyword">const</span> vector&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(A.<span class="built_in">empty</span>()) <span class="keyword">return</span> vector&lt;<span class="keyword">int</span>&gt;();</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> n = A.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">B</span><span class="params">(n)</span></span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>, p = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">            B[i] = p;</span><br><span class="line">            p *= A[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = n - <span class="number">1</span>, p = <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">            B[i] *= p;</span><br><span class="line">            p *= A[i];</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> B;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="87-把字符串转换成整数"><a href="#87-把字符串转换成整数" class="headerlink" title="87. 把字符串转换成整数"></a>87. 把字符串转换成整数</h2><p>请你写一个函数 StrToInt，实现把字符串转换成整数这个功能。<br>当然，不能使用 atoi 或者其他类似的库函数。<br>注意:</p>
+<p>你的函数应满足下列条件：<br>忽略所有行首空格，找到第一个非空格字符，可以是 ‘+/−’ 表示是正数或者负数，<br>紧随其后找到最长的一串连续数字，将其解析成一个整数；<br>整数后可能有任意非数字字符，请将其忽略；<br>如果整数长度为 0，则返回 0；<br>如果整数大于 INT_MAX(231−1)，请返回 INT_MAX；如果整数小于INT_MIN(−231) ，<br>请返回 INT_MIN；</p>
+<p>主要是各种情况的讨论</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">strToInt</span><span class="params">(string str)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//前置0</span></span><br><span class="line">        <span class="keyword">int</span> k = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(k &lt; str.<span class="built_in">size</span>() &amp;&amp; str[k] == <span class="string">&#x27; &#x27;</span>) k++;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> number = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">bool</span> is_minus = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">if</span>(str[k] == <span class="string">&#x27;+&#x27;</span>) k++;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(str[k] == <span class="string">&#x27;-&#x27;</span>) k++, is_minus = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">while</span>(k &lt; str.<span class="built_in">size</span>() &amp;&amp; str[k] &gt;= <span class="string">&#x27;0&#x27;</span> &amp;&amp; str[k] &lt;= <span class="string">&#x27;9&#x27;</span>)&#123;</span><br><span class="line">            number = number * <span class="number">10</span> + str[k] - <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">            k++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(is_minus) number *= <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">if</span>(number &gt; INT_MAX) number = INT_MAX;</span><br><span class="line">        <span class="keyword">if</span>(number &lt; INT_MIN) number = INT_MIN;</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>)number;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="88-树中两个结点的最低公共祖先"><a href="#88-树中两个结点的最低公共祖先" class="headerlink" title="88. 树中两个结点的最低公共祖先"></a>88. 树中两个结点的最低公共祖先</h2><p>给出一个二叉树，输入两个树节点，求它们的最低公共祖先。<br>一个树节点的祖先节点包括它本身。<br>注意：<br>输入的二叉树不为空；<br>输入的两个节点一定不为空，且是二叉树中的节点；</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode* root, TreeNode* p, TreeNode* q)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//叶节点返回空</span></span><br><span class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="comment">// 如果当前根是其中一点则答案就是当前这点</span></span><br><span class="line">        <span class="keyword">if</span>(root == p || root == q) <span class="keyword">return</span> root;</span><br><span class="line">        <span class="keyword">auto</span> left = <span class="built_in">lowestCommonAncestor</span>(root-&gt;left, p, q);</span><br><span class="line">        <span class="keyword">auto</span> right = <span class="built_in">lowestCommonAncestor</span>(root-&gt;right, p, q);</span><br><span class="line">        <span class="comment">//如果左右都有pq 则当前为结果 </span></span><br><span class="line">        <span class="keyword">if</span>(left &amp;&amp; right) <span class="keyword">return</span> root;</span><br><span class="line">        <span class="comment">//否则是其中一边</span></span><br><span class="line">        <span class="keyword">if</span>(left) <span class="keyword">return</span> left;</span><br><span class="line">        <span class="keyword">return</span> right;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">剑指offer</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/27/%E5%89%91%E6%8C%87offer7/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+ <!--添加代码开始-->
+
+        <div class="declare" hidden="hidden"></div>
+      
+  
     <article id="post-剑指offer6" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1356,111 +1499,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/06/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
- <!--添加代码开始-->
-
-        <div class="declare" hidden="hidden"></div>
-      
-  
-    <article id="post-计算机系统笔记第十二章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/">第十一章 并发编程</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/" class="archive-article-date">
-  	<time datetime="2021-06-01T08:52:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="12-1基于进程的并发编程"><a href="#12-1基于进程的并发编程" class="headerlink" title="12.1基于进程的并发编程"></a>12.1基于进程的并发编程</h2><p>构造并发程序的最简单方法就是使用进程，在父进程中接受客户端的连接请求，创建一个子进程为每个新客户进行服务</p>
-<p>父子进程中的已连接描述符都指向同一个文件表表项，所以父进程关闭它的已连接描述符副本是十分关键的<br>否则，将永不会释放已连接描述符的文件条目</p>
-<h3 id="基于进程的并发服务器"><a href="#基于进程的并发服务器" class="headerlink" title="基于进程的并发服务器"></a>基于进程的并发服务器</h3><p>通常服务器会运行很长时间，所以我们必须要包括一个SIGCHLD处理程序，来回收僵死子进程的资源<br>父进程必须关闭它们各自的connfd副本，必须关闭它的已连接描述符，以避免内存泄漏<br>直到父子进程的connfd都关闭了到客户端的连接才会终止</p>
-<h3 id="进程的优劣"><a href="#进程的优劣" class="headerlink" title="进程的优劣"></a>进程的优劣</h3><p>父子进程见共享状态信息，有一个十分清晰的模型：共享文件表，但是不共享用户地址空间</p>
-<p>进程有独立的地址空间即使优点也是缺点<br>优：一个进程不可能不小心覆盖到另一个进程的虚拟内存<br>缺：独立的地址空间使得进程共享状态信息变得更加困难</p>
-<h2 id="12-2基于IO多路复用的并发编程"><a href="#12-2基于IO多路复用的并发编程" class="headerlink" title="12.2基于IO多路复用的并发编程"></a>12.2基于IO多路复用的并发编程</h2><h3 id="基于IO多路复用的并发事件驱动服务器"><a href="#基于IO多路复用的并发事件驱动服务器" class="headerlink" title="基于IO多路复用的并发事件驱动服务器"></a>基于IO多路复用的并发事件驱动服务器</h3><p>IO多路复用可以用做并发事件驱动程序的基础，在事件驱动程序中，某些事件会导致流向前推进。<br>一般的思路是将逻辑流模型化为状态机<br>一个状态机就是一组状态、输出事件和转移，其中转移是将状态和输入事件映射到状态<br>自循环是同一输入和输出状态之间的转移</p>
-<h3 id="IO多路复用技术的优劣"><a href="#IO多路复用技术的优劣" class="headerlink" title="IO多路复用技术的优劣"></a>IO多路复用技术的优劣</h3><p>事件驱动设计<br>优：比基于进程的设计给了程序员更多的对程序行为的控制。<br>一个基于IO多路复用的事件驱动服务器是运行在单一进程上下文中，<br>因此每个逻辑流都能访问该进程的全部地址空间，这使得在流之间共享数据变得容易<br>缺：编码复杂</p>
-<h2 id="12-3基于线程的并发编程"><a href="#12-3基于线程的并发编程" class="headerlink" title="12.3基于线程的并发编程"></a>12.3基于线程的并发编程</h2><p>线程就是运行在进程上下文中的逻辑流，线程由内核自动调度，每个线程都有自己的上下文，<br>包括线程ID、栈、栈指针、程序计数器、通用目的寄存器和条件码</p>
-<p>基于线程的逻辑流结合了基于进程和IO多路复用流的特性</p>
-<h3 id="Posix线程"><a href="#Posix线程" class="headerlink" title="Posix线程"></a>Posix线程</h3><p>是C程序中处理线程的一个标准接口定义大约60个函数<br>运行程序创建、杀死和回收线程，与对线程安全地共享数据，还可以通知对等线程系统状态的变化。</p>
-<h3 id="创建线程"><a href="#创建线程" class="headerlink" title="创建线程"></a>创建线程</h3><p>int pthread_create(pthread_create *tid, pthread_attr_t *attr, func *f, void *arg)<br>创建线程</p>
-<p>pthread_t pthread_self(void)_<br>获得自己线程ID</p>
-<h3 id="终止线程"><a href="#终止线程" class="headerlink" title="终止线程"></a>终止线程</h3><p>当顶层线程例程返回时，线程隐式地终止<br>显式终止<br>void pthread_exit(void *thread_return);</p>
-<h3 id="回收已终止线程地资源"><a href="#回收已终止线程地资源" class="headerlink" title="回收已终止线程地资源"></a>回收已终止线程地资源</h3><p>int pthread_join(pthread_t tid, void **thread_return)</p>
-<h3 id="分离线程"><a href="#分离线程" class="headerlink" title="分离线程"></a>分离线程</h3><p>在任何时间点上，线程是可结合的或是分离地，一个可结合地线程能被其他线程回收和杀死。<br>再被其他线程回收之前，它地内存资源是不释放的。<br>一个分离的线程是不能被其他线程回收或杀死的，它的内存资源在它终止时由系统自动释放</p>
-<p>int pthread_detach(pthread_t tid);</p>
-<h3 id="初始化线程"><a href="#初始化线程" class="headerlink" title="初始化线程"></a>初始化线程</h3><p>int pthread_once(pthread_once_t *once_control, void (*int_routine)(void));</p>
-<h2 id="12-4多线程程序中的共享变量"><a href="#12-4多线程程序中的共享变量" class="headerlink" title="12.4多线程程序中的共享变量"></a>12.4多线程程序中的共享变量</h2><p>线程很有吸引力的一方面为多个线程很容易共享相同的程序变量。</p>
-<h3 id="线程内存模型"><a href="#线程内存模型" class="headerlink" title="线程内存模型"></a>线程内存模型</h3><p>每个线程都有独立的线程上下文，包括线程ID、栈、栈指针、程序计数器、通用目的寄存器值和条件码 </p>
-<p>让一个线程去读另一个线程的寄存器是不可能的，任何线程都可以访问共享虚拟内存的任意位置。<br>如果某个线程修改了一个内存位置，那么其他每个线程最终都能在它读这个位置时发现这个变化<br>因此寄存器是从不共享的，而虚拟内存总是共享的</p>
-<h3 id="将变量映射到内存"><a href="#将变量映射到内存" class="headerlink" title="将变量映射到内存"></a>将变量映射到内存</h3><p>全局变量：定义在函数之外<br>本地自动变量：定义在函数内部但没有static属性的变量<br>本地静态变量：定义在函数内部并有static属性的变量</p>
-<h2 id="12-5用信号量同步线程"><a href="#12-5用信号量同步线程" class="headerlink" title="12.5用信号量同步线程"></a>12.5用信号量同步线程</h2><h3 id="进度图"><a href="#进度图" class="headerlink" title="进度图"></a>进度图</h3><p>进度条将n个并发线程的执行模型化为一条n维笛卡尔空间中的轨迹线，每条轴k对应于线程k的进度</p>
-<h3 id="信号量"><a href="#信号量" class="headerlink" title="信号量"></a>信号量</h3><p>信号量是具有非负整数值的全局变量，只能通过操作P V进行处理<br>P，V的定义确保了一个正在运行的程序绝不可能进入到这样一种状态，也就是正确初始化了信号量有一个负值<br>这个属性称为信号不变性</p>
-<h3 id="使用信号量来实现互斥"><a href="#使用信号量来实现互斥" class="headerlink" title="使用信号量来实现互斥"></a>使用信号量来实现互斥</h3><p>信号量提供了一种很方便的方法来确保对共享变量的互斥访问，基本思想是将每个共享变量与一个信号量s<br>联系起来，然后P和V操作将相应的临界区包围起来<br>被保护的信号量叫做二元信号量</p>
-<h2 id="12-7其他并发问题"><a href="#12-7其他并发问题" class="headerlink" title="12.7其他并发问题"></a>12.7其他并发问题</h2><p>必须小心的编写那些具有称为线程安全性属性的函数，一个函数被称为线程安全的，当且仅当<br>多个并发线程反复地调用时会产生正确地结果<br>第一类：不保护共享变量地函数<br>第二类：保持跨越多个调用状态地函数<br>第三类：返回指向静态变量地指针的函数<br>第四类：调用线程不安全函数的函数</p>
-<h3 id="可重入性"><a href="#可重入性" class="headerlink" title="可重入性"></a>可重入性</h3><p>当函数被多个线程调用时不会引用任何共享数据<br>线程安全函数包含可重入函数</p>
-<h3 id="在线程化的程序中使用已存在的库函数"><a href="#在线程化的程序中使用已存在的库函数" class="headerlink" title="在线程化的程序中使用已存在的库函数"></a>在线程化的程序中使用已存在的库函数</h3><h3 id="竞争"><a href="#竞争" class="headerlink" title="竞争"></a>竞争</h3><p>当一个程序的正确性依赖于一个线程要在另一个线程到达y点之前到达它的控制流中的x点时，<br>就会发生竞争。通常发生竞争是因为程序员假定线程将按照某种特殊的轨迹线穿过执行状态空间，<br>忘记另一条准则：多线程的程序必须对任何可行的轨迹线都正确工作</p>
-<h3 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h3><p>信号量引入了一种潜在的令人厌恶的运行时错误，叫做死锁，它指的是一组线程被阻塞了<br>等待一个永远也不会为真的条件<br>程序员使用PV操作顺序不当以至于两个信号量的禁止区域重叠<br>重叠的禁止区域引起了一组称为死锁区域的状态<br>死锁不总是可以预测的</p>
-<p>互斥锁加锁顺序规则：给定所有互斥操作的一个全序，如果每个线程都是以一种顺序来获得互斥锁<br>并以相反的顺序释放，那么这个程序就是无死锁的。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深入理解计算机系统</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/">展开全文 >></a>
         </p>
       
 
