@@ -1,0 +1,216 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>01 -- How C++ work | Notebook</title><meta name="author" content="Bryan Niu"><meta name="copyright" content="Bryan Niu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="How C++ Work？  pre-processWhat is Pre-process？123456#include &lt;iostream&gt;#define BRYAN 20#if #ifndef...  Replace the above symbol content  Becomes a .i file When？The process of processing source c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="01 -- How C++ work">
+<meta property="og:url" content="http://example.com/2025/07/07/cpp_01HowCPPwork/index.html">
+<meta property="og:site_name" content="Notebook">
+<meta property="og:description" content="How C++ Work？  pre-processWhat is Pre-process？123456#include &lt;iostream&gt;#define BRYAN 20#if #ifndef...  Replace the above symbol content  Becomes a .i file When？The process of processing source c">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/MyHead.jpg">
+<meta property="article:published_time" content="2025-07-06T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-07-07T07:52:05.266Z">
+<meta property="article:author" content="Bryan Niu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/MyHead.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "01 -- How C++ work",
+  "url": "http://example.com/2025/07/07/cpp_01HowCPPwork/",
+  "image": "http://example.com/img/MyHead.jpg",
+  "datePublished": "2025-07-06T16:00:00.000Z",
+  "dateModified": "2025-07-07T07:52:05.266Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Bryan Niu",
+      "url": "http://example.com/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/MyHead.jpg"><link rel="canonical" href="http://example.com/2025/07/07/cpp_01HowCPPwork/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '01 -- How C++ work',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/MyHead.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post type-Program Language" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(img/top_img.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Notebook</span></a><a class="nav-page-title" href="/"><span class="site-name">01 -- How C++ work</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">01 -- How C++ work</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-07-06T16:00:00.000Z" title="Created 2025-07-07 00:00:00">2025-07-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-07-07T07:52:05.266Z" title="Updated 2025-07-07 15:52:05">2025-07-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Computer-Science/">Computer Science</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Computer-Science/C/">C++</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="How-C-Work？"><a href="#How-C-Work？" class="headerlink" title="How C++ Work？"></a>How C++ Work？</h1><img src="./../img/C++01_7.png" style="zoom:50%;" />
+
+<h1 id="pre-process"><a href="#pre-process" class="headerlink" title="pre-process"></a>pre-process</h1><h2 id="What-is-Pre-process？"><a href="#What-is-Pre-process？" class="headerlink" title="What is Pre-process？"></a>What is Pre-process？</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> BRYAN 20</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> </span></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span></span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>Replace the above symbol content </p>
+<p>Becomes a .i file</p>
+<h2 id="When？"><a href="#When？" class="headerlink" title="When？"></a>When？</h2><p>The process of processing source code before compilation</p>
+<h1 id="Compile"><a href="#Compile" class="headerlink" title="Compile"></a>Compile</h1><h2 id="what-is-compile？"><a href="#what-is-compile？" class="headerlink" title="what is compile？"></a>what is compile？</h2><p><img src="/./../img/C++01_2.png"></p>
+<p>The cpp file (translation unit) is compiled through the compiler to.obj – the object file</p>
+<p>You can compile a separate file.</p>
+<p>Conditions for compilation to pass:</p>
+<ol>
+<li><p>no syntax(语法) issues</p>
+</li>
+<li><p>all functions have found their declarations.</p>
+</li>
+</ol>
+<img src="./../img/C++01_1.png" style="zoom:50%;" />
+
+<p>Otherwise, the compiler will give an error starting with C</p>
+<img src="./../img/C++01_3.png" style="zoom: 67%;" />
+
+
+
+<h2 id="What-is-compiler‘s-job？"><a href="#What-is-compiler‘s-job？" class="headerlink" title="What is compiler‘s job？"></a>What is compiler‘s job？</h2><ol>
+<li><p>Preprocessing</p>
+<p>Replace something like #include &#x2F; #if 0 #define into the file<br>cpp file -&gt; .i file</p>
+</li>
+<li><p>Compilation</p>
+<p>i file -&gt; obj file</p>
+<p>Converting cpp into machine language means <strong>assembly language</strong>, which is the language that the machine actually executes</p>
+<p>We can enable some options during the compilation process to make the compiler optimize our code</p>
+<p>If the code is completely useless, it will be removed:</p>
+<p>EG. Writing cumbersome code not translated into assembly line by line, but translated into assembly language in the simplest way</p>
+</li>
+</ol>
+<h1 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h1><h2 id="What-is-link？"><a href="#What-is-link？" class="headerlink" title="What is link？"></a>What is link？</h2><p>Link all targets as a binary such as exe or lib etc.</p>
+<p>The link process is to find all the functions to their definitions.</p>
+<p>Otherwise, you will get an error, Errors will start with something like LNK</p>
+<p><img src="/./../img/C++01_4.png"></p>
+<p>unresolved external symbol 经典连接错误 无definition</p>
+<h2 id="Link-Process"><a href="#Link-Process" class="headerlink" title="Link Process"></a>Link Process</h2><ol>
+<li><p>Find main Function</p>
+</li>
+<li><p>Obj lib etc. file -&gt; binary file</p>
+</li>
+</ol>
+<p>If the function itself is not called and the link is not found it will not throw an error</p>
+<p><img src="/./../img/C++01_5.png"></p>
+<p>But this will throw an error</p>
+<p><img src="/./../img/C++01_6.png"></p>
+<p>Though this file not use UseLog Fun.</p>
+<p>But Other file is not clear.</p>
+<p>So, we can add static to tell Linker this Function just using in this file.</p>
+<p>Linker process also fails if the return value found does not match the argument.</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://example.com">Bryan Niu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://example.com/2025/07/07/cpp_01HowCPPwork/">http://example.com/2025/07/07/cpp_01HowCPPwork/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/MyHead.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width no-desc" href="/2025/07/05/post/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2"></div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/MyHead.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Bryan Niu</div><div class="author-info-description">This is my notebook</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/xbs5520" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/bryan513.niu@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#How-C-Work%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">How C++ Work？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pre-process"><span class="toc-number">2.</span> <span class="toc-text">pre-process</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-Pre-process%EF%BC%9F"><span class="toc-number">2.1.</span> <span class="toc-text">What is Pre-process？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#When%EF%BC%9F"><span class="toc-number">2.2.</span> <span class="toc-text">When？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Compile"><span class="toc-number">3.</span> <span class="toc-text">Compile</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#what-is-compile%EF%BC%9F"><span class="toc-number">3.1.</span> <span class="toc-text">what is compile？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-compiler%E2%80%98s-job%EF%BC%9F"><span class="toc-number">3.2.</span> <span class="toc-text">What is compiler‘s job？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Link"><span class="toc-number">4.</span> <span class="toc-text">Link</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-link%EF%BC%9F"><span class="toc-number">4.1.</span> <span class="toc-text">What is link？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Link-Process"><span class="toc-number">4.2.</span> <span class="toc-text">Link Process</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/07/cpp_01HowCPPwork/" title="01 -- How C++ work">01 -- How C++ work</a><time datetime="2025-07-06T16:00:00.000Z" title="Created 2025-07-07 00:00:00">2025-07-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/05/post/" title="Untitled">Untitled</a><time datetime="2025-07-05T01:24:08.708Z" title="Created 2025-07-05 09:24:08">2025-07-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/05/TcpProtocol/" title="TCP">TCP</a><time datetime="2025-07-04T16:00:00.000Z" title="Created 2025-07-05 00:00:00">2025-07-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/05/LeetCode%20209%20Minimum%20Size%20Subarray%20Sum/" title="LeetCode 209 Minimum Size Subarray Sum">LeetCode 209 Minimum Size Subarray Sum</a><time datetime="2025-07-04T16:00:00.000Z" title="Created 2025-07-05 00:00:00">2025-07-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/05/LeetCode%203%20Longest%20Substring%20Without%20Repeating%20Characters/" title="LeetCode 3 Longest Substring Without Repeating Characters">LeetCode 3 Longest Substring Without Repeating Characters</a><time datetime="2025-07-04T16:00:00.000Z" title="Created 2025-07-05 00:00:00">2025-07-05</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By Bryan Niu</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
