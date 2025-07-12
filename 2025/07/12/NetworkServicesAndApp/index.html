@@ -1,0 +1,260 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Network services and applications | Notebook</title><meta name="author" content="Bryan Niu"><meta name="copyright" content="Bryan Niu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Virtual Private Network(VPN)A virtual private network (VPN) is used by remote hosts to access a private network through an encrypted tunnel through a public network. Once the VPN connection is made, t">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Network services and applications">
+<meta property="og:url" content="http://example.com/2025/07/12/NetworkServicesAndApp/index.html">
+<meta property="og:site_name" content="Notebook">
+<meta property="og:description" content="Virtual Private Network(VPN)A virtual private network (VPN) is used by remote hosts to access a private network through an encrypted tunnel through a public network. Once the VPN connection is made, t">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/MyHead.jpg">
+<meta property="article:published_time" content="2025-07-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-07-12T01:03:13.090Z">
+<meta property="article:author" content="Bryan Niu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/MyHead.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Network services and applications",
+  "url": "http://example.com/2025/07/12/NetworkServicesAndApp/",
+  "image": "http://example.com/img/MyHead.jpg",
+  "datePublished": "2025-07-11T16:00:00.000Z",
+  "dateModified": "2025-07-12T01:03:13.090Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Bryan Niu",
+      "url": "http://example.com/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/MyHead.jpg"><link rel="canonical" href="http://example.com/2025/07/12/NetworkServicesAndApp/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Network services and applications',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/MyHead.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">25</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">9</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post type-computer networks" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(img/top_img.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Notebook</span></a><a class="nav-page-title" href="/"><span class="site-name">Network services and applications</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Network services and applications</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-07-11T16:00:00.000Z" title="Created 2025-07-12 00:00:00">2025-07-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-07-12T01:03:13.090Z" title="Updated 2025-07-12 09:03:13">2025-07-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Computer-Science/">Computer Science</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Computer-Science/Network/">Network</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="Virtual-Private-Network-VPN"><a href="#Virtual-Private-Network-VPN" class="headerlink" title="Virtual Private Network(VPN)"></a>Virtual Private Network(VPN)</h1><p>A virtual private network (VPN) is used by <strong>remote hosts to access a private network</strong> through an encrypted tunnel through a public network.</p>
+<p>Once the VPN connection is made, the remote host is <strong>no longer considered remote</strong>. It is actually <strong>seen by the private network as a local host</strong>. Even though the network traffic may pass through many different routers or systems, it is seen by both ends as <strong>a direct connection</strong>. </p>
+<p>The use of the VPN can help to <strong>reduce networking costs</strong> for organizations and businesses. The cost reduction is partially achieved because the VPN doesn’t require the use of a dedicated(专门) leased line(租用路线) to create the connection.</p>
+<h2 id="VPN-types"><a href="#VPN-types" class="headerlink" title="VPN types"></a>VPN types</h2><ul>
+<li><p><strong>The site-to-site VPN</strong> allows a remote site’s network to connect to the main site’s network and be seen as a local network segment. </p>
+<ul>
+<li>VPN concentrators <strong>on both ends of the VPN</strong> will manage the connection.</li>
+</ul>
+</li>
+<li><p><strong>The remote-access VPN (host-to-site VPN)</strong> allows select remote users to connect to the local network. </p>
+<ul>
+<li><p>A VPN concentrator <strong>on the local network</strong> will manage the connections coming in from the remote users. </p>
+</li>
+<li><p>The remote system making the connection <strong>uses special software - VPN client software</strong>, to make the connection.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>The host-to-host VPN (SSL VPN)</strong> allows a secure connection between two systems without the use of VPN client software. </p>
+<ul>
+<li><p>A VPN concentrator <strong>on the local network</strong> manages the connections. </p>
+</li>
+<li><p>The host seeking to connect <strong>uses a Web browser</strong> that supports the correct encryption technology (either SSL or TLS) to make the connection to the VPN concentrator.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Internet-Protocol-security-IPsec"><a href="#Internet-Protocol-security-IPsec" class="headerlink" title="Internet Protocol security (IPsec)"></a>Internet Protocol security (IPsec)</h2><ul>
+<li><p>Works at Layer 3 of the OSI model and above.</p>
+</li>
+<li><p>The most common suite of protocols to secure a VPN connection. </p>
+</li>
+<li><p>Can be used with the <strong>Authentication Header (AH) protocol</strong>. </p>
+</li>
+<li><p>AH only offers authentication services, <strong>no encryption</strong>. </p>
+</li>
+<li><p>Can be used with <strong>Encapsulating Security Payload (ESP)</strong>(封装 安全 有效载荷). </p>
+<ul>
+<li>ESP <strong>both authenticates and encrypts</strong> packets (the most popular method).</li>
+</ul>
+</li>
+<li><p>Both AH and ESP will operate in one of two modes. </p>
+<ul>
+<li><p>Can be used in <strong>transport mode</strong>—between two devices (e.g., the host-to-host VPN). </p>
+</li>
+<li><p>Can be used in <strong>tunnel mode</strong>—between two endpoints (e.g., the site-to-site VPN).</p>
+</li>
+</ul>
+</li>
+<li><p>IPsec implements(执行) Internet Security Association and Key Management (ISAKMP) (互联网安全协会与密钥管理)by default. </p>
+<ul>
+<li>ISAKMP provides a method for transferring security key and authentication data between systems, outside of(独立于) the security key generating process (a much more secure process).</li>
+</ul>
+</li>
+</ul>
+<h2 id="Generic-Routing-Encapsulation-GRE"><a href="#Generic-Routing-Encapsulation-GRE" class="headerlink" title="Generic Routing Encapsulation (GRE)"></a>Generic Routing Encapsulation (GRE)</h2><ul>
+<li><p>GRE is a tunneling protocol that is capable of encapsulating(封装) a wide variety of network layer protocols. </p>
+</li>
+<li><p>It is often used to create a sub-tunnel within an IPsec connection. </p>
+<ul>
+<li><strong>IPsec will only transmit unicast</strong>(单播) packets (one-to-one communication). In many cases, there is a need to transmit <strong>multicast</strong>(多播) (one-to-some communication) or <strong>broadcast</strong>(广播)(one-to-many communication) packets across an IPsec connection. By using GRE, this can be accomplished.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Point-to-Point-Tunneling-Protocol-PPTP"><a href="#Point-to-Point-Tunneling-Protocol-PPTP" class="headerlink" title="Point-to-Point Tunneling Protocol (PPTP)"></a>Point-to-Point Tunneling Protocol (PPTP)</h2><ul>
+<li>An older VPN technology that supports dial-up(拨号) VPN connections. On its own, it lacked native security features.<ul>
+<li>Microsoft’s implementation(实现方案) included additional security by adding GRE.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Transport-Layer-Security-TLS-protocol"><a href="#Transport-Layer-Security-TLS-protocol" class="headerlink" title="Transport Layer Security (TLS) protocol"></a>Transport Layer Security (TLS) protocol</h2><ul>
+<li><p>TLS is a cryptographic(加密) protocol used to create a secure encrypted connection between two end devices or applications. </p>
+<ul>
+<li>It uses asymmetrical cryptography(非对称加密) to authenticate end points, and then negotiate a symmetrical(对称) security key, which is used to encrypt the session.</li>
+</ul>
+</li>
+<li><p>TLS has largely replaced the Secure Socket Layer(SSL) protocol.</p>
+</li>
+<li><p>It works at Layer 5 and above of the OSI model. </p>
+</li>
+<li><p>The most common use is in creating a secure encrypted Internet session (SSL VPN). </p>
+<ul>
+<li>All modern Web browsers support TLS.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Secure-Socket-Layer-SSL-protocol"><a href="#Secure-Socket-Layer-SSL-protocol" class="headerlink" title="Secure Socket Layer (SSL) protocol"></a>Secure Socket Layer (SSL) protocol</h2><ul>
+<li><p>SSL is an older cryptographic protocol that is very similar to TLS.</p>
+</li>
+<li><p>The most common use is in Internet transactions.</p>
+<ul>
+<li>All modern Web browsers support SSL.</li>
+</ul>
+</li>
+<li><p>Due to issues with earlier versions of the protocol, it has largely been replaced by TLS protocol. </p>
+<ul>
+<li>SSL v.3.3 has been developed to address(解决) the weaknesses of the earlier versions.</li>
+</ul>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://example.com">Bryan Niu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://example.com/2025/07/12/NetworkServicesAndApp/">http://example.com/2025/07/12/NetworkServicesAndApp/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/MyHead.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/07/12/LeetCode%2056%20Merge%20Intervals/" title="LeetCode 56 Merge Intervals"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">LeetCode 56 Merge Intervals</div></div><div class="info-2"><div class="info-item-1">LeetCode 56 Merge Intervals Given an array of intervals where intervals[i] = [starti, endi], merge all overlapping intervals, and return an array of the non-overlapping intervals that cover all the intervals in the input.  Solutionfirst sort in ascending order(升序) by start num push first value into b0 b1 push wen interval not have common Code1234567891011121314151617181920212223242526272829303132std::vector&lt;std::vector&lt;int&gt;&gt; merge(std::vector&lt;std::vector&lt;int&gt;&gt;&amp;...</div></div></div></a><a class="pagination-related" href="/2025/07/12/LeetCode%2057%20Insert%20Interval/" title="LeetCode 57 Insert Interval"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">LeetCode 57 Insert Interval</div></div><div class="info-2"><div class="info-item-1">LeetCode 57 Insert Interval You are given an array of non-overlapping intervals intervals where intervals[i] = [starti, endi] represent the start and the end of the ith interval and intervals is sorted in ascending order by starti. You are also given an interval newInterval = [start, end] that represents the start and end of another interval. Insert newInterval into intervals such that intervals is still sorted in ascending order by starti and intervals still does not have any overlapping...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/MyHead.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Bryan Niu</div><div class="author-info-description">This is my notebook</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">25</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/xbs5520" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/bryan513.niu@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Virtual-Private-Network-VPN"><span class="toc-number">1.</span> <span class="toc-text">Virtual Private Network(VPN)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#VPN-types"><span class="toc-number">1.1.</span> <span class="toc-text">VPN types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Internet-Protocol-security-IPsec"><span class="toc-number">1.2.</span> <span class="toc-text">Internet Protocol security (IPsec)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Generic-Routing-Encapsulation-GRE"><span class="toc-number">1.3.</span> <span class="toc-text">Generic Routing Encapsulation (GRE)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Point-to-Point-Tunneling-Protocol-PPTP"><span class="toc-number">1.4.</span> <span class="toc-text">Point-to-Point Tunneling Protocol (PPTP)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Transport-Layer-Security-TLS-protocol"><span class="toc-number">1.5.</span> <span class="toc-text">Transport Layer Security (TLS) protocol</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Secure-Socket-Layer-SSL-protocol"><span class="toc-number">1.6.</span> <span class="toc-text">Secure Socket Layer (SSL) protocol</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/12/LeetCode%20228%20Summary%20Ranges/" title="LeetCode 228 Summary Ranges">LeetCode 228 Summary Ranges</a><time datetime="2025-07-11T16:00:00.000Z" title="Created 2025-07-12 00:00:00">2025-07-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/12/LeetCode%2056%20Merge%20Intervals/" title="LeetCode 56 Merge Intervals">LeetCode 56 Merge Intervals</a><time datetime="2025-07-11T16:00:00.000Z" title="Created 2025-07-12 00:00:00">2025-07-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/12/NetworkServicesAndApp/" title="Network services and applications">Network services and applications</a><time datetime="2025-07-11T16:00:00.000Z" title="Created 2025-07-12 00:00:00">2025-07-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/12/LeetCode%2057%20Insert%20Interval/" title="LeetCode 57 Insert Interval">LeetCode 57 Insert Interval</a><time datetime="2025-07-11T16:00:00.000Z" title="Created 2025-07-12 00:00:00">2025-07-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/12/Networkdevice/" title="Network device">Network device</a><time datetime="2025-07-11T16:00:00.000Z" title="Created 2025-07-12 00:00:00">2025-07-12</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By Bryan Niu</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
