@@ -1,0 +1,231 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>DHCP in the network | Notebook</title><meta name="author" content="Bryan Niu"><meta name="copyright" content="Bryan Niu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Static VS. dynamic IP addressingHow does a computer know what its IP configuration is?Most likely, a computer received its IP configuration from a DHCP (Dynamic Host Configuration Protocol) server or">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DHCP in the network">
+<meta property="og:url" content="https://xbs5520.github.io/2025/07/13/DHCPInNetwork/index.html">
+<meta property="og:site_name" content="Notebook">
+<meta property="og:description" content="Static VS. dynamic IP addressingHow does a computer know what its IP configuration is?Most likely, a computer received its IP configuration from a DHCP (Dynamic Host Configuration Protocol) server or">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xbs5520.github.io/img/MyHead.jpg">
+<meta property="article:published_time" content="2025-07-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-07-12T23:28:43.478Z">
+<meta property="article:author" content="Bryan Niu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xbs5520.github.io/img/MyHead.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "DHCP in the network",
+  "url": "https://xbs5520.github.io/2025/07/13/DHCPInNetwork/",
+  "image": "https://xbs5520.github.io/img/MyHead.jpg",
+  "datePublished": "2025-07-12T16:00:00.000Z",
+  "dateModified": "2025-07-12T23:28:43.478Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Bryan Niu",
+      "url": "https://xbs5520.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/MyHead.jpg"><link rel="canonical" href="https://xbs5520.github.io/2025/07/13/DHCPInNetwork/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'DHCP in the network',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/MyHead.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">33</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">10</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post type-computer networks" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(img/top_img.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Notebook</span></a><a class="nav-page-title" href="/"><span class="site-name">DHCP in the network</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">DHCP in the network</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-07-12T16:00:00.000Z" title="Created 2025-07-13 00:00:00">2025-07-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-07-12T23:28:43.478Z" title="Updated 2025-07-13 07:28:43">2025-07-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Computer-Science/">Computer Science</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Computer-Science/Network/">Network</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="Static-VS-dynamic-IP-addressing"><a href="#Static-VS-dynamic-IP-addressing" class="headerlink" title="Static VS. dynamic IP addressing"></a>Static VS. dynamic IP addressing</h1><h2 id="How-does-a-computer-know-what-its-IP-configuration-is"><a href="#How-does-a-computer-know-what-its-IP-configuration-is" class="headerlink" title="How does a computer know what its IP configuration is?"></a>How does a computer know what its IP configuration is?</h2><p>Most likely, a computer received its IP configuration from a DHCP (Dynamic Host Configuration Protocol) server or manually set.</p>
+<p>Not only did the server give the PC an <strong>IP address</strong>, but it also told the PC where the <strong>default gateway</strong> was—and more than likely—how to find a <strong>DNS server</strong>. </p>
+<h2 id="Static-IP-addressing"><a href="#Static-IP-addressing" class="headerlink" title="Static IP addressing."></a>Static IP addressing.</h2><ul>
+<li><p>The administrator assigns(分配) an IP number and subnet mask to each host in the network. </p>
+<ul>
+<li>Each network interface that is going to be available to connect to the network requires this information.</li>
+</ul>
+</li>
+<li><p>The administrator assigns a default gateway location and DNS server location to each host in the network. </p>
+<ul>
+<li>These are required if access outside of the network is going to be allowed (default gateway) and human friendly naming conventions are allowed to find network resources (DNS server).</li>
+</ul>
+</li>
+<li><p><strong>Each time a change is made (e.g., a new default gateway is established) each IP configuration on each host must be updated.</strong></p>
+</li>
+</ul>
+<h2 id="Dynamic-IP-addressing"><a href="#Dynamic-IP-addressing" class="headerlink" title="Dynamic IP addressing."></a>Dynamic IP addressing.</h2><ul>
+<li><p>The administrator configures a DHCP server to handle the assigning process, which automates(使自动化) the process. </p>
+<ul>
+<li><p>The DHCP server listens on a specific port for IP information requests. </p>
+</li>
+<li><p>Once it receives a request, the DHCP server responds with the required information.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="How-DHCP-work？"><a href="#How-DHCP-work？" class="headerlink" title="How DHCP work？"></a>How DHCP work？</h1><h2 id="Typical-DHCP-process"><a href="#Typical-DHCP-process" class="headerlink" title="Typical DHCP process."></a>Typical DHCP process.</h2><img src="./../img/DHCPwork.png" style="zoom:50%;" />
+
+<ol>
+<li><p>Upon boot up, a PC that is configured to request an IP configuration sends a DHCP discovery packet. </p>
+<p>The discovery packet is sent to the broadcast address: 255.255.255.255:67 (<strong>UDP port 67</strong>).</p>
+</li>
+<li><p>The DHCP server receives the discovery packet and responds with an offer packet. </p>
+<p>The offer packet is sent to the MAC address of the computer using <strong>UDP port 68</strong>. </p>
+</li>
+<li><p>The computer receives the offer packet from the DHCP server and returns a request packet (requesting the proper IP configuration) to the DHCP server. </p>
+</li>
+<li><p>Once the DHCP server receives the request packet, it sends back an acknowledgement packet, which contains the required IP configuration information. </p>
+</li>
+<li><p>Upon receipt of the acknowledgement packet, the PC changes its IP configuration to reflect the information received.</p>
+</li>
+</ol>
+<h1 id="Component-and-processes-of-DHCP"><a href="#Component-and-processes-of-DHCP" class="headerlink" title="Component and processes of DHCP"></a>Component and processes of DHCP</h1><h2 id="Ports-used"><a href="#Ports-used" class="headerlink" title="Ports used."></a>Ports used.</h2><ul>
+<li>PC sends discovery packet to 255.255.255.255:67. </li>
+<li>DHCP sends offer packet to the PC’s MAC address on port 68.</li>
+</ul>
+<h2 id="Address-scope"><a href="#Address-scope" class="headerlink" title="Address scope."></a>Address scope.</h2><ul>
+<li>Administrator configures the <strong>IP address range</strong> with one that is available to be handed out.</li>
+</ul>
+<h2 id="Address-reservations"><a href="#Address-reservations" class="headerlink" title="Address reservations."></a>Address reservations.</h2><ul>
+<li>Administrator reserves specific IP addresses to be handed out to specific MAC addresses. These are used for devices that should always have the same IP address (e.g., servers and routers). </li>
+<li>Allows for these addresses to be changed from a central location instead of having to log in to each device separately.</li>
+</ul>
+<h2 id="Leases"><a href="#Leases" class="headerlink" title="Leases."></a>Leases.</h2><ul>
+<li>Configuration parameters are only good for a specified amount of time. </li>
+<li>Leases are configured by the administrator.</li>
+</ul>
+<h2 id="Options"><a href="#Options" class="headerlink" title="Options."></a>Options.</h2><ul>
+<li><strong>Default gateway location.</strong> </li>
+<li><strong>DNS server addresses (there can be more than one).</strong> </li>
+<li><strong>Time server addresses.</strong> </li>
+<li>Many additional options.</li>
+</ul>
+<h2 id="Preferred-IP-configuration"><a href="#Preferred-IP-configuration" class="headerlink" title="Preferred IP configuration."></a>Preferred IP configuration.</h2><ul>
+<li>A PC can have a preferred IP address. </li>
+<li>The administrator can configure the DHCP server to either honor the preference or ignore it.</li>
+</ul>
+<p>Under the right circumstances, a DHCP server isn’t required to reside on the local network segment. </p>
+<p>Broadcast transmissions cannot pass through a router. If there is not a DHCP server on the local network segment, the router can be configured to be a DHCP relay(中继). When a DHCP relay (also be called an IP helper) receives a discovery packet from a node, it will forward that packet to the network segment on which the DHCP server resides.</p>
+<p>This allows for there to be fewer configured DHCP servers in any given network, reducing the amount of maintenance that an administrator needs to perform.</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://xbs5520.github.io">Bryan Niu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://xbs5520.github.io/2025/07/13/DHCPInNetwork/">https://xbs5520.github.io/2025/07/13/DHCPInNetwork/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/MyHead.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/07/12/Networkdevice/" title="Network device"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">Network device</div></div><div class="info-2"><div class="info-item-1">OSI Model deviceswhat is OSI modelThe Open Systems Interconnection model.   Layer 1 devicesAnalog modem(模拟调制解调器)  convert digital(数字) signal(from digital node) to an analog(模拟) signal create connections between network segments via(经过) PSTN(public switched telephone network) using POTS(plain old telephone system)  Hub  function as a concentrator&#x2F;repeater(集中器&#x2F;中继器) not care where the signal come and go  Layer 2 devicesSwitch  Utilizes ASIC(application-specific integrated circuit)...</div></div></div></a><a class="pagination-related" href="/2025/07/13/IntroduceNAT/" title="Introduction NAT"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">Introduction NAT</div></div><div class="info-2"><div class="info-item-1">The purpose of network address translation.Network address translation (NAT) solves the problem of how to route non-routable IP addresses.  As a partial effort to conserve the IPv4 address space, the private IPv4 addressing spaces were developed. These address spaces were removed from the public IPv4 address spaces and made non-routable across public IPv4 networks.  Being non-routable prevents the private IPv4 addresses from communicating with remote public networks. NAT very simply solves...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/MyHead.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Bryan Niu</div><div class="author-info-description">This is my notebook</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">33</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/xbs5520" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/bryan513.niu@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Static-VS-dynamic-IP-addressing"><span class="toc-number">1.</span> <span class="toc-text">Static VS. dynamic IP addressing</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#How-does-a-computer-know-what-its-IP-configuration-is"><span class="toc-number">1.1.</span> <span class="toc-text">How does a computer know what its IP configuration is?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Static-IP-addressing"><span class="toc-number">1.2.</span> <span class="toc-text">Static IP addressing.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dynamic-IP-addressing"><span class="toc-number">1.3.</span> <span class="toc-text">Dynamic IP addressing.</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#How-DHCP-work%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">How DHCP work？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Typical-DHCP-process"><span class="toc-number">2.1.</span> <span class="toc-text">Typical DHCP process.</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Component-and-processes-of-DHCP"><span class="toc-number">3.</span> <span class="toc-text">Component and processes of DHCP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Ports-used"><span class="toc-number">3.1.</span> <span class="toc-text">Ports used.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Address-scope"><span class="toc-number">3.2.</span> <span class="toc-text">Address scope.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Address-reservations"><span class="toc-number">3.3.</span> <span class="toc-text">Address reservations.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Leases"><span class="toc-number">3.4.</span> <span class="toc-text">Leases.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Options"><span class="toc-number">3.5.</span> <span class="toc-text">Options.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Preferred-IP-configuration"><span class="toc-number">3.6.</span> <span class="toc-text">Preferred IP configuration.</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/13/DHCPInNetwork/" title="DHCP in the network">DHCP in the network</a><time datetime="2025-07-12T16:00:00.000Z" title="Created 2025-07-13 00:00:00">2025-07-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/13/IntroduceNAT/" title="Introduction NAT">Introduction NAT</a><time datetime="2025-07-12T16:00:00.000Z" title="Created 2025-07-13 00:00:00">2025-07-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/13/LeetCode-155-Min-Stack/" title="LeetCode 155 Min Stack">LeetCode 155 Min Stack</a><time datetime="2025-07-12T16:00:00.000Z" title="Created 2025-07-13 00:00:00">2025-07-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/13/LeetCode-150-Evaluate-Reverse-Polish-Notation/" title="LeetCode 150 Evaluate Reverse Polish Notation">LeetCode 150 Evaluate Reverse Polish Notation</a><time datetime="2025-07-12T16:00:00.000Z" title="Created 2025-07-13 00:00:00">2025-07-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/13/IntroduceDNS/" title="Introduction to the DNS service">Introduction to the DNS service</a><time datetime="2025-07-12T16:00:00.000Z" title="Created 2025-07-13 00:00:00">2025-07-13</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By Bryan Niu</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
