@@ -1,0 +1,416 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>WAN technologies | Notebook</title><meta name="author" content="Bryan Niu"><meta name="copyright" content="Bryan Niu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Public switched telephone network.(PSTN)What makes a WAN a WAN, as opposed to a LAN?  As a general rule, if you own and control the line that the data is using to get from one place to another, you ar">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WAN technologies">
+<meta property="og:url" content="https://xbs5520.github.io/2025/07/14/Wan/index.html">
+<meta property="og:site_name" content="Notebook">
+<meta property="og:description" content="Public switched telephone network.(PSTN)What makes a WAN a WAN, as opposed to a LAN?  As a general rule, if you own and control the line that the data is using to get from one place to another, you ar">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xbs5520.github.io/img/MyHead.jpg">
+<meta property="article:published_time" content="2025-07-13T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-07-13T23:55:34.195Z">
+<meta property="article:author" content="Bryan Niu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xbs5520.github.io/img/MyHead.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "WAN technologies",
+  "url": "https://xbs5520.github.io/2025/07/14/Wan/",
+  "image": "https://xbs5520.github.io/img/MyHead.jpg",
+  "datePublished": "2025-07-13T16:00:00.000Z",
+  "dateModified": "2025-07-13T23:55:34.195Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Bryan Niu",
+      "url": "https://xbs5520.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/MyHead.jpg"><link rel="canonical" href="https://xbs5520.github.io/2025/07/14/Wan/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'WAN technologies',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/MyHead.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">44</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">12</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post type-computer networks" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(img/top_img.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Notebook</span></a><a class="nav-page-title" href="/"><span class="site-name">WAN technologies</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">WAN technologies</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-07-13T16:00:00.000Z" title="Created 2025-07-14 00:00:00">2025-07-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-07-13T23:55:34.195Z" title="Updated 2025-07-14 07:55:34">2025-07-14</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Computer-Science/">Computer Science</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Computer-Science/Network/">Network</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="Public-switched-telephone-network-PSTN"><a href="#Public-switched-telephone-network-PSTN" class="headerlink" title="Public switched telephone network.(PSTN)"></a>Public switched telephone network.(PSTN)</h1><p><strong>What makes a WAN a WAN, as opposed to a LAN?</strong> </p>
+<p>As a general rule, if you own and control the line that the data is using to get from one place to another, you are not using <strong>wide area network</strong> (WAN) technology. </p>
+<p>On the other hand, if you are using a form of transmission that <strong>you don’t own</strong> (e.g., you are leasing it or paying for the use of it), then <strong>you are likely using WAN technology</strong>. </p>
+<p>One of the most common physical infrastructures used in WAN technology is the public switched telephone network (PSTN) due to its widespread availability.</p>
+<h2 id="Dial-up"><a href="#Dial-up" class="headerlink" title="Dial-up."></a>Dial-up.</h2><ul>
+<li>Utilizes the PSTN to transmit network traffic as an analog signal. </li>
+<li>Requires an analog modem to format the network traffic. </li>
+<li>Maximum theoretical speed is 56 Kbps.</li>
+</ul>
+<h2 id="ISDN-Integrated-Services-Digital-Network"><a href="#ISDN-Integrated-Services-Digital-Network" class="headerlink" title="ISDN (Integrated Services Digital Network)."></a>ISDN (Integrated Services Digital Network).</h2><ul>
+<li>Digital point-to-point WAN technology using the PSTN. </li>
+<li>Completely digital service. <ul>
+<li>Requires the use of a terminal adapter (TA) for the connection to the end node (often called a digital modem).</li>
+</ul>
+</li>
+<li>A Primary Rate Interface (PRI) uses 23 64 Kbps B channels and one 64 Kbps D channel for call setup and link management. <ul>
+<li>Achieves 1.544 Mbps speed (T-1 leased line).</li>
+</ul>
+</li>
+<li>Commonly implemented as a Basic Rate Interface (BRI), using two B channels and one D channel. <ul>
+<li>Achieves 128 Kbps speed.</li>
+</ul>
+</li>
+<li>Not as capable as a <strong>DSL (digital subscriber line),</strong> but it can often be implemented where DSL cannot be installed.</li>
+</ul>
+<img src="./../img/DSL.png" style="zoom:50%;" />
+
+<h2 id="xDSL"><a href="#xDSL" class="headerlink" title="xDSL."></a>xDSL.</h2><ul>
+<li>A digital WAN technology using the PSTN. </li>
+<li>Requires the use of a digital modem. </li>
+<li>Dedicated digital line between the end point and a class-5 central office (CO). <ul>
+<li>It is only possible within 18,000 feet of the CO.</li>
+</ul>
+</li>
+<li>Carries voice and data (filters are put in place to get voice).</li>
+</ul>
+<h2 id="SDSL-Symmetric-DSL"><a href="#SDSL-Symmetric-DSL" class="headerlink" title="SDSL (Symmetric DSL)"></a>SDSL (Symmetric DSL)</h2><ul>
+<li>Synchronous in nature (upload and download speed is the <strong>same</strong>). </li>
+<li>Does not carry voice communications. <ul>
+<li>If voice service is required, an additional line is needed.</li>
+</ul>
+</li>
+<li>Used by businesses that don’t need the performance of a T-1 leased line, but that do require the symmetrical upload and download speeds.</li>
+</ul>
+<h2 id="ADSL-Asymmetric-DSL"><a href="#ADSL-Asymmetric-DSL" class="headerlink" title="ADSL (Asymmetric DSL)."></a>ADSL (Asymmetric DSL).</h2><ul>
+<li>Asynchronous in nature (upload speed is slower than download speed). </li>
+<li>It can carry data and voice.  </li>
+<li>Common upload speeds of 768 Kbps with download speeds of up to 9 Mbps.</li>
+<li>Most common implementation of DSL in the SOHO(small office home office) environment.</li>
+</ul>
+<h2 id="VDSL-Very-high-bit-rate-DSL"><a href="#VDSL-Very-high-bit-rate-DSL" class="headerlink" title="VDSL (Very-high-bit-rate DSL)."></a>VDSL (Very-high-bit-rate DSL).</h2><ul>
+<li>Asynchronous in nature. </li>
+<li>Used when high quality video and VolP(Voice over IP) is necessary. <ul>
+<li>Commonly limited to a download speed of 52 Mbps and an upload speed of 12 Mbps.</li>
+</ul>
+</li>
+<li>It is only possible when located within 4,000 feet of a CO. </li>
+<li>Current standard allows for up to 100 Mbps over PSTN. <ul>
+<li>To achieve that, the end point must be within 300 meters of a CO.</li>
+</ul>
+</li>
+</ul>
+<h1 id="Broadband-cable-宽带"><a href="#Broadband-cable-宽带" class="headerlink" title="Broadband cable. 宽带"></a>Broadband cable. 宽带</h1><h2 id="Coaxial-cable-同轴电缆-networking"><a href="#Coaxial-cable-同轴电缆-networking" class="headerlink" title="Coaxial cable(同轴电缆) networking."></a>Coaxial cable(同轴电缆) networking.</h2><ul>
+<li>Broadband connection to a location delivered by the cable company. <ul>
+<li>It can deliver voice, data, and television—all through the same connection.</li>
+</ul>
+</li>
+<li>Headend: all cable signals are received at this point; signals are processed and formatted then transmitted to the distribution network. </li>
+<li>Distribution network: smaller service areas served by the cable company. The distribution network architecture can be composed of(由…组成) fiber optic cabling, coaxial cabling and&#x2F;or hybrid fiber-coaxial cabling (HFC). </li>
+<li>Unlike DSL, the bandwidth is shared by the distribution network; this can lead to increased latency and congestion(延迟和阻塞). </li>
+<li>Final distribution to the premise(用户端) is usually through a coaxial cable. </li>
+<li>Data over cable service interface specification (DOCSIS): the specifications for how the signal will be received. All cable modems and similar devices must measure up to the ISP’s required DOCSIS standard.</li>
+</ul>
+<h1 id="Fiber"><a href="#Fiber" class="headerlink" title="Fiber."></a>Fiber.</h1><h2 id="Fiber-optic-networking"><a href="#Fiber-optic-networking" class="headerlink" title="Fiber-optic networking."></a>Fiber-optic networking.</h2><ul>
+<li>Using light to transmit data and voice. <ul>
+<li>Allows for more bandwidth over greater distances.</li>
+</ul>
+</li>
+<li>More expensive to install, but is also less susceptible(收影响) to line noise(噪声). </li>
+<li>The fiber synchronous(同步) data transmission standard in the U.S. is Synchronous Optical Network (SONET). </li>
+<li>The international standard is Synchronous Digital Hierarchy (SDH). <ul>
+<li>SONET and SDH define the base rates of transmission, which are known as Optical Carrier (OC) levels.</li>
+</ul>
+</li>
+<li>Dense wavelength-division multiplexing (DWDM) is a method of multiplexing several OC levels (up to 32 channels) into a single optical fiber, effectively increasing the bandwidth of a single optical fiber. </li>
+<li>Coarse wavelength-division multiplexing (CWDM) is similar to DWDM but only allows for up to 8 channels on a single fiber.</li>
+<li>Passive Optical Network (PON) is a point-to-multipoint technology that uses a single optical fiber to connect multiple locations to the Internet. <ul>
+<li>It uses unpowered(无源) optical splitters.</li>
+</ul>
+</li>
+</ul>
+<h1 id="GSM-CDMA-WAN-connections"><a href="#GSM-CDMA-WAN-connections" class="headerlink" title="GSM&#x2F;CDMA WAN connections."></a>GSM&#x2F;CDMA WAN connections.</h1><p>Cellular(蜂窝) carriers use one of two methods for connecting devices to their networks— and they are not compatible. </p>
+<p>Currently in the United States, AT&amp;T and T-Mobile use Global System for Mobile (GSM) to connect their devices to their networks. Sprint and Verizon use Code Division Multiple Access (CDMA) as their method of connecting to networks. </p>
+<p>The majority of the rest of the world utilizes GSM as the method of accessing cellular networks.</p>
+<h2 id="Cellular-networking"><a href="#Cellular-networking" class="headerlink" title="Cellular networking."></a>Cellular networking.</h2><ul>
+<li>Cellular networking involves using the cellular phone system for more than just phone calls. </li>
+<li>1G cellular was only capable of voice transmissions. </li>
+<li>2G cellular added simple data transmission capability (text). <ul>
+<li>2G EDGE offered some basic cellular networking connectivity and was a stopgap between 2G and 3G.</li>
+</ul>
+</li>
+<li>3G cellular is the beginning of cellular WAN networking. </li>
+<li>4G is still an emerging technology; it currently consists of LTE and WiMAX. </li>
+<li>HSPA+ (Evolved High Speed Packet Access): a stopgap between 3G and 4G. <ul>
+<li>The current standards allows for up to a maximum data rate of 84 Mbps.</li>
+</ul>
+</li>
+<li>LTE (Long Term Evolution): uses an all-IP based core with high data rates. It is compatible with 3G and WiMAX. <ul>
+<li>The current standards allow for up to 300 Mbps in download speed and up to 75 Mbps in upload speed.</li>
+</ul>
+</li>
+<li>5G networks offer not only higher speed, with a peak speed of 10 Gbit&#x2F;s,but also substantially lower latency, enabling near-instantaneous(几乎瞬间) communication through cellular base stations and antennae(天线).</li>
+</ul>
+<h1 id="WiMAX-WAN-connections"><a href="#WiMAX-WAN-connections" class="headerlink" title="WiMAX WAN connections."></a>WiMAX WAN connections.</h1><h2 id="World-Wide-Interoperability-互通-for-Microwave-Access-WiMAX-networking"><a href="#World-Wide-Interoperability-互通-for-Microwave-Access-WiMAX-networking" class="headerlink" title="World Wide Interoperability(互通) for Microwave Access (WiMAX) networking."></a>World Wide Interoperability(互通) for Microwave Access (WiMAX) networking.</h2><ul>
+<li>WiMAX was originally developed as a last mile alternative for use when DSL or cable was not available. <ul>
+<li>Provides an alternative broadband connection to a fixed location.</li>
+</ul>
+</li>
+<li>It uses microwave transmissions as an over-the-air method to transmit voice and data. <ul>
+<li>Requires a line of sight between relay stations.</li>
+</ul>
+</li>
+<li>WiMAX can be used to cover significant geographic distances. <ul>
+<li>Many municipalities are exploring the use of WiMAX as a means of providing reasonably priced broadband to their citizens.</li>
+</ul>
+</li>
+<li>It is often considered to be a type of 4G technology because it is compatible with LTE networks. <ul>
+<li>WiMAX is not compatible with 3G type networks.</li>
+</ul>
+</li>
+</ul>
+<h1 id="Satellite-WAN-connections"><a href="#Satellite-WAN-connections" class="headerlink" title="Satellite WAN connections."></a>Satellite WAN connections.</h1><h2 id="Microwave-satellite-networking"><a href="#Microwave-satellite-networking" class="headerlink" title="Microwave satellite networking."></a>Microwave satellite networking.</h2><ul>
+<li>Uses microwave transmissions as an over-the-air method to transmit voice and data. </li>
+<li>Can be an effective means of extending networks into places that are hard to reach. </li>
+<li>Microwave radio relay(微波无线电继电器) is the method of transmitting through the atmosphere. <ul>
+<li>Requires line-of-site relay stations, but can cover vast(遥远) distances. </li>
+<li>The distances covered by the satellite network may lead to latency problems.</li>
+</ul>
+</li>
+<li>A communication satellite (Comsat通信卫星) forms part of the microwave relay network. </li>
+<li>Comsats may use a variety of orbits. <ul>
+<li>Molniya, geostationary, low-polar, or polar orbits are all used for microwave radio relay networks.</li>
+</ul>
+</li>
+<li>Low-polar and polar orbits are used to boost the microwave signal before sending the signal back to Earth.</li>
+</ul>
+<h1 id="Metro-Ethernet-WAN-connections"><a href="#Metro-Ethernet-WAN-connections" class="headerlink" title="Metro Ethernet WAN connections."></a>Metro Ethernet WAN connections.</h1><p>A metro Ethernet connection is when the service provider connects to the customer’s site through an <strong>RJ45 connector</strong>. </p>
+<p>The customers view the WAN connection as an <strong>Ethernet connection,</strong> while, in reality, the type of connection will be dependent on the level of service that has been purchased.</p>
+<p>The service provider may use a variety of WAN technologies behind the scenes, but the customer will only view it as being Ethernet. </p>
+<p>Metro Ethernet is commonly deployed as a WAN technology by municipalities at the metropolitan (城市)area network (MAN) level.</p>
+<h1 id="Leased-line-WAN-connections"><a href="#Leased-line-WAN-connections" class="headerlink" title="Leased line WAN connections."></a>Leased line WAN connections.</h1><h2 id="Leased-line"><a href="#Leased-line" class="headerlink" title="Leased line."></a>Leased line.</h2><ul>
+<li>A leased line is a dedicated circuit (connection) between two end points used for communication. <ul>
+<li>It is usually a digital point-to-point connection.</li>
+</ul>
+</li>
+<li>A leased line can utilize either a plain old telephone service (POTS) line on the public switched telephone network (PSTN), or it can be a fiber optic circuit provided by a telecommunications company. </li>
+<li>Leased lines tend to be more expensive for the customer, as the circuit cannot be utilized by any other entity so the whole cost is born by the customer. </li>
+<li>Most often, the speed is limited by what the customer is willing to pay. </li>
+<li>Multiplexing technology can be used to increase the amount of  channels that are provided on the connection.</li>
+</ul>
+<h2 id="Point-to-Point-Protocol-PPP"><a href="#Point-to-Point-Protocol-PPP" class="headerlink" title="Point-to-Point Protocol (PPP)"></a>Point-to-Point Protocol (PPP)</h2><ul>
+<li><p>a common data link layer (OSI Layer 2) protocol used with leased line networks. </p>
+</li>
+<li><p>PPP simultaneously(同时) transmits multiple Layer 3 protocols (e.g., IP and IPX) through the use of control protocols (which are specific to the Layer 3 protocol being transmitted). </p>
+</li>
+<li><p>PPP includes a feature called Multilink PPP, which allows for multiple physical interfaces to be bonded together and act as a single logical interface effectively increasing the available bandwidth.</p>
+</li>
+</ul>
+<h2 id="Types-of-leased-line-connections"><a href="#Types-of-leased-line-connections" class="headerlink" title="Types of leased line connections."></a>Types of leased line connections.</h2><ul>
+<li>T-carrier (U.S., Japan, and South Korea). <ul>
+<li>Each T line circuit level is composed of 24 digital signal channels; these are called Digital Signal 0 (DSO) channels (each channel is capable of carrying 64 Kbps). The 24 DSOs make what is called a Digital Signal 1 (DS1) channel.</li>
+</ul>
+</li>
+<li>E-carrier (Europe). <ul>
+<li>Each E line circuit level is composed of 30 digital signal channels, these are also called DSO channels. The 30 DSOs also make up a DS1.</li>
+</ul>
+</li>
+<li>Optical carrier (OC) lines. <ul>
+<li>The OC data rates per channel are established by both the SONET (United States) and SDH (international) networking standards. These rates are the same across the two standards.</li>
+</ul>
+</li>
+<li>Using dense wavelength-division multiplexing (DWDM) allows for up to 32 separate channels on a single fiber cable. </li>
+<li>Using coarse wavelength-division multiplexing (CWDM) allows for up to eight separate channels on a single fiber cable.</li>
+</ul>
+<h1 id="Common-standards"><a href="#Common-standards" class="headerlink" title="Common standards."></a>Common standards.</h1><h2 id="T-lines"><a href="#T-lines" class="headerlink" title="T lines."></a>T lines.</h2><ul>
+<li>T-carrier. <ul>
+<li>T1 composed of 24 DSO channels (also known as a DS1) &#x3D; 1.544 Mbps speed. </li>
+<li>T3 composed of 28 T1 lines (also known as a DS3) &#x3D; 44.736 Mbps speed.</li>
+</ul>
+</li>
+</ul>
+<h2 id="E-carrier-lines"><a href="#E-carrier-lines" class="headerlink" title="E-carrier lines."></a>E-carrier lines.</h2><ul>
+<li>E1 composed of 30 DSO channels &#x3D; 2.048 Mbps speed. </li>
+<li>E3 composed of 16 E1 lines &#x3D; 34.368 Mbps speed.</li>
+</ul>
+<h2 id="Optical-Carrier-lines"><a href="#Optical-Carrier-lines" class="headerlink" title="Optical Carrier lines."></a>Optical Carrier lines.</h2><ul>
+<li>OC-1 &#x3D; 51.84 Mbps speed. </li>
+<li>OC-3 &#x3D; 155.52 Mbps speed. </li>
+<li>OC-12 &#x3D; 622.08 Mbps speed. </li>
+<li>OC-48 &#x3D; 2.488 Gbps speed. </li>
+<li>OC-192 &#x3D; 9.953 Gbps speed.</li>
+</ul>
+<h1 id="Circuit-switched-vs-packet-switched-networks"><a href="#Circuit-switched-vs-packet-switched-networks" class="headerlink" title="Circuit switched vs. packet switched networks."></a>Circuit switched vs. packet switched networks.</h1><h2 id="Circuit-switched-networks"><a href="#Circuit-switched-networks" class="headerlink" title="Circuit switched networks."></a>Circuit switched networks.</h2><ul>
+<li><p>Circuit switched networks have a dedicated circuit (connection) between two end points used for communication. </p>
+</li>
+<li><p>While set up, the circuit can only be used for communication between those end points. </p>
+</li>
+<li><p>An example of this is a phone call using a land line(固定电话). </p>
+</li>
+<li><p>Circuit switched networks are most common in networks with leased line communication. </p>
+</li>
+<li><p>Best use is when there needs to be a fair amount of continuous data traffic between two points. </p>
+</li>
+<li><p>There is only one path.</p>
+</li>
+</ul>
+<h2 id="Packet-switched-networks"><a href="#Packet-switched-networks" class="headerlink" title="Packet switched networks."></a>Packet switched networks.</h2><ul>
+<li>In packet switched networks, data is broken up into smaller chunks and moved through the network, only to be reassembled at the other end. <ul>
+<li>Data traffic is routed using the destination address. </li>
+<li>Data may take different paths through the network.</li>
+</ul>
+</li>
+<li>As a general rule, packet switched networks are less expensive to maintain.<ul>
+<li>The user doesn’t have to maintain a dedicated circuit 24&#x2F;7.</li>
+</ul>
+</li>
+</ul>
+<h1 id="Frame-relay-vs-Asynchronous-Transfer-Mode"><a href="#Frame-relay-vs-Asynchronous-Transfer-Mode" class="headerlink" title="Frame relay vs. Asynchronous Transfer Mode."></a>Frame relay vs. Asynchronous Transfer Mode.</h1><h2 id="Frame-relay"><a href="#Frame-relay" class="headerlink" title="Frame relay."></a>Frame relay.</h2><ul>
+<li>Frame relay is a WAN technology in which variable length packets are switched across a network. </li>
+<li>Frame relay is less expensive than leased lines.</li>
+<li>Can be made to look like a leased line through the use of a virtual circuit (VC). </li>
+<li>Frame relay tracks a VC using a data link connection identifier (DLCI). </li>
+<li>Access rate: the max speed of the frame relay interface.</li>
+<li>Committed information rate (CIR): guaranteed bandwidth (may go faster but never slower).</li>
+</ul>
+<h2 id="Asynchronous异步-Transfer-Mode-ATM"><a href="#Asynchronous异步-Transfer-Mode-ATM" class="headerlink" title="Asynchronous异步 Transfer Mode (ATM)."></a>Asynchronous异步 Transfer Mode (ATM).</h2><ul>
+<li>ATM is a WAN technology in which fixed length cells (each cell is always 53 bytes long) are switched across a network. </li>
+<li>Can handle real time voice and video. </li>
+<li>Very fast technology; poor bandwidth utilization (the small cell size reduces the efficiency of the technology). </li>
+<li>Common ATM speeds are 51.84 Mbps and 155.52 Mbps.</li>
+</ul>
+<h1 id="Multiprotocol-Label-Switching-MPLS"><a href="#Multiprotocol-Label-Switching-MPLS" class="headerlink" title="Multiprotocol Label Switching.(MPLS)"></a>Multiprotocol Label Switching.(MPLS)</h1><ul>
+<li>MPLS is a topology that is growing in popularity. <ul>
+<li>It is scalable 可扩展. </li>
+<li>It is protocol independent.</li>
+</ul>
+</li>
+<li>MPLS can be used to replace both frame relay switching and ATM switching. <ul>
+<li>It can also be used to packet switch both frame relay and ATM network traffic. This allows MPLS to be used in conjunction(结合) with both frame relay and ATM technologies.</li>
+</ul>
+</li>
+<li>MPLS is used to improve the Quality of Service (QoS) and flow of network traffic. </li>
+<li>Label edge router (LER): adds MPLS labels to incoming packets if they don’t have them. </li>
+<li>Label switching router (LSR): forwards packets based on their MPLS labels.</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://xbs5520.github.io">Bryan Niu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://xbs5520.github.io/2025/07/14/Wan/">https://xbs5520.github.io/2025/07/14/Wan/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/MyHead.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/07/14/LeetCode-82-Remove-Duplicates-from-Sorted-List-II/" title="LeetCode 82 Remove Duplicates from Sorted List II"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">LeetCode 82 Remove Duplicates from Sorted List II</div></div><div class="info-2"><div class="info-item-1">LeetCode 82 Remove Duplicates from Sorted List IIGiven the head of a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list. Return the linked list sorted as well. Solutionif Left &#x3D;&#x3D; right right++ until not equal nowNode -&gt; right(new val)  Code123456789101112131415161718192021ListNode* deleteDuplicates(ListNode* head) &#123;    ListNode* root = new ListNode();    root-&gt;next = head;    ListNode* nowNode = root;   ...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/MyHead.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Bryan Niu</div><div class="author-info-description">This is my notebook</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">44</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">12</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/xbs5520" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/bryan513.niu@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Public-switched-telephone-network-PSTN"><span class="toc-number">1.</span> <span class="toc-text">Public switched telephone network.(PSTN)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dial-up"><span class="toc-number">1.1.</span> <span class="toc-text">Dial-up.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ISDN-Integrated-Services-Digital-Network"><span class="toc-number">1.2.</span> <span class="toc-text">ISDN (Integrated Services Digital Network).</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xDSL"><span class="toc-number">1.3.</span> <span class="toc-text">xDSL.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SDSL-Symmetric-DSL"><span class="toc-number">1.4.</span> <span class="toc-text">SDSL (Symmetric DSL)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ADSL-Asymmetric-DSL"><span class="toc-number">1.5.</span> <span class="toc-text">ADSL (Asymmetric DSL).</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VDSL-Very-high-bit-rate-DSL"><span class="toc-number">1.6.</span> <span class="toc-text">VDSL (Very-high-bit-rate DSL).</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Broadband-cable-%E5%AE%BD%E5%B8%A6"><span class="toc-number">2.</span> <span class="toc-text">Broadband cable. 宽带</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Coaxial-cable-%E5%90%8C%E8%BD%B4%E7%94%B5%E7%BC%86-networking"><span class="toc-number">2.1.</span> <span class="toc-text">Coaxial cable(同轴电缆) networking.</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Fiber"><span class="toc-number">3.</span> <span class="toc-text">Fiber.</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Fiber-optic-networking"><span class="toc-number">3.1.</span> <span class="toc-text">Fiber-optic networking.</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#GSM-CDMA-WAN-connections"><span class="toc-number">4.</span> <span class="toc-text">GSM&#x2F;CDMA WAN connections.</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Cellular-networking"><span class="toc-number">4.1.</span> <span class="toc-text">Cellular networking.</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#WiMAX-WAN-connections"><span class="toc-number">5.</span> <span class="toc-text">WiMAX WAN connections.</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#World-Wide-Interoperability-%E4%BA%92%E9%80%9A-for-Microwave-Access-WiMAX-networking"><span class="toc-number">5.1.</span> <span class="toc-text">World Wide Interoperability(互通) for Microwave Access (WiMAX) networking.</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Satellite-WAN-connections"><span class="toc-number">6.</span> <span class="toc-text">Satellite WAN connections.</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Microwave-satellite-networking"><span class="toc-number">6.1.</span> <span class="toc-text">Microwave satellite networking.</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Metro-Ethernet-WAN-connections"><span class="toc-number">7.</span> <span class="toc-text">Metro Ethernet WAN connections.</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Leased-line-WAN-connections"><span class="toc-number">8.</span> <span class="toc-text">Leased line WAN connections.</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Leased-line"><span class="toc-number">8.1.</span> <span class="toc-text">Leased line.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Point-to-Point-Protocol-PPP"><span class="toc-number">8.2.</span> <span class="toc-text">Point-to-Point Protocol (PPP)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Types-of-leased-line-connections"><span class="toc-number">8.3.</span> <span class="toc-text">Types of leased line connections.</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Common-standards"><span class="toc-number">9.</span> <span class="toc-text">Common standards.</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#T-lines"><span class="toc-number">9.1.</span> <span class="toc-text">T lines.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#E-carrier-lines"><span class="toc-number">9.2.</span> <span class="toc-text">E-carrier lines.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Optical-Carrier-lines"><span class="toc-number">9.3.</span> <span class="toc-text">Optical Carrier lines.</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Circuit-switched-vs-packet-switched-networks"><span class="toc-number">10.</span> <span class="toc-text">Circuit switched vs. packet switched networks.</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Circuit-switched-networks"><span class="toc-number">10.1.</span> <span class="toc-text">Circuit switched networks.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Packet-switched-networks"><span class="toc-number">10.2.</span> <span class="toc-text">Packet switched networks.</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Frame-relay-vs-Asynchronous-Transfer-Mode"><span class="toc-number">11.</span> <span class="toc-text">Frame relay vs. Asynchronous Transfer Mode.</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Frame-relay"><span class="toc-number">11.1.</span> <span class="toc-text">Frame relay.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Asynchronous%E5%BC%82%E6%AD%A5-Transfer-Mode-ATM"><span class="toc-number">11.2.</span> <span class="toc-text">Asynchronous异步 Transfer Mode (ATM).</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Multiprotocol-Label-Switching-MPLS"><span class="toc-number">12.</span> <span class="toc-text">Multiprotocol Label Switching.(MPLS)</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/14/LeetCode-141-Linked-List-Cycle/" title="LeetCode 141 Linked List Cycle">LeetCode 141 Linked List Cycle</a><time datetime="2025-07-13T16:00:00.000Z" title="Created 2025-07-14 00:00:00">2025-07-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/14/LeetCode-138-Copy-List-with-Random-Pointer/" title="LeetCode 138 Copy List with Random Pointer">LeetCode 138 Copy List with Random Pointer</a><time datetime="2025-07-13T16:00:00.000Z" title="Created 2025-07-14 00:00:00">2025-07-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/14/LeetCode-21-Merge-Two-Sorted-Lists/" title="LeetCode 21 Merge Two Sorted Lists">LeetCode 21 Merge Two Sorted Lists</a><time datetime="2025-07-13T16:00:00.000Z" title="Created 2025-07-14 00:00:00">2025-07-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/14/LeetCode-19-Remove-Nth-Node-From-End-of-List/" title="LeetCode 19 Remove Nth Node From End of List">LeetCode 19 Remove Nth Node From End of List</a><time datetime="2025-07-13T16:00:00.000Z" title="Created 2025-07-14 00:00:00">2025-07-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/14/LeetCode-2-Add-Two-Numbers/" title="LeetCode 2 Add Two Numbers">LeetCode 2 Add Two Numbers</a><time datetime="2025-07-13T16:00:00.000Z" title="Created 2025-07-14 00:00:00">2025-07-14</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By Bryan Niu</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
