@@ -1,0 +1,376 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Network Cabling | Notebook</title><meta name="author" content="Bryan Niu"><meta name="copyright" content="Bryan Niu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Twisted pair network cabling.Twisted pair cables are composed of four pairs of wires contained within an insulating sheath(绝缘护套). Each pair of wires is twisted together to reduce electromagnetic inter">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Network Cabling">
+<meta property="og:url" content="https://xbs5520.github.io/2025/07/16/NetworkCabling/index.html">
+<meta property="og:site_name" content="Notebook">
+<meta property="og:description" content="Twisted pair network cabling.Twisted pair cables are composed of four pairs of wires contained within an insulating sheath(绝缘护套). Each pair of wires is twisted together to reduce electromagnetic inter">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xbs5520.github.io/img/MyHead.jpg">
+<meta property="article:published_time" content="2025-07-15T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-07-15T23:58:35.549Z">
+<meta property="article:author" content="Bryan Niu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xbs5520.github.io/img/MyHead.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Network Cabling",
+  "url": "https://xbs5520.github.io/2025/07/16/NetworkCabling/",
+  "image": "https://xbs5520.github.io/img/MyHead.jpg",
+  "datePublished": "2025-07-15T16:00:00.000Z",
+  "dateModified": "2025-07-15T23:58:35.549Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Bryan Niu",
+      "url": "https://xbs5520.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/MyHead.jpg"><link rel="canonical" href="https://xbs5520.github.io/2025/07/16/NetworkCabling/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Network Cabling',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/MyHead.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">48</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">12</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post type-computer networks" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(img/top_img.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Notebook</span></a><a class="nav-page-title" href="/"><span class="site-name">Network Cabling</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Network Cabling</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-07-15T16:00:00.000Z" title="Created 2025-07-16 00:00:00">2025-07-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-07-15T23:58:35.549Z" title="Updated 2025-07-16 07:58:35">2025-07-16</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Computer-Science/">Computer Science</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Computer-Science/Network/">Network</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="Twisted-pair-network-cabling"><a href="#Twisted-pair-network-cabling" class="headerlink" title="Twisted pair network cabling."></a>Twisted pair network cabling.</h1><p>Twisted pair cables are composed of four pairs of wires contained within an insulating sheath(绝缘护套). Each pair of wires is twisted together to reduce electromagnetic interference (EMI). The twist rates differ between the pairs of wires to reduce crosstalk between the pairs. The colors of the pairs are: white orange&#x2F;orange, white blue&#x2F;blue, white green&#x2F;green, and white brown&#x2F;brown.</p>
+<h2 id="Unshielded-vs-shielded-twisted-pair-UTP-vs-STP"><a href="#Unshielded-vs-shielded-twisted-pair-UTP-vs-STP" class="headerlink" title="Unshielded vs. shielded twisted pair (UTP vs. STP)."></a>Unshielded vs. shielded twisted pair (UTP vs. STP).</h2><ul>
+<li>STP has an additional shield that is either wrapped around each pair of wires or around all four pairs. <ul>
+<li>STP reduces the opportunity for EMI or crosstalk, but is more expensive and a little harder to work with.</li>
+</ul>
+</li>
+<li>UTP is deployed in the network much more often than STP.</li>
+</ul>
+<h2 id="Plenum-vs-non-plenum-twisted-pair"><a href="#Plenum-vs-non-plenum-twisted-pair" class="headerlink" title="Plenum vs. non-plenum twisted pair."></a>Plenum vs. non-plenum twisted pair.</h2><ul>
+<li>Most twisted pair is non-plenum grade.</li>
+<li>Building codes often call for plenum grade cable to be run in plenum spaces (areas designed to assist in the airflow of a building for HVAC purposes) <ul>
+<li>Plenum cable is jacketed in either a fire-retardant cover or in a low-smoke PVC jacket </li>
+<li>Plenum cable often has a polymer or nylon strand woven into it to help take the weight of hanging cables. This reduces the chance for the cable to stretch, which can cause the pair inside to break.</li>
+</ul>
+</li>
+</ul>
+<h1 id="Twisted-pair-network-connectors"><a href="#Twisted-pair-network-connectors" class="headerlink" title="Twisted pair network connectors."></a>Twisted pair network connectors.</h1><p>A straight-through cable is used to connect different types of devices together (computer to switch, or switch to router) while a crossover cable is used to connect similar devices together (PC to PC, or switch to switch). They use a different pinout to achieve the connection. A rollover or console cable is often required to connect to the console port on a switch or router. It is quite common for one end of the rollover cable to use an RJ45 connector, while the other end utilizes an RS 232 (DB 9) connector.</p>
+<h2 id="RJ11"><a href="#RJ11" class="headerlink" title="RJ11."></a>RJ11.</h2><ul>
+<li>Uses a six-position four-contact (6P4C) modular connector. </li>
+<li>Can carry data or voice; common usage is voice communication (telephony).</li>
+</ul>
+<h2 id="RJ45"><a href="#RJ45" class="headerlink" title="RJ45."></a>RJ45.</h2><ul>
+<li><p>Uses an eight-position eight-contact (8P8C) modular connector. </p>
+</li>
+<li><p>Can carry data or voice; common usage is data networking (Ethernet). </p>
+<p><img src="/./NetworkCabling/RS232.png"></p>
+</li>
+</ul>
+<h2 id="RJ48C"><a href="#RJ48C" class="headerlink" title="RJ48C."></a>RJ48C.</h2><ul>
+<li>Uses an eight-position eight-contact (8P8C) modular connector.</li>
+<li>Used as the terminating connector at the demarc for T1 lines. <ul>
+<li>It is often confused with an RJ45, but the active pins are different.</li>
+</ul>
+</li>
+</ul>
+<h2 id="DB9-RS-232"><a href="#DB9-RS-232" class="headerlink" title="DB9 (RS-232)."></a>DB9 (RS-232).</h2><ul>
+<li>A nine pin D-subminiature connector developed for asynchronous serial communication between nodes. <ul>
+<li>It was a common type of connection between a computer and an external analog modem. </li>
+<li>It often makes up one end of the rollover cable.</li>
+</ul>
+</li>
+</ul>
+<h2 id="DB25-EIA-232-RS-232-serial"><a href="#DB25-EIA-232-RS-232-serial" class="headerlink" title="DB25 (EIA-232&#x2F;RS-232 serial)."></a>DB25 (EIA-232&#x2F;RS-232 serial).</h2><ul>
+<li>A 25 pin D-subminiature connector developed for asynchronous serial communication between nodes <ul>
+<li>It was a type of connection between a computer and an external analog modem.</li>
+</ul>
+</li>
+</ul>
+<h1 id="Categories-of-twisted-pair"><a href="#Categories-of-twisted-pair" class="headerlink" title="Categories of twisted pair."></a>Categories of twisted pair.</h1><h2 id="Cat-3"><a href="#Cat-3" class="headerlink" title="Cat 3."></a>Cat 3.</h2><ul>
+<li>Rated for up to 10 Mbps speed, 10BaseT. <ul>
+<li>Max distance of 100 meters.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Cat-5"><a href="#Cat-5" class="headerlink" title="Cat 5."></a>Cat 5.</h2><ul>
+<li>Rated for up to 100 Mbps speed, 100BaseT.</li>
+</ul>
+<h2 id="Cat-5e"><a href="#Cat-5e" class="headerlink" title="Cat 5e."></a>Cat 5e.</h2><ul>
+<li>Rated for up to 1 Gbps, 1000BaseT.</li>
+</ul>
+<h2 id="Cat-6"><a href="#Cat-6" class="headerlink" title="Cat 6."></a>Cat 6.</h2><ul>
+<li>Rated for up to 10 Gbps, 10 Gigabit Ethernet (GbE). <ul>
+<li>Max distance of 55 meters when used for 10 GbE</li>
+</ul>
+</li>
+</ul>
+<h2 id="Cat-6a"><a href="#Cat-6a" class="headerlink" title="Cat 6a."></a>Cat 6a.</h2><ul>
+<li><p>Rated for up to 10 Gbps, 10 GbE. </p>
+</li>
+<li><p>Max distance of 100 meters when used for 10 GbE.</p>
+</li>
+</ul>
+<h2 id="UTP-coupler"><a href="#UTP-coupler" class="headerlink" title="UTP coupler."></a>UTP coupler.</h2><ul>
+<li>Used to connect UTP cables back to back and still maintain adherence to industry standards.</li>
+</ul>
+<h2 id="66-block"><a href="#66-block" class="headerlink" title="66 block."></a>66 block.</h2><ul>
+<li>A punchdown block initially developed to terminate and distribute telephone lines in an enterprise environment. <ul>
+<li>It was also used in slower speed networks, as it can handle data traffic rated for Cat 3 cabling.</li>
+</ul>
+</li>
+</ul>
+<h2 id="110-block"><a href="#110-block" class="headerlink" title="110 block."></a>110 block.</h2><ul>
+<li>A punchdown block developed to terminate and distribute twisted pair network cabling. It is capable of handling the signaling requirements of the modern network.</li>
+</ul>
+<h1 id="Coaxial-cabling"><a href="#Coaxial-cabling" class="headerlink" title="Coaxial cabling."></a>Coaxial cabling.</h1><h2 id="Coaxial-cabling-1"><a href="#Coaxial-cabling-1" class="headerlink" title="Coaxial cabling."></a>Coaxial cabling.</h2><ul>
+<li>Coaxial cabling is one of the oldest Ethernet cabling standards (1973). </li>
+<li>It has been used for baseband (carries single digital signal). </li>
+<li>It has been used for broadband (carries multiple digital signals). </li>
+<li>It is composed of a central conductor that is covered by an insulating layer, which is covered by an outer metal mesh or foil layer that is finished with an outer insulating layer. </li>
+<li>The inner metal mesh or foil layer helps to protect against EMI.</li>
+</ul>
+<h2 id="Coaxial-cable-types"><a href="#Coaxial-cable-types" class="headerlink" title="Coaxial cable types."></a>Coaxial cable types.</h2><p><strong>RG58</strong>: 10Base2, max distance of 185 m, 50 ohms impedance. No longer commonly found in the modern network. </p>
+<p><strong>RG59</strong>: Commonly used to provide a broadband connection between two devices over a short distance, has a 75 ohms impedance value. </p>
+<p><strong>RG6</strong>: cable TV or broadband, distance varies, has a 75 ohms impedance value.</p>
+<p>Commonly used to make the connection to cable modems by cable companies.</p>
+<h2 id="Coaxial-cable-connectors"><a href="#Coaxial-cable-connectors" class="headerlink" title="Coaxial cable connectors."></a>Coaxial cable connectors.</h2><ul>
+<li><p><strong>BNC</strong> (Bayonet Neill-Concelman). </p>
+<ul>
+<li><p>Also known as a bayonet connector. </p>
+</li>
+<li><p>Used with coaxial cable; is now considered obsolete. </p>
+</li>
+<li><p>The connection from the cable to the device was achieved through a twist-lock type connection. </p>
+</li>
+<li><p>A BNC coupler can be used to connect two coaxial cable segments back to back.</p>
+</li>
+</ul>
+<img src="./NetworkCabling/BNC.png" style="zoom:33%;" />
+</li>
+<li><p><strong>F connector</strong> </p>
+<ul>
+<li><p>Athreaded bayonet connector. </p>
+</li>
+<li><p>Used with coaxial cable. </p>
+</li>
+<li><p>An F connector coupler can be used to connect two coaxial cable segments back to back.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Fiber-optic-cabling"><a href="#Fiber-optic-cabling" class="headerlink" title="Fiber optic cabling."></a>Fiber optic cabling.</h1><h2 id="Fiber-optic-cabling-described"><a href="#Fiber-optic-cabling-described" class="headerlink" title="Fiber optic cabling described."></a>Fiber optic cabling described.</h2><ul>
+<li>It is relatively expensive and harder to work with. </li>
+<li>It is not that common in the LAN environment. </li>
+<li>It resists all form of EMI and cannot be easily tapped.</li>
+<li>It can cover long distances at high speed. </li>
+<li>It is designated by fiber type, cladding size (the cladding is what the light bounces down), and jacket size. <ul>
+<li>Size of cladding and jacket listed in micrometers.</li>
+</ul>
+</li>
+<li>Most applications require that fiber cables be run in pairs. (basically a send cable and a receive cable).</li>
+</ul>
+<p><strong>The type of connector</strong> used on fiber optic cabling can impact the performance of the transmissions. </p>
+<p><strong>The UPC</strong> (Ultra Physical Contact) connector has a back reflection rating of around -55 dB. </p>
+<p><strong>The APC</strong> (Angled Physical Contact) connector has a back reflection rating of around -70 dB, making it the better performing connector.</p>
+<h2 id="Fiber-types"><a href="#Fiber-types" class="headerlink" title="Fiber types."></a>Fiber types.</h2><p><strong>Multimode fiber (MMF).</strong> </p>
+<ul>
+<li>It uses an infrared LED system to transmit the light. </li>
+<li>It uses multiple rays of light going down the cable. </li>
+<li>It is used for shorter fiber runs, under 2 km. </li>
+<li>It is less expensive to implement than SMF. </li>
+<li>The most common application in networking is MMF 62.5&#x2F;125μ, which is good for up to 275 m.</li>
+</ul>
+<p><strong>Single-mode fiber (SMF).</strong> </p>
+<ul>
+<li>It uses a laser-diode arrangement to transmit the light. </li>
+<li>It uses a single ray of light transmitted down the cable. </li>
+<li>It is used for longer runs that require high speed. </li>
+<li>It can traverse 40+ km.</li>
+</ul>
+<h2 id="Fiber-optic-cabling-connectors"><a href="#Fiber-optic-cabling-connectors" class="headerlink" title="Fiber optic cabling connectors."></a>Fiber optic cabling connectors.</h2><p><strong>SC.</strong> </p>
+<ul>
+<li>Subscriber Connector, or Square Connector, or Standard Connector (Stick and Click). </li>
+<li>A push-pull type of connector.</li>
+</ul>
+<p><strong>ST.</strong> </p>
+<ul>
+<li>Straight Tip (Stick and Twist). </li>
+<li>A twist lock type of connector.</li>
+</ul>
+<p><strong>LC.</strong> </p>
+<ul>
+<li>Local Connector, or Lucent Connector, or Little Connector. </li>
+<li>A type of connector that uses a locking tab to secure the connection.</li>
+</ul>
+<p><strong>MTRJ.</strong> </p>
+<ul>
+<li>Mechanical Transfer Registered Jack. </li>
+<li>A small form factor connector that contains two fibers and that utilizes a locking tab to secure the connection. </li>
+<li>Fiber optic coupler. <ul>
+<li>Used to connect two fiber optic cables back to back.</li>
+</ul>
+</li>
+</ul>
+<h1 id="Media-converters"><a href="#Media-converters" class="headerlink" title="Media converters."></a>Media converters.</h1><p>It is not uncommon to be in a situation where a network contains more than one type of cabling. </p>
+<p>This can lead to situations where there is a desire to connect different types of media together in order to make a cohesive network. </p>
+<p>Thankfully, media converters are readily available. The issue mostly comes into play when joining fiber optic transmissions to a copper wire infrastructure. </p>
+<p>Some common media converters will connect: SMF to Ethernet, MMF to Ethernet, SMF to MMF, and fiber to coaxial cabling.</p>
+<h1 id="Cabling-tools"><a href="#Cabling-tools" class="headerlink" title="Cabling tools."></a>Cabling tools.</h1><h2 id="Crimpers"><a href="#Crimpers" class="headerlink" title="Crimpers."></a>Crimpers.</h2><ul>
+<li>Used to place cable ends on cables. T<ul>
+<li>hey can be designed to work with a single type of cable or with multiple types.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Wire-strippers"><a href="#Wire-strippers" class="headerlink" title="Wire strippers."></a>Wire strippers.</h2><ul>
+<li>Used to remove the insulating cover on wires and cables. <ul>
+<li>Many are designed to just cut through the insulation without damaging the cable contained in the insulation. </li>
+<li>Some are also designed to cut all the way through the cable, so that excess cabling can be trimmed.</li>
+</ul>
+</li>
+</ul>
+<h2 id="The-punchdown-tool"><a href="#The-punchdown-tool" class="headerlink" title="The punchdown tool."></a>The punchdown tool.</h2><ul>
+<li>Used to secure cable wires into punchdown blocks. Good ones will trim the ends at the same time. <ul>
+<li>In many cases, punchdown blocks are used to terminate cable runs in a central location. Often, these blocks are on the backside of patch panels.</li>
+</ul>
+</li>
+</ul>
+<h2 id="The-cable-tester"><a href="#The-cable-tester" class="headerlink" title="The cable tester."></a>The cable tester.</h2><ul>
+<li>Used to test cables for common problems. <ul>
+<li>Misconfiguration of the pinouts. </li>
+<li>The cable standard used (T568A or T568B). </li>
+<li>Shorts or breaks in the cable. </li>
+<li>Some types of testers can also test for cable length and quality (these are called cable certifiers).</li>
+</ul>
+</li>
+</ul>
+<h2 id="TDR-time-domain-reflectometer"><a href="#TDR-time-domain-reflectometer" class="headerlink" title="TDR (time-domain reflectometer)."></a>TDR (time-domain reflectometer).</h2><ul>
+<li>A cable tester for copper cabling that can also determine the length of a segment and the electrical characteristics of the cable. </li>
+<li>They can also tell where a break is in a segment. <ul>
+<li>More expensive than a standard cable tester.</li>
+</ul>
+</li>
+</ul>
+<h2 id="OTDR-optical-time-domain-reflectometer"><a href="#OTDR-optical-time-domain-reflectometer" class="headerlink" title="OTDR (optical time-domain reflectometer)."></a>OTDR (optical time-domain reflectometer).</h2><ul>
+<li>Performs the same functions as a TDR, but used for fiber optic cabling.</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://xbs5520.github.io">Bryan Niu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://xbs5520.github.io/2025/07/16/NetworkCabling/">https://xbs5520.github.io/2025/07/16/NetworkCabling/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/MyHead.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/07/15/LeetCode-61-Rotate-List/" title="LeetCode 61 Rotate List"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">LeetCode 61 Rotate List</div></div><div class="info-2"><div class="info-item-1">LeetCode 61 Rotate ListGiven the head of a linked list, rotate the list to the right by k places. Solutioncount all node  k &#x3D; k % allnums Code12345678910111213141516171819ListNode* rotateRight(ListNode* head, int k) &#123;    if(!head) return head;    ListNode* cur = head;    int count = 1;    while(cur-&gt;next)&#123;        cur = cur-&gt;next;        count++;    &#125;    ListNode* tail = cur;    tail-&gt;next = head;    cur = head;    k = count - k % count;    for(int i = 0; i &lt;...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/MyHead.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Bryan Niu</div><div class="author-info-description">This is my notebook</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">48</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">12</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/xbs5520" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/bryan513.niu@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Twisted-pair-network-cabling"><span class="toc-number">1.</span> <span class="toc-text">Twisted pair network cabling.</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Unshielded-vs-shielded-twisted-pair-UTP-vs-STP"><span class="toc-number">1.1.</span> <span class="toc-text">Unshielded vs. shielded twisted pair (UTP vs. STP).</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Plenum-vs-non-plenum-twisted-pair"><span class="toc-number">1.2.</span> <span class="toc-text">Plenum vs. non-plenum twisted pair.</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Twisted-pair-network-connectors"><span class="toc-number">2.</span> <span class="toc-text">Twisted pair network connectors.</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#RJ11"><span class="toc-number">2.1.</span> <span class="toc-text">RJ11.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RJ45"><span class="toc-number">2.2.</span> <span class="toc-text">RJ45.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RJ48C"><span class="toc-number">2.3.</span> <span class="toc-text">RJ48C.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DB9-RS-232"><span class="toc-number">2.4.</span> <span class="toc-text">DB9 (RS-232).</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DB25-EIA-232-RS-232-serial"><span class="toc-number">2.5.</span> <span class="toc-text">DB25 (EIA-232&#x2F;RS-232 serial).</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Categories-of-twisted-pair"><span class="toc-number">3.</span> <span class="toc-text">Categories of twisted pair.</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Cat-3"><span class="toc-number">3.1.</span> <span class="toc-text">Cat 3.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cat-5"><span class="toc-number">3.2.</span> <span class="toc-text">Cat 5.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cat-5e"><span class="toc-number">3.3.</span> <span class="toc-text">Cat 5e.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cat-6"><span class="toc-number">3.4.</span> <span class="toc-text">Cat 6.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cat-6a"><span class="toc-number">3.5.</span> <span class="toc-text">Cat 6a.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UTP-coupler"><span class="toc-number">3.6.</span> <span class="toc-text">UTP coupler.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#66-block"><span class="toc-number">3.7.</span> <span class="toc-text">66 block.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#110-block"><span class="toc-number">3.8.</span> <span class="toc-text">110 block.</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Coaxial-cabling"><span class="toc-number">4.</span> <span class="toc-text">Coaxial cabling.</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Coaxial-cabling-1"><span class="toc-number">4.1.</span> <span class="toc-text">Coaxial cabling.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Coaxial-cable-types"><span class="toc-number">4.2.</span> <span class="toc-text">Coaxial cable types.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Coaxial-cable-connectors"><span class="toc-number">4.3.</span> <span class="toc-text">Coaxial cable connectors.</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Fiber-optic-cabling"><span class="toc-number">5.</span> <span class="toc-text">Fiber optic cabling.</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Fiber-optic-cabling-described"><span class="toc-number">5.1.</span> <span class="toc-text">Fiber optic cabling described.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fiber-types"><span class="toc-number">5.2.</span> <span class="toc-text">Fiber types.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fiber-optic-cabling-connectors"><span class="toc-number">5.3.</span> <span class="toc-text">Fiber optic cabling connectors.</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Media-converters"><span class="toc-number">6.</span> <span class="toc-text">Media converters.</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Cabling-tools"><span class="toc-number">7.</span> <span class="toc-text">Cabling tools.</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Crimpers"><span class="toc-number">7.1.</span> <span class="toc-text">Crimpers.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Wire-strippers"><span class="toc-number">7.2.</span> <span class="toc-text">Wire strippers.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-punchdown-tool"><span class="toc-number">7.3.</span> <span class="toc-text">The punchdown tool.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-cable-tester"><span class="toc-number">7.4.</span> <span class="toc-text">The cable tester.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TDR-time-domain-reflectometer"><span class="toc-number">7.5.</span> <span class="toc-text">TDR (time-domain reflectometer).</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OTDR-optical-time-domain-reflectometer"><span class="toc-number">7.6.</span> <span class="toc-text">OTDR (optical time-domain reflectometer).</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/16/NetworkCabling/" title="Network Cabling">Network Cabling</a><time datetime="2025-07-15T16:00:00.000Z" title="Created 2025-07-16 00:00:00">2025-07-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/15/LeetCode-146-LRU-Cache/" title="LeetCode 146 LRU Cache">LeetCode 146 LRU Cache</a><time datetime="2025-07-14T16:00:00.000Z" title="Created 2025-07-15 00:00:00">2025-07-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/15/LeetCode-86-Partition-List/" title="LeetCode 86 Partition List">LeetCode 86 Partition List</a><time datetime="2025-07-14T16:00:00.000Z" title="Created 2025-07-15 00:00:00">2025-07-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/15/LeetCode-61-Rotate-List/" title="LeetCode 61 Rotate List">LeetCode 61 Rotate List</a><time datetime="2025-07-14T16:00:00.000Z" title="Created 2025-07-15 00:00:00">2025-07-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/14/LeetCode-141-Linked-List-Cycle/" title="LeetCode 141 Linked List Cycle">LeetCode 141 Linked List Cycle</a><time datetime="2025-07-13T16:00:00.000Z" title="Created 2025-07-14 00:00:00">2025-07-14</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By Bryan Niu</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
